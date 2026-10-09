@@ -1,0 +1,572 @@
+\documentclass[12pt]{article}
+\setlength{\oddsidemargin}{0in}
+\setlength{\evensidemargin}{0in}
+\setlength{\textwidth}{6.5in}
+\setlength{\parindent}{0in}
+\setlength{\parskip}{\baselineskip}
+
+\usepackage{amsmath,amsfonts,amssymb}
+
+\title{Math 291 Challenge Set}
+
+\begin{document}
+
+Math 291 Fall 2025\hfill{} Problem Set 1 \\
+Jeffrey Lu, Robert, Matthew, Luke
+
+\hrulefill{}
+
+DATA: Consider \(\mathbf{v}_1 = (1, -1, 0, 1, 1), \mathbf{v}_2 = (0, 1, 1, 0, 1), \mathbf{v}_3 = (-1, 3, 2, -1, 1), \mathbf{v}_4 = (1, 0, 1, 1, 2), \mathbf{v}_5 = (0, 0, 0, 1, 0), \mathbf{v}_6 = (0, 0, 1, 0, 1), \mathbf{v}_7 = (0, 0, 0, 0, 1)\). For \(1 \leq i \leq j \leq 7\), let \(A^{(i,j)}\) denote the span of \(\mathbf{v}_i, \ldots, \mathbf{v}_j\).
+\begin{enumerate}
+    \item{} \textit{(a) Perform Gram-Schmidt on the input sequence of seven vectors \(\mathbf{v_1} , \ldots, \mathbf{v_7}\) to obtain the output sequence \(\mathbf{u_1}, \ldots, \mathbf{u_r}\). Do by hand first, and check your answer in other ways.
+              (b) Write each input vector as a linear combination of output vectors.
+              (c) Do you expect the same output sequence if the input sequence is reversed? What aspect of the output sequence will not change?}
+
+          \begin{enumerate}
+              \item{}
+
+                    Choose the first vector to be pivotal and normalize:
+                    \[
+                        \mathbf{u}_1=\frac{\mathbf{v}_1}{\|\mathbf{v}_1\|}=\tfrac{1}{2}(1,-1,0,1,1)
+                    \]
+
+                    Next, apply Gram–Schmidt to \(\mathbf{v}_2\):
+                    \begin{align*}
+                        \mathbf{w}_2 & = \mathbf{v}_2- (\mathbf{u}_1\cdot\mathbf{v}_2)\mathbf{u}_1 \\
+                        \mathbf{w}_2 & = \mathbf{v}_2-\mathbf{0} = (0,1,1,0,1)
+                    \end{align*}
+                    Normalizing \(\mathbf{w}_2\):
+                    \[
+                        \mathbf{u}_2 = \frac{\mathbf{w}_2}{\|\mathbf{w}_2\|}=\tfrac{1}{\sqrt{3}}(0,1,1,0,1)
+                    \]
+                    For \(\mathbf{v}_3\):
+                    \begin{align*}
+                        \mathbf{w}_3 & = \mathbf{v}_3-(\mathbf{u}_1\cdot\mathbf{v}_3)\mathbf{u}_1- (\mathbf{u}_2\cdot\mathbf{v}_3)\mathbf{u}_2 \\
+                                     & = \mathbf{v}_3+\mathbf{v}_1-2\mathbf{v}_2= (0,0,0,0,0)                                                  \\
+                                     & = \mathbf{0}
+                    \end{align*}
+                    Thus \(\mathbf{v}_3\) is not a pivotal vector. \\
+
+                    For \(\mathbf{v}_4\):
+                    \begin{align*}
+                        \mathbf{w}_4 & = \mathbf{v}_4- (\mathbf{u}_1\cdot\mathbf{v}_4)\mathbf{u}_1-(\mathbf{u}_2\cdot\mathbf{v}_4)\mathbf{u}_2 \\
+                                     & = \mathbf{v}_4-\mathbf{v}_1-\mathbf{v}_2= (0,0,0,0,0)                                                   \\
+                                     & = \mathbf{0}
+                    \end{align*}
+                    Thus \(\mathbf{v}_4\) is also not a pivotal vector \\
+
+                    For \(\mathbf{v}_5\):
+                    \begin{align*}
+                        \mathbf{w}_5 & =\mathbf{v}_5-(\mathbf{u}_1\cdot\mathbf{v}_5)\mathbf{u}_1-(\mathbf{u}_2\cdot\mathbf{v}_5)\mathbf{u}_2 \\
+                                     & =\mathbf{v}_5-\tfrac{1}{4}\mathbf{v_1}-\mathbf{0}                                                     \\
+                                     & =\tfrac{1}{4} (-1,1,0,3,-1)
+                    \end{align*}
+                    Normalizing, we get our third orthonormal vector
+                    \[
+                        \mathbf{u}_3=\frac{\mathbf{w}_5}{\|\mathbf{w}_5\|}
+                        =\tfrac{1}{\sqrt{12}}(-1,1,0,3,-1)
+                    \]
+
+                    For \(\mathbf{v}_6\):
+                    \begin{align*}
+                        \mathbf{w}_6 & =\mathbf{v}_6-(\mathbf{u}_1\cdot\mathbf{v}_6)\mathbf{u}_1-(\mathbf{u}_2\cdot\mathbf{v}_6)\mathbf{u}_2-(\mathbf{u}_3\cdot\mathbf{v}_6)\mathbf{u}_3 \\
+                                     & =\mathbf{v}_6-\tfrac{1}{4}\mathbf{v_1}-\tfrac{2}{3}\mathbf{v_2}+\tfrac{1}{12} (-1,1,0,3,-1)                                                       \\
+                                     & =\tfrac{1}{3} (-1,-1,1,0,0)
+                    \end{align*}
+                    Normalizing, we get our fourth orthonormal vector
+                    \[
+                        \mathbf{u}_4=\frac{\mathbf{w}_6}{\|\mathbf{w}_6\|} =\tfrac{1}{\sqrt{3}}(-1,-1,1,0,0)
+                    \]
+
+                    Finally, for \(\mathbf{v}_7\):
+                    \begin{align*}
+                        \mathbf{w}_7 & =\mathbf{v}_7-(\mathbf{u}_1\cdot\mathbf{v}_7)\mathbf{u}_1-(\mathbf{u}_2\cdot\mathbf{v}_7)\mathbf{u}_2-(\mathbf{u}_3\cdot\mathbf{v}_7)\mathbf{u}_3-(\mathbf{u}_4\cdot\mathbf{v}_7)\mathbf{u}_4 \\
+                                     & =\mathbf{v}_7-\tfrac{1}{4}\mathbf{v}_1-\tfrac{1}{3}\mathbf{v}_2+\tfrac{1}{12} (-1,1,0,3,-1)-\mathbf{0}                                                                                        \\
+                                     & =\tfrac{1}{3} (-1,0,-1,0,1)
+                    \end{align*}
+                    Normalizing, we get our fifth and final orthonormal vector, completing the basis for \(\mathbb{R}^5\):
+                    \[
+                        \mathbf{u}_5=\frac{                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   \mathbf{w}_7}{\|\mathbf{w}_7\|} =\tfrac{1}{\sqrt{3}}(-1,0,-1,0,1)
+                    \]
+
+              \item{}
+                    Using the fundamental theorem of orthogonal vectors and the fact that our output vectors are orthonormal,
+                    \[
+                        \mathbf{v}_j = \sum_{i=1}^{r} (\mathbf{u}_i \cdot \mathbf{v}_j) \mathbf{u}_i \quad \text{for } j=1,\ldots,7
+                    \]
+                    We can rearrange the equations used in part (a) to get input vectors in terms of the output vectors.
+                    \begin{align*}
+                        \mathbf{v_1} = \|\mathbf{v_1}\|\mathbf{u}_1 = 2\mathbf{u}_1 \\
+                        \mathbf{v_2}  = \|\mathbf{w_2}\|\mathbf{u}_2 = \sqrt{3}\mathbf{u}_2
+                    \end{align*}
+                    We already found that \(\mathbf{v}_3\) is a linear combination of \(\mathbf{v}_1\) and \(\mathbf{v}_2\):
+                    \begin{align*}
+                        \mathbf{v_3} & = -\mathbf{v_1} + 2\mathbf{v_2}          \\
+                                     & = -2\mathbf{u}_1 + 2\sqrt{3}\mathbf{u}_2
+                    \end{align*}
+                    Again, \(\mathbf{v}_4\) is also a linear combination of \(\mathbf{v}_1\) and \(\mathbf{v}_2\):
+                    \begin{align*}
+                        \mathbf{v_4} & = \mathbf{v_1} + \mathbf{v_2}          \\
+                                     & = 2\mathbf{u}_1 + \sqrt{3}\mathbf{u}_2
+                    \end{align*}
+                    The remaining vectors are the same process:
+                    \begin{align*}
+                        \mathbf{v_5} & = \mathbf{w_5} + \tfrac{1}{4}\mathbf{v_1} + 0\mathbf{u}_2                                                                              \\
+                                     & = \|\mathbf{w_5}\|\mathbf{u}_3 + \tfrac{1}{4}\mathbf{v_1}                                                                              \\
+                                     & = \tfrac{\sqrt{12}}{4}\mathbf{u}_3 + \tfrac{1}{4}(2\mathbf{u}_1)                                                                       \\
+                                     & = \tfrac{1}{2}\mathbf{u}_1 + \tfrac{\sqrt{3}}{2}\mathbf{u}_3                                                                           \\
+                        \\
+                        \mathbf{v_6} & = \mathbf{w_6} + \tfrac{1}{4}\mathbf{v_1} + \tfrac{2}{3}\mathbf{v_2} - \tfrac{1}{\sqrt{12}}\mathbf{u}_3                                \\
+                                     & = \|\mathbf{w_6}\|\mathbf{u}_4 + \tfrac{1}{4}\mathbf{v_1} + \tfrac{2}{3}\mathbf{v_2} - \tfrac{\sqrt{3}}{6}\mathbf{u}_3                 \\
+                                     & = \tfrac{\sqrt{3}}{3}\mathbf{u}_4 + \tfrac{1}{4}(2\mathbf{u}_1) + \tfrac{2}{3}(\sqrt{3}\mathbf{u}_2) - \tfrac{\sqrt{3}}{6}\mathbf{u}_3 \\
+                                     & = \tfrac{1}{2}\mathbf{u}_1 + \tfrac{2\sqrt{3}}{3}\mathbf{u}_2 - \tfrac{\sqrt{3}}{6}\mathbf{u}_3 + \tfrac{\sqrt{3}}{3}\mathbf{u}_4      \\
+                        \\
+                        \mathbf{v_7} & = \mathbf{w_7} + \tfrac{1}{4}\mathbf{v_1} + \tfrac{1}{3}\mathbf{v_2} - \tfrac{1}{\sqrt{12}}\mathbf{u}_3 + 0\mathbf{u}_4                \\
+                                     & = \|\mathbf{w_7}\|\mathbf{u}_5 + \tfrac{1}{4}\mathbf{v_1} + \tfrac{1}{3}\mathbf{v_2} - \tfrac{\sqrt{3}}{6}\mathbf{u}_3                 \\
+                                     & = \tfrac{\sqrt{3}}{3}\mathbf{u}_5 + \tfrac{1}{4}(2\mathbf{u}_1) + \tfrac{1}{3}(\sqrt{3}\mathbf{u}_2) - \tfrac{\sqrt{3}}{6}\mathbf{u}_3 \\
+                                     & = \tfrac{1}{2}\mathbf{u}_1 + \tfrac{\sqrt{3}}{3}\mathbf{u}_2 - \tfrac{\sqrt{3}}{6}\mathbf{u}_3 + \tfrac{\sqrt{3}}{3}\mathbf{u}_5
+                    \end{align*}
+                    Collecting all the equations, we have:
+                    \[
+                        \begin{array}{rcl}
+                            \mathbf{v}_1 & = & 2\mathbf{u}_1 + 0\mathbf{u}_2 + 0\mathbf{u}_3 + 0\mathbf{u}_4 + 0\mathbf{u}_5,                                                                   \\[6pt]
+                            \mathbf{v}_2 & = & 0\mathbf{u}_1 + \sqrt{3}\mathbf{u}_2 + 0\mathbf{u}_3 + 0\mathbf{u}_4 + 0\mathbf{u}_5,                                                            \\[6pt]
+                            \mathbf{v}_3 & = & -2\mathbf{u}_1 + 2\sqrt{3}\mathbf{u}_2 + 0\mathbf{u}_3 + 0\mathbf{u}_4 + 0\mathbf{u}_5,                                                          \\[6pt]
+                            \mathbf{v}_4 & = & 2\mathbf{u}_1 + \sqrt{3}\mathbf{u}_2 + 0\mathbf{u}_3 + 0\mathbf{u}_4 + 0\mathbf{u}_5,                                                            \\[6pt]
+                            \mathbf{v}_5 & = & \tfrac{1}{2}\mathbf{u}_1 + 0\mathbf{u}_2 + \tfrac{\sqrt{3}}{2}\mathbf{u}_3  + 0\mathbf{u}_4 + 0\mathbf{u}_5,                                     \\[6pt]
+                            \mathbf{v}_6 & = & \tfrac{1}{2}\mathbf{u}_1 + \tfrac{2\sqrt{3}}{3}\mathbf{u}_2 - \tfrac{\sqrt{3}}{6}\mathbf{u}_3 + \tfrac{\sqrt{3}}{3}\mathbf{u}_4 + 0\mathbf{u}_5, \\[6pt]
+                            \mathbf{v}_7 & = & \tfrac{1}{2}\mathbf{u}_1 + \tfrac{\sqrt{3}}{3}\mathbf{u}_2 - \tfrac{\sqrt{3}}{6}\mathbf{u}_3 + 0\mathbf{u}_4 + \tfrac{\sqrt{3}}{3}\mathbf{u}_5.
+                        \end{array}
+                    \]
+
+
+              \item{}
+                    If the input sequence is reversed, we do not expect the same output sequence.
+                    This is because if Gran-Schmidt is applied to a set a vectors in a different order, you may get a different set of pivotal vectors, and therefore the orthonormal basis that you end up with will also be different.
+                    However, the span of the orthonormal basis will always be the same, in this case spanning all of $\mathbb{R}^5$, no matter the order you applied Gram–Schmidt.
+
+          \end{enumerate}
+
+          \vspace{1em}
+
+    \item{}  Recall that a subspace S of $\mathbb{R}^n$ is a subset of $\mathbb{R}^n$ satisfying two properties. What are they? Specify in detail - so, not just the
+          name of the properties. (Notice that the span of any set is always a subspace, as it satisfies both these properties.)
+          \begin{enumerate}
+              \item{} Closed under vector addition: For any two vectors \(\mathbf{v}_1, \mathbf{v}_2 \in \text{set } S\), the sum \(\mathbf{v}_1 + \mathbf{v}_2\) is also in set \(S\).
+              \item{} Closed under scalar multiplication: For any vector \(\mathbf{v} \in \text{set } S\), when multiplied by any scalar \(c \in \mathbb{R}\), the resulting vector \(c\mathbf{v}\) is also in set \(S\).
+          \end{enumerate}
+
+          \vspace{1em}
+
+    \item{} Every non-zero subspace of R3 is the span of an orthonormal set of , , or vectors, which we respectively recognize
+          geometrically as , , or through the origin in R3.
+          \begin{enumerate}
+              \item{}1,2,3
+
+              \item{} line, plane, or entire space of $\mathbb{R}^3$
+          \end{enumerate}
+
+          \vspace{1em}
+
+    \item{} For each subspace A(1,j) j = 1, \dots, 7 obtain
+          \begin{enumerate}
+              \item{}
+                    We already found the orthonormal basis by perfoming Gram–Schmidt on \(\mathbf{v_1} , \ldots, \mathbf{v_7}\).
+                    Decreasing j will take vectors away, shrinking the orthonormal basis, by only using  orthonormal vectors found before and from the jth vector during Gram–Schmidt.
+                    \begin{align*}
+                        j & =1 \rightarrow{} \{\mathbf{u}_1\}                                                           \\
+                        j & =2 \rightarrow{} \{\mathbf{u}_1\, \mathbf{u}_2 \}                                           \\
+                        j & =3 \rightarrow{} \{\mathbf{u}_1\, \mathbf{u}_2 \}                                           \\
+                        j & =4 \rightarrow{} \{\mathbf{u}_1\, \mathbf{u}_2 \}                                           \\
+                        j & =5 \rightarrow{} \{\mathbf{u}_1\, \mathbf{u}_2, \mathbf{u}_3 \}                             \\
+                        j & =6 \rightarrow{} \{\mathbf{u}_1\, \mathbf{u}_2, \mathbf{u}_3, \mathbf{u}_4 \}               \\
+                        j & =7 \rightarrow{} \{\mathbf{u}_1\, \mathbf{u}_2, \mathbf{u}_3, \mathbf{u}_4, \mathbf{u}_5 \}
+                    \end{align*}
+
+              \item{}
+                    The dimension of the subspace is equal to the number of orthonormal vectors in the ONB.
+                    \begin{align*}
+                        j & =1 \rightarrow{} dim = 1 \\
+                        j & =2 \rightarrow{} dim = 2 \\
+                        j & =3 \rightarrow{} dim = 2 \\
+                        j & =4 \rightarrow{} dim = 2 \\
+                        j & =5 \rightarrow{} dim = 3 \\
+                        j & =6 \rightarrow{} dim = 4 \\
+                        j & =7 \rightarrow{} dim = 5
+                    \end{align*}
+              \item{}
+                    Any vector in the subspace can be parameterized into a linear combination of a orthonormal basis of the subspace.
+                    \begin{align*}
+                        P (t_1, \dots, t_k) = \sum_{j=1}^{k} t_j\mathbf{u}_j
+                    \end{align*}
+                    This function preserves dot product as demonstrated below:
+                    \begin{align*}
+                        P (\mathbf{t}) \cdot{} P (\mathbf{s}) & = \sum_{j=1}^{k} t_j\mathbf{u}_j \cdot{} \sum_{i=1}^{k} s_i\mathbf{u}_i    \\
+                                                              & = \sum_{i=1}^{k}\sum_{j=1}^{k} t_js_i (\mathbf{u}_j  \cdot{} \mathbf{u}_i) \\
+                                                              & = \sum_{i=1}^{k} t_js_i                                                    \\
+                                                              & = \mathbf{t} \cdot{} \mathbf{s}
+                    \end{align*}
+              \item{}
+                    Since the vectors are in $\mathbb{R}^5$, the orthogonal complement of the subspace is just \(A^{(j+1,7)}\), expect for the j=7 where it's just the zero subspace.
+                    \begin{align*}
+                        j & =1 \rightarrow{} \{\mathbf{u}_2, \mathbf{u}_3, \mathbf{u}_4, \mathbf{u}_5\} \\
+                        j & =2 \rightarrow{} \{\mathbf{u}_3, \mathbf{u}_4, \mathbf{u}_5\}               \\
+                        j & =3 \rightarrow{} \{\mathbf{u}_3, \mathbf{u}_4, \mathbf{u}_5\}               \\
+                        j & =4 \rightarrow{} \{\mathbf{u}_3, \mathbf{u}_4, \mathbf{u}_5\}               \\
+                        j & =5 \rightarrow{} \{\mathbf{u}_4, \mathbf{u}_5\}                             \\
+                        j & =6 \rightarrow{} \{\mathbf{u}_5 \}                                          \\
+                        j & =7 \rightarrow{} \{0\}
+                    \end{align*}
+
+          \end{enumerate}
+          \vspace{0.5em}
+
+    \item{}
+          In the next few parts, we’ll develop some machinery. You might also try the last problem now to get a feeling for the concrete details.
+
+          The set obtained by “translating” a subspace $V$ by a point $\mathbf{p}$, so
+          \[
+              F = p + V := \{p + v : v \in V\},
+          \]
+          is called an \textbf{affine subset} of $\mathbb{R}^n$. (The $p$ is replaceable by any $p + v$ for $v \in V$ without changing the set $F$). The dimension of $V$ is called the dimension of $F$.
+
+          \begin{enumerate}
+              \item[(a)] Show that a line with parametric form $\mathbf{x}_0 + t\mathbf{a}$ in $\mathbb{R}^3$ is an affine subset of $\mathbb{R}^3$. Identify $\mathbf{p}, V$. So, is the dimension of the line?
+
+              \item[(b)] Consider $\mathbf{n} \neq \mathbf{0}, \mathbf{x}_0 \in \mathbb{R}^n$. Let
+                    \[
+                        H = \{\mathbf{x} \in \mathbb{R}^n : (\mathbf{x} - \mathbf{x}_0) \cdot \mathbf{n} = 0\}.
+                    \]
+                    Show this is an affine subset of dimension $n-1$. Such subsets are called \textbf{hyperplanes}.
+          \end{enumerate}
+
+
+          \textbf{SOLUTION}:
+
+          \begin{enumerate}
+              \item{}
+                    The parameterization of a line is in the same form of an affine subset in $\mathbb{R}^n$.
+                    The base point $\mathbf{x}_0$ is the same as the point $\mathbf{p}$. While $V = t\mathbf{a} = span(\mathbf{a})$.
+                    $\mathbf{a}$ represents the subspace V because any two vectors lying on the line added together will still lie on the line and if $\mathbf{a}$ is scaled by any real number it also still lies on the line.
+                    dim(V) = dim(F) = dim($\mathbf{x}_0+t\mathbf{a}$) = 1
+              \item{} Expanding H you get the hyperplane in the form $a\mathbf{x}+b\mathbf{y}+\dots+c\mathbf{z} + d$, if d=0 then the plane goes through the origin and is not a affine subset, otherwise it is.
+
+
+          \end{enumerate}
+    \item{}
+          If $\mathbf{u}_1, \ldots, \mathbf{u}_k$ is an orthonormal (generating) spanning set (so, orthonormal basis) of a subspace V of $\mathbb{R}^n$.
+          Let us denote by $Proj_V (\mathbf{x})$ or $\mathbf{x}_V $ the vector  $\sum_{i=1}^{k} (\mathbf{x} \cdot \mathbf{u}_i)\mathbf{u}_i$.
+          Prove:
+
+          \begin{enumerate}
+              \item{} For \( \mathbf{x}, \mathbf{y} \in \mathbb{R}^n, (\mathbf{x} + \mathbf{y})_{V} = \mathbf{x}_{V} + \mathbf{y}_{V} \): \\
+
+                    This can be easily proved by just distributing the dot products, vector multiplication, and seperating the summations like so:
+                    \begin{align*}
+                        (\mathbf{x}+\mathbf{y})_V & = \sum_{j=1}^k ((\mathbf{x}+\mathbf{y})\cdot{\mathbf{u}_j})\mathbf{u}_j                                             \\
+                                                  & = \sum_{j=1}^k (\mathbf{x}\cdot{\mathbf{u}_j}+\mathbf{y}\cdot{\mathbf{u}_j})\mathbf{u}_j                            \\
+                                                  & = \sum_{j=1}^k (\mathbf{x}\cdot{\mathbf{u}_j})\mathbf{u}_j+ (\mathbf{y}\cdot{\mathbf{u}_j})\mathbf{u}_j             \\
+                                                  & = \sum_{j=1}^k (\mathbf{x}\cdot{\mathbf{u}_j})\mathbf{u}_j+\sum_{i=1}^k (\mathbf{y}\cdot{\mathbf{u}_i})\mathbf{u}_i \\
+                                                  & = \mathbf{x}_V+\mathbf{y}_V
+                    \end{align*}
+              \item{} For \(\mathbf{x},\mathbf{y}\in{\mathbb{R}^n}, (\alpha\mathbf{x})_V = \alpha(\mathbf{x}_V) \): \\
+
+                    Since \(\alpha \in \mathbb{R}\), it can be factored out like so:
+                    \begin{align*}
+                        (\alpha\mathbf{x})_V & = \sum_{i=1}^{k} ((\alpha\mathbf{x}) \cdot{} \mathbf{u}_i)\mathbf{u}_i \\
+                                             & = \sum_{i=1}^{k} (\alpha(\mathbf{x} \cdot{} \mathbf{u}_i))\mathbf{u}_i \\
+                                             & = \alpha\sum_{i=1}^{k} (\mathbf{x} \cdot{} \mathbf{u}_i)\mathbf{u}_i   \\
+                                             & = \alpha(\mathbf{x}_V)                                                 \\
+                    \end{align*}
+              \item{} If \(\mathbf{x}\in{V}\text{, then }\mathbf{x}_V = \mathbf{x}\): \\
+
+                    If $\mathbf{x}$ is an element of subspace V, then it can also be written as a linear combination of any orthonormal basis in V
+                    \begin{align*}
+                        \mathbf{x}_V & = \sum_{i=1}^{k} (\mathbf{x} \cdot{} \mathbf{u}_i)\mathbf{u}_i \\
+                                     & = \mathbf{x}
+                    \end{align*}
+
+          \end{enumerate}
+    \item{} \emph{As we saw in class, $\mathbf{x} = \mathbf{x}_V + (\mathbf{x} - \mathbf{x}_V)$ is the orthogonal decomposition of any vector in $\mathbb{R}^n$ (uniquely) as a sum of one in $V$ and one in $V^\perp$. Use the argument in question 5 of homework 3 to show that $\mathbf{p} + (\mathbf{x} - \mathbf{p})_V$ is the unique point in the affine subset $F = \mathbf{p} + V$ that is closest to $\mathbf{x}$ -- where the minimum of $\|\mathbf{x} - (\mathbf{p} + \mathbf{v})\|$ (or its square) among all $\mathbf{v} \in V$ is attained.} \\
+
+          \textbf{SOLUTION:}
+
+          To find the minimum of closest distance between the affine subset F and vector $\mathbf{x}$ take the orthogonal decomposition of $\|\mathbf{x} - (\mathbf{p} + \mathbf{v})\|$ with regard to subspace V like so:
+          \begin{align*}
+              \|\mathbf{x} - (\mathbf{p} + \mathbf{v})\| & = \|(\mathbf{x} - (\mathbf{p} + \mathbf{v}))_V\| + \|\mathbf{x} - (\mathbf{p} + \mathbf{v})-(\mathbf{x} - (\mathbf{p} + \mathbf{v}))_V\| \\
+                                                         & =\|\mathbf{x}_V - \mathbf{p}_V - \mathbf{v}\| + \|\mathbf{x} - \mathbf{p} - \mathbf{v}-\mathbf{x}_V + \mathbf{p}_V + \mathbf{v}\|        \\
+                                                         & =\|\mathbf{x}_V - \mathbf{p}_V - \mathbf{v}\| + \|\mathbf{x} - \mathbf{p} -\mathbf{x}_V + \mathbf{p}_V \|
+          \end{align*}
+          The vector $\mathbf{v}$ is already in subspace V, so it stays the same as proven in 6(c).
+          Additonally, the orthogonal component is now independent of vector $\mathbf{v}$, therefore it can be ignored.
+
+          Next, we minimize the component projected onto subspace V by choosing a specific $\mathbf{v}$, to find this we set the expression to 0 and solve for $\mathbf{v}$:
+          \begin{align*}
+              \mathbf{x}_V - \mathbf{p}_V - \mathbf{v} & = 0          \\
+              (\mathbf{x} - \mathbf{p})_V              & = \mathbf{v}
+          \end{align*}
+          Now, find the unique point in the affine subset F by plugging in the minimizied $\mathbf{v}$ in to \(\mathbf{f}=\mathbf{p}+\mathbf{v} | (\mathbf{f} \in F)\), $\mathbf{f}$ is the unique point minimizing distance from F to $\mathbf{x}$
+          \begin{align*}
+              \mathbf{f} & =\mathbf{p}+\mathbf{v}                  \\
+                         & =\mathbf{p}+(\mathbf{x} - \mathbf{p})_V
+          \end{align*}
+          This matches the unique point stated earlier.
+
+    \item{} If $V, W$ are subspaces of same $\mathbb{R}^n$, their difference defined by $V - W = \{\mathbf{v} - \mathbf{w} : \mathbf{v} \in V, \mathbf{w} \in W\}$ is also a subspace. (Note: because $W$ is a subspace, the minus can be absorbed into the general $\mathbf{w}$ and so this subset is same as $V + W$.) Therefore, if $\mathbf{p} + V$ and $\mathbf{q} + W$ are affine subsets, so is their difference $\mathbf{p} - \mathbf{q} + V - W$.
+          \begin{enumerate}
+              \item{} Show that the distance between affine subsets $\mathbf{p} + V$ and $\mathbf{q} + W$ is $\|\mathbf{p} - \mathbf{q} - (\mathbf{p} - \mathbf{q})_{(V - W)}\|$. \\
+
+                    \textbf{SOLUTION:}
+                    We learned from above that the distance between two affine subsets is equivalent to the distance between a point created from the difference between the two base points and a subspace created by the combination of the two subspaces of the affine subsets V and W.
+
+                    Therefore, we can take the orthogonal decomposition of this new expression to uncover the distance between any two affine subsets like so:
+                    \begin{align*}
+                        \| \mathbf{p}-\mathbf{q} + V - W \|\  & = \| (\mathbf{p}-\mathbf{q})_{V-W} + (V - W)\| +                                                            \\
+                                                              & \quad{} \|(\mathbf{p}-\mathbf{q}) + (V - W) -((\mathbf{p}-\mathbf{q})+(V-W))_{V-W} \|                       \\
+                                                              & = \| (\mathbf{p}-\mathbf{q})_{V-W} + (V - W)\| + \|(\mathbf{p}-\mathbf{q})-(\mathbf{p}-\mathbf{q})_{V-W} \|
+                    \end{align*}
+                    We can minimize the projection onto (V-W) by setting (V-W) to a unique point because \((\mathbf{p}-\mathbf{q})_(V-W)\) lies in (V-W), so there exists a vector within (V-W) that is equal to it and therefore set the entire projected component to zero.
+                    Therefore the distance between two affine subsets is equal to the norm of only the component orthogonal to the subspace (V-W):
+                    \[
+                        \| \mathbf{p}-\mathbf{q} + V - W \| = \|(\mathbf{p}-\mathbf{q})-(\mathbf{p}-\mathbf{q})_{V-W} \| \quad \square
+                    \]
+
+              \item{} If $\mathbf{u}_1, \ldots, \mathbf{u}_l$ is an ONB of $V$ and $\mathbf{w}_1, \ldots, \mathbf{w}_m$ an ONB of $W$, would their ‘union’, $\mathbf{u}_1, \ldots, \mathbf{u}_l, \mathbf{w}_1, \ldots, \mathbf{w}_m$ span the set $V - W$? Do you expect it to be an orthonormal set? If no, propose a strategy to get an orthonormal basis for $V - W$. \\
+
+                    \textbf{SOLUTION:}
+
+                    Yes, the union of the two subspaces would span the set $V-W$.
+                    This is because if you define \(\mathbf{x} \in{} (V-W)\), it is also in (V+W) because V+W = V-W. We also define arbritary vectors:
+                    \begin{align*}
+                        \mathbf{v} & = \sum_{i=1}^l(\mathbf{v}\cdot{} \mathbf{u_i})\mathbf{u_i} \in{V} \\
+                        \mathbf{w} & = \sum_{j=1}^m(\mathbf{w}\cdot{} \mathbf{u_j})\mathbf{u_j} \in{W}
+                    \end{align*}
+                    Because \(\mathbf{x} \in{(V+W)}\), this means it can also be written as:
+                    \begin{align*}
+                        \mathbf{x} & = \mathbf{v} + \mathbf{w}                                                                                             \\
+                                   & = \sum_{i=1}^l(\mathbf{v}\cdot{} \mathbf{u_i})\mathbf{u_i} + \sum_{j=1}^m(\mathbf{w}\cdot{} \mathbf{u_j})\mathbf{u_j} \\
+                                   & = \sum_{k=1}^{l+m}(\mathbf{x}\cdot{} \mathbf{u_k})\mathbf{u_k}
+                    \end{align*}
+
+                    However, if the two subspaces aren't orthogonal complements, the union will not produce a orthonomal set.
+                    This is because some of the unit vectors will be in the span of each other since the subspaces aren't orthogonal. \\
+
+                    To fix this, all you have to do is apply the Gram–Schmidt algorthim on the union of the two old ONB to produce a new ONB for V-W.
+          \end{enumerate}
+    \item{} Intersection of two subspaces is also a subspace (nice little proof - you can do it later).
+          \begin{enumerate}
+              \item{} Argue that the intersection $A^{(1,2)} \cap A^{(5,6)}$ is either 0 ($zerosubspace$), 1 or 2 dimensional. Using the GS answer, argue it is $\{0\}$. \\
+
+                    \textbf{SOLUTION:}
+
+                    The subspace of the intersection has to be either 0, 1, or 2 dimensions because both subspaces are the span of two vectors:
+                    \begin{align*}
+                        A^{(1,2)} & = span(\mathbf{v_1}, \mathbf{v_2}) \\
+                        A^{(5,6)} & = span(\mathbf{v_5}, \mathbf{v_6})
+                    \end{align*}
+                    There are only 3 possible outcomes:
+
+                    1. Subspaces share no vectors, every vector is linearly independent, and there is no intersection, so the intersection is only the zero subspace because subspaces always pass through origin. \\
+                    2. One vector lies in the span of the other subspace, therefore the dimension of the subspace of the intersection is 1, or a line of intersections. \\
+                    3. Both pairs of vectors span the same subspace and the intersection has dimension two or a plane. \\
+
+                    Using our vectors, during Gram–Schmidt, \(\mathbf{v_6}, \mathbf{v_5}\) both had orthogonal components to \(\mathbf{v_1}, \mathbf{v_2}\) because they did not produce the zero vector after subtracing off their projections to \(\mathbf{u_1},\mathbf{u_2}\) produced from \(\mathbf{v_1},\mathbf{v_2}\) respectively.
+                    Therefore they are linearly independent and there is no intersection, so the subspace of the intersection is only the zero subspace.
+
+              \item{} Argue that the intersection $A^{(1,2)} \cap A^{(4,5)}$ is either 0, 1 or 2 dimensional. Using the GS answer, argue it is $\{\alpha \mathbf{v}_4 : \alpha \in \mathbb{R}\}$. \\
+
+                    \textbf{SOLUTION:}
+                    Similarly to part a, the subspaces can be rewritten as:
+                    \begin{align*}
+                        A^{(1,2)} & = span(\mathbf{v_1}, \mathbf{v_2}) \\
+                        A^{(4,5)} & = span(\mathbf{v_4}, \mathbf{v_5})
+                    \end{align*}
+                    Except we know from question 1(b), that \(\mathbf{v_4}\) is just a linear combiantion of {\(\mathbf{v_1}, \mathbf{v_2}\)}.
+                    Therefore, the entire line that is parallel to \(\mathbf{v_4}\) is a intersection, the line of intersection can also be stated as:
+                    \[
+                        \{\alpha \mathbf{v}_4 : \alpha \in \mathbb{R}\}
+                    \]
+
+          \end{enumerate}
+    \item{} Because they are two dimensional affine subsets, we consider $\mathbf{v}_7 + A^{(1,2)}$, $\mathbf{v}_6 + A^{(4,5)}$, and $A^{(5,6)}$ planes (just like what we visualize in $\mathbb{R}^3$) living in $\mathbb{R}^5$. Show that the first does not intersect with the second, and the first does not intersect with the last.
+
+          \textbf{SOLUTION:}
+          Back in question 8, we learned that the distance between two affine subsets can be written in a certain way:
+          \begin{align*}
+              \| \mathbf{p}-\mathbf{q} + V - W \| & = \|(\mathbf{p}-\mathbf{q}) - (V + W)\|
+          \end{align*}
+          For the affine subsets to intersect the distance between them must be zero,
+          \begin{align*}
+              \|(\mathbf{p}-\mathbf{q}) - (V + W)\| = 0 \\
+              (\mathbf{p}-\mathbf{q}) - (V + W) = 0     \\
+              (\mathbf{p}-\mathbf{q}) \in{} (V+W)
+          \end{align*}
+          Therefore, for the intersection to occur, the vector created from the subtracting one base point from another must lie inside the subspace formed by the combination of the two subspaces.
+
+          From here rewrite the vectors as linear combinations of the ONB to see if they lie in the subspaces:
+          \begin{align*}
+              \mathbf{v}_7-\mathbf{v}_6 & \in{} A^{(4,5)} + A^{(1,2)}                                                                                                               \\
+              \mathbf{v}_7-\mathbf{v}_6 & = \tfrac{1}{2}\mathbf{u_1} + \tfrac{\sqrt{3}}{3}\mathbf{u_2} - \tfrac{\sqrt{3}}{6}\mathbf{u_3} + \tfrac{\sqrt{3}}{3}\mathbf{u_5}-
+              (\tfrac{1}{2}\mathbf{u}_1 + \tfrac{2\sqrt{3}}{3}\mathbf{u}_2 - \tfrac{\sqrt{3}}{6}\mathbf{u}_3 + \tfrac{\sqrt{3}}{3}\mathbf{u}_4)                                     \\
+              A^{(4,5)} + A^{(1,2)}     & = s(2\mathbf{u_1}) + t(\sqrt{3}\mathbf{u_2})+ p(2\mathbf{u_1}+\sqrt{3}\mathbf{u_2}) + q(\tfrac{1}{2}\mathbf{u_1} + 2\sqrt{3}\mathbf{u_3})
+              \quad{} | \quad{} (s,t,p,q \in{} \mathbb{R})
+          \end{align*}
+          It can be easily seen that $\mathbf{v}_7-\mathbf{v}_6$ contain orthogonal componets to the subspace spanned by $ A^{(4,5)} + A^{(1,2)}$, since both $\mathbf{u}_4, \mathbf{u_5}$ are orthogonal to the entire subspace.
+          There is no way to minimize distance to zero, therefore there is no intersection here. \\
+
+          A subspace is just a affine subset with basepoint 0:
+          \begin{align*}
+              \mathbf{v}_7-\mathbf{0} = \mathbf{v}_7 & \in{} A^{(5,6)} + A^{(1,2)} = span(\mathbf{v_1},\mathbf{v_2}, \mathbf{v_5})
+          \end{align*}
+          There is no reason to go through the extra work of expanding.
+          From Gram–Schmidt we found that $\mathbf{v_7}$ revealed a new orthonormal vector \(\mathbf{u_5}\), therefore it can't possibly be in the span of the earlier vectors.
+          The distance cannot be minimizied to zero.
+          Again, there is no intersection.
+
+    \item{} (a) Find the distance between the following sets
+          \begin{enumerate}
+              \item[(i)] $\{\mathbf{v}_7\}$ and $A^{(1,5)}$
+
+                    \textbf{SOLUTION:}
+                    To minimize this distance, first perform orthogonal decomposition on the distance between the sets:
+                    \begin{align*}
+                        \| \mathbf{v_7} - A^{(1,5)} \| & = \| (\mathbf{v_7} - A^{(1,5)})_{A^{(1,5)}} \| + \| (\mathbf{v_7} - A^{(1,5)}) - (\mathbf{v_7} - A^{(1,5)})_{A^{(1,5)}} \| \\
+                                                       & =  \| \mathbf{v_7}_{A^{(1,5)}} - A^{(1,5)} \| + \| (\mathbf{v_7} - \mathbf{v_7}_{A^{(1,5)}} )\|
+                    \end{align*}
+                    The orthogonal component gives minimum distance since it is constant and we already know that \(A^{(1,5)} = span(\mathbf{u_1, u_2, u_3})\) from earlier:
+                    \begin{align*}
+                        \| (\mathbf{v_7} - \mathbf{v_7}_{A^{(1,5)}} )\| = \| \tfrac{1}{\sqrt{3}}\mathbf{u_3} \| = \tfrac{1}{\sqrt{3}}
+                    \end{align*}
+                    This is the minimized distance. \\
+
+                    \emph{(b) Obtain the closest point(s), in each case.}
+
+                    We can now find the closest point by setting the projection component to zero:
+                    \begin{align*}
+                        \mathbf{v_7}_{A^{(1,5)}} - A^{(1,5)}                                                         & =  0                                                      \\
+                        \tfrac{1}{2}\mathbf{u}_1 + \tfrac{\sqrt{3}}{3}\mathbf{u}_2 - \tfrac{\sqrt{3}}{6}\mathbf{u}_3 & \in{} A^{(1,5)}                                           \\
+                        (\tfrac{1}{3}, 0, \tfrac{1}{3}, 0, \tfrac{2}{3})                                             & = \mathbf{a} \quad{} | \quad{} \mathbf{a} \in{} A^{(1,5)}
+                    \end{align*}
+                    So \(\mathbf{a}\) is the closest point from the $A^{(1,5)}$ to $\mathbf{v_7}$.
+
+              \item[(ii)] $\mathbf{v}_7 + A^{(1,2)} = \{\mathbf{v}_7 + r\mathbf{v}_1 + s\mathbf{v}_2 : r, s \in \mathbb{R}\}$ and $A^{(5,6)} = \{t\mathbf{v}_5 + u\mathbf{v}_6 : t, u \in \mathbb{R}\}$
+
+                    \textbf{SOLUTION:}
+                    From question 8(a), we have already derived a expression to minimze distance between two affine subsets.
+                    \begin{align*}
+                        \| \mathbf{p}-\mathbf{q} + V - W \| & = \| (\mathbf{p}-\mathbf{q})_{V-W} + (V - W)\| + \|(\mathbf{p}-\mathbf{q})-(\mathbf{p}-\mathbf{q})_{V-W} \|
+                    \end{align*}
+                    Plugging in our affine subsets we get:
+                    \begin{align*}
+                        \| \mathbf{v_7}-\mathbf{0} + A^{(1,2)} - A^{(5,6)} \| & =
+                        \| (\mathbf{\mathbf{v_7}})_{A^{(1,2)}-A^{(5,6)}}  + A^{(1,2)} - A^{(5,6)}\| + \|\mathbf{v_7}-\mathbf{v_7}_{A^{(1,2)}-A^{(5,6)}} \|
+                    \end{align*}
+                    We can find the span of $(A^{(1,2)}-A^{(5,6)})$ in terms of the ONB using the equations we got in 1(b):
+                    \begin{align*}
+                        (A^{(1,2)}-A^{(5,6)}) & = span(\mathbf{v_1,v_2,v_5,v_6}) \\
+                                              & = span(\mathbf{u_1,u_2,u_3,u_4})
+                    \end{align*}
+                    That means the only orthognal component of $\mathbf{v}_7$ is its $\mathbf{u_5}$ component:
+                    \begin{align*}
+                        \|\mathbf{v_7}-\mathbf{v_7}_{A^{(1,2)}-A^{(5,6)}} \| & = \| \tfrac{1}{\sqrt{3}}\mathbf{u_5} \| \\
+                                                                             & = \tfrac{1}{\sqrt{3}}
+                    \end{align*}
+                    This is the minimized distance. \\
+
+                    \emph{(b) Obtain the closest point(s), in each case.}
+
+                    Because there is a closest point for each of the affine subsets, we need to solve for the parameters: r,s,t,u. \\
+                    This can be done by solving the projection component as zero, minimizing it.
+                    To do this we must first expand in terms of the ONB:
+                    \begin{align*}
+                         & \mathbf{\mathbf{v_7}}_{A^{(1,2)}-A^{(5,6)}} + A^{(1,2)} - A^{(5,6)} = 0                                       \\
+                         & = \mathbf{\mathbf{v_7}}_{A^{(1,2)}-A^{(5,6)}} + r\mathbf{v_1} + s\mathbf{v_2} - t\mathbf{v_5} - u\mathbf{v_6} \\
+                         & = (\tfrac{1}{2} + 2r - \tfrac{1}{2}t - \tfrac{1}{2}u) \mathbf{u_1}
+                        + (\tfrac{\sqrt{3}}{3} + \sqrt{3}s - 2\tfrac{\sqrt{3}}{3}u) \mathbf{u_2}
+                        + (-\tfrac{\sqrt{3}}{6} - \tfrac{\sqrt{3}}{2}t + \tfrac{\sqrt{3}}{6}u) \mathbf{u_3}
+                        + (\tfrac{\sqrt{3}}{3}u) \mathbf{u_4}
+                    \end{align*}
+                    Then set each coefficient to zero, solving for the parameters:
+                    \begin{align*}
+                        \mathbf{u_4}: & \tfrac{\sqrt{3}}{3}u = 0                                                 \\
+                                      & u = 0                                                                    \\
+                        \mathbf{u_3}: & -\tfrac{\sqrt{3}}{6} - \tfrac{\sqrt{3}}{2}t + \tfrac{\sqrt{3}}{6}(0) = 0 \\
+                                      & -\tfrac{\sqrt{3}}{6} = \tfrac{\sqrt{3}}{2}t                              \\
+                                      & t = -\tfrac{1}{3}                                                        \\
+                        \mathbf{u_2}: & \tfrac{\sqrt{3}}{3} + \sqrt{3}s - 2\tfrac{\sqrt{3}}{3}(0)=0              \\
+                                      & \tfrac{\sqrt{3}}{3} = -\sqrt{3}s                                         \\
+                                      & s = -\tfrac{1}{3}                                                        \\
+                        \mathbf{u_1}: & \tfrac{1}{2} + 2r - \tfrac{1}{2}(-\tfrac{1}{3}) - \tfrac{1}{2}(0)=0      \\
+                                      & 2r + \tfrac{4}{6} = 0                                                    \\
+                                      & r = -\tfrac{1}{3}
+                    \end{align*}
+                    Plugging these parameters we have found the closest points for each subset,
+                    \begin{align*}
+                        \mathbf{p_1} & = \mathbf{v_7} + r\mathbf{v_1} + s\mathbf{v_2} \quad{} | \quad{} \mathbf{p_1} \in{} \mathbf{v_7} + A^{(1,2)} \\
+                                     & =\mathbf{v_7} - \tfrac{1}{3} \mathbf{v_1} - \tfrac{1}{3} \mathbf{v_2}                                        \\
+                                     & = \tfrac{1}{3} (-1,0,-1,-1,1)                                                                                \\
+                        \mathbf{p_2} & = \mathbf{0} + t\mathbf{v_5} + u\mathbf{v_6} \quad{} | \quad{} \mathbf{p_2} \in{} A^{(5,6)}                  \\
+                                     & = - \tfrac{1}{3} \mathbf{v_5} + 0\mathbf{v_6}                                                                \\
+                                     & = \tfrac{1}{3} (0,0,0,-1,0)
+                    \end{align*}
+
+              \item[(iii)] $\mathbf{v}_7 + A^{(1,2)} = \{\mathbf{v}_7 + r\mathbf{v}_1 + s\mathbf{v}_2 : r, t \in \mathbb{R}\}$ and $\mathbf{v}_6 + A^{(4,5)} = \{\mathbf{v}_6 + t\mathbf{v}_4 + u\mathbf{v}_5 : t, u \in \mathbb{R}\}$
+
+                    \textbf{SOLUTION:}
+                    Use same strategy as the one in 11(ii):
+                    \begin{align*}
+                         & \| \mathbf{v_7} + A^{(1,2)} - \mathbf{v_6} - A^{(4,5)} \|                                                                                                              \\
+                         & = \| (\mathbf{v_7 - v_6})_{A^{(1,2)} - A^{(4,5)}} + A^{(1,2)} - A^{(4,5)}\| + \|(\mathbf{v_7} - \mathbf{v_6}) - (\mathbf{v_7} - \mathbf{v_6})_{A^{(1,2)}-A^{(4,5)}} \| \\
+                    \end{align*}
+                    The minimum distance is the constant orthognal component.
+                    We find the vector difference by subtracting the vectors in terms of the ONB,
+                    then summing the orthognal components in regard to subspace \(A^{(1,2)} - A^{(4,5)} = span(\mathbf{v_1, v_2, v_4, v_5}) = span(\mathbf{u_1,u_2,u_3})\):
+                    \begin{align*}
+                        \mathbf{v_7-v_6}                                         & =
+                        (\tfrac{1}{2}-\tfrac{1}{2}) \mathbf{u_1}
+                        + (\tfrac{\sqrt{3}}{3}-\tfrac{2\sqrt{3}}{2}) \mathbf{u_2}
+                        + (\tfrac{\sqrt{3}}{6}-\tfrac{2\sqrt{3}}{6}) \mathbf{u_3}
+                        + (-\tfrac{\sqrt{3}}{3}) \mathbf{u_4}
+                        + (\tfrac{\sqrt{3}}{3}) \mathbf{u_5}                                                                                                                                  \\
+                                                                                 & =  -\tfrac{\sqrt{3}}{2} \mathbf{u_2} - \tfrac{\sqrt{3}}{4} \mathbf{u_4} + \tfrac{\sqrt{3}}{3} \mathbf{u_5} \\
+                        \| (\mathbf{v_7-v_6})_{\perp{} A^{(1,2)} - A^{(4,5)}} \| & = \| - \tfrac{\sqrt{3}}{3} \mathbf{u_4} + \tfrac{\sqrt{3}}{3} \mathbf{u_5}          \|                     \\
+                                                                                 & = \| \tfrac{1}{3}(0,1,-2,0,1)\|                                                                            \\
+                                                                                 & = \tfrac{\sqrt{6}}{3}
+                    \end{align*}
+                    This is the minium distance. \\
+
+                    From the last step, we have also found \(\mathbf{v_7-v_6}_{A^{(1,2)} - A^{(4,5)}} = -\tfrac{\sqrt{3}}{2}\mathbf{u_2}\). \\
+
+                    \emph{(b) Obtain the closest point(s), in each case.}
+
+                    We again use the expansion into ONB to discover the parameter values that will set the projected component to zero:
+                    \\ (note that since $\mathbf{v_4}$ is in the span of $A^{(1,2)} \rightarrow{} A^{(4,5)} = A^5$)
+                    \begin{align*}
+                         & (\mathbf{v_7 - v_6})_{A^{(1,2)} - A^{(4,5)}} + A^{(1,2)} - A^{(4,5)} = 0 \\
+                         & = (2r - \tfrac{1}{2}u) \mathbf{u_1}
+                        + (\sqrt{3}s - \tfrac{2\sqrt{3}}{3}u - \tfrac{\sqrt{3}}{3}) \mathbf{u_2}
+                        = (-\tfrac{3}{6}u) \mathbf{u_3}
+                    \end{align*}
+                    Set coefficients to zero and solve for parameters:
+                    \begin{align*}
+                        \mathbf{u_3}: & -\tfrac{3}{6}u = 0                                            \\
+                                      & u = 0                                                         \\
+                        \mathbf{u_2}: & \sqrt{3}s - \tfrac{2\sqrt{3}}{3}(0) - \tfrac{\sqrt{3}}{3} = 0 \\
+                                      & \sqrt{3}s = \tfrac{\sqrt{3}}{3}                               \\
+                                      & s = \tfrac{1}{3}                                              \\
+                        \mathbf{u_1}: & 2r - \tfrac{1}{2}(0)=0                                        \\
+                                      & r= 0
+                    \end{align*}
+                    Plugging these parameters we have found the closest points for each subset,
+                    \begin{align*}
+                        \mathbf{p_1} & = \mathbf{v_7} + r\mathbf{v_1} + s\mathbf{v_2} \quad{} | \quad{} \mathbf{p_1} \in{} \mathbf{v_7} + A^{(1,2)} \\
+                                     & =\mathbf{v_7} + 0\mathbf{v_1} + \tfrac{1}{3} \mathbf{v_2}                                                    \\
+                                     & = \tfrac{1}{3} (0,1,1,0,4)                                                                                   \\
+                        \mathbf{p_2} & = \mathbf{v_6} + u\mathbf{v_5} \quad{} | \quad{} \mathbf{p_2} \in{} \mathbf{v_6} + A^{(4,5)}                 \\
+                                     & = \mathbf{v_6} + 0\mathbf{v_5}                                                                               \\
+                                     & = \mathbf{v_6}
+                    \end{align*}
+
+          \end{enumerate}
+\end{enumerate}
+\end{document}

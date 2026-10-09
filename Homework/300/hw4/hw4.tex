@@ -1,0 +1,200 @@
+\documentclass[12pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath, amssymb, amsthm}
+\usepackage{geometry}
+\usepackage{fancyhdr}
+
+\geometry{letterpaper, margin=1in}
+\newcommand{\Mod}[1]{\ (\mathrm{mod}\ #1)}
+\setlength{\headheight}{15pt}
+
+% Header setup
+\pagestyle{fancy}
+\fancyhf{}
+\lhead{Math 300 Spring 2026}
+\rhead{Jeffrey Lu}
+\cfoot{\thepage}
+\parskip=1ex
+
+\title{Homework Assignment 4 \\ \large Math 300, Spring 2026 \\ Rutgers University}
+\author{Jeffrey Lu}
+
+\begin{document}
+
+\maketitle
+
+\noindent \textbf{Question C-1 (d)}
+Suppose we have the diophantine equation
+\begin{align*}
+    x^2+y^2+z^2 = 8t -1.
+\end{align*}
+
+Reducing the equation by modulo 8, we have
+\begin{align*}
+    x^2 + y^2 + z^2 & \equiv -1 \Mod{8} \\
+                    & \equiv 7 \Mod{8}.
+\end{align*}
+
+By division algorithm, any integer $n$ is congruent to $k \Mod{8}$, for some $k \in{\{0,1,2,3,4,5,6,7\}}$.
+Then, solving $n^2 \Mod{8}$ for each $n$, we have
+\begin{align*}
+    0^2 & \equiv{} 0 \Mod{8},             \\
+    1^2 & \equiv{} 1 \Mod{8},             \\
+    2^2 & \equiv{} 4 \Mod{8},             \\
+    3^2 & \equiv{} 1 \Mod{8},             \\
+    4^2 & \equiv{} 0 \Mod{8},             \\
+    5^2 & \equiv{} 1 \Mod{8},             \\
+    6^2 & \equiv{} 4 \Mod{8}, \text{ and} \\
+    7^2 & \equiv{} 1 \Mod{8}.
+\end{align*}
+
+Let $S = \{0,1,4\}$ be the set of all possible remainders from $n^2 \Mod{8}$ for all integers $n$.
+Then, integers $x^2$, $y^2$, and $z^2$ are each congruent to $s \Mod{8}$ for some $s\in{S}$.
+
+Computing the sums of each unique combination of $(x^2, y^2, z^2)$, we have
+\begin{align*}
+    0 + 0 + 0             & \equiv{} 0 \Mod{8}, \\
+    1 + 0 + 0             & \equiv{} 1 \Mod{8}, \\
+    1 + 1 + 0             & \equiv{} 2 \Mod{8}, \\
+    1 + 1 + 1             & \equiv{} 3 \Mod{8}, \\
+    4 + 0 + 0             & \equiv{} 4 \Mod{8}, \\
+    4 + 1 + 0             & \equiv{} 5 \Mod{8}, \\
+    4 + 1 + 1             & \equiv{} 6 \Mod{8}, \\
+    4 + 4 + 0             & \equiv{} 0 \Mod{8}, \\
+    4 + 4 + 1             & \equiv{} 1 \Mod{8}, \\
+    \text{and } 4 + 4 + 4 & \equiv{} 4 \Mod{8}.
+\end{align*}
+
+Since the sum $x^2 + y^2 + z^2 \pmod 8$ can only return values in $\{0, 1, 2, 3, 4, 5, 6\}$, and the right-hand side requires $7 \pmod 8$, the congruence $x^2 + y^2 + z^2 \equiv 7 \pmod 8$ is contradicted.
+
+Therefore, we conclude the original diophantine equation $x^2+y^2+z^2 = 8t -1$ has no solutions.
+
+
+\noindent \textbf{Question P-4}
+
+Let $S$ be a set of 10 integers such that
+\begin{align*}
+    S = \{x_1, x_2, ... , x_{10}\}
+\end{align*}
+
+Define the sums $X_1, X_2, ... , X_{10}$ with
+\begin{align*}
+    {X_j} = \sum_{i=1}^{j}x_i ~~~ \text{ for each } j \in{\{1, 2, ... ,10\}}.
+\end{align*}
+
+If there exists a $j$ such that
+\begin{align*}
+    X_j \equiv{} 0\Mod{10},
+\end{align*}
+then the sum of $\{x_1, ... ,x_j\} \in{S}$ is divisible by 10. Thus, we are finished.
+
+Otherwise, none of the sums $X_1, ... , X_{10}$ are congruent to $0 \Mod{10}$.
+
+By division algorithm, we know that the remainder r must satisfy $0 \leq{} r < n$, with $n=10$ in this case.
+Since $r=0$ is impossible, r must be in $\{1, 2, 3, 4, 5, 6, 7, 8 ,9\}$.
+Thus, each of the sums $X_1, ... ,X_{10}$ must be congruent to $r \Mod{10}$.
+
+We choose these remaining remainders $r$ to be the pigeonholes and the 10 sums $X_1, ... ,X_{10}$ as the pigeons.
+
+Then, by the Pigeonhole Principle, at least 2 of the sums from $X_1, ... , X_{10}$ will be congruent with each other under modulo 10.
+
+We choose these 2 sums as $X_i$ and $X_j$ with $1 \leq i < j \leq 10$.
+Thus, we have that
+\begin{align*}
+    X_j \equiv{} X_i \Mod{10}.
+\end{align*}
+
+Subtracting both sides by $X_i$, we get
+\begin{align*}
+    X_j - X_i & \equiv 0\Mod{10}.
+\end{align*}
+
+But,
+\begin{align*}
+    X_j - X_i & = (x_1 + ... + x_j) - (x_1 + ... + x_i) \\
+              & = x_{i+1} + ... + x_j.
+\end{align*}
+
+Thus, the sum of the non-empty subset $\{x_{i+1}, \dots, x_j\}$ is divisible by 10.
+
+Therefore, we conclude that for a set of ten integers $X$, there exists some non-empty subset such that the sum is divisible by 10.
+
+\vspace{25pt}
+
+\noindent \textbf{Chapter 7, Question 30}
+
+Let there be integers $a$, $b$, and $p$, where $p$ is prime.
+
+For sake of contrapositive, we assume $p \nmid a$ and $p \nmid b$.
+
+Since $p$ is prime, its only positive divisors are $1$ and $p$.
+Thus, because $p \nmid a$ and $p \nmid b$, it must be that gcd(p,a) = 1 and gcd(p,b) = 1.
+
+Then by Bezout's Lemma, there exist integers $x_1, x_2, y_1, y_2$ such that
+\begin{align*}
+    x_1p + y_1a = 1  \text{ and } x_2p + y_2b  = 1.
+\end{align*}
+
+Multiplying both equations together, we get
+\begin{align*}
+    (x_1p + y_1a)(x_2p + y_2b) & = x_1x_2 p^2 + x_1y_2 pb + y_1x_2 ap + y_1y_2 ab \\
+                               & = p (x_1x_2p + x_1y_2b + y_1x_2a) + ab(y_1y_2)   \\
+                               & = 1.
+\end{align*}
+
+Let $w = x_1x_2p + x_1y_2b + y_1x_2a$ and $z = y_1y_2$.
+Then, the equation reduces to
+\begin{align*}
+    p(w) + ab(z) & = 1, \text{ where $w$ and $z$ are integers.}
+\end{align*}
+
+Thus, by Bezout's Lemma, $gcd(p,ab) = 1$.
+Then, $p \nmid{ab}$ is true, since otherwise $gcd(p,ab) = p$, which contradicts the previous statement that the gcd is 1.
+Thus, we have proved our contrapositive.
+
+Therefore, we conclude that if $p \mid ab$, then $p \mid a$ or $p \mid b$.
+
+\vspace{25pt}
+
+\noindent \textbf{Extra}
+
+We choose $a = 852$ and $b = 228$.
+Applying the Extended Euclidean Algorithm, we have
+\begin{align*}
+    852            & = 3 (228) + 168, \\
+    228            & = 1 (168) + 60,  \\
+    168            & = 2 (60) + 48,   \\
+    60             & = 1 (48) + 12,   \\
+    \text{and } 48 & = 4 (12) + 0.
+\end{align*}
+
+This means $gcd(852, 228) = 12$.
+Next, in order to find two integers satisfying the conclusion of Bezout’s Lemma, we compute
+\begin{align*}
+    12 & = 60 - 48                  \\
+       & = 60 - (168 - 2 (60))      \\
+       & = 3 (60) - 168             \\
+       & =  3 (228 - 168) - 168     \\
+       & = 3(228) - 4(168)          \\
+       & = 3(228) - 4(852 - 3(228)) \\
+       & = 15(228) - 4(852).
+\end{align*}
+
+So $15(228) - 4(852) = 12$.
+
+Now, we can write $\frac{a}{b}$ as the following continued fraction
+\begin{align*}
+    \frac{a}{b} = 3 + \frac{1}{1 + \frac{1}{2 + \frac{1}{1+\frac{1}{4}}}}.
+\end{align*}
+
+Let $\frac{p}{q}$ be the fraction resulting from erasing the final fraction within the continued fraction expansion of $a/b$. Giving us
+\begin{align*}
+    \frac{p}{q} & = 3 + \frac{1}{1 + \frac{1}{2 + \frac{1}{1}}} \\
+                & = 3 + \frac{1}{1 + \frac{1}{3}}               \\
+                & = 3 + \frac{3}{4}                             \\
+                & = \frac{15}{4}.
+\end{align*}
+
+Notice that $p=15$ and $q=4$ are exactly the absolute value of the coefficients from Bezout's Lemma.
+
+\end{document}

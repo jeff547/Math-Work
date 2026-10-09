@@ -1,0 +1,92 @@
+\documentclass[12pt]{article}
+\usepackage{amsmath, amssymb, amsthm}
+\usepackage{parskip}
+\usepackage{geometry}
+\usepackage{enumitem}
+\usepackage{fancyhdr}
+
+% Set margins to match a standard homework document
+\geometry{a4paper, margin=1in}
+
+\title{Recitation 4}
+\parskip=1ex
+\author{Math 311 Fall 2026 \\ Rutgers University}
+\date{}
+
+\begin{document}
+
+\maketitle
+
+\textbf{Exercise 1:}
+Let \(x_1 > 0\) and define
+\[
+    x_{n+1} = \frac{1}{2}(x_n + \frac{3}{x_n}) \qquad \forall n \in \mathbb{N}.
+\]
+\begin{enumerate}[label=(\alph*)]
+    \item
+          Since \(x_1 > 0\), suppose \(x_n > 0\) and so
+          \[
+              x_{n+1} = \frac{1}{2}(x_n + \frac{3}{x_n}) > 0.
+          \]
+          Thus, $x_n > 0$ for all \(n \in \mathbb{N}\) by induction.
+          Then
+          \[
+              \begin{split}
+                  x_{n+1} - \sqrt{3} & = \frac{1}{2}\left(x_n + \frac{3}{x_n}\right)- \sqrt{3} \\
+                                     & = \frac{x_n^2 + 3 - 2\sqrt{3}x_n}{2x_n}                 \\
+                                     & = \frac{\left(x_n - \sqrt{3}\right)^2}{2x_n}.
+              \end{split}
+          \]
+          Since the numerator is squared, it is non-negative,
+          and we already showed that the \(x_n > 0\), so \(2x_n > 0\) as well.
+          Thus \(x_{n+1} - \sqrt{3} \geq  0 \), and so
+          \[
+              x_{n} \geq \sqrt{3}.
+          \]
+          for every \(n \geq 2\).
+    \item Consider
+          \[
+              \begin{split}
+                  x_{n+1} - x_n & = \frac{1}{2}\left(x_n + \frac{3}{x_n}\right) - x_n \\
+                                & = \frac{3}{2x_n} - \frac{1}{2} x_n                  \\
+                                & = \frac{3-x_n^2}{2x_n}.
+              \end{split}
+          \]
+          Since $x_n \geq \sqrt{3}$ for every \(n \geq 2\), we have
+          \[
+              3-x_n^2 \leq 0 \quad \text{and} \quad 2x_n > 0.
+          \]
+          Then
+          \[
+              x_{n+1} \leq x_n.
+          \]
+          Hence the sequence is monotonically decreasing and bounded below, so by the Monotone Convergence Theorem,
+          \(\{x_n\}\) converges to some limit \(L\). Taking the limits of the recurrence we have
+          \[
+              L = \frac{1}{2}\left(L + \frac{3}{L}\right).
+          \]
+          Which simplifies to
+          \[
+              L^2 = 3.
+          \]
+          Therefore,
+          \[
+              \{x_n\} \to \sqrt{3}.
+          \]
+
+
+
+
+
+
+
+
+
+
+
+
+\end{enumerate}
+
+
+\end{document}
+

@@ -1,0 +1,192 @@
+\documentclass[12pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath, amssymb, amsthm}
+\usepackage{geometry}
+
+% Set margins to match a standard homework document
+\geometry{a4paper, margin=1in}
+
+\title{Workshop 7}
+\parskip=1ex
+\author{Math 292 Spring 2026 \\ Rutgers University}
+\date{}
+
+\begin{document}
+
+\maketitle
+
+\noindent{}\textbf{Exercise 1:}
+Let $[a,b]$ be a bounded interval.
+Suppose $p(x)$ is strictly positive and continuously differentiable on $[a,b]$.
+Consider
+\begin{align*}
+    \mathcal{L}u(x) = (p(x)u'(x))'
+\end{align*}
+and the eigenfunctions $\mathcal{L}u(x) = \lambda u(x)$ with Neumann boundary conditions
+\begin{align*}
+    u'(a) = u'(b) = 0.
+\end{align*}
+Multiplying both sides of $\mathcal{L}u(x) = \lambda u(x)$ by $u(x)$ and integrating, we have
+\begin{align*}
+    \int_a^b \mathcal{L}u(x) \cdot u(x) ~ dx & =  \int_a^b (p(x)u'(x))' \cdot u(x)  ~ dx                       \\
+                                             & =   \Big[p(x) u'(x) u(x)\Big]^b_a - \int_a^b p(x)(u'(x))^2 ~ dx \\
+                                             & = - \int_a^b p(x)(u'(x))^2 ~ dx                                 \\
+                                             & = \int_a^b \lambda |u(x)|^2 ~ dx.
+\end{align*}
+That is,
+\begin{equation*}
+    \lambda = -\int_a^b\frac{ p(x)(u'(x))^2}{|u(x)|^2} ~ dx.
+\end{equation*}
+Since $p(x) > 0$, $u(x)$ is nontrivial, and the square of reals are non-negative, it follows that $\lambda \leq 0$.
+
+\vspace{5ex}
+
+\noindent{}\textbf{Exercise 2:}
+Let $u_\lambda$ be an nontrivial eigenfunction for $\mathcal{L}$ with $\lambda \neq 0$, and let $x_0$ be any critical point on $[A, B]$.
+
+For the sake of contradiction, suppose $u_\lambda(x_0) = 0$. Since $x_0$ is a critical point, it follows that $u'(x_0) = 0$.
+
+Then, we can rewrite the eigenfunction $\mathcal{L}u(x) = \lambda u(x)$ as
+\begin{equation}
+    u''(x) + \frac{p'(x)}{p(x)}u'(x) - \frac{\lambda}{p(x)}u(x) = 0.
+\end{equation}
+Notice that this is a second order linear ODE.
+So by Picard-Linedelof's Theorem, there must exist a unique solution for each initial condition.
+
+Consider the constant function $v(x) = 0$.
+Notice it satisfies our initial conditions $u(x) = u'(x) = 0$, and thus it is a valid solution.
+Moreover since $u_\lambda(x_0)$ also satisfies $u(x) = u'(x) = 0$, by uniqueness of solutions, they must be the same.
+However, this is impossible since $v(x)$ is the trivial solution and we claimed that $u_\lambda(x_0)$ is a nontrivial solution.
+Thus, we have a contradiction.
+Therefore, $u_\lambda(x_0) \neq 0$.
+
+Consider equation 1 again. Evaluating at $x_0$:
+\begin{align*}
+    u''(x_0) + \frac{p'(x_0)}{p(x_0)}u'(x_0) - \frac{\lambda}{p(x_0)}u(x_0) = u''(x_0) - \frac{\lambda}{p(x_0)}u(x_0) = 0.
+\end{align*}
+Then,
+\begin{equation*}
+    u''(x_0) = \frac{\lambda}{p(x_0)}u(x_0).
+\end{equation*}
+From exercise 1, we have that $\lambda \leq 0$ and we let $\lambda \neq 0$, so $\lambda < 0$ must be true.
+Since $\lambda < 0$ and $p(x_0) > 0$, it follows that $\frac{\lambda}{p(x_0)} < 0$.
+Then, $u''(x_0)$ is $u(x)$ times a negative scalar, and so they must have opposite signs.
+
+Moreover, since we have $u_\lambda(x_0) \neq 0$, $\lambda < 0$, and $p(x_0) > 0$, it follows that $u''(x_0) \neq 0$.
+
+\vspace{5ex}
+
+\noindent{}\textbf{Exercise 3:}
+Let $(x_1, x_2) \in [A, B]$ be successive critical points of $u_\lambda$.
+Then,
+\begin{align*}
+    u_\lambda'(x_1) = u_\lambda'(x_2) = 0.
+\end{align*}
+Define $v_\lambda := u_\lambda |_{[x_1, x_2]}$.
+Then $\mathcal{L}v_\lambda(x) = \lambda v_\lambda(x)$ still holds because $[x_1, x_2] \subset [A, B]$.
+Since $x_1$ and $x_2$ are critical points, $v_\lambda'(x_1) = 0$ and $v_\lambda'(x_2) = 0$ are both true.
+So Neumann boundary conditions are also satisfied.
+
+Now consider the constant function $w(x) = 1 : \forall x \in [x_1, x_2]$.
+Notice that $w(x)$ is an eigenfunction of $\mathcal{L}$ with $\lambda = 0$ since
+\begin{align*}
+    \mathcal{L}w(x) = (p(x) \cdot w'(x))' = 0 = 0 \cdot w(x).
+\end{align*}
+It also satisfies the Neumann boundary conditions:
+\begin{align*}
+    w'(x_1) = w'(x_2) = 0.
+\end{align*}
+
+Recall that eigenfunctions with different eigenvalues must be orthogonal to each other.
+Then, since we have $\lambda \neq 0$:
+\begin{align*}
+    \int^{x_2}_{x_1} v_\lambda(x) \cdot w(x) ~ dx = \int^{x_2}_{x_1} v_\lambda(x) ~ dx = 0.
+\end{align*}
+
+Now suppose, for sake of contradiction, that $v_\lambda(x) \neq 0 : \forall x \in (x_1, x_2)$.
+From Exercise 2, we also have that $v_\lambda(x_1), v_\lambda(x_2) \neq 0$. So our bounds expand to
+\begin{align*}
+    v_\lambda(x) \neq 0 : \forall x \in [x_1, x_2].
+\end{align*}
+
+Then $v_\lambda(x)$ is a non-zero continuous function on a bounded interval.
+So by Intermediate Value Theorem, $v_\lambda(x)$ never switch signs, and thus we have these two cases.
+
+Case 1:
+We have $v_\lambda(x) > 0 : \forall x \in [x_1, x_2]$. Then,
+\begin{align*}
+    \int^{x_2}_{x_1} v_\lambda(x) > 0.
+\end{align*}
+This contradicts our earlier findings that $\int^{x_2}_{x_1} v_\lambda(x) = 0$.
+
+Case 2:
+We have $v_\lambda(x) < 0 : \forall x \in [x_1, x_2]$. Then,
+\begin{align*}
+    \int^{x_2}_{x_1} v_\lambda(x) < 0.
+\end{align*}
+This again contradicts our earlier findings that $\int^{x_2}_{x_1} v_\lambda(x) = 0$.
+
+Since both cases lead to contradictions, it must be that our assumption is false.
+Therefore $v_\lambda(x)$ has at least one zero in the interval $(x_1, x_2)$.
+
+\vspace{5ex}
+
+\noindent{}\textbf{Exercise 4:}
+Set $\mathcal{L}u(x) = ((1 + x)u'(x))'$, so that $V_{\lambda_{2}}(x) = \frac{1}{4}\frac{1}{(1+x)^2} - \frac{\lambda_2}{1+x}$ for Dirichlet boundary
+conditions on $[x_1, x_2]$. Assume $x_1, x_2 > 0$. Differentiating $V_{\lambda_{2}}(x)$, we have
+\begin{align*}
+    V_{\lambda_{2}}'(x) = -\frac{1}{2}(1+x)^{-3} + \lambda_2 (1+x)^{-2}.
+\end{align*}
+Since $x_1,x_2 > 0$, $x>0$ in this interval. Moreover, we have that $\lambda_2 < 0$ from the previous exercises.
+So $V_{\lambda_{2}}'(x)$ must be strictly negative for all $x \in [x_1, x_2]$.
+That is, $V_{\lambda_{2}}(x)$ is monotonically decreasing for all $x \in [x_1, x_2]$.
+Then, $V_{\lambda_{2}}(x)$ attains it's maximum at $x_1$ and minimum at $x_2$.
+Specifically,
+\begin{align*}
+    V_{\lambda_{2}}(x_1) = \frac{1}{4}\frac{1}{(1+x_1)^2} - \frac{\lambda_2}{1+x_1} = M^2,
+\end{align*}
+and
+\begin{align*}
+    V_{\lambda_{2}}(x_2) = \frac{1}{4}\frac{1}{(1+x_2)^2} - \frac{\lambda_2}{1+x_2} = m^2.
+\end{align*}
+
+Recall that $y(x) = \sqrt{p(x)} \cdot u_{\lambda_2}(x)$ where $p(x) >0$ and $u_{\lambda_2}(x)$ is an nontrivial eigenfunction.
+So $y(x)$ is a non-trivial solution.
+Since we also have that $x_1$ and $x_2$ are successive zeroes, by Theorem 2.1, we have
+\begin{align*}
+    \frac{\pi}{M} \leq x_2 - x_1 \leq \frac{\pi}{m}.
+\end{align*}
+We can rearrange this to
+\begin{align*}
+    m \leq \frac{\pi}{x_2 - x_1} \leq M.
+\end{align*}
+Squaring everything, we have
+\begin{align*}
+    m^2 \leq \frac{\pi^2}{(x_2 - x_1)^2} \leq M^2.
+\end{align*}
+Using our substitutions for $M^2$ and $m^2$, we solve for $\lambda_2$.
+
+For the upper bound:
+\begin{align*}
+    M^2                                            & \geq \frac{\pi^2}{(x_2 - x_1)^2}                            \\
+    \frac{1}{4(1+x_1)^2} - \frac{\lambda_2}{1+x_1} & \geq \frac{\pi^2}{(x_2 - x_1)^2}                            \\
+    \frac{\lambda_2}{1+x_1}                        & \leq \frac{1}{4(1+x_1)^2} - \frac{\pi^2}{(x_2 - x_1)^2}     \\
+    \lambda_2                                      & \leq \frac{1}{4(1+x_1)}- \frac{\pi^2(1+x_1)}{(x_2 - x_1)^2}
+\end{align*}
+
+For the lower bound:
+\begin{align*}
+    m^2                                            & \leq \frac{\pi^2}{(x_2 - x_1)^2}                            \\
+    \frac{1}{4(1+x_2)^2} - \frac{\lambda_2}{1+x_2} & \leq \frac{\pi^2}{(x_2 - x_1)^2}                            \\
+    \frac{\lambda_2}{1+x_2}                        & \geq \frac{1}{4(1+x_2)^2} -\frac{\pi^2}{(x_2 - x_1)^2}      \\
+    \lambda_2                                      & \geq \frac{1}{4(1+x_2)} -\frac{\pi^2(1+x_2)}{(x_2 - x_1)^2} \\
+\end{align*}
+
+Combining, we have
+\begin{align*}
+    \frac{1}{4(1+x_2)} -\frac{\pi^2(1+x_2)}{(x_2 - x_1)^2}  \leq \lambda_2 \leq \frac{1}{4(1+x_1)}- \frac{\pi^2(1+x_1)}{(x_2 - x_1)^2}.
+\end{align*}
+
+
+\end{document}
+

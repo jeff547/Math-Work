@@ -1,0 +1,257 @@
+\documentclass[12pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath, amssymb, amsthm}
+\usepackage{geometry}
+\usepackage{fancyhdr}
+
+\geometry{letterpaper, margin=1in}
+\newcommand{\Mod}[1]{\ (\mathrm{mod}\ #1)}
+\setlength{\headheight}{15pt}
+
+% Header setup
+\pagestyle{fancy}
+\fancyhf{}
+\lhead{Math 300 Spring 2026}
+\rhead{Jeffrey Lu}
+\cfoot{\thepage}
+\parskip=1ex
+
+\title{Homework Assignment 5\\ \large Math 300, Spring 2026 \\ Rutgers University}
+\author{Jeffrey Lu}
+
+\begin{document}
+
+\maketitle
+
+\noindent \textbf{Chapter 10, Question 4:}
+
+For each natural number $n$, let $S(n)$ denote the statement that
+\begin{align*}
+    1 \cdot{2} + 2 \cdot{3} + ... + n(n+1) = \frac{n(n+1)(n+2)}{3}.
+\end{align*}
+
+(Basis Step) Then, $S(1)$ states that $1(1+1) = \frac{1\cdot{2}\cdot{3}}{3}$.
+This simplifies to $2 = 2$, so $S(1)$ is true.
+
+(Inductive Step) For an arbitrary natural number $k$, assume $S(k)$. That is,
+\begin{align*}
+    1 \cdot{2} + 2 \cdot{3} + ... + k(k+1) = \frac{k(k+1)(k+2)}{3}.
+\end{align*}
+
+Adding $(k+1)(k+2)$ to both sides, we have
+\begin{align*}
+    1 \cdot{2} + 2 \cdot{3} + ... + k(k+1) + (k+1)(k+2) & = \frac{k(k+1)(k+2)}{3} + (k+1)(k+2) \\
+                                                        & = \frac{k(k+1)(k+2)+ 3(k+1)(k+2)}{3} \\
+                                                        & = \frac{(k+1)(k+2)(k+3)}{3}.
+\end{align*}
+
+That is, $S(k+1)$ is true. Thus, we have shown that $S(k)$ implies $S(k+1)$.
+
+Therefore, by the Principle of Mathematical Induction, $S(n)$ is true for $n\in{N}$, establishing the identity
+\begin{align*}
+    1 \cdot{2} + 2 \cdot{3} + ... + n(n+1) = \frac{n(n+1)(n+2)}{3}.
+\end{align*}
+
+\noindent \textbf{Chapter 10, Question 12:}
+
+For each integer $n\geq0$, let $S(n)$ denote the statement that
+\begin{align*}
+    9 ~|~ (4^{3n}+8).
+\end{align*}
+
+(Basis Step) Then, $S(0)$ states that $ 9 ~|~ 4^{3(0)} + 8$.
+Since $4^0+8 = 9 = 1 \cdot 9$, and 1 is an integer, it follows that $9 ~|~ 4^{3(0)} + 8$ is true.
+So $S(0)$ is true.
+
+(Inductive Step) For an arbitrary non-negative integer $k$, assume $S(k)$. That is,
+\begin{align*}
+    9 ~|~ (4^{3k}+8).
+\end{align*}
+
+Then there exists an integer $x$ such that
+\begin{align*}
+    4^{3k} + 8 = 9x, \text{ where $x$ is integer.}
+\end{align*}
+
+Multiplying both sides by 64, we have
+\begin{align*}
+    4^{3k+3} + 512             & = 576x,        \\
+    4^{3(k+1)} + 8             & = 576x - 504,  \\
+    \text{and } 4^{3(k+1)} + 8 & = 9(64x + 56).
+\end{align*}
+
+Let $w= 64x+56$. Then,
+\begin{align*}
+    4^{3(k+1)} + 8 & = 9w, \text{ where $w$ is a integer.}
+\end{align*}
+
+So by definition of divisibility, we have $9 ~|~ 4^{3(k+1)} + 8$.
+That is, $S(k+1)$ is true. Thus, we have shown that $S(k)$ implies $S(k+1)$.
+
+Therefore, by the Principle of Mathematical Induction, $9 ~|~ (4^{3n}+8)$ for every integer $n\geq0$.
+
+\noindent \textbf{Chapter 10, Question 22:}
+
+For each natural number $n$, let $S(n)$ denote the statement that
+\begin{align*}
+    \left(1-\frac{1}{2}\right)\left(1-\frac{1}{4}\right)...\left(1-\frac{1}{2^n}\right) \geq{} \frac{1}{4} + \frac{1}{2^{n+1}}.
+\end{align*}
+
+(Basis Step) Then, $S(1)$ states that $(1-\frac{1}{2}) \geq \frac{1}{4} + \frac{1}{2^{1+1}}$.
+This simplifies to $\frac{1}{2} \geq \frac{1}{2}$, so $S(1)$ is true.
+
+(Inductive Step) For an arbitrary natural number $k$, assume $S(k)$. That is,
+\begin{align*}
+    \left(1-\frac{1}{2}\right)\left(1-\frac{1}{4}\right)...\left(1-\frac{1}{2^k}\right) \geq{} \frac{1}{4} + \frac{1}{2^{k+1}}.
+\end{align*}
+
+Multiplying both sides by $(1-\frac{1}{2^{k+1}})$, we have
+\begin{align*}
+    \left(1-\frac{1}{2}\right)\left(1-\frac{1}{4}\right)...\left(1-\frac{1}{2^k}\right)\left(1-\frac{1}{2^{k+1}}\right) & \geq \left(\frac{1}{4} + \frac{1}{2^{k+1}}\right) \left(1-\frac{1}{2^{k+1}}\right) \\
+                                                                                                                        & \geq \frac{1}{4} + \frac{1}{2^{k+1}} - \frac{1}{2^{k+3}} - \frac{1}{2^{2k+2}}      \\
+                                                                                                                        & \geq \frac{1}{4} + \frac{4}{2^{k+3}} - \frac{1}{2^{k+3}} - \frac{1}{2^{2k+2}}      \\
+                                                                                                                        & \geq \frac{1}{4} + \frac{2}{2^{k+3}} + \frac{1}{2^{k+3}} - \frac{1}{2^{2k+2}}      \\
+                                                                                                                        & \geq \frac{1}{4} + \frac{1}{2^{k+2}} + \frac{1}{2^{k+3}} - \frac{1}{2^{2k+2}}.
+\end{align*}
+
+If the remaining $\frac{1}{2^{k+3}} - \frac{1}{2^{2k+2}}$ yields a non-negative number, then we can simply subtract it from the right side without flipping the inequality.
+
+Since k is a natural number, we have
+\begin{align*}
+    k \geq 1.
+\end{align*}
+
+Then, adding $k+2$ to both sides gives
+\begin{align*}
+    2k+2 \geq k+3.
+\end{align*}
+
+Taking the reciprocal, we have
+\begin{align*}
+    \frac{1}{k+3} \geq \frac{1}{2k+2} ~ \text{ and } ~ \frac{1}{k+3} - \frac{1}{2k+2} \geq 0.
+\end{align*}
+
+Subtracting $(\frac{1}{k+3} - \frac{1}{2k+2})$ from the RHS, we are left with
+\begin{align*}
+    \left(1-\frac{1}{2}\right)\left(1-\frac{1}{4}\right)...\left(1-\frac{1}{2^k}\right)\left(1-\frac{1}{2^{k+1}}\right) & \geq \frac{1}{4} + \frac{1}{2^{k+2}}.
+\end{align*}
+
+Hence $S(k+1)$ is true. Thus, we have shown that $S(k)$ implies $S(k+1)$.
+
+Therefore, by the Principle of Mathematical Induction, $S(n)$ is true for $n\in{\mathbb{N}}$, establishing the inequality
+\begin{align*}
+    \left(1-\frac{1}{2}\right)\left(1-\frac{1}{4}\right)...\left(1-\frac{1}{2^n}\right) \geq{} \frac{1}{4} + \frac{1}{2^{n+1}}.
+\end{align*}
+
+\noindent \textbf{Supplemental Induction, Question 6:}
+
+For each natural number n, let $S(n)$ denote the statement that
+\begin{align*}
+    1 + \frac{1}{\sqrt{2}} + ... + \frac{1}{\sqrt{n}} \leq 2\sqrt{n} - 1.
+\end{align*}
+
+(Basis Step) Then, $S(1)$ states $1 \leq 2\sqrt{1}-1$.
+This simplifies to $1 \leq 1$, so $S(1)$ is true.
+
+(Inductive Step) For an arbitrary natural number $k$, assume $S(k)$. That is,
+\begin{align*}
+    1 + \frac{1}{\sqrt{2}} + ... + \frac{1}{\sqrt{k}} \leq 2\sqrt{k} - 1.
+\end{align*}
+
+Adding $\frac{1}{\sqrt{k+1}}$ to both sides, we have
+\begin{align*}
+    1 + \frac{1}{\sqrt{2}} + ... + \frac{1}{\sqrt{k}} + \frac{1}{\sqrt{k+1}} & \leq 2\sqrt{k} - 1 + \frac{1}{\sqrt{k+1}}. \tag{1}
+\end{align*}
+
+This is equation 1. We will come back to it.
+
+First, notice that since $k$ is strictly positive, we have
+\begin{align*}
+    \sqrt{k+1} \geq \sqrt{k}.
+\end{align*}
+Adding $\sqrt{k+1}$ to both sides, we have
+\begin{align*}
+    2\sqrt{k+1} \geq \sqrt{k+1} + \sqrt{k}.
+\end{align*}
+Taking the reciprocal of both sides gives
+\begin{align*}
+    \frac{1}{2\sqrt{k+1}} \leq \frac{1}{\sqrt{k+1} + \sqrt{k}}.
+\end{align*}
+Multiplying both sides by $\frac{\sqrt{k+1}-\sqrt{k}}{\sqrt{k+1}-\sqrt{k}}$, we are left with
+\begin{align*}
+    \frac{1}{2\sqrt{k+1}} \leq \sqrt{k+1} - \sqrt{k}.
+\end{align*}
+Multiplying both sides by 2, we have
+\begin{align*}
+    \frac{2}{2\sqrt{k+1}} \leq 2\sqrt{k+1} - 2\sqrt{k}. \tag{2}
+\end{align*}
+Then, this is equation 2.
+
+Now, consider the term $\frac{1}{\sqrt{k+1}}$.
+Multiplying it by $\frac{2}{2}$, we have
+\begin{align*}
+    \frac{1}{\sqrt{k+1}} = \frac{2}{2\sqrt{k+1}}.
+\end{align*}
+Substituting into $\frac{1}{\sqrt{k+1}}$ into equation 2, we have
+\begin{align*}
+    \frac{1}{\sqrt{k+1}} \leq 2\sqrt{k+1} - 2\sqrt{k}.
+\end{align*}
+
+Then, returning to equation 1, it follows that
+\begin{align*}
+    1 + \frac{1}{\sqrt{2}} + ... + \frac{1}{\sqrt{k}} & \leq 2\sqrt{k} - 1 + 2\sqrt{k+1} - 2\sqrt{k} \\
+                                                      & \leq 2\sqrt{k+1} - 1.
+\end{align*}
+Hence $S(k+1)$ is true. Thus, we have shown that $S(k)$ implies $S(k+1)$.
+
+Therefore, by the Principle of Mathematical Induction, $S(n)$ is true for $n\in\mathbb{N}$, establishing the inequality
+\begin{align*}
+    1 + \frac{1}{\sqrt{2}} + ... + \frac{1}{\sqrt{n}} \leq 2\sqrt{n} - 1.
+\end{align*}
+
+\noindent \textbf{Supplemental Induction, Question 8:}
+
+For each natural number $n$, let $S(n)$ denote the statement
+$3F_{n+1} + 2F_n = F_{n+4}$, where $F_n$ denotes the Fibonacci Sequence $F_{n+2} = F_{n+1} + F_{n}$.
+
+(Basis Step) Then, $S(1)$ states
+\begin{align*}
+    3F_{2} + 2F_{1} = F_{5}.
+\end{align*}
+Evaluating this, we have
+\begin{align*}
+    3 \cdot 1 + 2 \cdot 1 = 5.
+\end{align*}
+This simplifies to $5=5$, so $S(1)$ is true.
+
+(Inductive Step) For an arbitrary natural number $k$, we assume $S(k)$. That is,
+\begin{align*}
+    3F_{k+1} + 2F_k = F_{k+4}.
+\end{align*}
+Adding $F_{k+3}$ to both sides, we have
+\begin{align*}
+    F_{k+3} + 3F_{k+1} + 2F_k  = F_{k+3} + F_{k+4}.
+\end{align*}
+Using the Fibonacci Recurrence by combining $F_{k+3} + F_{k+4}$ into $F_{k+5}$ and expanding $F_{k+3}$ into $F_{k+2}+F_{k+1}$, this reduces to
+\begin{align*}
+    F_{k+2} + 4F_{k+1} + 2F_k  = F_{k+5}.
+\end{align*}
+We group $F_{k+1} + F_k$, giving us
+\begin{align*}
+    F_{k+2} + 2F_{k+1}+ 2(F_{k+1} + F_k)  = F_{k+5}.
+\end{align*}
+Then, combining $F_{k+1} + F_k$ into $F_{k+2}$, we have
+\begin{align*}
+    3F_{k+2} + 2F_{k+1}  = F_{k+5}.
+\end{align*}
+Hence, $S(k+1)$ is true. Thus, we have shown that $S(k)$ implies $S(k+1)$.
+
+Therefore, by the Principle of Mathematical Induction, $S(n)$ is true for $n\in{N}$, establishing the identity
+\begin{align*}
+    3F_{n+1} + 2F_n = F_{n+4}.
+\end{align*}
+
+
+
+
+\end{document}

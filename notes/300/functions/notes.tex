@@ -1,0 +1,62 @@
+\documentclass[12pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath, amssymb, amsthm, braket}
+\usepackage{graphicx}
+\usepackage{geometry}
+\usepackage{fancyhdr}
+
+\geometry{letterpaper, margin=1in}
+\newcommand{\Mod}[1]{\ (\mathrm{mod}\ #1)}
+\setlength{\headheight}{15pt}
+
+% Header setup
+\pagestyle{fancy}
+\fancyhf{}
+\lhead{Math 300 Spring 2026}
+\rhead{Jeffrey Lu}
+\cfoot{\thepage}
+\parskip=1ex
+
+\title{Function Notes\\ \large Math 300, Spring 2026 \\ Rutgers University}
+\author{Jeffrey Lu}
+
+\begin{document}
+
+\maketitle
+
+\textbf{Definitions:}
+
+Image: $f(X) = \set{f(x) \in B | x \in A}$.
+
+Pre-Image: $f^{-1}(X) = \set{x \in X | f(x) \in B}$.
+
+\noindent{}\textbf{Question 1:}
+
+$f([-3,5]) = [3,28]$, so $f^{-1}([3,28]) = [-5,5]$.
+
+\noindent{}\textbf{Question 2:}
+
+Consider the fucntion $f: A \rightarrow B$ and a subset $X \subseteq A$.
+Prove $X \subseteq f^{-1}(f(X))$.
+\begin{proof}
+    Suppose $f: A \rightarrow B$ and $X \subseteq A$.
+    Let $x \in X$.
+    By definition of image, $f(x) \subseteq f(X)$.
+    By definition of preimage, $x \subseteq f^{-1}(f(X))$.
+    Since $x$ is an arbitrary element of $X$, it follows that $X \subseteq f^{-1}(f(X))$.
+\end{proof}
+
+\noindent{}\textbf{Question 3:}
+
+\begin{proof}
+    Assume that $y \in f(W \cap X)$.
+    Then, there exists an $x \in W \cap X$ such that $y = f(x)$.
+    Since $x \in W \cap X$, it follows that $x \in W$ and $x \in X$.
+    By definition of image, $f(x) \in f(W)$ and $f(x) \in f(X)$.
+    Therefore $y \in f(W) \cap f(X)$, and so $f(W \cap X) \subseteq f(W) \cap f(X)$.
+\end{proof}
+
+
+
+\end{document}
+

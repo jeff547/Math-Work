@@ -1,0 +1,235 @@
+\documentclass[12pt]{article}
+\usepackage[margin=0.4in, top=0.5in, bottom=0.4in]{geometry}
+\usepackage{amsmath,amssymb}
+\usepackage{enumitem}
+\usepackage[utf8]{inputenc}
+
+% --- Maximum Readability & Spacing ---
+\linespread{1} 
+\pagestyle{empty}
+\setlength{\jot}{7pt} 
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{6pt}
+
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\norm}[1]{\|#1\|}
+\newcommand{\inner}[2]{\langle #1,\,#2 \rangle}
+\newcommand{\mat}[1]{\begin{pmatrix}#1\end{pmatrix}}
+
+% Simple Header
+\newcommand{\heading}[1]{%
+  \vspace{10pt}
+  \textbf{#1} \\[-12pt]
+  \rule{\linewidth}{0.4pt}
+  \par\vspace{2pt}
+}
+
+\newcommand{\sub}[1]{\smallskip\textbf{#1}\;}
+
+\newlength{\colw}
+\setlength{\colw}{0.47\textwidth}
+
+\begin{document}
+
+\begin{center}
+    \textbf{\Large Math 292 Final Formula Sheet --- Page 1}
+\end{center}
+
+\noindent
+\begin{minipage}[t]{\colw}
+    \heading{First-Order ODEs (Ch 1)}
+
+    \sub{1. First-Order Linear}
+
+    \textbf{Standard Form:}
+    \[ x'(t) + p(t)x(t) = q(t) \]
+    \textbf{Step 1:} Get Integrating Factor
+    \[ \mu(t) = e^{\int p(t) dt} \]
+    \textbf{Step 2:} Multiply through by $\mu(t)$
+    \[ \frac{d}{dt}(x(t)\mu(t)) = \mu(t)q(t) \]
+    \textbf{Step 3:} Integrate (Don't forget $+C$)
+    \[ x(t) = \frac{1}{\mu(t)} \int \mu(t)q(t) ~ dt \]
+
+    \sub{2. Bernoulli Equations}
+
+    \textbf{Standard Form:}
+    \[ x'(t) + p(t)x(t) = q(t)x^n(t) \]
+    \textbf{Step 1:} Divide by $x^n$ and substitute
+    \begin{align*}
+        y  & = x^{1-n}              \\
+        y' & = (1-n)x^{-n} \cdot x'
+    \end{align*}
+    \textbf{Step 2:} Solve the new linear ODE
+    \[ y' + (1-n)p(t)y = (1-n)q(t) \]
+
+    \sub{3. Riccati Equations}
+
+    \textbf{Standard Form:}
+    \[ x'(t) = p(t) + q(t)x(t) + r(t)x^2(t) \]
+
+    \textbf{Step 1:} Guess particular solution
+    \[ x_p(t) = \alpha t^r \]
+    \textbf{Step 2:} Substitute and solve for $u(t)$
+    \[ x(t) = x_p(t) + u(t) \]
+
+\end{minipage}
+\hfill\vrule\hfill
+\begin{minipage}[t]{\colw}
+
+    \heading{Lipschitz Condition (Ch 2)}
+    Given
+    \[ v(x) = x'(t) : \forall x \in \mathbb{R} \]
+
+    \textbf{Step 1:} If $v'(x)$ is bounded, $v(x)$ is Lipschitz:
+    \[ |v(x) - v(y)| \le L|x - y| \]
+    \textbf{Step 2:} Check
+    \[ \lim_{x\rightarrow \infty} v'(x) < \infty \]
+    If so, $v(x)$ is closed and bounded for large $N \in \mathbb{N}$.
+
+    \textbf{Step 3:}
+    By EVT, we have a max
+    \[
+        |v'(x)| \leq k : \forall x \in [-N, N].
+    \]
+
+    \textbf{Step 4:} By MVT, we have our Lipschitz constant
+    \[ L = |v'(x)|  : \forall x \in \mathbb{R} \]
+
+    \heading{Matrix Exponential (Ch 3)}
+
+    \sub{1. Diagonalizable}
+
+    \[ e^{tA} = Ve^{tD}V^{-1} \]
+
+    \sub{2. Defective}
+
+    \[ e^{tA} = e^{t\lambda} (I + t(A - \lambda I)) \]
+
+    \sub{Extra}
+
+    For $\mathbf{x}'(t) = A\mathbf{x}(t)$:
+    \[
+        \mathbf{x}(t) = C_1\mathbf{v_1}e^{\lambda_1t} + C_2\mathbf{v_2}e^{\lambda_2t}
+    \]
+    Sub $t = 0$ to solve for the constants.
+
+    \heading{Duhamel's Formula (Ch 4)}
+
+    \begin{equation*}
+        \mathbf{x}(t) = e^{(t-t_0)A} \mathbf{x}_0 + \int_{t_0}^{t} e^{(t-s)A} \mathbf{g}(s) ~ ds.
+    \end{equation*}
+
+    \heading{Picard Iteration (Ch 5)}
+    Set $x_0(t) = x_0$. Then, iterate the following
+
+    \[ x_{n+1}(t) = x_0 + \int_{t_0}^t f(s, x_n(s)) \, ds \]
+
+\end{minipage}
+
+\newpage
+
+\begin{center}
+    \textbf{\Large Math 292 Final Formula Sheet --- Page 2}
+\end{center}
+
+\noindent
+\begin{minipage}[t]{\colw}
+
+    \heading{Second-Order ODEs (Ch 6)}
+
+    \textbf{Standard Form:}
+    \[ x''(t) + p(t)x'(t) + q(t) = f(t) \]
+
+    \sub{Constant Coefficients ($p,q$)}
+
+    \textbf{Step 1:} Solve for roots $r_1, r_2$
+    \[
+        r^2 + pr + q = 0
+    \]
+
+    \textbf{Step 2:} Solve homogeneous $x_h(t)$
+    \begin{align*}
+        r_1 \neq r_2 & \implies x_h(t) = c_1e^{r_1t} + c_2e^{r_2t} \\
+        r_1 = r_2    & \implies x_h(t) = c_1e^{rt} + c_2te^{rt}
+    \end{align*}
+
+    \textbf{Step 3:} Guess particular $x_p(t)$
+    \begin{align*}
+        f(t) = e^{\alpha t} & \implies x_p(t) = Ae^{\alpha t} \\
+        f(t) = t            & \implies x_p(t) = At
+    \end{align*}
+
+    If $x_p(t)$ is already a solution multiply by $t$.
+
+    \sub{Cauchy-Euler Equations}
+
+    \textbf{Standard Form}
+    \[
+        t^2x''(t) + atx'(t) + bx(t) = f(t)
+    \]
+    \textbf{Step 1:} Substitute $x(t) = t^r$ and solve for $r$.
+
+    \textbf{Step 2:} Solve homogeneous $x_h(t)$
+    \begin{align*}
+        r_1 \neq r_2 & \implies x_h(t) = c_1t^{r_1} + c_2t^{r_2}    \\
+        r_1 = r_2    & \implies x_h(t) = c_1t^{r} + c_1t^{r} \ln|t|
+    \end{align*}
+
+    \sub{Variation of Parameters}
+
+    \textbf{Step 1:} Let
+    \begin{align*}
+        M(s)    & = \begin{pmatrix}
+                        x_1(s) & x_2(s) \\ x_1'(s) & x_2'(s)
+                    \end{pmatrix} \\
+        N(t, s) & = \begin{pmatrix}
+                        x_1(s) & x_2(s) \\ x_1(t) & x_2(t)
+                    \end{pmatrix}
+    \end{align*}
+
+    \textbf{Step 2:} Solve particular solution
+    \[ x_p(t) = \int_{t_0}^{t} \frac{det(N(t,s))}{det(M(s))} \cdot f(s) ~ ds \]
+
+\end{minipage}
+\hfill\vrule\hfill
+\begin{minipage}[t]{\colw}
+
+    \heading{Second-Order ODEs (Ch 6)}
+
+    \sub{Variation of Parameters (continued...)}
+
+    \textbf{Step 3:} Our constants are:
+    \begin{align*}
+        c_1 & = \frac{x(t_0)x_2'(t_0) - x'(t_0)x_2(t_0)}{det(M(t_0))} \\
+        c_2 & = \frac{x'(t_0)x_1(t_0) - x(t_0)x'_1(t_0)}{det(M(t_0))}
+    \end{align*}
+
+    \textbf{Step 4:} Combine for general solution
+    \begin{equation*}
+        x(t) = c_1 x_1(t) + c_2 x_2(t) + x_p(t)
+    \end{equation*}
+
+    \heading{Metric Spaces \& $L^2$}
+
+    \sub{Supremum Distance}
+    \[ d_{\infty}(f,g) = \max_{x \in [a,b]} |f(x) - g(x)| \]
+    \textbf{Step 1:} Find critical points of $h = |f-g|$
+
+    \textbf{Step 2:} Compare $|h|$ at crit points and endpoints.
+
+    \sub{Best $L^2$ Approximation}
+
+    Given orthogonal set $\{u_0, u_1, \dots, u_n\}$, where
+    \[ \hat{f} = \sum_{k=0}^n c_k u_k \]
+    Solve for the coefficients:
+    \[ c_k = \frac{\langle f, u_k \rangle}{\langle u_k, u_k \rangle} \]
+
+    \heading{Extra Stuff}
+    \[ \frac{d}{dx} \cos(x) = -\sin(x), ~ \frac{d}{dx} \sin(x) = \cos(x)\]
+    \[ \int t e^{at} \, dt = \frac{e^{at}}{a^2}(at - 1) \]
+    \[ \int x^2 \cos x \, dx = (x^2 - 2)\sin x + 2x \cos x \]
+    \[ \cos^2 x = \frac{1 + \cos 2x}{2}, \quad \sin^2 x = \frac{1 - \cos 2x}{2} \]
+    \[ \mat{a & b \\ c & d}^{-1} = \frac{1}{ad-bc} \mat{d & -b \\ -c & a} \]
+\end{minipage}
+
+\end{document}

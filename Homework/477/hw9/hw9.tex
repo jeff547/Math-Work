@@ -1,0 +1,67 @@
+\documentclass[12pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath, amssymb, amsthm}
+\usepackage{geometry}
+
+\geometry{a4paper, margin=1in}
+
+\title{Math 477 Homework 8}
+\author{Spring 2026 \\ Rutgers University}
+\parskip=1ex
+\begin{document}
+
+\maketitle
+
+\noindent{}\textbf{Question 1:}
+Notice that $X \sim Poisson(2)$ and $Y \sim Binom(10, \frac{3}{4})$.
+
+Computing each term,
+for $X$:
+\begin{align*}
+    P(X = 0) & = \frac{e^{-2}2^0}{0!} = e^{-2}  \\
+    P(X = 1) & = \frac{e^{-2}2^1}{1!} = 2e^{-2} \\
+    P(X = 2) & = \frac{e^{-2}2^2}{2!} = 2e^{-2}
+\end{align*}
+
+for $Y$:
+\begin{align*}
+    P(Y = 0) & = (\frac{1}{4})^{10} = \frac{1}{4^{10}}                                  \\
+    P(Y = 1) & = \binom{10}{1} (\frac{3}{4}) (\frac{1}{4})^{9} = \frac{30}{4^{10}}      \\
+    P(Y = 2) & = \binom{10}{2} (\frac{3}{4})^{2} (\frac{1}{4})^{8} = \frac{405}{4^{10}}
+\end{align*}
+
+Since the random variables are independent we can sum up the combinations for $X + Y = 2$:
+\begin{align*}
+    P(X + Y = 2) & = P(X=2) P(Y=0) + P(X=1) P(Y=1) + P(X=0) P(Y=2) \\
+                 & = \frac{467e^{-2}}{4^{10}}
+\end{align*}
+
+\noindent{}\textbf{Question 2:}
+Let $X \sim Poisson(20)$. Thus, $E[X] = Var[X] = 20$.
+\begin{itemize}
+    \item [(a)]
+          Using the Markov Inequality, we have
+          \begin{align*}
+              P(X \geq 26) \leq \frac{E[X]}{26} = \frac{10}{13}
+          \end{align*}
+          Thus our upper bound is $\frac{10}{13}$.
+
+    \item [(b)]
+          Using the one-sided Chebyshev Inequality, we have
+          \begin{align*}
+              P(X \geq 26) \leq \frac{20}{20 + 6^2} = \frac{5}{14}
+          \end{align*}
+          Thus, another upper bound for $p$ is $\frac{5}{14}$.
+
+    \item [(c)]
+          The Z-score is computed to be
+          \begin{align*}
+              Z = \frac{26-20}{\sqrt{20}} \approx 1.34.
+          \end{align*}
+          Then,
+          \begin{align*}
+              p \approx 1 - \Phi(1.34) \approx 0.902.
+          \end{align*}
+\end{itemize}
+\end{document}
+

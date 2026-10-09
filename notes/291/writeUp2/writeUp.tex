@@ -1,0 +1,33 @@
+\documentclass{article}
+
+\begin{document}
+
+\section*{Differentiability}
+
+\begin{itemize}
+      \item{} \emph{Statement and proof of theorem 41 (Chain Rule for functions from $R^n$ to $R$)}
+
+            \quad{}
+            Theorem 41 allows us to take directional derivatives when giving a multivariable function, a base point, and a direction vector from that base point.
+            It requires that all partial derivatives to be continuous because it describes the rate of change of the function when all basis vectors are changing with respect to a single variable t.
+            Also since it involves a dot product if one of the partial derivatives is nonexistent than there would be no result.
+            In a geometric sense, the gradient represents the maximum amount of change on the function, so the direction is the amount of projection that lies on that.
+            In the proof it splits two points on the curve so you can analyze each rate of change by a single variable.
+            Then it uses MVT to show that there is a rate of change for each basis direction and how it relates to the actual direction vector.
+            The final chain rule is used to get the rate f changes with respect to t.
+
+            \vspace{0.5cm}
+
+      \item{} \emph{Statement and proof of theorem 42 (Differentiability and partial derivatives)}
+
+            \quad{}
+            The vector proposed as a in the differentiability definiiton is the gradient vector.
+            The theorem is basically saying that the rate that the difference between f and the tangent
+            plane created with regard to the gradient vector is going to zero faster than the rate the inputs
+            are going to zero. Thereby proving that the partial derivatives have to be continuous in order for
+            the whole function to be differentiable. It proves this by first subtracting the tangent plane approximation
+            from the function. Then it bounds this "error" by utilizing that the partial derivatives are continuous.
+            Thus, resulting in the error being bounded by epsilon since there exists a delta y, proving differentiability.
+\end{itemize}
+
+\end{document}

@@ -1,0 +1,413 @@
+\documentclass[12pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath, amssymb, amsthm}
+\usepackage{geometry}
+\usepackage{fancyhdr}
+
+\geometry{letterpaper, margin=1in}
+\setlength{\headheight}{15pt}
+
+% Header setup
+\pagestyle{fancy}
+\fancyhf{}
+\lhead{Math 292 Spring 2026}
+\rhead{Jeffrey Lu}
+\cfoot{\thepage}
+
+\title{Homework Assignment 1 \\ \large Math 292, Spring 2026 \\ Rutgers University}
+\author{}
+\date{}
+
+\begin{document}
+
+\maketitle
+
+\noindent \textbf{Problem 1:}
+\begin{enumerate}
+    \item[(a)] Find the general solution of
+          \[ tx'(t) = x(t) + 3t^2. \]
+
+          \textbf{Solution}:
+
+          1. First, divide through by t and rearrange
+          \[
+              x'(t)-\tfrac{1}{t}x(t)=3t
+          \]
+
+          2. Solve for the integrating factor
+          \begin{align*}
+              e^{-\int{\tfrac{1}{t}dt}} & = e^{-\ln{|t|}} \\
+                                        & = \frac{1}{t}
+          \end{align*}
+
+          3. Multiply both sides by integrating factor
+          \begin{align*}
+              \frac{x'(t)}{t} - \frac{1}{t^2} & = 3 \\
+              \frac{d}{dt}(\frac{1}{t}x(t))   & = 3
+          \end{align*}
+
+
+          4. Integrate both sides w.r.t. t and simplify for general solution
+          \begin{align*}
+              \int{}\frac{d}{dt}(\frac{1}{t}x(t)) & = \int{3 dt}                   \\
+              \frac{x(t)}{t}                      & = 3t + C ~|~ C \in{\mathbb{R}} \\
+              x(t)                                & = 3t^2 + Ct
+          \end{align*}
+
+
+
+    \item[(b)] Find the flow transformation $\Phi_{t,t_0}(x)$ specified by this equation.
+
+          \textbf{Solution:}
+
+          1. Plug in $t_0$ into the general solution and solve for C
+          \begin{align*}
+              x(t_0)                    & = 3t_0^2+Ct_0 \\
+              x(t_0) - 3t_0^2           & = Ct_0        \\
+              \frac{x(t_0)}{t_0} - 3t_0 & = C
+          \end{align*}
+
+          2. Now using this C, you can find the flow transformation
+          \begin{align*}
+              x(t)               & = 3t^2+t(\frac{x(t_0)}{t_0}-3t_0) \\
+              \Phi_{t_0,t}(x(t)) & =3t^2+t(\frac{x(t_0)}{t_0}-3t_0)
+          \end{align*}
+
+    \item[(c)] Find the particular solution $x(t)$ that satisfies $x(1) = 2$.
+
+          \textbf{Solution:}
+
+          1. Solve for the C constant using the general solution
+          \begin{align*}
+              x(1) & = 3(1^2) + C(1) \\
+              2    & = 3 + C         \\
+              C    & = -1
+          \end{align*}
+
+          2. Plug C into general solution to find the particular solution for this initial condition
+          \begin{equation*}
+              x(t) = 3t^2 -t
+          \end{equation*}
+\end{enumerate}
+
+\newpage
+
+\noindent \textbf{Problem 2:}
+\begin{enumerate}
+    \item[(a)] Find the general solution of
+          \[ x'(t) + \frac{1}{3}x(t) = e^t x^4(t). \]
+
+          \textbf{Solution:}
+
+          1. Notice that this solution is in the of Bernoulli equation, thus we must use substitution to reduce it to this to a first order linear differential equation
+          \begin{align*}
+              \text{Let } u  & = x(t)^{-3}        \\
+              u'             & = -3x'(t)x(t)^{-4} \\
+              -\frac{1}{3}u' & = x'(t)x(t)^4
+          \end{align*}
+
+          2. Divide through equation by $x(t)^4$
+          \[
+              x'(t)x^{-4}+\frac{1}{3}x^{-3}=e^t
+          \]
+
+          3. Now, rewrite the equation in terms of u and t only, then simplify
+          \begin{align*}
+              -\frac{u'}{3}+\frac{1}{3}u & = e^t   \\
+              u'-u                       & = -3e^t
+          \end{align*}
+
+
+          4. We now have a first order linear ode, so we solve for the integrating factor
+          \begin{align*}
+              \text{Let }\mu{} & = e^{-\int{1dt}} \\
+                               & = e^{-t}
+          \end{align*}
+
+          5. Multiply both sides of the equation by this integrating factor
+          \begin{align*}
+              e^{-t}u'-e^{-t}u      & = -3e^{-t}e^t \\
+              \frac{d}{dt}(e^{-t}u) & = -3
+          \end{align*}
+
+          6. Now integrate both sides w.r.t. to t
+          \begin{align*}
+              \int{\frac{d}{dt}(e^{-t}u)} & = \int{-3dt} \\
+              e^{-t}u                     & = -3t + C
+          \end{align*}
+
+          7. Isolate u
+          \begin{align*}
+              u & = -3e^tt + e^tC
+          \end{align*}
+
+          8. Substitute x back in for u
+          \begin{align*}
+              x(t)^{-3} & = e^t(-3t + C)                          \\
+              x(t)      & = e^{-\frac{t}{3}}(C-3t)^{-\frac{1}{3}}
+          \end{align*}
+
+    \item[(b)] Find the particular solution $x(t)$ that satisfies $x(1) = 2$. Over what time interval $t \in (a, b)$ is the solution a continuously differentiable function?
+
+          \textbf{Solution:}
+
+          1. Solve for C using this initial condition and the general solution we attained above
+          \begin{align*}
+              x(1)        & = e^{-\frac{1}{3}}(C-3(1))^{-\frac{1}{3}} \\
+              \frac{1}{8} & = e(C-3)                                  \\
+              C           & = \frac{1}{8e} + 3
+          \end{align*}
+
+          2. Plug this C back into general solution and simplify
+          \begin{align*}
+              x(t) & = e^{-\frac{t}{3}}(\frac{1}{8e} + 3-3t)^{-\frac{1}{3}}              \\
+              x(t) & = \frac{1}{e^{\frac{t}{3}}(\frac{1}{8}e^{-1} + 3-3t)^{\frac{1}{3}}}
+          \end{align*}
+
+          3. As long as the denominator is nonzero, the solution will be a continuously differentiable function. Thus, we set the denominator to zero and solve for t. Notice that e cannot be zero since its strictly positive and thus we only care about what is in the parenthesis
+          \begin{align*}
+              0 & = e^{\frac{t}{3}}(\frac{1}{8}e^{-1} + 3-3t)^{\frac{1}{3}} \\
+              0 & = (\frac{1}{8}e^{-1} + 3-3t)                              \\
+              t & = \frac{1}{24}e^{-1} + 1
+          \end{align*}
+
+          4. From this, we can conclude that the solution "blows up" after $t = \frac{1}{24}e^{-1} + 1$ and since this is greater than our initial condition of t=1. Our valid time interval must be
+          \[
+              t \in{(-\infty{},  \frac{1}{24}e^{-1} + 1)}
+          \]
+\end{enumerate}
+
+\newpage
+
+\noindent \textbf{Problem 3:}
+\begin{enumerate}
+    \item[(a)] Find the general solution of
+          \[ tx'(t) = tx^2(t) - x(t) - \frac{1}{t} \]
+
+          \textbf{Solution:}
+
+          1. First, isolate $x'(t)$ by dividing through by $t$
+          \[
+              x'(t) = x^2(t)  - \frac{x(t)}{t} - \frac{1}{t^2}
+          \]
+
+          2. Notice that the equation is in the form of a Ricatti equation, so we plug in the $x_1(t) = ct^{\alpha{}} ~|~ c, \alpha{} \in{\mathbb{R}}$ to try to guess the particular solution.
+          \begin{align*}
+              -ct^{\alpha{}-1} = c^2t^{2\alpha{}}  - ct^{\alpha{}-1} - t^{-2}
+          \end{align*}
+
+          3. Set all the exponents equal to solve for $\alpha{}$
+          \begin{align*}
+              \alpha{} - 1 = 2\alpha{} = -2
+              \alpha{} = -1
+          \end{align*}
+
+          4. Balancing the exponents, we see that $\alpha{}$ has to be -1, now we solve for c
+          \begin{align*}
+              -ct^{-2} & = c^2t^{-2}  - ct^{-2} - t^{-2} \\
+              c        & = -c^2 + c + 1                  \\
+              c        & = \pm{1}
+          \end{align*}
+
+          5. Choosing the positive c, we get the particular solution:
+          \begin{align*}
+              x_p(t)  & = t^{-1}  \\
+              x_p'(t) & = -t^{-2}
+          \end{align*}
+
+          6. Now consider the following Bernoulli equation
+          \[
+              u'-(q+2rx_p)u-ru^2=0
+          \]
+          and let
+          \begin{align*}
+              x_p(t) & = t^{-1}  \\
+              q      & = -t^{-1} \\
+              r      & = 1
+          \end{align*}
+
+          7. Solve for $\mu{} = u^{1-n}$
+          \begin{align*}
+              \mu{}  & = u^{-1}    \\
+              \mu{}' & = -u'u^{-2}
+          \end{align*}
+
+          8. Divide through by $x^2$
+          \begin{align*}
+              u'u^{-2}-t^{-1}u^{-1}-1=0
+          \end{align*}
+
+          9. Substitute u with $\mu{}$ and rearrange
+          \begin{align*}
+              -\mu{}'-t^{-1}\mu{}-1 & = 0  \\
+              \mu{} '+t^{-1}\mu{}   & = -1
+          \end{align*}
+
+          10. Now we have a first order linear ODE, next we solve for integrating factor
+          \begin{align*}
+              e^{\int{t^{-1}dt}} & = e^{\ln{|t|}} \\
+                                 & = t
+          \end{align*}
+
+          11. Multiply both sides by the integrating factor and integrate
+          \begin{align*}
+              \mu{}'t+\mu{}              & = -t                         \\
+              \int{}\frac{d}{dt}(\mu{}t) & = -\int{tdt}                 \\
+              \mu{}t                     & = -\frac{t^2}{2} + C         \\
+              \mu{}                      & = -\frac{t}{2} + \frac{C}{t}
+          \end{align*}
+
+          12. Substitute back into $x(t) = x_p(t) + \mu{}$, we have the final general solution
+          \begin{align*}
+              x(t) & = t^{-1} -\frac{t}{2} + \frac{C}{t} \\
+                   & = t^{-1} + \frac{2t}{2C-t^{-}}
+          \end{align*}
+
+
+    \item[(b)] For any $(x_0, t_0)$ with $t_0 > 0$, find the solution $x(t)$ of this equation that satisfies $x(t_0) = x_0$.
+
+          \textbf{Solution:}
+
+          1. We substitute $t = t_0$ in the general solution and solve for 2C
+          \begin{align*}
+              x_0            & = t_0^{-1} + \frac{2t_0}{2C-t_0^{-2}} \\
+              x_0 - t_0^{-1} & = \frac{2t_0}{2C-t_0^{-2}}            \\
+              2C-t_0^{-2}    & = \frac{2t_0}{ x_0 - t_0^{-1}}        \\
+              2C-t_0^{-2}    & = \frac{2t_0^2}{ x_0t_0 - 1}          \\
+              2C             & = \frac{2t_0^2}{ x_0t_0 - 1} + t_0^2  \\
+              2C             & = \frac{x_0t_0^3+t_0^2}{ x_0t_0 - 1}
+          \end{align*}
+
+          2. Plug back into the general solution and simplify for the final solution
+          \begin{align*}
+              \Phi{}_{t, t_0}(x) & = t^{-1} + \frac{2t}{\frac{x_0t_0^3+t_0^2}{ x_0t_0 - 1}-t^{2}}      \\
+                                 & = t^{-1} + \frac{2t(x_0t_0 - 1)}{t_0^2(x_0t_0+1)-t^{2}(x_0t_0 - 1)}
+          \end{align*}
+
+
+
+    \item[(c)] Write down a formula for the flow transformation $\Phi_{t,t_0}$ generated by this equation. Verify explicitly that $\Phi_{3,2}(\Phi_{2,1}(x)) = \Phi_{3,1}(x)$ for all $x$.
+
+          \textbf{Solution:}
+
+          1. Now, we explicitly check $\Phi{}_{3,1}(x)$ using the solution from part b
+          \begin{align*}
+              \Phi{}_{3,1}(x) & = 3^{-1} + \frac{2(3)(x(1) - 1)}{(1)^2(x(1)+1)-(3)^{2}(x(1) - 1)} \\
+                              & = 3^{-1} + \frac{6x - 6}{10 - 8x}                                 \\
+                              & = \frac{(10-8x)+3(6x-6)}{3(10-8x)}                                \\
+                              & = \frac{5x-4}{15-12x}
+          \end{align*}
+
+          2. Then, we need to solve for $\Phi{}_{2,1}(x)$
+          \begin{align*}
+              \Phi{}_{2,1}(x) & = 2^{-1} + \frac{2*2(x - 1)}{(x+1)-2^{2}(x - 1)} \\
+                              & = 2^{-1} + \frac{4x-4}{5-3x}                     \\
+                              & = \frac{5-3x + 2(4x-4)}{2(5x-3)}                 \\
+                              & = \frac{5x-3}{10-6x}
+          \end{align*}
+
+          3. We use the above solution and plug it in as the input for $x_0$ in $\Phi_{3,2}$
+          \begin{align*}
+              \Phi{}_{3,2}(\Phi{}_{2,1}(x)) & =  \frac{1}{3} + \frac{6(\frac{(5x-3)}{10-6x} - 1)}{4(2(\frac{(5x-3)}{10-6x})+1)-3^{2}(2(\frac{(5x-3)}{10-6x}) - 1)} \\
+                                            & =  \frac{1}{3} + \frac{6\frac{5x-3}{5-3x} - 6}{4(\frac{5x-3}{5-3x})+4-9(\frac{5x-3}{5-3x}) + 9}                      \\
+                                            & =  \frac{1}{3} + \frac{6\frac{5x-3}{5-3x} - 6}{-5(\frac{5x-3}{5-3x}) +13}                                            \\
+                                            & =  \frac{1}{3} + \frac{48x-48}{80-64x}                                                                               \\
+                                            & = \frac{1}{3} + \frac{3x-3}{5-4x}                                                                                    \\
+                                            & = \frac{5-4x+3(3x-3)}{3(5x-4)}                                                                                       \\
+                                            & = \frac{5x-4}{15-12x}
+          \end{align*}
+
+          4. This is indeed the same as the answer we got in step 1
+\end{enumerate}
+
+\newpage
+
+\noindent \textbf{Problem 4:} Consider the equation
+\begin{equation}
+    x'(t) = 2t \frac{t^2 + x(t)}{t^2 - x(t)} \tag{1}
+\end{equation}
+This is not first order linear, Bernoulli, or Riccati, and it is not separable as it stands. But introducing a new variable, we can get a more amenable equation. Introduce $y(t)$ through $y(t) = \frac{x(t)}{t^2}$ for $t > 0$.
+
+\begin{enumerate}
+    \item[(a)] Show that $x(t)$ solves (1) for $t > 0$ if and only if $y(t)$ solves a separable equation for $t > 0$.
+
+          \textbf{Solution:}
+
+          1. First, we let
+          \[
+              y(t) = \frac{x(t)}{t^2} ~|~ t>0
+          \]
+
+          2. Rearrange and differentiate both sides w.r.t t
+          \begin{align*}
+              x(t)  & =   y(t)t^2         \\
+              x'(t) & = y'(t)t^2 + 2ty(t)
+          \end{align*}
+
+          3. Substitute what we got above back into the original ODE and solve for $y'(t)$
+          \begin{align*}
+              y'(t)t^2 + 2ty(t) & = 2t \frac{t^2 + t^2y(t)}{t^2 -  t^2y(t)} \\
+              y'(t)t^2 + 2ty(t) & = 2t \frac{1 + y(t)}{1 -  y(t)}           \\
+              y'(t)t^2          & = 2t(\frac{1 + y(t)}{1 -  y(t)}-y(t))     \\
+              y'(t)t^2          & = 2t(\frac{1+y^2(t)}{1-y(t)})             \\
+              y'(t)             & = \frac{2}{t}(\frac{1+y^2(t)}{1-y(t)})
+          \end{align*}
+
+          4. This is now a separable differentiable equation, thus x(t) solves (1) iff y(t) solves the separable equation below for $t>0$
+          \begin{align*}
+              dy(\frac{1-y(t)}{1+y^2(t)}) & = \frac{2}{t}dt
+          \end{align*}
+
+    \item[(b)] Find the solution of the separable equation with $y(1) = y_0$, $y_0 \neq -1$.
+
+          \textbf{Solution:}
+
+          1. Integrating both sides of the separable differentiable equation we got above
+          \begin{align*}
+              \int{}y'(t)(\frac{1-y(t)}{1+y^2(t)})              & = \int{\frac{1}{t}dt}        \\
+              \int{\frac{1}{1+y^2}}dy - \int{\frac{y}{1+y^2}}dy & =  2\ln{|t|} + C             \\
+              \arctan{(y)} - \frac{1}{2}\ln{|1+y^2|}            & =  2\ln{|t|} + C             \\
+              \arctan{(y)}                                      & = \ln{(t^2\sqrt{1+y^2})} + C
+          \end{align*}
+
+
+    \item[(c)] Find the solution of (1) with $x(1) = x_0$, $x_0 \neq -1$.
+
+          \textbf{Solution:}
+
+          1. We just have to substitute x back in for y and simplify to get the general solution of (1)
+          \begin{align*}
+              \arctan{(\frac{x}{t^2})} & = \ln{(t^2\sqrt{1+(\frac{x}{t^2})^2})} + C \\
+              \arctan{(\frac{x}{t^2})} & = \ln{(t^2\sqrt{\frac{t^4+x^2}{t^4}})} + C \\
+              \arctan{(\frac{x}{t^2})} & = \ln{(\sqrt{t^4+x^2})} + C                \\
+          \end{align*}
+\end{enumerate}
+
+\newpage
+
+\noindent \textbf{Problem 5:} Find the general solution of the equation
+\[ tx''(t) = 1 + (x'(t))^2. \]
+
+\textbf{Solution:}
+
+1. We can use reduction of order and substitute $y=x'(t)$ so that the equation becomes
+\[
+    ty'=1+y^2
+\]
+
+2. This can easily be rearranged into a separable differentiable equation and solved
+\begin{align*}
+    ty'               & = 1+y^2                \\
+    \frac{1}{1+y^2}dy & = \frac{1}{t} dt       \\
+    \arctan{(y)}      & = \ln{|t|} + C
+    y                 & = \tan{(\ln{|t|} + C)}
+\end{align*}
+
+3. Now we bring back the x' and integrate again to get x
+\begin{align*}
+    \int{}x'dt & = \int{}\tan{(\ln{|t|} + C)}dt                                          \\
+    x          & = \int{}\tan{(\ln{|t|} + C_1)dt} + C_2 ~|~ \{C_1, C_2\} \in{\mathbb{R}}
+\end{align*}
+
+
+\end{document}

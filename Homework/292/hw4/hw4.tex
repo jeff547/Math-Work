@@ -1,0 +1,347 @@
+\documentclass[12pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath, amssymb, amsthm}
+\usepackage{geometry}
+\usepackage{fancyhdr}
+
+\geometry{letterpaper, margin=1in}
+\setlength{\headheight}{15pt}
+
+% Header setup
+\pagestyle{fancy}
+\fancyhf{}
+\lhead{Math 292 Spring 2026}
+\rhead{Jeffrey Lu}
+\cfoot{\thepage}
+
+\title{Homework Assignment 4 \\ \large Math 292, Spring 2026 \\ Rutgers University}
+\author{Jeffrey Lu}
+\date{2/13/2026}
+
+\begin{document}
+
+\maketitle
+
+\noindent \textbf{Chapter 5 (Question 1):}
+
+Suppose we have $x'(t) = v(x(t), t)$ and $x(0) = 0$ with
+\begin{align*}
+    v(x,t) = 2t(1+x).
+\end{align*}
+
+Notice this is a separable equation.
+\begin{align*}
+    x'(t)                   & = 2t(1+x)      \\
+    \int \frac{1}{1+x} ~ dx & = \int 2t ~ dt \\
+    \ln|1+x|                & = t^2 + C      \\
+    1+x                     & = Ce^{t^2}.
+\end{align*}
+
+Substituting initial conditions, we have
+\begin{align*}
+    1 + 0 & = Ce^0 \\
+    C     & = 0.
+\end{align*}
+
+Then substituting the constant back, we have
+\begin{align*}
+    1 + x & = e^{t^2}     \\
+    x     & = e^{t^2} -1.
+\end{align*}
+
+Therefore, our solution is $x(t) = e^{t^2} -1$.
+
+\vspace{3ex}
+
+Next, we compute the next 4 picard iterations denoted by $X_n$, starting with $X_0=0$.
+
+The first iteration:
+\begin{align*}
+    X_1 & = X_0 + \int_0^t 2s(1+X_0(s)) ~ ds \\
+        & = \int_0^t 2s ~ ds                 \\
+        & = t^2.
+\end{align*}
+The second iteration:
+\begin{align*}
+    X_2 & = \int_0^t 2s(1+X_1(s)) ~ ds       \\
+        & = 2\int_0^t s + s^3  ~ ds          \\
+        & = 2(\frac{t^2}{2} + \frac{t^4}{4}) \\
+        & = t^2 + \frac{t^4}{2}
+\end{align*}
+The third iteration:
+\begin{align*}
+    X_3 & = \int_0^t 2s(1+X_2(s)) ~ ds                \\
+        & = \int_0^t 2s(1 + s^2 + \frac{s^4}{2}) ~ ds \\
+        & = \int_0^t 2s + 2s^3 + s^5  ~ ds            \\
+        & = t^2 + \frac{1}{2}t^4 +\frac{1}{6}t^6
+\end{align*}
+The fourth iteration:
+\begin{align*}
+    X_4 & = \int_0^t 2s(1+X_3(s)) ~ ds                                 \\
+        & = \int_0^t 2s(1 + s^2 + \frac{1}{2}s^4 +\frac{1}{6}s^6) ~ ds \\
+        & = \int_0^t 2s + 2s^3 + s^5 + \frac{1}{3}s^7 ~ ds             \\
+        & = t^2 + \frac{1}{2}t^4 +\frac{1}{6}t^6 + \frac{1}{24}t^8     \\
+\end{align*}
+
+Notice that this is the power series for $e^{x^2}$ without the first term 1.
+Therefore, as $n\rightarrow\infty$, the iteration converges into the exact solution $e^{t^2} - 1$.
+
+\noindent \textbf{Chapter 5 (Question 2):}
+
+Suppose we have $\mathbf{x}'(t) = A(t)\mathbf{x}(t)$ with
+\begin{align*}
+    A(t) = \begin{bmatrix}
+               0 & 1 \\ t^{-2}  & -t^{-1}
+           \end{bmatrix}.
+\end{align*}
+
+Then, the flow transformation matrix is
+\begin{align*}
+    [\Phi_{t,s}] = M(t)M^{-1}(s) = \frac{1}{2} \begin{bmatrix}
+                                                   \frac{t^2+s^2}{st}   & \frac{t^2-s^2}{t}   \\
+                                                   \frac{t^2-s^2}{st^2} & \frac{t^2+s^2}{t^2}
+                                               \end{bmatrix}.
+\end{align*}
+Consider the taylor expansion of each term.
+
+\noindent{}Top Left:
+\begin{align*}
+    \frac{1}{2} \left(\frac{t^2+s^2}{st}\right) = 1 + \frac{1}{2s^2}(t-s)^2
+\end{align*}
+Top Right:
+\begin{align*}
+    \frac{1}{2} \left(\frac{t^2-s^2}{t}\right) = 0 + (t-s) - \frac{1}{2s}(t-s)^2
+\end{align*}
+Bottom Left:
+\begin{align*}
+    \frac{1}{2} \left(\frac{t^2-s^2}{st^2}\right) = 0 + \frac{1}{s^2}(t-s) - \frac{3}{2s^3}(t-s)^2
+\end{align*}
+Bottom Right:
+\begin{align*}
+    \frac{1}{2} \left(\frac{t^2}{s^2}\right) = 1 - \frac{1}{s}(t-s) + \frac{3}{2s^2}(t-s)^2
+\end{align*}
+
+Then the taylor expansion the whole matrix looks like
+\begin{align*}
+    [\Phi_{t,s}] = I + \begin{bmatrix} 0 & 1 \\ s^{-2} & s^{-1} \end{bmatrix}(t-s) + \frac{1}{2}\begin{bmatrix} s^{-2} & -s^{-1} \\ -3s^{-3} & 3s^{-2} \end{bmatrix}(t-s)^2
+\end{align*}
+
+
+Starting from $\mathbf{X}_0 = \mathbf{x}_0$, we compute the next 3 terms of the Picard iteration,
+namely $\mathbf{X}_1, \mathbf{X}_2, \text{and } \mathbf{X}_3$ for the solution of $\mathbf{x'}(t) = A(t)\mathbf{x}(t)$ and $\mathbf{x}(s) = \mathbf{x}_0$.
+
+First, we compute the time-dependent matrices
+\begin{align*}
+    I^{(k)}_A(t) = \int_{s}^tA(r)I^{(k-1)}_A(r) dr, ~ \text{for } k\in{\{0,1,2,3\}}.
+\end{align*}
+This is because for all k, we have
+\begin{align*}
+    \mathbf{X}_k(t) = \left(\sum_{j=0}^{k}I^{(j)}_A(t)\right)\mathbf{x}_0.
+\end{align*}
+
+Notice that $I_A^{(0)} = I$. Then, we have
+\begin{align*}
+    I_A^{(1)} & = \int_s^t A(r) ~ dr                     \\
+              & =  \begin{bmatrix}
+                       0            & r       \\
+                       -\frac{1}{r} & -\ln|r|
+                   \end{bmatrix}^t_s            \\
+              & = \begin{bmatrix}
+                      0              & t-s               \\
+                      \frac{t-s}{st} & -\ln|\frac{t}{s}|
+                  \end{bmatrix}.
+\end{align*}
+This gives us our first iteration
+\begin{align*}
+    \mathbf{X}_1 & = (I_A^{(0)} + I_A^{(1)})\mathbf{x}_0     \\
+                 & = \begin{bmatrix}
+                         1              & t-s                \\
+                         \frac{t-s}{st} & 1-\ln|\frac{t}{s}|
+                     \end{bmatrix}\mathbf{x}_0.
+\end{align*}
+Notice how it matches the first order linear terms of the exact flow matrix's taylor expansion.
+Next, we have
+\begin{align*}
+    I_A^{(2)} & = \int_s^t A(r) I_A^{(1)}(r) ~ dr                                                                               \\
+              & = \int_s^t \begin{bmatrix}
+                               \frac{1}{s} - \frac{1}{r} & -\ln|\frac{r}{s}|                                       \\
+                               r^{-2}-\frac{1}{s}r^{-1}  & \frac{1}{r}-\frac{s}{r^2} + \frac{1}{r}\ln|\frac{r}{s}|
+                           \end{bmatrix} ~ dr              \\
+              & = \begin{bmatrix}
+                      \frac{r}{s} - \ln|r|       & r - r \ln|\frac{r}{s}|                           \\
+                      -r^{-1} -\frac{1}{s}\ln|r| & \ln|r| + sr^{-1} + \frac{1}{2}\ln^2|\frac{r}{s}|
+                  \end{bmatrix}^t_s                             \\
+              & = \begin{bmatrix}
+                      \frac{t}{s} - \ln|\frac{t}{s}| - 1       & t - t\ln|\frac{t}{s}| -s                                       \\
+                      s^{-1} - s^{-1}\ln|\frac{t}{s}| - t^{-1} & \frac{1}{2}\ln^2|\frac{t}{s}| + \ln|\frac{t}{s}| + st^{-1} - 1
+                  \end{bmatrix}.
+\end{align*}
+
+Thus, our second iteration is
+\begin{align*}
+    \mathbf{X}_2 & = (I_A^{(0)} + I_A^{(1)} + I_A^{(2)}) \mathbf{x}_0                                        \\
+                 & = \begin{bmatrix}
+                         ts^{-1} - \ln|\frac{t}{s}|                & 2t - 2s - t\ln|\frac{t}{s}|             \\
+                         2s^{-1} -2t^{-1} - s^{-1}\ln|\frac{t}{s}| & \frac{1}{2}\ln^2|\frac{t}{s}| + st^{-1}
+                     \end{bmatrix} \mathbf{x}_0.
+\end{align*}
+
+Finally, we have
+\begin{align*}
+    I_A^{(3)} & = \int_s^t A(r) I_A^{(2)}(r) ~ dr                                                                                                                                            \\
+              & = \begin{bmatrix}
+                      2rs^{-1} - rs^{-1} \ln|\frac{r}{s}| - \ln|r|                           & \frac{1}{2}r \ln^2|\frac{r}{s}| + s \ln|r| - r                           \\
+                      \frac{1}{2}s^{-1}\ln^2|\frac{r}{s}| + r^{-1} \ln|\frac{r}{s}| + r^{-1} & 2\ln|r| - \ln^2|\frac{r}{s}| + 2sr^{-1} - \frac{1}{6} \ln^3|\frac{r}{s}|
+                  \end{bmatrix}^t_s                      \\
+              & = \begin{bmatrix}
+                      2ts^{-1} - ts^{-1} \ln|\frac{t}{s}| - \ln|\frac{t}{s}| - 2                     & \frac{1}{2}t \ln^2|\frac{t}{s}| + s\ln|\frac{t}{s}| - t + s                           \\
+                      \frac{1}{2}s^{-1}\ln^2|\frac{t}{s}| + t^{-1}\ln|\frac{t}{s}| + t^{-1} - s^{-1} & 2\ln|\frac{t}{s}| + 2st^{-1} - \ln^2|\frac{t}{s}| - \frac{1}{6}\ln^3|\frac{t}{s}| - 2
+                  \end{bmatrix}.
+\end{align*}
+
+Thus, our third iteration is
+\begin{align*}
+    \mathbf{X}_3 & = (I_A^{(0)} + I_A^{(1)} + I_A^{(2)} + I_A^{(3)}) \mathbf{x}_0                                                                                                                                    \\
+                 & = \begin{bmatrix}
+                         3ts^{-1} - 2 - (2+ts^{-1}) \ln|\frac{t}{s}|                                             & (t - s)(1 - \ln|\frac{t}{s}|) + \frac{1}{2}t\ln^2|\frac{t}{s}|                                    \\
+                         \frac{1}{2}s^{-1}\ln^2|\frac{t}{s}| + (t^{-1}-s^{-1})\ln|\frac{t}{s}| + s^{-1} - t^{-1} & -\frac{1}{6}\ln^3|\frac{t}{s}| - \frac{1}{2}\ln^2|\frac{t}{s}| + 2\ln|\frac{t}{s}| + 3st^{-1} - 2
+                     \end{bmatrix} \mathbf{x}_0.
+\end{align*}
+Notice how each successive iteration gains higher order terms of the taylor series.
+Thus, by induction, you can see that the Picard iterations will eventually converge into the flow transformation.
+
+\vspace{5ex}
+
+\noindent \textbf{Chapter 5 (Question 3):}
+
+Suppose we have the equation
+\begin{align*}
+    t^2x''(t) - 2x(t) = \frac{3}{t} ~ \text{ on } ~ (0 , \infty)
+\end{align*}
+that satisfies  $x(1) = 1$ and $x'(1) = 2$.
+
+To find the solution, we first consider the associated homogenous equation:
+\begin{align*}
+    t^2x''(t) - 2x(t) = 0.
+\end{align*}
+We guess the solution $x(t) = t^r ~|~ r\in{\mathbb{R}}$. Then, we have
+\begin{align*}
+    x'(t)  & = rt^{r-1}       \\
+    x''(t) & = r(r-1)t^{r-2}.
+\end{align*}
+Substituting our guessed solution, we have
+\begin{align*}
+    t^2r(r-1)t^{r-2} - 2t^r & = (r(r-1)-2)t^{r}    \\
+                            & = (r^2 - r -2 )t^{r} \\
+                            & = ((r-2)(r+1))t^{r}  \\
+                            & = 0.
+\end{align*}
+Since $t>0$, we divide through by $t^r$ and get
+\begin{align*}
+    r = 2 ~\text{ and } ~r = -1.
+\end{align*}
+Thus, our homogenous solution is
+\begin{align*}
+    x_h(t) = c_1t^2 + c_2t^{-1}.
+\end{align*}
+Solving for the Wronskian, we have
+\begin{align*}
+    W(x_1, x_2) & = det \begin{pmatrix}
+                            t^2 & t^{-1} \\ 2t & -t^{-2}
+                        \end{pmatrix} \\
+                & = -3.
+\end{align*}
+
+Now, we move on to the particular solution.
+Dividing the initial equation by $t^2$, we have
+\begin{align*}
+    x''(t) - 2t^{-2}x(t) = 3t^{-3}.
+\end{align*}
+Thus, $f(t) = 3t^{-3}$.
+Applying the Variation of Parameters formulas, we have
+\begin{align*}
+    v_1 & = \int -\frac{(-t^{-1})(3t^{-3})}{-3} dt = \int t^{-4}dt = -\frac{1}{3}t^{-3} \\
+    v_2 & = \int \frac{t^2(3t^{-3})}{-3} dt = -\int t^{-1} =   -\ln|t|
+\end{align*}
+Since $v_1$ is a constant multiple of the homogenous solution, it merges with $C_2$.
+Thus, our particular solution is
+\begin{align*}
+    x_p(t) & = -t^{-1}\ln|t|.
+\end{align*}
+
+Combining the two solution gives us
+\begin{align*}
+    x(t)  & = C_1t^2 + t^{-1}(C_2 - \ln|t|)            \\
+    x'(t) & = 2C_1t - t^{-2}C_2 - \frac{1-\ln|t|}{t^2}
+\end{align*}
+Plugging in the initial condition $x(1) = 1$, we have
+\begin{align*}
+    1 = C_1 + C_2. \tag{1}
+\end{align*}
+Then, plugging in $x'(1) = 2$ gives us
+\begin{align*}
+    3 = 2C_1 - C_2. \tag{2}
+\end{align*}
+Adding the two equations and solving, we get
+\begin{align*}
+    C_1 = \frac{4}{3} ~ \text{ and } ~ C_2 = -\frac{1}{3}.
+\end{align*}
+Therefore, our final solution is
+\begin{align*}
+    x(t) & = \frac{4}{3}t^2 - t^{-1}(\frac{1}{3} + \ln|t|).
+\end{align*}
+
+\noindent \textbf{Chapter 5 (Question 7):}
+
+Suppose we have the equation
+\begin{align*}
+    x''(t) - x'(t) - 6x(t) = e^t.
+\end{align*}
+
+To find the general solution, we first consider the associated homogenous equation:
+\begin{align*}
+    x''(t) - x'(t) - 6x(t) = 0.
+\end{align*}
+We guess the following solution
+\begin{align*}
+    x(t)   & = e^{rt}    \\
+    x'(t)  & = re^{rt}   \\
+    x''(t) & = r^2e^{rt}
+\end{align*}
+Substituting, we get
+\begin{align*}
+    r^2e^{rt} - re^{rt} - 6e^{rt} & = e^{rt}(r^2-r-6) \\
+                                  & = r^2 - r - 6     \\
+                                  & = (r-3)(r+2)      \\
+                                  & = 0.
+\end{align*}
+Thus, our homogenous solution is
+\begin{align*}
+    x_h(t) = C_1 e^{3t} + C_2 e^{-2t}.
+\end{align*}
+Solving for the Wronskian, we have
+\begin{align*}
+    W(x_1, x_2) & = det\begin{pmatrix} e^{3t} & e^{-2t} \\ 3e^{3t} & -2e^{-2t} \end{pmatrix} \\
+                & = -5e^t.
+\end{align*}
+
+Moving to the particular solution. Notice that $f(t) = e^t$.
+Then, applying the Variation of Parameters, we have
+\begin{align*}
+    v_1 & = -\int \frac{e^{-2t}e^t}{-5e^t} = \frac{1}{5}\int e^{-2t} = -\frac{1}{10}e^{-2t} \\
+    v_2 & = -\frac{1}{5}\int e^{3t} = -\frac{1}{15} e^{3t}
+\end{align*}
+Thus, our particular solution is
+\begin{align*}
+    x_p(t) & = - \frac{1}{10}e^{-2t}e^{3t} - \frac{1}{15} e^{3t}e^{-2t} \\
+           & = - \frac{3}{30} e^t - \frac{2}{30}e^t                     \\
+           & = - \frac{1}{6} e^t.
+\end{align*}
+
+Therefore, the general solution is
+\begin{align*}
+    x(t) = C_1e^{3t} + C_2e^{-2t} - \frac{1}{6}e^t.
+\end{align*}
+
+
+\end{document}

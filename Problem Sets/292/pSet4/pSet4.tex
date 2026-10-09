@@ -1,0 +1,296 @@
+\documentclass[12pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath, amssymb, amsthm}
+\usepackage{geometry}
+
+% Set margins to match a standard homework document
+\geometry{a4paper, margin=1in}
+
+\title{Challenge Problem Set 2}
+\author{Math 292 Spring 2026 \\ Rutgers University}
+\date{}
+
+\begin{document}
+
+\maketitle
+
+\noindent{}\textbf{Exercise 1:}
+
+We can show that $r(\mathbf{a}(t))$, $s(\mathbf{a}(t))$ and $q(\mathbf{a}(t))$ are all independent of $t$,
+by checking that when we take the derivative w.r.t. $t$, we get zero.
+\begin{align}
+    \frac{d}{dt}(r(\mathbf{a}(t))) & = 2aa' + 2bb' = 2ab-2ab = 0                    \\
+    \frac{d}{dt}(s(\mathbf{a}(t))) & = 2cc' + 2cc' = 2cd-2cd = 0                    \\
+    \frac{d}{dt}(q(\mathbf{a}(t))) & = a'c + ac' + b'd + bd' = bc + ad - ad -bc = 0
+\end{align}
+
+\noindent{}\textbf{Exercise 2:}
+
+Let $\theta{}(t)$ be the angle between $\mathbf{v}(t)$ and $\mathbf{w}(t)$, we utilize the definition of the dot product
+\begin{align*}
+    \cos(\theta{}(t)) & = \frac{\mathbf{v}(t) \cdot{\mathbf{w}(t)}}{||\mathbf{v}(t)||~||\mathbf{w}(t)||} \\
+                      & = \frac{q}{r_0s_0}
+\end{align*}
+
+In the previous exercise, we found that $r$, $s$, and $q$ are all independent of $t$,
+thus $\theta$ must also be independent of $t$.
+
+Writing the vectors in polar, we have
+\begin{align*}
+    \mathbf{v}(t) & = \begin{pmatrix} r_0\cos(\theta_v(t)) \\ r_0\sin(\theta_v(t)) \end{pmatrix} \\
+    \mathbf{w}(t) & = \begin{pmatrix} s_0\cos(\theta_w(t)) \\ s_0\sin(\theta_w(t)) \end{pmatrix}
+\end{align*}
+Differentiating with respect to $t$ by component, we get
+\begin{align*}
+    a'(t) & = -r_0\theta'_v(t)sin(\theta_v(t)) \\
+    b'(t) & = r_0\theta'_v(t)cos(\theta_v(t))  \\
+    c'(t) & = -s_0\theta'_w(t)sin(\theta_w(t)) \\
+    d'(t) & = s_0\theta'_w(t)cos(\theta_w(t))
+\end{align*}
+Then, substituting with $\frac{d}{dt}(a,b,c,d) = (b,-a,d,-c)$, we have
+\begin{itemize}
+    \item For $a' = b$
+          \begin{align*}
+              -r_0\theta'_v(t)sin(\theta_v(t)) & = r_0\sin(\theta_v(t)) \\
+              -\theta'_v(t)sin(\theta_v(t))    & = \sin(\theta_v(t))    \\
+              \theta'_v(t)sin^2(\theta_v(t))   & = -\sin^2(\theta_v(t)) \\
+          \end{align*}
+    \item For $b' = -a$
+          \begin{align*}
+              r_0\theta'_v(t)cos(\theta_v(t)) & = -r_0\cos(\theta_v(t)) \\
+              \theta'_v(t)cos^2(\theta_v(t))  & = -\cos^2(\theta_v(t))
+          \end{align*}
+\end{itemize}
+
+Adding these first two equations, we have
+\begin{align*}
+    \theta'_v(t)(sin^2(\theta_v(t)) + cos^2(\theta_v(t))) & = - (\cos^2(\theta_v(t)) + \sin^2(\theta_v(t))) \\
+    \theta'_v(t)                                          & = -1
+\end{align*}
+
+Similarly for $\theta'_w(t)$, we have
+\begin{itemize}
+    \item For $c' = d$
+          \begin{align*}
+              -s_0\theta'_w(t)sin(\theta_w(t)) & = s_0\sin(\theta_w(t)) \\
+              \theta'_w(t)sin^2(\theta_w(t))   & = -\sin^2(\theta_w(t))
+          \end{align*}
+    \item For $d' = -c$
+          \begin{align*}
+              s_0\theta'_w(t)cos(\theta_w(t)) & = -s_0\cos(\theta_w(t)) \\
+              \theta'_w(t)cos^2(\theta_w(t))  & = -\cos^2(\theta_w(t))
+          \end{align*}
+\end{itemize}
+
+Now, adding these two equations, we have
+\begin{align*}
+    \theta'_w(t)(sin(\theta_w(t))+cos^2(\theta_w(t))) & = -(\sin^2(\theta_w(t)) + \cos^2(\theta_w(t))) \\
+    \theta'_w(t)                                      & = -1
+\end{align*}
+
+Thus, we have that
+\begin{align*}
+    \theta_v(t) & = -t + \theta_v(0)  \\
+    \theta_w(t) & = -t + \theta_w(0).
+\end{align*}
+
+and that
+\begin{align*}
+    \theta(t) & = \theta_v(t) - \theta_w(t)             \\
+              & = -t + \theta_v(0) - (-t + \theta_w(0)) \\
+              & = \theta_v(0) - \theta_w(0)
+\end{align*}
+
+Since the scaled vectors $s_0\mathbf{v}(t)$ and $r_0\mathbf{w}(t)$ share a constant magnitude and a fixed signed angular difference $\theta = \theta_v(0) - \theta_w(0)$, the relationship between them is defined by the unique, time-independent rotation matrix. $\Box{}$
+
+\noindent{}\textbf{Exercise 3:}
+
+We show that $\mathbf{u}_1$, $\mathbf{u}_2$, $\mathbf{u}_3$, and $\mathbf{u}_4$ form an orthonormal basis by showing that each vector is
+
+\begin{itemize}
+    \item Unit length:
+          \begin{align*}
+              ||\mathbf{u}_1||^2 & = \frac{1}{r^2}(s_0^2 + r_0^2cos^2(\theta) + r_0^2sin^2(\theta)) = \frac{r^2}{r^2} = 1 \\
+              ||\mathbf{u}_2||^2 & = \frac{1}{r^2}(s_0^2 + r_0^2cos^2(\theta) + r_0^2sin^2(\theta)) = \frac{r^2}{r^2} = 1 \\
+              ||\mathbf{u}_3||^2 & = \frac{1}{r^2}(r_0^2+s_0^2cos^2(\theta)+s_0^2sin^2(\theta)) = \frac{r^2}{r^2} = 1     \\
+              ||\mathbf{u}_4||^2 & = \frac{1}{r^2}(r_0^2+s_0^2cos^2(\theta)+s_0^2sin^2(\theta)) = \frac{r^2}{r^2} = 1
+          \end{align*}
+
+    \item Orthogonality:
+          \begin{align*}
+              \mathbf{u}_1 \cdot{\mathbf{u}_2} & = \frac{1}{r^2}(r_0^2 \cos(\theta) \sin(\theta) - r_0^2 \cos(\theta) \sin(\theta)) = \frac{0}{r^2} = 0    \\
+              \mathbf{u}_1 \cdot{\mathbf{u}_3} & = \frac{1}{r^2}(r_0s_0 - r_0s_0\cos^2(\theta) - r_0s_0 \sin^2(\theta)) = \frac{r_0s_0-r_0s_0}{r^2} = 0    \\
+              \mathbf{u}_1 \cdot{\mathbf{u}_4} & = \frac{1}{r^2}(-r_0s_0 \cos(\theta) \sin(\theta) + r_0s_0 \cos(\theta) \sin(\theta)) = \frac{0}{r^2} = 0 \\
+              \mathbf{u}_2 \cdot{\mathbf{u}_3} & = \frac{1}{r^2}(-r_0s_0 \cos(\theta) \sin(\theta) + r_0s_0 \cos(\theta) \sin(\theta)) = \frac{0}{r^2} = 0 \\
+              \mathbf{u}_2 \cdot{\mathbf{u}_4} & = \frac{1}{r^2}(r_0s_0 - r_0s_0 \sin^2(\theta) - r_0s_0 \cos^2(\theta)) = \frac{r_0s_0-r_0s_0}{r^2} = 0   \\
+              \mathbf{u}_3 \cdot{\mathbf{u}_4} & = \frac{1}{r^2}(s_0^2 \cos(\theta) \sin(\theta) - s_0^2 \cos(\theta) \sin(\theta)) = \frac{0}{r^2} = 0    \\
+          \end{align*}
+\end{itemize}
+
+Recall from the last exercise, we have the following
+\begin{align*}
+     & s_0\mathbf{v}(t) = \begin{pmatrix} \cos\theta & -\sin\theta \\ \sin\theta & \cos\theta\end{pmatrix} r_0\mathbf{w}_0 \\
+     & \implies{} s_0a - r_0(c\cos\theta - d\sin\theta) = 0 \tag{1}                                                        \\
+     & \implies{} s_0b - r_0(c\sin\theta + d\cos\theta) = 0  \tag{2}
+\end{align*}
+
+We use this to show that $\mathbf{a}(t) \cdot{} \mathbf{u}_1 = \mathbf{a}(t) \cdot{} \mathbf{u}_2 = 0 $
+\begin{align*}
+    \mathbf{a}(t) \cdot{} \mathbf{u}_1 & = \frac{1}{r}(as_0 -cr_0 \cos(\theta) + dr_0\sin(\theta)) = 0 \\
+    \mathbf{a}(t) \cdot{} \mathbf{u}_2 & = \frac{1}{r}(bs_0 -cr_0 \sin(\theta) - dr_0\cos(\theta)) = 0 \\
+\end{align*}
+
+Since we have that \{$\mathbf{u}_1$, $\mathbf{u}_2$, $\mathbf{u}_3$, $\mathbf{u}_4$\} forms an orthonormal basis in $\mathbb{R}^4$,
+we can write $\mathbf{a}(t)$ as a linear combination of the basis vectors with constants $c_1, c_2, c_3, c_4 \in{\mathbb{R}}$
+\begin{align*}
+    \mathbf{a}(t) = c_1\mathbf{u}_1 + c_2\mathbf{u}_2 + c_3\mathbf{u}_3 + c_4\mathbf{u}_4
+\end{align*}
+
+We already saw that $c_1 = c_2 = 0$. Thus, replacing $\alpha{}(t) = c_3 = \mathbf{a}(t) \cdot{\mathbf{u}_3}$ and  $\beta{}(t) = c_4 = \mathbf{a}(t) \cdot{\mathbf{u}_4}$, we are left with
+\begin{align*}
+    \mathbf{a}(t) =  \alpha{}(t) \mathbf{u}_3 + \beta{}(t) \mathbf{u}_4.
+\end{align*}
+
+Then, taking the squared euclidean norm, we have that
+\begin{align*}
+    ||\mathbf{a}(t)||^2 = \alpha{}^2(t) + \beta{}^2(t).
+\end{align*}
+
+Recall the original definition of $\mathbf{a}(t) = (a,b,c,d)$, taking the squared euclidean norm, we have that
+\begin{align*}
+    ||\mathbf{a}(t)||^2 & = a^2 + b^2 + c^2 + d^2 \\
+                        & = r^2_0 + s^2_0         \\
+                        & = r^2
+\end{align*}
+
+Thus, we have that
+\begin{align*}
+    \alpha{}^2(t) + \beta{}^2(t) = r^2.
+\end{align*}
+
+Because $\mathbf{a}(t)$, $\mathbf{u}_3$, and $\mathbf{u}_4$ are continuously differentiable, their dot products $\alpha(t)$ and $\beta(t)$ are also continuously differentiable.
+
+
+Taking the derivative w.r.t. $t$, we have
+\begin{itemize}
+    \item For $\alpha{}(t) = \mathbf{a}(t) \cdot{\mathbf{u}_3}$:
+          \begin{align*}
+              \alpha{}(t) & = \frac{1}{r}(ar_0 + cs_0\cos(\theta) - ds_0\sin(\theta))    \\\\
+              \alpha'(t)  & = \frac{1}{r}(a'r_0 + c's_0\cos(\theta) - d's_0\sin(\theta)) \\
+                          & = \frac{1}{r}(br_0 + ds_0\cos(\theta) + cs_0\sin(\theta))    \\
+                          & = \beta{}(t)
+          \end{align*}
+    \item For $\beta{}(t) = \mathbf{a}(t) \cdot{\mathbf{u}_4}$:
+          \begin{align*}
+              \beta{}(t)  & = \frac{1}{r}(br_0 + cs_0\sin(\theta) + ds_0\cos(\theta))    \\\\
+              \beta{}'(t) & = \frac{1}{r}(b'r_0 + c's_0\sin(\theta) + d's_0\cos(\theta)) \\
+                          & =\frac{1}{r}(-ar_0 + ds_0\sin(\theta) + -cs_0\cos(\theta))   \\
+                          & = -\alpha{}(t)
+          \end{align*}
+\end{itemize}
+
+\noindent{}\textbf{Exercise 4:}
+
+Let $\mathbf{a}(0) = (1,0,1,\sqrt{3})$.
+Then, we can solve for $r$, $s$, and $q$ since they are time independent
+\begin{align*}
+    r_0 & = \sqrt{a^2(0) + b^2(0)} =  1   \\
+    s_0 & = \sqrt{c^2(0) + d^2(0)} = 2    \\
+    r   & = \sqrt{r_0^2+s_0^2} = \sqrt{5}
+\end{align*}
+
+We use the rotation transformation from exercise 2 to solve for $\cos\theta$ and $\sin\theta$
+\begin{align*}
+    s_0a & = r_0(c\cos\theta - d\sin\theta)                   \\
+         & = 2 - \cos\theta + \sqrt{3}\sin\theta = 0          \\ \tag{1}
+    s_0b & = r_0(c\sin\theta + d\cos\theta)                   \\
+         & = \sin\theta + \sqrt{3}\cos\theta = 0              \\
+         & \implies{\sin\theta = -\sqrt{3}\cos\theta} \tag{2}
+\end{align*}
+
+Plugging equation 2 into 1, we have
+\begin{align*}
+    2 - \cos\theta + \sqrt{3}(-\sqrt{3}\cos\theta) & = 2-4\cos\theta \implies{} \cos\theta = \frac{1}{2}
+\end{align*}
+
+Then, substituting back into equation 2 we have $\sin\theta = -\dfrac{\sqrt{3}}{2}$.
+
+With this, we can write $\mathbf{u}_3$ and $\mathbf{u}_4$ with our initial conditions
+\begin{align*}
+    \mathbf{u}_3 & = \frac{1}{\sqrt{5}}\begin{bmatrix}1 \\ 0 \\ 1 \\ \sqrt{3} \end{bmatrix} = \frac{1}{\sqrt{5}}\mathbf{a}(0) \\
+    \mathbf{u}_4 & = \frac{1}{\sqrt{5}}\begin{bmatrix}0 \\ 1 \\ -\sqrt{3} \\ 1 \end{bmatrix}
+\end{align*}
+
+We can solve for the scalars initial state as well
+\begin{align*}
+    \alpha(0) & = \mathbf{a}(0) \cdot{} \frac{1}{\sqrt{5}}\mathbf{a}(0) = \frac{1}{\sqrt{5}}(5) = r                 \\
+    \beta(0)  & = \mathbf{a}(0) \cdot{} \frac{1}{\sqrt{5}}\begin{bmatrix}0 \\ 1 \\ -\sqrt{3} \\ 1 \end{bmatrix} = 0
+\end{align*}
+
+Thus, we choose
+\begin{align*}
+    \alpha(t) & = \sqrt{5}\cos(t)  \\
+    \beta(t)  & = -\sqrt{5}\sin(t) \\
+\end{align*}
+
+Combining everything, we have
+\begin{align*}
+    \mathbf{a}(t) = \begin{bmatrix}\cos(t) \\ -\sin(t) \\ \cos(t) + \sqrt{3}\sin(t) \\ \sqrt{3}\cos(t) - \sin(t) \end{bmatrix}
+\end{align*}
+
+Parameterizing the curve, we have
+\begin{align*}
+    (x(t), y(t)) = (\cos(t), \cos(t) + \sqrt{3}\sin(t))
+\end{align*}
+
+Substituting x(t) for cos(t) in y(t), then squaring, we have
+\begin{align*}
+    y         & = x + \sqrt{3}\sin(t)      \\
+    \sin(t)   & = \frac{y-x}{\sqrt{3}}     \\
+    \sin^2(t) & =  \frac{y^2-2xy + x^2}{3}
+\end{align*}
+
+Then, squaring x(t), we get $x^2(t) = \cos^2(t)$. Now, we add the two equations and get
+\begin{align*}
+    \frac{y^2-2xy + x^2}{3} + x^2(t) & = \cos^2(t) + \sin^2(t) \\
+    \frac{y^2-2xy + 4x^2}{3}         & = 1                     \\
+    y^2-2xy + 4x^2                   & = 3
+\end{align*}
+
+The equation $y^2-2xy + 4x^2= 3$ is exactly that of the ellipse we got in the first workshop.
+
+\noindent{}\textbf{Exercise 5:}
+
+Checking the derivative of $p(\mathbf{a}(t))$ w.r.t. $t$
+\begin{align*}
+    \frac{d}{dt}(p(\mathbf{a}(t))) & = a'd + ad' - b'c - bc' = bd - ac + ac -bd = 0
+\end{align*}
+
+Indeed the derivative is zero, thus $p(\mathbf{a}(t))$ is independent of $t$.
+
+\vspace{10pt}
+
+Next, we have that ${\mathbf{a}(t)} \in{\mathbb{S}^3}$, which means $a^2+b^2+c^2+d^2 = 1 \implies{} r + s = 1$.
+
+We want to compute the left hand side, so we start with $p^2 + q^2$
+\begin{align*}
+    p(\mathbf{a}(t))^2 + q(\mathbf{a}(t))^2 & = a^2d^2 - 2abcd + b^2c^2 + a^2b^2 + 2abcd + c^2d^2 \\
+                                            & = a^2d^2 + b^2c^2 + a^2c^2 + b^2d^2                 \\
+                                            & = a^2(c^2 + d^2) + b^2(c^2 + d^2)                   \\
+                                            & = (a^2 + b^2)(c^2 + d^2)                            \\
+                                            & = r(\mathbf{a}(t))*s(\mathbf{a}(t))
+\end{align*}
+
+Then, the left hand side simplifies to
+\begin{align*}
+    (2p)^2 + (2q)^2 + (r - s)^2 & = 4p^2 + 4q^2 + r^2 - 2rs + s^2 \\
+                                & = r^2 +2rs + s^2                \\
+                                & = (r+s)^2                       \\
+                                & = 1^2                           \\
+                                & = 1
+\end{align*}
+
+This is exactly the identity we wanted.
+
+\end{document}
+

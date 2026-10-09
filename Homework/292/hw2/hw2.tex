@@ -1,0 +1,501 @@
+\documentclass[12pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath, amssymb, amsthm}
+\usepackage{geometry}
+\usepackage{fancyhdr}
+
+\geometry{letterpaper, margin=1in}
+\setlength{\headheight}{15pt}
+
+% Header setup
+\pagestyle{fancy}
+\fancyhf{}
+\lhead{Math 292 Spring 2026}
+\rhead{Jeffrey Lu}
+\cfoot{\thepage}
+
+\title{Homework Assignment 2 \\ \large Math 292, Spring 2026 \\ Rutgers University}
+\author{Jeffrey Lu}
+\date{2/13/2026}
+
+\begin{document}
+
+\maketitle
+
+\noindent \textbf{Exercise 2.2:}
+
+1. We can solve for the general solution by separation of variables
+\begin{align*}
+  x'(t)          & = tan(x)   \\
+  cot(x)dx       & = dt       \\
+  \int{cot(x)dx} & = \int{dt} \\
+  ln|sin(x)|     & = t + C    \\
+  sin(x)         & = Ce^t     \\
+\end{align*}
+
+2. We now solve for the constant C
+\begin{align*}
+  sin(x_0) & = Ce^{0}   \\
+  C        & = sin(x_0)
+\end{align*}
+
+3. Plug back in for the particular solution
+\begin{align*}
+  sin(x) & = e^t sin(x_0)         \\
+  x(t)   & = arcsin(e^t sin(x_0))
+\end{align*}
+
+4. With the given bounds of tan(x), we have that  $arcsin(e^tsin(x_0)) \neq{} \pm{\dfrac{\pi{}}{2}}$ and thus
+\[
+  -1 < e^t sin(x_0) < 1
+\]
+
+5. Since $e^t$ is always positive we can rewrite with absolute values
+\begin{align*}
+  e^t |sin(x_0)| & < 1            \\
+  e^t            & < |csc(x_0)|   \\
+  t              & < ln|csc(x_0)|
+\end{align*}
+
+6. Therefore, we can conclude the solution is defined when
+\[
+  t \in{(-\infty{},~ ln|csc(x_0)|)} ~|~ x_0 \neq{0}
+\]
+
+7. However, there is also the special case when $x_0=0$. In this case the solution no longer depends on t and thus
+\[
+  t\in{(-\infty, \infty)} ~|~ x_0 = 0
+\]
+
+\noindent \textbf{Exercise 2.3:}
+
+\begin{enumerate}
+  \item [(a)]
+
+        1. First we plug in the initial condition and conclude that x is "increasing"
+        \[
+          v(0) = (1-0)^2 = 1
+        \]
+
+        2. Now we can calculate Barrow's Formula from x = 0 to x = 1
+        \begin{align*}
+          t(1) & = t(0) + \int^1_0{\frac{1}{v(z)} ~ dz}  \\
+               & = \int^1_0{\frac{1}{\sqrt{1-z^4}} ~ dz} \\
+        \end{align*}
+
+        3. Now need to determine whether the integral converges or diverges. We can do this via the limit comparison test, the comparison integral $g(x)$ we choose is
+        \begin{align*}
+          g(x) & = \int^1_0{\frac{1}{\sqrt{1-z}} dz}                           \\
+               & = \lim_{t\rightarrow{1^{-}}}\int^t_0{\frac{1}{\sqrt{1-z}} dz} \\
+               & = \lim_{t\rightarrow{1^{-}}}[-2\sqrt{1-z}]^t_0                \\
+               & = \lim_{t\rightarrow{1^{-}}} -2\sqrt{1-t} + 2                 \\
+               & = 2
+        \end{align*}
+
+        4. Therefore, g(x) converges since its limit exists and is finite. Notice that the function becomes undefined when z approaches 1 from 0, that is why we are using the limit as it approaches 1 from the left. Now, we solve for the limit of the ratio $\frac{t(1)}{g(z)}$.
+        \begin{align*}
+          L & = \lim_{z\rightarrow{1^{-}}}\frac{\frac{1}{\sqrt{1-z^4}}}{\frac{1}{\sqrt{1-z}}}  \\
+            & =  \lim_{z\rightarrow{1^{-}}}\frac{\sqrt{1-z}}{\sqrt{1-z}\sqrt{1+z}\sqrt{1+z^2}} \\
+            & =                    \lim_{z\rightarrow{1^{-}}}\frac{1}{\sqrt{1+z}\sqrt{1+z^2}}  \\
+            & = \frac{1}{2}
+        \end{align*}
+
+        5. L is both positive and finite, and thus we can conclude by the limit comparison test that t(1) converges. Therefore, the solution does not remain only within (-1,1) since it reaches the boundary 1.
+
+        \vspace{20pt}
+
+  \item [(b)]
+
+        1. Taking the derivative of v(x), we get
+        \begin{align*}
+          v'(x) = -8x^3(1-x^4)
+        \end{align*}
+
+        2. This is a polynomial and when you plug in 1 or -1, you get 0. Thus, the function is continuous. Since v'(x) is continuous, we can conclude that the function is lipschitz and thus solution exist for all t and remain within (-1, 1)
+\end{enumerate}
+
+\noindent \textbf{Exercise 2.10:}
+
+\begin{enumerate}
+  \item [(a)]
+
+        1. To show that H is constant we can just show that it's derivative w.r.t t is zero:
+        \begin{align*}
+          \frac{d}{dt} H(x'(t), x(t)) = 0
+        \end{align*}
+
+        2. Let y(t) = x'(t), thus with chain rule we have
+        \begin{align*}
+          \frac{d}{dt} H(x'(t), x(t)) & = \frac{d}{dt} [\frac{1}{2}(x'(t))^2 + V(x(t))] \\
+                                      & = x'(t)x''(t) + V'(x(t))x'(t)                   \\
+                                      & = x'(t) [x''(t) + V'(x(t))]
+        \end{align*}
+
+        3. After factoring out the x'(t), we can just substitute the definitions from (2.47)
+        \begin{align*}
+          \frac{d}{dt} H(x'(t), x(t)) & = x'(t) [F(x(t)) + V'(x(t))] \\
+                                      & = x'(t) [-V'x(t) + V'(x(t))] \\
+                                      & = x'(t) [0]                  \\
+                                      & = 0
+        \end{align*}
+
+        4. Since $H'(x'(t), x(t)) = 0$, we therefore conclude that $H(x'(t),x(t))$ is constant for all t.
+
+  \item [(b)]
+
+        1. Substituting these initial conditions into H, we have
+        \begin{align*}
+          H(v_0, x_0) & = \frac{1}{2}(v_0)^2+x_0 \\
+                      & = \frac{1}{2}(1) + 0     \\
+                      & = \frac{1}{2}
+        \end{align*}
+
+        2. Then we substitute this back into the x'(t) we found in the last part
+        \begin{align*}
+          x' & = \pm{} \sqrt{H(v_0, x_0) - V(x)}           \\
+             & = \pm{} \sqrt{\frac{1}{2} - \frac{1}{2}x^2} \\
+             & = \pm{} \sqrt{\frac{1}{2}(1-x^2)}           \\
+        \end{align*}
+
+        3. We can observe that the function has equilibrium points at
+        \[
+          x = \pm{1}
+        \]
+
+        4. Thus we can describe the solutions as first starting at x=1, then resting for $t>=0$ time, then moving to -1 and resting for $t>=0$ time, and so on, back and forth. The duration of the rests can infinitely chosen, therefore the number of solutions is also infinite.
+
+        5. To check if the function is twice continuously differentiable, we use (2.47)
+        \begin{align*}
+          x''(t) & = \frac{d}{dx} V(x)            \\
+                 & = \frac{d}{dx}(\frac{1}{2}x^2) \\
+                 & = -x
+        \end{align*}
+
+        6. When transitioning from resting to moving x''(t) would have to jump from 0 to -1 which is non-continuous. Therefore we conclude there is only a single solution which is twice continuously differentiable and that is when there is no resting at the the bounds of the interval.
+
+  \item [(c)]
+
+        1. First, we can solve for x'(t) at the initial conditions we're given
+        \begin{align*}
+          (x'(0))^2 + 1^4 & = 1 \\
+          x'(0)           & = 0
+        \end{align*}
+
+        2. Now, we arrange the equation to solve for x'(t)
+        \begin{align*}
+          (x'(t))^2 + x^4(t) & = 1            \\
+          (x'(t))^2          & = 1-x^4        \\
+          x'(t)              & = \sqrt{1-x^4}
+        \end{align*}
+
+        3. Like the previous equation, this equation also has equilibrium points at -1 and 1. It behaves the same as the previous equation as well, where it rests at x=1 and x=-1 before moving, thus it also has infinitely many solutions.
+
+        4. To determine if the solutions are twice continuously differentiable, we can differentiate the original equation
+        \begin{align*}
+          \frac{d}{dt} [(x'(t))^2 + x^4(t)] & = 0 \\
+          2x'(t)x''(t) + 4x'(t)x^3(t)       & = 0 \\
+          2x'(t) [x''(t) + 2x^3(t)]         & =0
+        \end{align*}
+
+        5. Here, we find that when $x'(t) \neq{0}$, we have that
+        \[
+          x''(t) = -2x^3(t)
+        \]
+
+        6. Similar to the last equation, this is the only solution that is twice continuously differentiable because it doesn't rest at either boundaries: -1 and 1.
+\end{enumerate}
+
+
+\noindent \textbf{Exercise 3.2:}
+\begin{enumerate}
+  \item [(a)]
+
+        1. First we differentiate v(x,y) with chain rule
+        \begin{align*}
+          v'(x,y) = \frac{x'x-y'y}{v}
+        \end{align*}
+
+        2. Then we substitute the x' and y' from $\mathbf{v}(x,y)$ and $v^2 = x^2-y^2$
+        \begin{align*}
+          v'(x,y) & = \frac{(x-y\sqrt{x^2-y^2})x-(y-x\sqrt{x^2-y^2})y}{v} \\
+                  & = \frac{x^2-xyv-y^2+xyv}{v}                           \\
+                  & = \frac{x^2-y^2}{v}                                   \\
+                  & = \frac{v^2}{v}                                       \\
+                  & = v
+        \end{align*}
+
+        3. Thus we have that
+        \[
+          v'(x,y) = v(x,y)
+        \]
+
+        4. Next, we differentiate u(x,y) with quotient rule
+        \begin{align*}
+          u'(x, y) = \frac{1}{2}(\frac{(x-y)(x'+y')-(x+y)(x'-y')}{(x-y)^2})
+        \end{align*}
+
+        5. We can simplify this by solving for
+        \begin{align*}
+          (x' + y') & = (1-v)(x+y) \\
+          (x' - y') & = (1-v)(x-y)
+        \end{align*}
+
+        6. Substituting back into u'(x,y) we get
+        \begin{align*}
+          u'(x, y) & = \frac{1}{2}(\frac{(x-y)(x+y)(1-v)-(x+y)(x-y)(1+v)}{(x-y)^2}) \\
+                   & = \frac{1}{2}(\frac{(x+y)(1-v-1-v)}{x-y})                      \\
+                   & = -v(\frac{x+y}{x-y})
+        \end{align*}
+
+        7. And from $2u(x,y) = \frac{x+y}{x-y}$, we have
+        \begin{align*}
+          u'(x, y) = -2uv
+        \end{align*}
+
+        8. There we conclude that our final vector field is
+        \begin{align*}
+          \mathbf{w}(\mathbf{u}(t)) = \begin{bmatrix} -2uv \\ v \end{bmatrix}
+        \end{align*}
+
+  \item [(b)]
+
+        1. We can solve for v(t) first, which is a standard differential equation
+        \begin{align*}
+          v(t) = v_0e^t
+        \end{align*}
+
+        2. Now we can substitute this in to solve for u(t) with separation of variables
+        \begin{align*}
+          u'(t)              & = -2uv_0e^t         \\
+          \int{}\frac{du}{u} & = \int{}-2v_0e^t dt \\
+          \ln(u)             & = -2v_0e^t + C      \\
+          u(t)               & = Ce^{-2v_0e^t}
+        \end{align*}
+
+        3. Now we plug in initial conditions $u(0) = u_0$ and solve for the constant
+        \begin{align*}
+          u_0 & = Ce^{-2v_0}  \\
+          C   & = u_0e^{2v_0}
+        \end{align*}
+
+        4. Thus, we have the particular solution for u(t) as well
+        \begin{align*}
+          u(t) & = u_0e^{2v_0}e^{-2v_0e^t} = u_0e^{2v_0(1-e^t)}
+        \end{align*}
+
+        5. Therefore, the general solution is
+        \begin{align*}
+          \mathbf{u}(t) = \begin{bmatrix}   u_0e^{2v_0(1-e^t)} \\ v_0e^t       \end{bmatrix}
+        \end{align*}
+
+  \item[(c)]
+
+        1. We have the invert the coordinates back to x,y. We can simplify this by using the following equations
+        \begin{align*}
+          x(t) & = \frac{(x+y)+(x-y)}{2} \\
+          y(t) & = \frac{(x+y)-(x-y)}{2}
+        \end{align*}
+
+        2. Now, we only need to solve for $s = (x+y)$ and $d= (x-y)$
+        \begin{itemize}
+          \item From definition of u(t):
+                \begin{align*}
+                  u(t) & = \frac{s}{2d} \\
+                  2ud  & = s
+                \end{align*}
+          \item  From definition of v(t):
+                \begin{align*}
+                  v(t) & = \sqrt{sd} \\
+                  v^2  & = sd
+                \end{align*}
+
+          \item  Solve for d:
+                \begin{align*}
+                  v^2            & = sd                 \\
+                  v^2            & = 2ud^2              \\
+                  \frac{v^2}{2u} & = d^2                \\
+                  d              & =\frac{v}{\sqrt{2u}}
+                \end{align*}
+
+          \item Solve for s:
+                \begin{align*}
+                  s & = 2ud                   \\
+                    & = 2\frac{uv}{\sqrt{2u}} \\
+                    & = v\sqrt{2u}
+                \end{align*}
+        \end{itemize}
+
+        3. Then, we plug in the solution we got in the previous part
+        \begin{itemize}
+          \item For s = x(t) + y(t)
+                \begin{align*}
+                  x(t) + y(t) & = v(\sqrt{2u})                               \\
+                              & = v_0e^t\sqrt{2u_0e^{2v_0(1-e^t)}}           \\
+                              & = (x_0 + y_0)e^{t+\sqrt{x_0^2-y_0^2}(1-e^t)}
+                \end{align*}
+          \item  For d = x(t) - y(t)
+                \begin{align*}
+                  x(t) - y(t) & = \frac{v}{\sqrt{2u}}                        \\
+                              & = \frac{v_0e^t}{\sqrt{2u_0e^{2v_0(1-e^t)}}}  \\
+                              & = (x_0 - y_0)e^{t-\sqrt{x_0^2-y_0^2}(1-e^t)}
+                \end{align*}
+        \end{itemize}
+
+        4. Therefore, we have that the general solution is equal to
+        \begin{align*}
+          \mathbf{x}(t) = \frac{1}{2} \begin{bmatrix}   (x_0 + y_0)e^{t+\sqrt{x_0^2-y_0^2}(1-e^t)} + (x_0 - y_0)e^{t-\sqrt{x_0^2-y_0^2}(1-e^t)} \\ (x_0 + y_0)e^{t+\sqrt{x_0^2-y_0^2}(1-e^t)} - (x_0 - y_0)e^{t-\sqrt{x_0^2-y_0^2}(1-e^t)}\end{bmatrix}
+        \end{align*}
+
+        5. And the flow transformation is
+        \begin{align*}
+          \Phi_t(\mathbf{x}) =  \frac{1}{2} \begin{bmatrix}   (x + y)e^{t+\sqrt{x^2-y^2}(1-e^t)} + (x - y)e^{t-\sqrt{x^2-y^2}(1-e^t)} \\ (x + y)e^{t+\sqrt{x^2-y^2}(1-e^t)} - (x - y)e^{t-\sqrt{x^2-y^2}(1-e^t)}\end{bmatrix}
+        \end{align*}
+
+\end{enumerate}
+
+\noindent \textbf{Exercise 3.4:}
+
+\begin{enumerate}
+  \item [(a)]
+        1. First we need to find the eigenvalues
+        \begin{align*}
+          det(A - \lambda{}) & = (-4-\lambda{})(-1-\lambda{}) -10 = 0 \\
+                             & = \lambda^{2} -5\lambda{} -6           \\
+                             & = (\lambda{}+ 6)(\lambda{} -1)         \\\\
+                             & \lambda_{1} = 1,~ \lambda_{2} = -6
+        \end{align*}
+
+        2. Now we solve for the eigenvectors
+        \begin{enumerate}
+          \item For $\lambda_{1}$:
+                \begin{align*}
+                  \begin{pmatrix} -5 & 2 \\ 5 & -2\end{pmatrix}\mathbf{v}_1 & = \mathbf{0}                           \\
+                  \mathbf{v}_1                                              & =  \begin{pmatrix} 2 \\ 5\end{pmatrix}
+                \end{align*}
+          \item For $\lambda_{2}$:
+                \begin{align*}
+                  \begin{pmatrix} 2 & 2 \\ 5 & 5\end{pmatrix}\mathbf{v}_2 & = \mathbf{0}                            \\
+                  \mathbf{v}_2                                            & =  \begin{pmatrix} 1 \\ -1\end{pmatrix}
+                \end{align*}
+        \end{enumerate}
+
+        3. Collecting our vectors in matrices we have
+        \begin{align*}
+          D      & = \begin{bmatrix} 1 & 0 \\ 0 & -6\end{bmatrix}              \\
+          V      & = \begin{bmatrix} 2 & -1 \\ 5 &  1\end{bmatrix}             \\
+          V^{-1} & = \frac{1}{7} \begin{bmatrix} 1 & 1 \\ -5 &  2\end{bmatrix}
+        \end{align*}
+
+        4. Thus, we have that
+        \begin{align*}
+          x^{tA} & = Ve^{tD}V^{-1}                                                                                                                                                 \\
+                 & = \frac{1}{7} \begin{bmatrix} 2 & -1 \\ 5 &  1\end{bmatrix} \begin{bmatrix} e^t & 0 \\ 0 & e^{-6t} \end{bmatrix}  \begin{bmatrix} 1 & 1 \\ 5 &  -2\end{bmatrix} \\
+                 & = \frac{1}{7} \begin{bmatrix} 2e^t + 5e^{-6t} & 2e^t - 2e^{-6t} \\ 5e^t-5e^{-6t} &  5e^t+2e^{-6t} \end{bmatrix}
+        \end{align*}
+
+        5. And the general solution
+        \[
+          \mathbf{x}(t) = \frac{1}{7} \begin{bmatrix} 2e^t + 5e^{-6t} & 2e^t - 2e^{-6t} \\ 5e^t-5e^{-6t} &  5e^t+2e^{-6t} \end{bmatrix} \mathbf{x_0}
+        \]
+
+  \item [(b)]
+
+        1. The general solution can also be written as the linear combination of the eigenvectors
+        \[
+          \mathbf{x}(t) = c_1e^{\lambda_{1}t}\mathbf{v}_1 + c_2e^{\lambda_{2}t}\mathbf{v}_2
+        \]
+
+        2. Notice that as t goes to infinity, the first term will blow up while the second term goes to zero, thus we conclude
+        \[
+          \mathbf{x}_0 = c_1\begin{pmatrix} 1 \\ -1 \end{pmatrix} | c_1 \in{\mathbb{R}}
+        \]
+
+\end{enumerate}
+
+\noindent \textbf{Exercise 3.5:}
+
+\begin{enumerate}
+  \item [(a)]
+        1. First we need to find the eigenvalues
+        \begin{align*}
+          det(A - \lambda{}) & = (5-\lambda{})(1-\lambda{}) -4 = 0 \\
+                             & = \lambda^{2} -6\lambda{} + 9       \\
+                             & = (\lambda{}_3)^2                   \\\\
+                             & \lambda_{1} = \lambda_{2} = 3
+        \end{align*}
+
+        2. This matrix is not diagonalizable so we must use the formula for generalized eigenvectors, first we check the conditions
+        \begin{align*}
+          A - 3I     & = \begin{pmatrix} 2 & -1 \\ 4 & -2 \end{pmatrix}                                                    \\
+          (A - 3I)^2 & =  \begin{pmatrix} 2 & -1 \\ 4 & -2 \end{pmatrix}^2 =  \begin{pmatrix} 0 & 0 \\ 0 & 0 \end{pmatrix}
+        \end{align*}
+
+        3. Thus every non-zero vector in $\mathbb{R}^2$ is a generalized eigenvectors for eigenvalue 3 and we have the general solution
+        \begin{align*}
+          e^{tA} & = e^{3t}(\sum_{k=0}^1\frac{t^k}{k!}(A-\lambda{}I)^k)           \\
+                 & = e^{3t}(I + t\begin{pmatrix} 2 & -1 \\ 4 & -2 \end{pmatrix})  \\
+                 & = e^{3t}\begin{pmatrix} 1 + 2t & -t \\ 4t & 1-2t \end{pmatrix}
+        \end{align*}
+
+  \item [(b)]
+
+        1. Because the eigenvalue is three the solution always blows up, therefore the only solution is
+        \[
+          \mathbf{x}_0 = \mathbf{0}
+        \]
+
+\end{enumerate}
+
+\noindent \textbf{Exercise 3.6:}
+
+\begin{enumerate}
+  \item [(a)]
+
+        1. First, we solve for the eigenvalues
+        \begin{align*}
+          det(A - \lambda{}) & = (-4-\lambda{})(-1-\lambda{}) -18 = 0 \\
+                             & = \lambda^{2} + 5\lambda{} -14         \\
+                             & = (\lambda+7)(\lambda-2)               \\\\
+                             & \lambda_{1} = -7,~ \lambda_{2} = 2
+        \end{align*}
+
+        2. Now we solve for the eigenvectors
+        \begin{itemize}
+          \item For $\lambda_{1}$:
+                \begin{align*}
+                  \begin{bmatrix} 3 & 2 \\ 9 & 6 \end{bmatrix} \mathbf{v}_1 & = \mathbf{0}                            \\
+                  \mathbf{v}_1                                              & = \begin{bmatrix} -2 \\ 3 \end{bmatrix}
+                \end{align*}
+          \item  For $\lambda_{2}$:
+                \begin{align*}
+                  \begin{bmatrix} -6 & 2 \\ 9 & -3 \end{bmatrix}\mathbf{v}_2 & = \mathbf{0}                           \\
+                  \mathbf{v}_2                                               & = \begin{bmatrix} 1 \\ 3 \end{bmatrix}
+                \end{align*}
+        \end{itemize}
+
+        3. Diagonalizing A we have
+        \begin{align*}
+          A = VDV^{-1} = \begin{bmatrix} -2 & 1 \\ 3 & 3\end{bmatrix} \begin{bmatrix} -7 & 0 \\ 0 & 2 \end{bmatrix}\frac{1}{9}\begin{bmatrix} -3 & 1 \\ 3 & 2 \end{bmatrix}
+        \end{align*}
+
+        4. Thus the general solution is
+        \begin{align*}
+          e^{tA} & = Ve^{tD}V^{-1}                                                                                                                                                 \\
+                 & = \frac{1}{9} \begin{bmatrix} -2 & 1 \\ 3 & 3\end{bmatrix} \begin{bmatrix} e^{-7t} & 0 \\ 0 & e^{2t} \end{bmatrix}\begin{bmatrix} -3 & 1 \\ 3 & 2 \end{bmatrix} \\
+                 & = \frac{1}{9} \begin{bmatrix} 3e^{2t} +6e^{-7t} & 2e^{2t}-2e^{-7t} \\ 9e^{2t}-9e^{-7t} & 6e^{2t}+3e^{-7t} \end{bmatrix}
+        \end{align*}
+
+  \item [(b)]
+
+        1. The general solution can be rewritten as
+        \[
+          \mathbf{x}(t) = c_1e^{-7t}\mathbf{v}_1 + c_2e^{2t}\mathbf{v}_2 ~|~ c_1, c_2 \in{\mathbb{R}}
+        \]
+
+        2. The second term blows up as t approaches infinity, thus we have that
+        \[
+          \mathbf{x}_0 = c_1\begin{bmatrix} -2 \\ 3\end{bmatrix} ~|~ c_1 \in{\mathbb{R}}
+        \]
+\end{enumerate}
+
+\end{document}

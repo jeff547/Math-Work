@@ -1,0 +1,512 @@
+\documentclass[12pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath, amssymb, amsthm}
+\usepackage{geometry}
+
+% Set margins to match a standard homework document
+\geometry{a4paper, margin=1in}
+
+\title{Recitation 2}
+\parskip=1ex
+\author{Math 311 Fall 2026 \\ Rutgers University}
+\date{}
+
+\begin{document}
+
+\maketitle
+
+\noindent{} \textbf{Exercise 1}
+
+\begin{enumerate}
+    \item [(a)] Fix $L \in \mathbb{R}$.
+
+          Assume A holds.
+          Then there exists $\epsilon_0 > 0$ and $N \in \mathbb{N}$ such that
+          \[
+              |z_n - L| \geq \epsilon_0
+          \]
+          for every $n \geq N$.
+          Suppose, for contradiction, that $z_n \to L$.
+          Then there exists $N_0 \in \mathbb{N}$ such that
+          \[
+              |z_n - L| < \epsilon_0
+          \]
+          for every $n \geq N_0$.
+          If we choose $n \geq max\{N, N_0\}$, then we have
+          \[
+              |z_n - L| \geq \epsilon_0 \qquad \text{and} \qquad |z_n - L| < \epsilon_0
+          \]
+          at the same time, which is a contradiction.
+          Therefore A implies divergence of $\{z_n\}$
+
+          Assume B holds.
+          Then there exists $\epsilon_0 > 0$ such that, for every $N \in \mathbb{N}$,
+          there exists $n \geq N$ with
+          \[
+              |z_n - L| \geq \epsilon_0.
+          \]
+          Suppose, for contradiction, that $z_n \to L$.
+          Then there exists $N_0 \in \mathbb{N}$ such that
+          \[
+              |z_n - L| < \epsilon_0
+          \]
+          If we choose $n \geq max\{N, N_0\}$, then we have
+          \[
+              |z_n - L| \geq \epsilon_0 \qquad \text{and} \qquad |z_n - L| < \epsilon_0
+          \]
+          at the same time, which is a contradiction.
+          Therefore B implies divergence of $\{z_n\}$
+
+          For C, let
+          \[
+              z_n=L+\frac1n.
+          \]
+          Then
+          \[
+              |z_n-L|=\frac1n.
+          \]
+          Let \(\epsilon>0\) and choose \(N\in\mathbb N\) such that
+          \[
+              N>\frac1\epsilon.
+          \]
+          For every \(n\geq N\),
+          \[
+              |z_n-L|=\frac1n\leq\frac1N<\varepsilon.
+          \]
+          Therefore, \(z_n\to L\).
+          Given any \(N\in\mathbb N\), choose \(n=N\), and define
+          \[
+              \varepsilon_n=\frac{1}{2n}>0.
+          \]Then
+          \[
+              |z_n-L|=\frac1n\geq\frac{1}{2n}=\varepsilon_n.
+          \]Thus C is true even though \(\{z_n\}\) converges to \(L\). Therefore, C does not imply that \(\{z_n\}\) diverges.
+
+          Recall that \(\{z_n\}\) converges to \(L\) if
+          \[
+              \forall \varepsilon>0,\ \exists N\in\mathbb N,\ \forall n\ge N,
+              \qquad |z_n-L|<\varepsilon.
+          \]
+          Negating this statement gives
+          \[
+              \exists \varepsilon_0>0,\ \forall N\in\mathbb N,\ \exists n\ge N,
+              \qquad |z_n-L|\ge \varepsilon_0.
+          \]
+          Thus, statement B is the exact negation of convergence to \(L\).
+
+          No. A sequence can fail to converge to one particular \(L\) while converging to a different real number.
+          For example, let
+          \[
+              z_n=1 \qquad \text{for every } n\in\mathbb N.
+          \]Then \(\{z_n\}\) converges to \(1\). But it does not converge to \(0\), since
+          \[
+              |z_n-0|=1
+          \]for every \(n\). Thus, failure to converge to one particular value does not imply divergence.
+    \item [(b)]
+          The definition of a divergent sequence is
+          \[
+              \exists \varepsilon_0>0,\ \forall N\in\mathbb N,\ \exists n\ge N,
+              \qquad |z_n-L|\ge \varepsilon_0.
+          \]
+          Consider the following sequence
+          \[
+              a_n = 1 + (-1)^n.
+          \]
+          Notice that this simplifies to
+          \[
+              a_n=
+              \begin{cases}
+                  2, & n \text{ even}, \\
+                  0, & n \text{ odd}.
+              \end{cases}
+          \]
+          Let \(L\in\mathbb R\).
+          Set
+          \[
+              \varepsilon_0=1.
+          \]
+          Let \(N\in\mathbb N\).
+          We consider two cases.
+
+          If \(L<1\), choose an even integer \(n\ge N\).
+          Then \(a_n=2\), so
+          \[
+              |a_n-L|=|2-L|=2-L>1=\varepsilon_0.
+          \]If \(L\ge1\), choose an odd integer \(n\ge N\). Then \(a_n=0\), so
+          \[
+              |a_n-L|=|0-L|=|L|\ge1=\varepsilon_0.
+          \]Thus, for every \(L\in\mathbb R\), we have found \(\varepsilon_0=1\) such that for every \(N\in\mathbb N\), there exists \(n\ge N\) with
+          \[
+              |a_n-L|\ge\varepsilon_0.
+          \]
+          Therefore, for every \(L\in\mathbb R\), the sequence does not converge to \(L\).
+
+\end{enumerate}
+\noindent{} \textbf{Exercise 2}
+Let $\{x_n\}_{n \in \mathbb{N}}$ be a real sequence such that $x_n^2 \to 4$.
+\begin{enumerate}
+    \item [(a)] Consider $||x_n| - 2|$. Then
+          \begin{align*}
+              ||x_n| - 2| & = \frac{|x_n^2 - 4|}{|x_n| + 2} \\
+                          & \leq \frac{|x_n^2 - 4|}{ 2}
+          \end{align*}
+          Let $\epsilon > 0$.
+          Since $x_n^2 \to 4$, there exists $N \in \mathbb{N}$ such that for $n > N$, we have
+          \[
+              |x_n^2 - 4| < 2\epsilon.
+          \]
+          Hence, for $n \geq N$,
+          \[
+              ||x_n| - 2| \leq \frac{|x_n^2 - 4|}{ 2} < \epsilon.
+          \]
+          Therefore,
+          \[
+              |x_n| \to 2.
+          \]
+    \item [(b)]
+          No, consider $\{x_n\} = 2(-1)^n$.
+          Then
+          \[
+              x_n^2 = 2^2(-1)^{2n} = 4
+          \]
+          for every $n \in \mathbb{N}$.
+          So $x_n^2 \to 4$.
+          However, this sequence simplifies to
+          \[
+              x_n=
+              \begin{cases}
+                  2,  & n \text{ even}, \\
+                  -2, & n \text{ odd}.
+              \end{cases}
+          \]
+          That is, it oscillates between -2 and 2, and so it never converges.
+    \item [(c)]
+          Suppose that there exists $n_0 \in \mathbb{N}$ such
+          that $x_n x_{n+1} \geq 0$ for every $n \geq n_0$.
+
+          Choose $\epsilon = 1$. Since $|x_n| \to 2$, there exists $N_1 \in \mathbb{N}$
+          such that for every $n \geq N_1$,
+          \[
+              ||x_n|-2| < 1.
+          \]
+          Furthermore, $|x_n| > 1 \neq 0$.
+
+          Let $N = \max\{N_1, n_0\}$.
+          Then $x_n \neq 0$, $x_{n+1} \neq 0$, and
+          \[
+              x_n x_{n+1} > 0
+          \]
+          for every $n \geq N$.
+          Thus $x_n$ and $x_{n+1}$ have the same sign.
+
+          If $x_n > 0$ for all $n \geq N$, then $x_n = |x_n|$. So
+          \[
+              x_n \to 2.
+          \]
+          If $x_n < 0$ for all $n \geq N$, then $x_n = -|x_n|$. So
+          \[
+              x_n \to -2.
+          \]
+
+          Therefore $\{x_n\}$ either converges to 2 or -2.
+\end{enumerate}
+
+\noindent{} \textbf{Exercise 3}
+Let $\sigma: \mathbb{N} \to \mathbb{N}$ be a bijection, and define $y_n = x_{\sigma(n)}$ for a real sequence $\{x_n\}_{n \in \mathbb{N}}$.
+\begin{enumerate}
+    \item [(a)]
+          Suppose $x_n \to L$. Let $\epsilon > 0$.
+          Then there exists $N \in \mathbb{N}$ such that
+          \[
+              |x_m - L| < \epsilon
+          \]
+          for all $m \geq N$.
+          Since $\sigma$ is a bijection, the set
+          \[
+              \{n \in \mathbb{N} : \sigma(n) < N\}
+          \]
+          is finite.
+          So there exists $M \in \mathbb{N}$ such that for all $n \geq M$, we have
+          \[
+              \sigma(n) \geq N.
+          \]
+          Therefore, for all $n \geq M$, we have
+          \[
+              |y_n - L| = |x_{\sigma(n)} - L| < \epsilon.
+          \]
+          That is
+          \[
+              y_n \to L.
+          \]
+
+          Conversely, suppose $y_n \to L$. Let $\epsilon > 0$.
+          Then there exists $N \in \mathbb{N}$ such that
+          \[
+              |y_m - L| < \epsilon
+          \]
+          for all $m \geq N$.
+          Since $\sigma$ is a bijection, there exists a bijective inverse $\sigma^{-1}$.
+          Moreover,
+          \[
+              y_{\sigma^{-1}(n)} = x_n.
+          \]
+          Because \(\sigma^{-1}\) is also a bijection, the set
+          \[
+              \{n\in\mathbb N:\sigma^{-1}(n)<N\}
+          \]
+          is finite.
+          So there exists $M \in \mathbb{N}$ such that for all $n \geq M$, we have
+          \[
+              \sigma^{-1}(n) \geq N.
+          \]
+          Therefore, for all $n \geq M$, we have
+          \[
+              |x_n - L| = |y_{\sigma^{-1}(n)} - L| < \epsilon.
+          \]
+          That is
+          \[
+              x_n \to L.
+          \]
+    \item [(b)]
+          No, let
+          \[
+              x_1 = 1 \qquad \text{and} \qquad x_n = 0, \text{ for all } n \geq 2.
+          \]
+          So
+          \[
+              x_n \to 0.
+          \]
+          Define $\sigma : \mathbb{N} \to \mathbb{N}$ by
+          \[
+              \sigma(n)=
+              \begin{cases}
+                  1,   & n \text{ odd},  \\
+                  n/2, & n \text{ even}.
+              \end{cases}
+          \]
+          Then $\sigma$ is surjective since
+          \[
+              \sigma(2k) = k
+          \]
+          for all $k \in \mathbb{N}$.
+          But $\sigma$ is not injective since
+          \[
+              \sigma(1) = \sigma(2) = 1.
+          \]
+          Let
+          \[
+              y_n = x_{\sigma(n)}.
+          \]
+          Since $\sigma(n) = 1$ for all odd $n$,
+          \[
+              y_n = 1,  \text{for all odd } n \implies y_n \not \to 0.
+          \]
+          But $x_n \to 0$.
+          Therefore, $\sigma$ must be bijective in order for $x_n \to L \implies y_n \to L$ to hold.
+
+\end{enumerate}
+
+\noindent{} \textbf{Exercise 4}
+
+Let
+\[
+    a_n = \frac{(-1)^{n+1}}{n}, \qquad s_n = \sum_{j=1}^{n}a_j.
+\]
+Assume $s_n \to S$ for some $S > 0$.
+Define
+\[
+    b_{3k-2} = \frac{1}{4k-3}, \qquad b_{3k-1} = \frac{1}{4k-1}, \qquad b_{3k} = -\frac{1}{2k} \qquad \forall k \in \mathbb{N}
+\]
+and let $t_n = \sum_{j=1}^{n} b_j$.
+\begin{enumerate}
+    \item [(a)]
+          Define $\sigma: \mathbb{N} \to \mathbb{N}$ by
+          \[
+              \sigma(3k-2) = 4k-3, \qquad \sigma(3k-1) = 4k-1, \qquad \sigma(3k) = 2k.
+          \]
+          for all $k \in \mathbb{N}$.
+          Then
+          \[
+              a_{\sigma(3k-2)} = a_{4k-3} = \frac{1}{4k-3} = b_{3k-2},
+          \]
+          \[
+              a_{\sigma(3k-1)} = a_{4k-1} = \frac{1}{4k-1} = b_{3k-1},
+          \]
+          and
+          \[
+              a_{\sigma(3k)} = a_{2k} = -\frac{1}{2k} = b_{3k}.
+          \]
+          Notice that the function outputs,
+          \[
+              \sigma(3k-2) = 4k-3 \equiv 1 \pmod 4,
+          \]
+          \[
+              \sigma(3k-1) = 4k-1 \equiv 3 \pmod 4,
+          \]
+          and
+          \[
+              \sigma(3k) = 2 = 2k \equiv 0 \text{ or } 2 \pmod 4,
+          \]
+          are disjoint and cover all of $\mathbb{N}$.
+          Thus $\sigma$ is a bijection.
+    \item [(b)]
+          Notice that $t_{3m}$ can be broken down into
+          \begin{align*}
+              t_{3m} & = \sum_{k=1}^{m}\left(\frac{1}{4k-3} + \frac{1}{4k-1} - \frac{1}{2k}\right) \\
+                     & = \sum_{k=1}^{2m} \frac{1}{2k-1} - \sum_{k=1}^{m} \frac{1}{2k}.
+          \end{align*}
+          Similarly for $s_{4m}$, we have
+          \begin{align*}
+              s_{4m} & = \sum_{k=1}^{2m} \frac{1}{2k-1} - \sum_{k=1}^{2m} \frac{1}{2k}                              \\
+                     & =\sum_{k=1}^{2m}\frac{1}{2k-1} - \sum_{k=1}^{m}\frac{1}{2k} - \sum_{k=m+1}^{2m}\frac{1}{2k}.
+          \end{align*}
+          Now for $s_{2m}$, we have
+          \[
+              \begin{aligned}
+                  s_{2m}
+                   & =1-\frac12+\frac13-\frac14+\cdots+\frac1{2m-1}-\frac1{2m} \\
+                   & =\left(1+\frac12+\frac13+\frac14+\cdots+\frac1{2m}\right)
+                  -2\left(\frac12+\frac14+\cdots+\frac1{2m}\right)             \\
+                   & =\sum_{j=1}^{2m}\frac1j
+                  -2\sum_{k=1}^{m}\frac1{2k}                                   \\
+                   & =\sum_{j=1}^{2m}\frac1j
+                  -\sum_{k=1}^{m}\frac1k                                       \\
+                   & =\sum_{k=m+1}^{2m}\frac1k.
+              \end{aligned}
+          \]
+          Thus
+          \[
+              \frac{1}{2}s_{2m} = \sum_{k=m+1}^{2m}\frac{1}{2k}
+          \]
+          Hence
+          \[
+              \begin{aligned}
+                  s_{4m}+\frac12s_{2m}
+                   & =
+                  \left(
+                  \sum_{k=1}^{2m}\frac{1}{2k-1}
+                  -
+                  \sum_{k=1}^{m}\frac{1}{2k}
+                  -
+                  \sum_{k=m+1}^{2m}\frac{1}{2k}
+                  \right)
+                  +
+                  \sum_{k=m+1}^{2m}\frac{1}{2k} \\
+                   & =
+                  \sum_{k=1}^{2m}\frac{1}{2k-1}
+                  -
+                  \sum_{k=1}^{m}\frac{1}{2k}    \\
+                   & = t_{3m}
+              \end{aligned}
+          \]
+
+    \item [(c)]
+          Since \(s_n\to S\), every subsequence of \(\{s_n\}\) also converges to \(S\). Therefore,
+          \[
+              s_{4m}\to S
+              \qquad\text{and}\qquad
+              s_{2m}\to S.
+          \]By part (b),
+          \[
+              t_{3m}=s_{4m}+\frac12s_{2m}.
+          \]Thus, by the algebraic limit theorem,
+          \[
+              t_{3m}\to S+\frac12S=\frac{3S}{2}.
+          \]Let \(\epsilon>0\). Since
+          \[
+              t_{3m}\to\frac{3S}{2},
+          \]there exists \(M_1\in\mathbb N\) such that, for every \(m\ge M_1\),
+          \[
+              \left|t_{3m}-\frac{3S}{2}\right|<\frac{\epsilon}{2}.
+          \]Also, choose \(M_2\in\mathbb N\) such that
+          \[
+              M_2>\frac1\epsilon.
+          \]Then, whenever \(m\ge M_2\),
+          \[
+              \begin{aligned}
+                  \frac1{4m+1}+\frac1{4m+3}
+                   & <
+                  \frac2{4m+1} \\
+                   & <
+                  \frac1{2m}   \\
+                   & <
+                  \frac{\epsilon}{2}.
+              \end{aligned}
+          \]Let
+          \[
+              M=\max\{M_1,M_2\}.
+          \]Now let \(n\ge3M\). Then \(n\) has one of the forms
+          \[
+              n=3m,\qquad n=3m+1,\qquad\text{or}\qquad n=3m+2,
+          \]where \(m\ge M\).
+          If \(n=3m\), then
+          \[
+              \left|t_n-\frac{3S}{2}\right|
+              =
+              \left|t_{3m}-\frac{3S}{2}\right|
+              <
+              \frac{\epsilon}{2}
+              <
+              \epsilon.
+          \]If \(n=3m+1\), then
+          \[
+              t_{3m+1}=t_{3m}+\frac1{4m+1}.
+          \]Therefore,
+          \[
+              \begin{aligned}
+                  \left|t_{3m+1}-\frac{3S}{2}\right|
+                   & \le
+                  \left|t_{3m}-\frac{3S}{2}\right|
+                  +\frac1{4m+1}                          \\
+                   & <
+                  \frac{\epsilon}{2}
+                  +
+                  \left(\frac1{4m+1}+\frac1{4m+3}\right) \\
+                   & <
+                  \frac{\epsilon}{2}+\frac{\epsilon}{2}  \\
+                   & =\epsilon.
+              \end{aligned}
+          \]If \(n=3m+2\), then
+          \[
+              t_{3m+2}
+              =
+              t_{3m}
+              +\frac1{4m+1}
+              +\frac1{4m+3}.
+          \]Hence,
+          \[
+              \begin{aligned}
+                  \left|t_{3m+2}-\frac{3S}{2}\right|
+                   & \le
+                  \left|t_{3m}-\frac{3S}{2}\right|
+                  +\frac1{4m+1}
+                  +\frac1{4m+3}                         \\
+                   & <
+                  \frac{\epsilon}{2}+\frac{\epsilon}{2} \\
+                   & =\epsilon.
+              \end{aligned}
+          \]Thus, for every \(n\ge3M\),
+          \[
+              \left|t_n-\frac{3S}{2}\right|<\epsilon.
+          \]Therefore,
+          \[
+              t_n\to\frac{3S}{2}.
+          \]
+    \item [(d)]
+          Question 3 concerns the individual terms of the sequences,
+          while question 4 concerns their partial sums.
+          The sequence \(b_n\) is a permutation of \(a_n\),
+          so both sequences of terms converge to \(0\).
+          However, \(s_n\) and \(t_n\) are the partial sums of these terms,
+          not permutations of each other.
+          Therefore, Question 3 does not require \(s_n\) and \(t_n\) to have the same limit,
+          so there is no contradiction.
+
+\end{enumerate}
+
+
+
+
+
+\end{document}
+

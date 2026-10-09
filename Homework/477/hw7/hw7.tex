@@ -1,0 +1,115 @@
+\documentclass[12pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath, amssymb, amsthm}
+\usepackage{geometry}
+
+\geometry{a4paper, margin=1in}
+
+\title{Math 477 Homework 6}
+\author{Spring 2026 \\ Rutgers University}
+\parskip=1ex
+\begin{document}
+
+\maketitle
+
+\noindent{}\textbf{Question 1:}
+
+Let $S_{1000}$ denote the stock's price after 1000 periods and $X \sim B(1000, 0.52)$ denote the number of upwards price movements.
+
+Then,
+\begin{align*}
+    S_{1000} = s \cdot u^X \cdot d^{1000-X}
+\end{align*}
+
+Substituting for our initial conditions, we have
+\begin{align*}
+    S_{1000} = s \cdot 1.012^X \cdot 0.990^{1000-X} \geq 1.30s
+\end{align*}
+Dividing through by s, we get
+\begin{align*}
+    1.012^X \cdot 0.990^{1000-X}                  & \geq 1.30      \\
+    X \ln|1.012| + (1000 - X) \ln|0.990|          & \geq \ln|1.30| \\
+    X (\ln|1.012| - \ln|0.990|) +  1000\ln|0.990| & \geq \ln|1.30| \\
+    X \geq \frac{\ln|1.30| - 1000\ln|0.990|}{\ln|1.012| - \ln|0.990|}
+\end{align*}
+Approximating, we get
+\begin{align*}
+    X \geq 469.21.
+\end{align*}
+
+Thus, we need $X \geq 470$ in order for $S_{1000} \geq 1.3s$.
+\begin{align*}
+    P(X \geq 470) & = P(\frac{X - 1000(0.52)}{\sqrt{1000(0.52)(0.48)}} \geq \frac{470-1000(0.52)}{\sqrt{1000(0.52)(0.48)}}) \\
+                  & = 1 - \Phi(-3.20)                                                                                       \\
+                  & \approx {0.999}
+\end{align*}
+
+\noindent{}\textbf{Question 2:}
+
+\begin{itemize}
+    \item [(a)]
+          We need $\int^{\infty}_0\int_{-y}^{y} c(y^2-x^2)e^{-y} ~ dx dy = 1$. Solving the integral:
+          \begin{align*}
+              c\int^{\infty}_0 e^{-y} \int_{-y}^{y} y^2-x^2 ~ dx dy & = c\int^{\infty}_0 e^{-y} \left[y^2x - \frac{x^3}{3}\right]^y_{-y} ~dy \\
+                                                                    & = \frac{4c}{3} \int^{\infty}_0 y^3 e^{-y} ~ dy                         \\
+                                                                    & = \frac{4c}{3} \cdot \Gamma(4)                                         \\
+                                                                    & = 8c                                                                   \\
+                                                                    & = 1
+          \end{align*}
+          Thus, we have that $c= \frac{1}{8}$.
+    \item [(b)]
+          For $y$:
+          \begin{align*}
+              f_Y(y) & = \int^{y}_{-y} f(x,y) ~ dx                      \\
+                     & = \frac{1}{8}e^{-y} \int^{y}_{-y} (y^2-x^2) ~ dx \\
+                     & = \frac{y^3e^{-y} }{6}
+          \end{align*}
+          For $x$:
+          \begin{align*}
+              f_X(x) & = \int^{\infty}_{|x|} f(x,y) ~ dy                                                           \\
+                     & = \frac{1}{8} \int^{\infty}_{|x|} (y^2-x^2)e^{-y} ~ dy                                      \\
+                     & = \frac{1}{8} \int^{\infty}_{|x|} y^2e^{-y} - \frac{x^2}{8} \int^{\infty}_{|x|} e^{-y} ~ dy \\
+                     & = \frac{1}{8} e^{-|x|}(x^2+2|x|+2) - \frac{x^2}{8} e^{-|x|}                                 \\
+                     & = \frac{e^{-|x|}(1 + |x|)}{4}
+          \end{align*}
+
+    \item  [(c)]
+          \begin{align*}
+              E[X] & = \int_{-\infty}^{\infty} x f_X(x) ~ dx                       \\
+                   & = \int_{-\infty}^{\infty} x \cdot \frac{e^{-|x|}(1 + |x|)}{4}
+          \end{align*}
+          Notice that the integrand is a odd function, say, $g(x)$:
+          \begin{align*}
+              g(-x) = -x \cdot \frac{e^{-|x|}(1 + |x|)}{4} = -g(x).
+          \end{align*}
+          Since we are integrating over a symmetric interval, both sides cancel out. Thus,
+          \begin{align*}
+              E[X] = 0
+          \end{align*}
+\end{itemize}
+
+\noindent{}\textbf{Question 3:}
+
+Let $X \sim U(15, 45)$ denote the man's arrival time in minutes after 12,
+and $Y \sim U(0, 60)$ denote the same for the woman.
+
+\begin{itemize}
+    \item [(a)]
+          \begin{align*}
+              P(|X-Y| \leq 5) & = 1 - P(|X - Y| > 5)                                        \\
+                              & = 1 - (P(X - Y > 5) + P(Y - X > 5))                         \\
+                              & = 1 - \frac{1}{1800} \int_{15}^{45} (x-5) + (60 - (x+5)) dx \\
+                              & = 1 - \frac{1}{1800} \int_{15}^{45} 50 dx                   \\
+                              & = 1 - \frac{1500}{1800}                                     \\
+                              & = \frac{1}{6}
+          \end{align*}
+    \item [(b)]
+          \begin{align*}
+              P(X < Y) & = \frac{1}{1800} \int_{15}^{45} (60-x)~dx                  \\
+                       & = \frac{1}{1800} \left[60x -\frac{x^2}{2}\right]_{15}^{45} \\
+                       & = \frac{1}{2}
+          \end{align*}
+\end{itemize}
+
+\end{document}
+

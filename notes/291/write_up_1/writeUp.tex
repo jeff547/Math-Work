@@ -1,0 +1,31 @@
+\documentclass{article}
+
+\begin{document}
+
+\section*{Geodesics}
+
+\begin{itemize}
+      \item{} \emph{How curvature, T, N, B, torsion and arc length change (or not change) under reparametrization, and why. (Section 2.1.5) }
+
+            \quad{} Firstly, arc length is invariant to the parameterization because it only focuses on the gemoetric properties
+            of the curve. However, the tangent vector will keep the same overall path but may flip directions depending on the parameterization.
+            The normal vector however is independent on the parameterization, this is because it depends on the 2nd deriative, so it will always
+            be positive and of course keep its trajectory of the curve. Since B is the cross product of T and N, if T is negative, so will the binormal vector.
+            Both torsion and curvature measure how much the curve bends and twists respectively, both of which are independent of the speed of the curve.
+            In conclusion all of these variables are invariant to reparametrization expect for the sign changes in T and B, depending on direction of path.
+
+
+
+            \vspace{0.5cm}
+
+      \item{} \emph{Statement and main idea / trick in the proof of Theorem 30 (Geodesics on $S^2$).}
+
+            \quad{} Thereom 30 is basically saying that the shorter arc of a great circle that connects both distinct points on a sphere is the shortest distance that lies on the surface of the sphere.
+            To prove this you can define the curve by taking the orthognal decomposition of one point with respect to the other.
+            Because it is a unit sphere the angle of the arc is equal directly to the the arc length or distance between the points.
+            It also is easy to see that every point lies on the surface of the sphere, since neither coefficient of the orthogonal basis for the great circle can be less than 0 or  greater than 1.
+            The second part of the proof shows that it cannot be the other way around the great circle because that path will always pass throught the reflection of the original starting point and be slower, nor can it be any path not on the great circle.
+            It proves this by showing that if you allow the direction normal to the plane of the great circle to vary it will always lead to a great total distance because it will lead to a greater speed, therefore it must be constant.
+\end{itemize}
+
+\end{document}

@@ -1,0 +1,105 @@
+\documentclass[12pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath, amssymb, amsthm}
+\usepackage{geometry}
+
+\geometry{a4paper, margin=1in}
+
+\title{Challenge Problem Set 2}
+\author{Math 292 Spring 2026 \\ Rutgers University}
+\parskip=1ex
+\begin{document}
+
+\maketitle
+
+(Basis) Since $8_c = 1(3_c) + 1(5_c)$,
+S(8) is true.
+Since $9_c = 3(3_c)$
+S(9) is true.
+Since $10_c = 2(5_c)$
+S(10) is true.
+
+(Inductive Step) Let $k \geq{10}$ be an arbitrary natural number.
+Assume S(8), S(9), S(10), ... , S(k) are all true.
+
+By inductive hypothesis, there are non-negative integers $a$ and $b$ such that
+\begin{align*}
+    (k-2)_c = a(3_c) + b(5_c)
+\end{align*}
+
+Example: $183k +19l = gcd(183, 19)$
+
+Euclidean Algorithm:
+\begin{align*}
+    183 & = 19*9 + 12  \\
+    19  & = 12 * 1 + 7 \\
+    12  & = 7 * 1 + 5  \\
+    7   & = 5 * 1 + 2  \\
+    5   & = 2 * 2 + 1  \\
+    1   & = 1 * 1 + 0
+\end{align*}
+
+Recursive:
+\begin{align*}
+    1 & = 1(5) - (2)2         \\
+      & = 1(5) - 2(7-5)       \\
+      & = 3(5) - 2(7)         \\
+      & = 3(12-7) - 2(7)      \\
+      & = 3(12) - 5(7)        \\
+      & = 3(12) -5(19-12)     \\
+      & = 8(12) -5(19)        \\
+      & = 8(183-19(9)) -5(19) \\
+      & = 8(183) -77(19)
+\end{align*}
+
+Thus, $k = 8$ and $l = -77$.
+
+\newpage{}
+
+Suppose, for the sake of contradiction, there are no such subsequences.
+That is, there is no increasing subsequences of length 4 or more,
+and there is no decreasing subsequences of length 4 or more.
+
+For each $i \in{A}$, let $I_i=$ largest length of an increasing subsequences starting with $i$, and
+$D_i$ = largest length of a decreasing subsequences starting with $i$.
+
+So, $I_i, D_i \in{\mathbb{N}}$.
+
+Then, $1 \leq{} I_i, D_i \leq 3$ for each $i \in A$.
+
+So, we have $3(3)$ possible distinct $(I_i, D_i)$ pairs.
+
+Let these 9 distinct pairs be the pigeonholes and the 10 numbers be the pigeons.
+
+So, by PHP, some two distinct numbers, say, $i$ and $j$, will be assigned to the same pair.
+
+So, $(I_i, D_i) = (I_j, D_j)$
+
+Assume, without loss of generality, $i < j$.
+
+Case 1. Suppose $i$ appears before $j$ in the rearrangement.
+
+Then, there is an increasing subsequence starting at $j$ w/ length $I_j$.
+
+But, $I_i = I_j$. So that, subsequence along i creates an subsequence of length $I_i + 1$.
+
+This is contradicts that the $I_i$ is the longest subsequence.
+
+\vspace{15pt}
+Case 2. Suppose $j$ appears before $i$ in the rearrangement.
+
+Then, there is an decreasing subsequence starting at $i$ w/ length $D_i$.
+
+But, $D_i = D_j$. So, that subsequence along j creates an subsequence of length $D_j + 1$.
+
+This is contradicts that the $D_j$ is the longest subsequence.
+
+\newpage{}
+
+Claim: 32 is the largest number of red squares that works.
+
+Divide the board into 2x2 squares with sides parallel to the board.
+
+Let the 16 2x2 squares be the pigeonholes and the 33 red 1x1 squares be the pigeons.
+\end{document}
+

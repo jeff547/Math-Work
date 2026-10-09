@@ -1,0 +1,462 @@
+\documentclass[12pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath, amssymb, amsthm}
+\usepackage{geometry}
+
+% Set margins to match a standard homework document
+\geometry{a4paper, margin=1in}
+
+\title{Recitation 3}
+\parskip=1ex
+\author{Math 311 Fall 2026 \\ Rutgers University}
+\date{}
+
+\begin{document}
+
+\maketitle
+
+\noindent{} \textbf{Question 1}
+
+Let $A, B \subseteq (0, \infty)$ be non-empty and bounded above. Set
+\[
+    \alpha = \sup A, \qquad \beta = \sup B,
+\]
+and define
+\[
+    C =\{xy : x \in A, y \in B\}
+\]
+By definition of supremum,
+\[
+    \alpha \geq x : \forall x \in A
+\]
+and
+\[
+    \beta \geq y : \forall y \in B.
+\]
+Then, since all $x$ and $y$ are positive,
+\[
+    \alpha \beta \geq xy : \forall x \in A, \forall y \in B.
+\]
+That is, $\alpha \beta$ is an upper bound on $C$.
+
+Suppose $c$ is an arbitrary upper bound on $C$.
+Then
+\[
+    c \geq xy
+\]
+for every $x \in A$ and $y \in B$.
+So
+\[
+    \frac{c}{y} \geq x.
+\]
+Then $\dfrac{c}{y}$ is an upper bound on $A$.
+Since $\alpha = \sup A$,
+\[
+    \frac{c}{y} \geq \alpha,
+\]
+and
+\[
+    c \geq \alpha y.
+\]
+Then
+\[
+    \frac{c}{\alpha} \geq y
+\]
+That is, $\dfrac{c}{\alpha}$ is an upper bound on $B$.
+Since $\beta = \sup B$,
+\[
+    \frac{c}{\alpha} \geq \beta,
+\]
+and
+\[
+    c \geq \alpha \beta.
+\]
+Therefore, $\alpha \beta$ is also the least upper bound on $C$ or
+\[
+    \alpha \beta = \sup C.
+\]
+
+\noindent{} \textbf{Question 2}
+\begin{enumerate}
+    \item [(a)] Let $S$ be an infinite set.
+          We construct distinct elements
+          \[
+              a_1,a_2,a_3,\ldots\in S
+          \]
+          inductively.
+          Since $S$ is infinite, it is also non-empty.
+          Thus, we can select $a_1 \in S$ as the first element.
+
+          Suppose that $a_1, a_2, ... , a_n$ have been chosen for $n \in \mathbb{N}$.
+          Then
+          \[
+              \{a_1, a_2, ... , a_n\}
+          \]
+          is still a finite set. Since $S$ is infinite,
+          \[
+              S \setminus \{a_1, a_2, ... , a_n\} \neq \emptyset
+          \]
+          So we can choose $a_{n+1} \in S \setminus \{a_1, a_2, ... , a_n\}$.
+          Therefore, by induction, we can choose countably infinitely many distinct elements
+          \[
+              A = \{a_1,a_2,a_3,\ldots\} \subseteq S.
+          \]
+          Define this function $f: \mathbb{N} \to A$ as
+          \[
+              f(n) = a_n.
+          \]
+
+          Suppose $f(m) = f(n)$. Then
+          \[
+              a_n = a_m.
+          \]
+          Since we define $a_i$ such that each element is distinct,
+          it follows that $m = n$. Thus $f$ is injective.
+
+          By definition of $a_i$, there is some $n \in \mathbb{N}$
+          for each distinct element $a_i$. So $f$ is surjective.
+
+          Therefore, $f$ is bijective, and
+          \[
+              \mathbb{N} \sim A \subseteq S.
+          \]
+    \item [(b)]
+          Let $A = \{a_1,a_2,a_3,\ldots\} \subseteq S$ be the countably
+          infinite set constructed in part (a).
+          Define $F: S \to S \setminus \{a_1\}$ as
+          \[
+              F(x)=
+              \begin{cases}
+                  a_{n+1}, & x=a_n\text{ for some }n\in\mathbb N, \\
+                  x,       & x\notin A.
+              \end{cases}
+          \]
+
+          Suppose $F(x) = F(y)$.
+
+          If $x,y \in A$, then
+          \[
+              x = a_m \qquad \text{and} \qquad y = a_n
+          \]
+          for some $m,n \in \mathbb{N}$.
+          So $F(x) = F(y)$ implies that
+          \[
+              a_{m+1} = a_{n+1}.
+          \]
+          Since elements of $A$ are distinct, it follows that
+          \[
+              m = n.
+          \]
+          So
+          \[
+              x=y.
+          \]
+
+          If $x, y \notin A$, then $F(x) = x$ and $F(y) = y$.
+          So $F(y) = F(x)$ implies $x = y$.
+
+          What about if $x \in A$ and $y \notin A$, or the other way around?
+          Suppose, for contradiction, that $F(x) = F(y)$.
+          Since $x \in A $, it follows that $x = a_{i}$ for some $i \in \mathbb{N}$.
+          Then $F(x) = a_{i+1}$, but $F(y) = y \notin A$.
+          So $F(x) \neq F(y)$, contradicting our original assumption.
+          Hence this case is impossible.
+
+          Thus, $F$ is injective.
+
+          Let
+          \[
+              y \in S \setminus \{a_1\}.
+          \]
+          If $y \in A$, then $y = a_n$ for some $n \geq 2$.
+          Then
+          \[
+              F(a_{n-1}) = a_n = y.
+          \]
+          If $y \notin A$, then
+          \[
+              F(y) = y.
+          \]
+          Thus $F$ is surjective.
+
+          Therefore $F$ is a bijection, so
+          \[
+              S \sim S \setminus \{a_1\}.
+          \]
+          Hence, every infinite set $S$ contains a proper subset that is equivalent to $S$.
+
+
+
+    \item [(c)]
+          Let $A \subseteq B$, where $A$ is countable and $B$ is uncountable.
+          Suppose, for contradiction, that $B \setminus A$ is countable.
+          Since $A$ is countable, then the union
+          \[
+              B = A \cup (B \setminus A)
+          \]
+          must be countable as well. But this contradicts the assumption that $B$ is uncountable.
+          Hence $B \setminus A$ is uncountable.
+
+          Since $B \setminus A$ is infinite, by part (a), we can choose distinct elements
+          \[
+              d_1, d_2, d_3, \ldots \in B \setminus A.
+          \]
+          Define $h: B \to B \setminus A$ as
+          \[
+              h(x)=
+              \begin{cases}
+                  d_{2n-1}, & x=a_n,                           \\
+                  d_{2n},   & x=d_n,                           \\
+                  x,        & x\notin A\cup\{d_1,d_2,\ldots\}.
+              \end{cases}
+          \]
+
+          Suppose $h(x) = h(y)$.
+          If $x, y \in A$, then
+          \[
+              d_{2n-1} = d_{2m-1}
+          \]
+          for some $m, n \in \mathbb{N}$.
+          So $m = n$, and $x = y = a_n$.
+
+          Similarly, if $x, y \in \{d_1, d_2, \ldots \}$, then
+          \[
+              d_{2n} = d_{2m}
+          \]
+          for some $m, n \in \mathbb{N}$.
+          So $m = n$, and $x = y = d_n$.
+
+          If $x, y \notin A \cup \{d_1, d_2, \ldots \}$, then
+          \[
+              y = x.
+          \]
+
+          If \(x\) and \(y\) belong to different cases, then \(h(x)\neq h(y)\) since each
+          of the three cases have disjoint image sets.
+
+          Thus, $h$ is injective.
+
+
+          Let $y \in B \setminus A$.
+          Then we have three possibilities.
+          If $y = d_{2n-1}$, then choosing $x = a_n$, we have
+          \[
+              h(a_n) = d_{2n-1} = y.
+          \]
+          If $y = d_{2n}$, then choosing $x = d_n$, we have
+          \[
+              h(d_n) = d_{2n} = y.
+          \]
+          If $y \notin \{d_1, d_2, \ldots\}$, then choosing $x = y$, we have
+          \[
+              h(y) = y.
+          \]
+          Thus $h$ is surjective.
+
+          Hence $h$ is a bijection, and so
+          \[
+              B \sim B \setminus A.
+          \]
+
+          If $A$ was instead finite, we simply shift each $d_i$ an extra $k$ elements, where $k$ is the length of $A$.
+
+          e.g.
+          \[
+              h(x)=
+              \begin{cases}
+                  d_{i},   & x=a_i,                           \\
+                  d_{n+k}, & x=d_n,                           \\
+                  x,       & x\notin A\cup\{d_1,d_2,\ldots\}.
+              \end{cases}
+          \]
+\end{enumerate}
+
+\noindent{} \textbf{Question 3}
+Let $\mathcal{F} : \{g: g : \mathbb{R} \to \mathbb{R}\}$
+denote the set of all real-valued functions whose domain is $\mathbb{R}$.
+Assume, for contradiction, that there exists a bijection
+\[
+    f: \mathbb{R} \to \mathcal{F}.
+\]
+For each $a \in \mathbb{R}$, let $g_a = f(a)$ be the function corresponding to the real number $a$.
+
+Now define $h: \mathbb{R} \to \mathbb{R}$ by
+\[
+    h(x) = 1 + g_x(x).
+\]
+Notice that $h \in \mathcal{F}$.
+Let $a \in \mathbb{R}$. Then
+\[
+    h(a) = 1 + g_a(a).
+\]
+Hence
+\[
+    h(a) \neq g_a(a),
+\]
+and since $a$ is arbitrary,
+\[
+    h \neq g_a
+\]
+for every $a \in \mathbb{R}$.
+
+Since $g_a = f(a)$, this means that $h$ is never equal to $f(a)$, and so it is not in the image of $f$.
+But $h \in \mathcal{F}$, so this contradicts the assumption that $f$ is surjective on $\mathcal{F}$.
+Therefore, there is no bijection from $\mathbb{R}$ to $\mathcal{F}$, and so
+\[
+    \mathcal{F} \not \sim \mathbb{R}.
+\]
+
+\noindent{} \textbf{Question 4}
+Let $f: (0,1) \to \mathbb{R}$.
+Assume there is a constant $M >0$ such that for every finite set of distinct points
+$x_1, ... , x_k \in (0, 1)$, we have
+\[
+    \sum_{j=1}^{k}|f(x_j)| \leq M.
+\]
+Let $S = \{x \in (0,1) : f(x) \neq 0\}$.
+For $n \in \mathbb{N}$, define
+\[
+    S_n = \{ x \in (0,1): |f(x)| \geq \frac{1}{n} \}.
+\]
+Suppose, for contradiction, that some $S_n$ is infinite.
+Then, we can choose infinitely many distinct elements from $S_n$, say
+\[
+    x_1, ... , x_k \in S_n
+\]
+for some $k \in \mathbb{N}$.
+Since each $x_i \in S_n$,
+\[
+    |f(x_i)| \geq \frac{1}{n}.
+\]
+So
+\[
+    \sum_{i=1}^{k}|f(x_i)| \geq \sum_{i=1}^{k}\frac{1}{n} = \frac{k}{n}.
+\]
+By Archimedean Property, choose $k$ large enough so that
+\[
+    k > Mn,
+\]
+and so
+\[
+    \frac{k}{n} > M.
+\]
+Then
+\[
+    \sum_{i=1}^{k}|f(x_i)| > M,
+\]
+contradicting our assumption that
+\[
+    \sum_{j=1}^{k}|f(x_j)| \leq M.
+\]
+Thus, every $S_n$ must be finite.
+
+Let
+\[
+    x \in \bigcup_{n=1}^{\infty} S_n.
+\]
+Then $x \in S_n$ for some $n \in \mathbb{N}$.
+So $x \in (0, 1)$ and
+\[
+    |f(x)| \geq \frac{1}{n} > 0.
+\]
+Then $f(x) \neq 0$, so $x \in S$.
+Hence
+\[
+    \bigcup_{n=1}^{\infty} S_n \subseteq S.
+\]
+
+Conversely, let
+\[
+    x \in S.
+\]
+So $x \in (0, 1)$ and $f(x) \neq 0$.
+That is,
+\[
+    |f(x)| > 0.
+\]
+By Archimedean Property, there exists $n \in \mathbb{N}$ such that
+\[
+    \frac{1}{n} < |f(x)|.
+\]
+Then
+\[
+    |f(x)| \geq \frac{1}{n}.
+\]
+So $x \in S_n$ for some $n \in \mathbb{N}$.
+Furthermore,
+\[
+    x \in \bigcup_{n=1}^{\infty} S_n.
+\]
+Hence
+\[
+    S \subseteq \bigcup_{n=1}^{\infty} S_n.
+\]
+Therefore
+\[
+    S = \bigcup_{n=1}^{\infty} S_n.
+\]
+Since $S_n$ is finite, then $S$ is the countable union of finite sets.
+Hence $S$ must be countable as well.
+
+
+\noindent{} \textbf{Question 5}
+Let $C \subseteq [0,1]$ be uncountable, and define
+\[
+    E = \{a \in (0,1) : C \cap [a,1] \text{ is uncountable}\}.
+\]
+\begin{enumerate}
+    \item [(a)]
+          Suppose, for contradiction, that $E = \emptyset$.
+          Then $C \cap [a, 1]$ is countable for every $a \in (0,1)$.
+          Specifically, for each $n \geq 2$,
+          \[
+              C \cap [\frac{1}{n}, 1]
+          \]
+          is countable.
+          Then
+          \[
+              C \cap (0, 1] = \bigcup_{n=2}^{\infty} (C \cap [\frac{1}{n}, 1]).
+          \]
+          Notice that the right side is the countable union of countable sets.
+          So $C \cap (0, 1]$ is countable.
+          Adding the finite element $0$ means $C$ is countable as well.
+          However, this contradicts our assumption that $C$ is uncountable.
+
+          Therefore, $E$ is non-empty.
+
+    \item [(b)]
+          Let $\alpha = \sup E$.
+          Consider
+          \[
+              C = [0, 1).
+          \]
+          Then $C$ is indeed an uncountable subset of $[0,1]$.
+          Then, for every $a \in (0, 1)$
+          \[
+              C \cap [a, 1] = [a, 1).
+          \]
+          Which is also uncountable.
+          Thus, $E = (0, 1)$, and $\alpha = 1$.
+          But
+          \[
+              C \cap [\alpha, 1] = \emptyset,
+          \]
+          which is clearly not uncountable.
+
+          Therefore, $C \cap [\alpha, 1]$ does not have to be uncountable.
+
+    \item [(c)]
+          False, take
+          \[
+              C = \left\{ \frac{1}{n} : n \in \mathbb{N} \right\}.
+          \]
+          This set is infinite.
+          For any $a \in (0, 1)$, if $\frac{1}{n} \in [a, 1]$, then $\frac{1}{n} \geq a$.
+          So $n \leq \frac{1}{a}$.
+          Then only a finite amount of $n \in \mathbb{N}$ will meet this requirement.
+          Thus $C \cap [a, 1]$ is finite for every $a \in (0,1)$.
+          Therefore, $E = \emptyset$.
+\end{enumerate}
+
+\end{document}
+

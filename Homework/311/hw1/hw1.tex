@@ -1,0 +1,420 @@
+\documentclass[12pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath, amssymb, amsthm}
+\usepackage{geometry}
+\usepackage{fancyhdr}
+
+\geometry{letterpaper, margin=1in}
+\setlength{\headheight}{15pt}
+
+% Header setup
+\pagestyle{fancy}
+\fancyhf{}
+\lhead{Math 311 Fall 2026}
+\rhead{Jeffrey Lu}
+\cfoot{\thepage}
+
+\title{Homework Assignment 1 \\ \large Math 311, Fall 2026 \\ Rutgers University}
+\author{}
+\date{}
+
+\begin{document}
+
+\maketitle
+
+\noindent \textbf{Exercise 1.2.5}
+\begin{enumerate}
+      \item [(a)]
+            Suppose $x \in (A \cap B)^c$. Then, $ x \notin A \cap B $.
+            So either $x \notin A$ or $x \notin B$.
+            In other words, $x \in A^c$ or $x \in B^c$.
+            Then, $ x \in A^c \cup B^c $.
+            Therefore, $ (A \cap B)^c \subseteq A^c \cup B^c $.
+
+      \item [(b)]
+            Suppose $x \in A^c \cup B^c $. So $x \notin A$ or $x \notin B$.\
+            Furthermore, $x$ couldn't be in both sets at the same time.
+            So $x \notin A \cap B$, or $x \in (A \cap B)^c$.
+            Therefore, $A^c \cup B^c \subseteq (A \cap B)^c$.
+            Combining this with our result from part (a), we have that
+            $A^c \cup B^c = (A \cap B)^c$.
+
+      \item [(c)]
+            Suppose $x \in (A \cup B)^c$. So $x \notin A \cup B$.
+            Then, $x \notin A$ and $x \notin B$.
+            In other words, $x \in A^c$ and $x \in B^c$.
+            So $x \in A^c \cap B^c$.
+            Thus, $(A \cup B)^c \subseteq A^c \cap B^c$.
+
+            Next, suppose $y \in A^c \cap B^c$.
+            Then, $y \notin A$ and $y \notin B$.
+            That is, $y \notin A \cup B$.
+            So $y \in (A \cup B)^c$.
+            Then, $A^c \cap B^c \subseteq (A \cup B)^c $.
+
+            Therefore, $A^c \cap B^c = (A \cup B)^c $.
+
+\end{enumerate}
+
+\noindent \textbf{Exercise 1.2.9}
+\begin{enumerate}
+      \item [(a)]
+            $f^{-1}(A) = [-2, 2]$ and $f^{-1}(B) = [-1, 1]$.
+
+            Notice that $A \cap B = [0, 1]$, and $f^{-1}(A \cap B) = [-1, 1]$.
+            Similarly, $f^{-1}(A) \cap f^{-1}(B) = [-1,1]$ as well.
+            Thus, $ f^{-1}(A \cap B) = f^{-1}(A) \cap f^{-1}(B) $
+
+            Consider $A \cup B = [-1, 4]$. Then,
+            \begin{align*}
+                  f^{-1}(A \cup B) & = f^{-1}([-1, 4]) \\
+                                   & = f^{-1}([0,4])   \\
+                                   & = [-2, 2].
+            \end{align*}
+            Similarly, $f^{-1}(A) \cup f^{-1}(B) = [-2, 2]$.
+            Thus, $ f^{-1}(A \cup B) = f^{-1}(A) \cup f^{-1}(B) $.
+      \item [(b)]
+            Let $x \in \mathbb{R}$. Then,
+            \begin{align*}
+                  x \in g^{-1}(A \cap B)
+                   & \iff g(x) \in A \cap B                            \\
+                   & \iff g(x) \in A \text{ and } g(x) \in B           \\
+                   & \iff x \in g^{-1}(A) \text{ and } x \in g^{-1}(B) \\
+                   & \iff x \in g^{-1}(A) \cap g^{-1}(B).
+            \end{align*}
+            Therefore,
+            \[
+                  g^{-1}(A \cap B)
+                  = g^{-1}(A) \cap g^{-1}(B).
+            \]
+
+            Similarly,
+            \begin{align*}
+                  x \in g^{-1}(A \cup B)
+                   & \iff g(x) \in A \cup B                           \\
+                   & \iff g(x) \in A \text{ or } g(x) \in B           \\
+                   & \iff x \in g^{-1}(A) \text{ or } x \in g^{-1}(B) \\
+                   & \iff x \in g^{-1}(A) \cup g^{-1}(B).
+            \end{align*}
+            Therefore,
+            \[
+                  g^{-1}(A \cup B)
+                  = g^{-1}(A) \cup g^{-1}(B).
+            \]
+
+\end{enumerate}
+
+\noindent{} \textbf{Exercise 1.2.10}
+\begin{enumerate}
+      \item [(a)] False. Consider $a = b$.
+            Then, for every $\epsilon > 0$, \[a < b + \epsilon.\]
+            But, since $a = b$, the statement $a < b$ must be false.
+            Thus, the if the and only if does not hold both ways.
+
+      \item [(b)] False, same as the previous counter example.
+      \item [(c)] True. Suppose
+            $a \leq b$
+            Since $\epsilon > 0$. It follows that
+            \[
+                  b < b + \epsilon.
+            \]
+            So,
+            \[
+                  a \leq b < b + \epsilon.
+            \]
+            That is,
+            \[
+                  a \leq b \implies a < b + \epsilon \mid \forall \epsilon > 0.
+            \]
+
+            Now, suppose that $a < b + \epsilon$ for every $\epsilon > 0$.
+            For sake of contradiction, suppose $a > b$.
+            Then $a - b > 0$. Choose
+            \[
+                  \epsilon = \frac{a-b}{2}.
+            \]
+            Then
+            \begin{align*}
+                  a < b + \dfrac{a-b}{2} = \dfrac{a+b}{2}
+            \end{align*}
+            But, since $a > b$,
+            \[
+                  a > \dfrac{a+b}{2}.
+            \]
+            Contradicting our previous inequality, so $a \leq b$.
+            Therefore,
+            \[
+                  a < b + \epsilon \mid \forall \epsilon > 0\implies a \leq b.
+            \].
+
+            Hence,
+            \[
+                  a \leq b \iff a < b + \epsilon \mid \forall \epsilon > 0.
+            \]
+
+\end{enumerate}
+
+\noindent{} \textbf{Exercise 1.2.13}
+\begin{enumerate}
+      \item [(a)] Let $S_n$ denote the statement that
+            \[
+                  (A_1 \cup A_2 \cup \dots \cup A_n)^c = A_1^c \cap A_2^c \cap \dots \cap A_n^c.
+            \]
+
+            (Base Case) Then $S_1$ says $(A_1)^c = A_1^c$, which is obviously true.
+
+            (Inductive Step) We suppose $S_k$ for an arbitrary $k \in \mathbb{N}$. That is,
+            \[
+                  (A_1 \cup A_2 \cup \dots \cup A_k)^c = A_1^c \cap A_2^c \cap \dots \cap A_k^c.
+            \]
+            Consider
+            \[
+                  (A_1 \cup A_2 \cup \dots \cup A_k \cup A_{k+1})^c
+            \]
+            Then group the first $k$ sets,
+            \[
+                  ((A_1 \cup A_2 \cup \dots \cup A_k)\cup A_{k+1})^c.
+            \]
+            Apply 2-element De Morgan's Law from Exercise 1.2.5
+            \[
+                  (A_1 \cup A_2 \cup \dots \cup A_k)^c \cap A_{k+1}^c.
+            \]
+            Substitute $S_k$
+            \[
+                  A_1^c \cap A_2^c \cap \dots \cap A_k^c \cap A_{k+1}^c.
+            \]
+            That is,
+            \[
+                  (A_1 \cup A_2 \cup \dots \cup A_k \cup A_{k+1})^c = A_1^c \cap A_2^c \cap \dots \cap A_k^c \cap A_{k+1}^c.
+            \]
+            So $S_{k+1}$ holds. Therefore, by mathematical induction, $S_n$ is true for every $n \in \mathbb{N}$.
+      \item [(b)]
+            Let $B_i = (0, \frac{1}{i})$. Then for any $n \in \mathbb{N}$,
+            \[
+                  \bigcap_{i=1}^{n} B_i = (0, \frac{1}{n}).
+            \]
+            Since $n \in \mathbb{N}$, we can always
+            find a larger natural number $n+1$.
+            So $\frac{1}{n+1}$ will be inside the interval $(0, \frac{1}{n})$.
+            Thus, the intersection is always nonempty.
+
+            Now suppose
+            \[
+                  x \in \bigcap_{i=1}^{\infty} B_i.
+            \]
+            Then $ 0 < x < \frac{1}{i}$ for every $i \in \mathbb{N}$.
+            Since $x > 0$, by the Archimedean Principle,
+            there exists $i \in \mathbb{N}$ such that $\dfrac{1}{i} < x$.
+            This contradicts $x < \dfrac{1}{i}$.
+            Hence, no such $x$ exists.
+            That is,
+            \[
+                  \bigcap_{i=1}^{\infty} B_i = \emptyset.
+            \]
+      \item [(c)]
+            Suppose
+            \[
+                  x \in \left(\bigcup_{i=1}^{\infty} A_i\right)^c
+            \]
+            Equivalently,
+            \[
+                  x \notin \bigcup_{i=1}^{\infty} A_i
+            \]
+            That is, $x \notin A_i$ for every $ i \in \mathbb{N}$.
+            Then $x \in A_i^c$ for every $ i \in \mathbb{N}$.
+            Therefore,
+            \[
+                  x \in \bigcap_{i=1}^{\infty} A_i^c
+            \]
+            So
+            \[
+                  \left(\bigcup_{i=1}^{\infty} A_i\right)^c \subseteq \bigcap_{i=1}^{\infty} A_i^c
+            \]
+
+            Now, suppose
+            \[
+                  y \in \bigcap_{i=1}^{\infty} A_i^c
+            \]
+            Then $y \in A_i^c$ for every $ i \in \mathbb{N}$.
+            Likewise, $y \notin A_i$ for every $ i \in \mathbb{N}$.
+            That is,
+            \[
+                  y \notin \bigcup_{i=1}^{\infty} A_i
+            \]
+            So,
+            \[
+                  y \in \left(\bigcup_{i=1}^{\infty} A_i\right)^c
+            \]
+            Thus,
+            \[
+                  \bigcap_{i=1}^{\infty} A_i^c \subseteq \left(\bigcup_{i=1}^{\infty} A_i\right)^c
+            \]
+            Combining the two inclusions, we get
+            \[
+                  \left(\bigcup_{i=1}^{\infty} A_i\right)^c = \bigcap_{i=1}^{\infty} A_i^c.
+            \]
+\end{enumerate}
+
+\noindent{} \textbf{Exercise 1.3.9}
+\begin{enumerate}
+      \item [(a)] Assume $\sup A < \sup B$.
+            For the sake of contradiction,  assume $\sup A$ is an upper bound for $B$.
+            Then,
+            \[
+                  \sup B \leq \sup A,
+            \]
+            contradicting $\sup A < \sup B$.
+            Therefore, there exists $b \in B$ such that
+            \[
+                  b > \sup A.
+            \]
+            Furthermore,
+            \[
+                  a \leq \sup A < b \text{ for every } a \in A.
+            \]
+            Thus, $b$ is an upper bound for $A$.
+      \item [(b)]
+            Consider
+            \[
+                  A = B = (0, 1).
+            \]
+            Then
+            \[
+                  \sup A = \sup B = 1,
+            \]
+            and we have
+            \[
+                  \sup A \leq \sup B.
+            \]
+
+            But, no $b \in B$ can be an upper bound for $A$.
+            For every $b \in B$, we can simply choose
+            \[
+                  a = \frac{b+1}{2}.
+            \]
+            Then $b < a < 1$, so $a \in A$ but $b < a$.
+            Therefore, $b$ cannot be an upper bound for A.
+
+\end{enumerate}
+
+\noindent{} \textbf{Exercise 1.3.10}
+\begin{enumerate}
+      \item [(a)]
+            Assume $A$ and $B$ are non-empty, disjoint sets with
+            \[
+                  A \cup B = \mathbb{R}
+            \]
+            and
+            \[
+                  a < b \text{ for every } a \in A, b \in B.
+            \]
+            Choose an arbitrary element $b_0 \in B$, then $b_0 > a$ for every $a \in A$.
+            That is, $b_0$ is an upper bound for $A$.
+            Since $A$ is non-empty and bounded above, the Axiom of Completeness guarantees us a least upper bound,
+            call it
+            \[
+                  c = \sup A
+            \]
+            Since $c$ is an upper bound for $A$,
+            \[
+                  a \leq c \text{ for every } a \in A.
+            \]
+            Furthermore, because $c$ is the least upper bound on $A$ and every $b \in B$ is an upper bound for $A$,
+            \[
+                  c \leq b \text{ for every } b \in B.
+            \]
+
+            Therefore,
+            \[
+                  a \leq c \leq b
+            \]
+            for every $a \in A$ and $b \in B$.
+      \item [(b)]
+            Assume the Cut Property holds for $\mathbb{R}$.
+            Let $E \subseteq \mathbb{R}$ be a nonempty set that is bounded above.
+            Define
+            \[
+                  A = \{x \in \mathbb{R} : x \text{ is not an upper bound for } E\}
+            \]
+            and
+            \[
+                  B = \{x \in \mathbb{R} : x \text{ is an upper bound for } E\}.
+            \]
+            Then $A \cup B = \mathbb{R}$, $A \cap B = \emptyset$, and $B \neq \emptyset$ since $E$ is bounded above.
+            Choose some $e \in E$. Then $e - 1 < e$. So $e - 1$ is not an upper bound on $E$.
+            So $e - 1 \in A$ and $A \neq \emptyset$.
+            Choose some $a \in A$ and $b \in B$.
+            Since $a$ is not an upper bound on $E$, there exists some $x \in E$ such that
+            \[
+                  a < x.
+            \]
+            Since $b$ is an upper bound on $E$,
+            \[
+                  x \leq b.
+            \]
+            Thus,
+            \[
+                  a < x \leq b,
+            \]
+            so
+            \[
+                  a < b.
+            \]
+            Therefore the Cut Property holds. So there exists some $c \in \mathbb{R}$ such that
+            \[
+                  a \leq c \leq b
+            \]
+            for every $a \in A$ and $b \in B$.
+
+            We want to prove that $c = \sup E$.
+
+            Suppose, for sake of contradiction, that $c$ is not an upper bound on $E$.
+            Then there exists some $x \in E$ such that
+            \[
+                  x > c.
+            \]
+            Choose
+            \[
+                  y = \frac{c+x}{2}.
+            \]
+            Then
+            \[
+                  c < y < x.
+            \]
+            Since $x \in E$ and $y < x$, $y$ cannot be upper bound on $E$, so $y \in A$.
+            But the Cut Property says that every $a \in A$ satisfies $a \leq c$, so
+            \[
+                  y \leq c,
+            \]
+            contradicting $c < y$.
+            Thus, $c$ must be an upper bound for $E$, so $c \in B$.
+            By Cut Property,
+            \[ c \leq b\] for every $b \in B$. That is, $c$ is the least upper bound of $E$, or
+            \[
+                  c = \sup E.
+            \]
+            Therefore, Cut Property implies the Axiom of Completeness.
+      \item [(c)]
+            Define
+            \[
+                  A = \{q \in \mathbb{Q} : q < \sqrt{2} \}
+            \]
+            and
+            \[
+                  B = \{q \in \mathbb{Q} : q > \sqrt{2} \}
+            \]
+            Then $A \cup B = \mathbb{Q}$, $A \cap B = \emptyset$, and $a < b$ for every $a \in A$ and $b \in B$.
+            If the Cut Property were true in \(\mathbb Q\), there would be some \(c\in\mathbb Q\) such that
+            \[
+                  a \leq c \leq b
+            \]
+            for every $a \in A$ and $b \in B$.
+            But the only number that can sit between all rationals below \(\sqrt2\) and all rationals above \(\sqrt2\) is
+            \[
+                  c=\sqrt2,
+            \]
+            and \(\sqrt2\notin\mathbb Q\).
+            Therefore no such rational \(c\) exists, so the Cut Property fails in \(\mathbb Q\).
+\end{enumerate}
+
+\end{document}

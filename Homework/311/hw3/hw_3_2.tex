@@ -1,0 +1,470 @@
+\documentclass[12pt]{article}
+\usepackage{amsmath, amssymb, amsthm}
+\usepackage{parskip}
+\usepackage{geometry}
+\usepackage{enumitem}
+\usepackage{fancyhdr}
+
+\geometry{letterpaper, margin=1in}
+\setlength{\headheight}{15pt}
+
+% Header setup
+\pagestyle{fancy}
+\fancyhf{}
+\lhead{Math 311 Fall 2026}
+\rhead{Jeffrey Lu}
+\cfoot{\thepage}
+
+\title{Homework Assignment 4 \\ \large Math 311, Fall 2026 \\ Rutgers University}
+\author{}
+\date{}
+
+\begin{document}
+
+\maketitle
+
+\textbf{Exercise 2.2.7}
+\begin{enumerate}[label=(\alph*)]
+    \item The sequence \((-1)^n\) is only frequently in the set \(\{1\}\)
+          since for all \(N \in \mathbb{N}\), there exists even \(n \geq N\) so that
+          \((-1)^n = 1\). However, it is not eventually in \(\{1\}\) since
+          we can also always choose an odd \(n \geq N\) so that \((-1)^n = -1\).
+    \item Eventually is the stronger definition since eventually \(\implies \) frequently,
+          however the converse is not true as shown in part (a).
+    \item A sequence \((a_n)\) converges if for every \(\epsilon > 0 \), the sequence
+          is eventually in \(V_{\epsilon}(a)\).
+    \item Consider the sequence
+          \[
+              (x_n) = \begin{cases}
+              2, & \text{if $n$ is even}   \\
+              0, & \text{if $n$ is odd}
+              \end{cases}
+          \]
+          Then we have an infintie number of terms equal to 2.
+          Similarly to part (a), the sequence \((x_n)\) is frequently in \((1.9, 2.1)\)
+          since for all \(N \in \mathbb{N}\), there exists even \(n \geq N\) so that
+          \((x_n) = 2\). However, it is not eventually in \((1.9, 2.1)\) since
+          we can always choose an odd \(n \geq N\) so that \((x_n) = 0\).
+\end{enumerate}
+
+\textbf{Exercise 2.3.2}
+Suppose \( (x_n) \to 2 \).
+\begin{enumerate}[label=(\alph*)]
+    \item Let \( \epsilon > 0 \). Choose \( N \) such that, for \( n \geq N \),
+          \[
+              |x_n - 2| < \frac{3\epsilon }{2}.
+          \]
+          Then, for \( n \geq N \) we have
+          \[
+              \begin{split}
+                  \left\vert \frac{2x_n - 1}{3} - 1 \right\vert & = \left\vert \frac{2x_n - 4}{3} \right\vert \\
+                                                                & = \frac{2}{3} \vert x_n - 2 \vert           \\
+                                                                & < \frac{2}{3} \cdot \frac{3\epsilon }{2}    \\
+                                                                & = \epsilon .
+              \end{split}
+          \]
+          Thus,
+          \[
+              \frac{2x_n - 1}{3} \to  1.
+          \]
+
+    \item Let \( \epsilon > 0 \). Choose \(  N \) such that, for \(  n \geq N \),
+          \[
+              \vert x_n - 2 \vert < \min\{1, 2\epsilon \}.
+          \]
+          Then, for \( n \geq N \) we have
+          \[
+              \begin{split}
+                  \left\vert \frac{1}{x_n} - \frac{1}{2} \right\vert & = \frac{\vert 2 - x_n \vert }{2\vert x_n \vert } \\
+                                                                     & < \frac{\vert 2 - x_n \vert }{2}                 \\
+                                                                     & < \frac{2\epsilon }{2}                           \\
+                                                                     & = \epsilon.
+              \end{split}
+          \]
+          Thus,
+          \[
+              \frac{1}{x_n} \to \frac{1}{2}.
+          \]
+\end{enumerate}
+
+\textbf{Exercise 2.3.5}
+
+Let
+\[
+    (z_n) = (x_1, y_1, x_2, y_2, x_3, y_3, \dots ).
+\]
+That is,
+\[
+    z_{2n-1} = x_n, \qquad z_{2n} = y_n.
+\]
+
+
+Suppose first that \( (z_n) \to L\). Let \( \epsilon > 0 \) and choose \( N \in \mathbb{N} \) such that
+\[
+    k \geq N \implies |z_k - L| < \epsilon .
+\]
+For every \( n \geq N \), it follows that \( 2n - 1 \geq N \) and \( 2n \geq N \).
+Hence
+\[
+    |x_n - L| =  \vert z_{2n-1} - L \vert < \epsilon , \qquad \vert y_n - L \vert = \vert z_{2n} - L \vert < \epsilon .
+\]
+Thus \( x_n \to L \) and \( y_n \to  L \).
+
+Conversely, suppose \( x_{n} \to L \) and \( y_n \to  L \). Let \( \epsilon > 0 \) and choose
+\( N_x, N_y \in \mathbb{N} \) such that
+\[
+    n \geq N_x \implies \vert x_n - L \vert < \epsilon , \qquad n \geq N_{y} \implies  \vert y_n - L \vert < \epsilon .
+\]
+Let \( M = \max \{N_x, N_{y} \} \), and \( N = 2M \). For any \( m \geq N \):
+
+\begin{itemize}
+    \item If \( k = 2n \), then \( n \geq M \), so
+          \[
+              \vert z_k - L \vert = \vert y_n - L \vert < \epsilon .
+          \]
+    \item If \( = 2n - 1 \), then \( n \geq M \), so
+          \[
+              \vert z_k - L \vert = \vert x_n - L \vert < \epsilon .
+          \]
+\end{itemize}
+
+Therefore, \( z_n \to L \).
+
+\textbf{Exercise 2.3.6} Take \( (\frac{1}{n}) \to 0\) as given, and consider
+\[
+    \begin{split}
+        b_n & = n - \sqrt{n^2 + 2n}                            \\
+            & = \frac{n^2 - (n^2 + 2n)}{n + \sqrt{n^{2} + 2n}} \\
+            & = \frac{-2n}{n + \sqrt{n^2 + 2n}}                \\
+            & = \frac{-2n}{n + n \sqrt{1 + \frac{2}{n}}}       \\
+            & = \frac{-2n}{n(1 + \sqrt{1 + \frac{2}{n}})}      \\
+            & = \frac{-2}{1 + \sqrt{1 + \frac{2}{n}}}.
+    \end{split}
+\]
+Since \( (\frac{1}{n}) \to 0 \), by Algebraic Limit Theorem we have that
+\[
+    1 + \frac{2}{n} \to  1,
+\]
+and by exercise 2.3.1, we have
+\[
+    \sqrt{1 + \frac{2}{n}} \to  \sqrt{1} = 1.
+\]
+Thus the denominator converges
+\[
+    1 + \sqrt{1 + \frac{2}{n}} \to  1 + 1 = 2.
+\]
+Using the quotient rule of the Algebraic Limit Theorem,
+\[
+    b_n \to -\frac{2}{2} = -1.
+\]
+
+\textbf{Exercise 2.3.8}
+Let \( (x_n) \to  x\) and let \( p(x) \) be a polynomial.
+\begin{enumerate}[label=(\alph*)]
+    \item Notice that
+          \[
+              p(x_n) = a_0 + a_1 x_n + a_2 x_n^2 + \dots + a_k x_n^k \quad \text{for some } k \in \mathbb{N}.
+          \]
+          Since \( (x_n) \to x \), the Algebraic Limit Theorem says
+          \[
+              a_k x_n^k \to a_k x^k \qquad \text{for every } k \in \mathbb{N}.
+          \]
+          Then applying the sum rule for every element in \( p(x_n) \), we have
+          \[
+              p(x_n) \to  a_0 + a_1 x + \dots a_k x^k = p(x).
+          \]
+    \item Let \( x_n = \frac{1}{n} \) and define
+          \[
+              f(t) = \begin{cases}
+                  1, & t \neq 0 , \\
+                  0, & t = 0.
+              \end{cases}
+          \]
+          Then \( x_n \to 0 \). But since \( x_n \neq 0 \) for every \( n \), we have \( f(x_n) = 1 \), and so
+          \[
+              f(x_n) \to 1, \qquad \text{while} \qquad f(0) = 0.
+          \]
+          Thus
+          \[
+              f(x_n) \not \to f(x).
+          \]
+\end{enumerate}
+
+\textbf{Exercise 2.3.11}
+\begin{enumerate}[label=(\alph*)]
+    \item Assume \( (x_n) \to L\).
+          Define
+          \[
+              y_n = \frac{x_1 + x_2 + \dots + x_n}{n}.
+          \]
+          Let \( \epsilon >0 \) and choose \( N \in \mathbb{N} \) such that
+          \[
+              n \geq N \implies |x_n - L| < \frac{\epsilon}{2}.
+          \]
+          Then
+          \[
+              \begin{split}
+                  |y_n - L| & = \frac{1}{n} \sum_{k=1}^n (x_k - L)                                                                \\
+                            & \leq \frac{1}{n} \sum_{k=1}^{n} \vert x_k - L \vert                                                 \\
+                            & = \frac{1}{n} \sum_{k=1}^{N-1} \vert x_k - L \vert + \frac{1}{n} \sum_{k=N}^{n} \vert x_k - L \vert \\
+              \end{split}
+          \]
+          Define
+          \[
+              C = \sum_{k=1}^{N-1} \vert x_k - L \vert.
+          \]
+          Then
+          \[
+              \begin{split}
+                  \vert y_n - L \vert & \leq \frac{C}{n} + \frac{1}{n} \sum_{k=N}^{n} \vert x_k - L \vert \\
+                                      & \leq \frac{C}{n} + \frac{n - N + 1}{n} \cdot \frac{\epsilon}{2}   \\
+                                      & \leq  \frac{C}{n} + \frac{\epsilon}{2}.
+              \end{split}
+          \]
+          Choose \( M \geq N \) such that
+          \[
+              M > \frac{2C}{\epsilon}.
+          \]
+          Then for every \( n \geq M \),
+          \[
+              \frac{c}{n} < \frac{c}{\frac{2c}{\epsilon}} = \frac{\epsilon}{2}.
+          \]
+          So
+          \[
+              \vert y_n - L \vert < \frac{\epsilon}{2} + \frac{\epsilon}{2} = \epsilon.
+          \]
+          Therefore
+          \[
+              y_n \to L.
+          \]
+    \item Consider \( x_n = (-1)^n \), this sequence does not converge. Then
+          \[
+              y_n = \frac{1}{n} \sum_{k=1}^{n} (-1)^k.
+          \]
+          Notice that even terms are 1 while odd terms are -1. So each term will cancel each other out.
+          Thus
+          \[
+              y_n \to 0.
+          \]
+\end{enumerate}
+
+
+\textbf{2.4.1}
+\begin{enumerate}[label=(\alph*)]
+    \item Define \( x_1 = 3 \) and
+          \[
+              x_{n+1} = \frac{1}{4-x_n}.
+          \]
+          We want to show that \( 0 \leq x_n \leq 3 \) by induction.
+          For the base case: \( x_1 = 3 \). Suppose \( 0 < x_n \leq 3 \).
+          Then \( 4 - x_n \geq 1 \), so
+          \[
+              0 < x_{n+1} \leq 1 \leq 3.
+          \]
+          Thus \( 0 < x_n \leq 1 \leq 3 \) by induction.
+
+          Now, we want to show that \( (x_n) \) is decreasing by induction.
+          Notice that \( x_2 = \frac{1}{4-3} = 1 \).
+          So \( x_2 < x_1 \) holds.
+          Suppose \( x_{n+1} < x_n \). Then
+          \[
+              4 - x_{n+1} > 4 - x_n.
+          \]
+          So
+          \[
+              x_{n+2} = \frac{1}{4 - x_{n+1}} < \frac{1}{4 - x_n} = x_{n+1}.
+          \]
+          That is, \( x_{n+2} < x_{n+1} \).
+          Thus \( (x_n) \) is decreasing by inuction.
+
+          Since \( x_n \) is montone decreasing and bounded, by the Monotone Convergence, \( x_n \) converges to some \( L \).
+
+    \item From part (a), we have that \( x_n \to L \).
+          Let \( \epsilon > 0  \) and choose \( N \in \mathbb{N} \) such that
+          \[
+              n \geq N \implies \vert x_n - L \vert < \epsilon.
+          \]
+          Since \( n + 1 > n \geq N \), we also have
+          \[
+              |x_{n+1} - L | < \epsilon.
+          \]
+          Thus
+          \[
+              x_{n+1} \to L.
+          \]
+    \item Taking the limit, we have
+          \[
+              L = \frac{1}{4 - L},
+          \]
+          which simplifies to
+          \[
+              L^2 - 4L + 1 = 0.
+          \]
+          Using the quadratic formula, we get
+          \[
+              L = 2 \pm \sqrt{3}.
+          \]
+          Since \( x_n \leq 1 \) when \( n \geq 2 \), we choose
+          \[
+              L = 2 - \sqrt{3}.
+          \]
+          Thus the final limit is
+          \[
+              x_n \to 2 - \sqrt{3}.
+          \]
+\end{enumerate}
+
+\textbf{Exercise 2.4.2}
+\begin{enumerate}[label=(\alph*)]
+    \item The issue is we never proved that the sequence converges, so we can't just take the limits.
+    \item Let \( y_1 = 1 \) and
+          \[
+              y_{n+1} = 3 - \frac{1}{y_n}.
+          \]
+          We want to show that \( 1 \leq y_n < 3 \) for every \( n \in \mathbb{N} \), so we proceed by induction.
+          First, \( y_1 = 1 \), so the base case holds.
+          Suppose \( 0 \leq y_k < 3 \) for some \( k \in \mathbb{N} \).
+          Then
+          \[
+              0 < \frac{1}{3} \leq \frac{1}{y_k} \leq 1.
+          \]
+          So
+          \[
+              2 \leq 3 - \frac{1}{y_k} < 3.
+          \]
+          That is,
+          \[
+              1 \leq y_{k+1} < 3.
+          \]
+          So \( (y_n) \) is bounded for every \( n \in \mathbb{N} \) by induction.
+
+          Now we want to show \( y_n \) is increasing as well.
+          First,
+          \[
+              y_2 = 3 - \frac{1}{1} = 2 > y_1.
+          \]
+          Suppose \( y_{k+1} > y_{k} \) holds for some \( k \in \mathbb{N} \).
+          Then
+          \[
+              \frac{1}{y_{k+1}} < \frac{1}{y_k},
+          \]
+          and
+          \[
+              -\frac{1}{y_{k+1}} > -\frac{1}{y_k}.
+          \]
+          Thus
+          \[
+              y_{k+2} = 3 - \frac{1}{y_{k+1}} > 3 - \frac{1}{y_k} = y_{k+1}.
+          \]
+          So \( (y_n) \) is increasing for every \( n \in \mathbb{N} \) by induction.
+
+          Therefore, by monotone convergence Theorem since \( y_n \) is bounded and monotone, \( y_n \) is convergent.
+          Hence we can use part (a)'s method to find the explicit limit.
+\end{enumerate}
+
+\textbf{Exercise 2.4.3}
+\begin{enumerate}[label=(\alph*)]
+    \item Define \( x_1 = \sqrt{2} \) and
+          \[
+              x_{n+1} = \sqrt{2 + x_n}.
+          \]
+          We want to show \( \sqrt{2} \leq x_n < 2 \) for every \( n \in \mathbb{N} \).
+          First, \( x_1 = \sqrt{2} \), so the base case holds.
+          Suppose \( \sqrt{2} \leq x_k < 2 \) for some \( k \in \mathbb{N} \).
+          Then
+          \[
+              \sqrt{2} < x_{k+1} = \sqrt{2 + x_k} < \sqrt{4} = 2.
+          \]
+          So \( \sqrt{2} \leq x_n < 2 \) holds for every \( n \in \mathbb{N} \) by induction.
+
+          Next, we want to show that \( x_n \) is increasing.
+          First,
+          \[
+              x_2 = \sqrt{2 + \sqrt{2}} > \sqrt{2} = x_1.
+          \]
+          So the base case holds.
+          Suppose \( x_{k+1} > x_k \) for some \( k \in \mathbb{N} \).
+          Then
+          \[
+              x_{k+2} = \sqrt{2 + x_{k+1}} > \sqrt{2 + x_k} = x_{k+1}.
+          \]
+          Thus the sequence is increasing by induction.
+
+          Since \( x_n \) is increasing and bounded above, the monotone convergence theorem says \( x_n \to L \),
+          where \( \sqrt{2} \leq L < 2 \). Taking the limits gives
+          \[
+              L = \sqrt{2 + L} \implies  \qquad (L-2)(L+1) = 0.
+          \]
+          Since \( L \geq  \sqrt{2} \), we get
+          \[
+              x_n \to 2.
+          \]
+
+
+    \item Define \( y_1 = \sqrt{2} \) and
+          \[
+              y_{n+1} = \sqrt{2y_n}.
+          \]
+          We want to show \( \sqrt{2} \leq y_n < 2 \) for every \( n \in \mathbb{N} \).
+          First, \( y_1 = \sqrt{2} \), and so the base case holds.
+          Suppose \( \sqrt{2} \leq y_k < 2 \) for some \( k \in \mathbb{N} \).
+          Then
+          \[
+              2\sqrt{2} \leq 2y_k < 2 \implies \sqrt{2\sqrt{2}} \leq \sqrt{2y_k} < 2.
+          \]
+          Thus
+          \[
+              \sqrt{2} \leq y_{k+1} < 2.
+          \]
+          So \( \sqrt{2} \leq y_n < 2 \) holds for every \( n \in \mathbb{N} \) by induction.
+
+          Now we show \( y_n \) is increasing. First,
+          \[
+              y_2 = \sqrt{2\sqrt{2}} > \sqrt{2} = y_1,
+          \]
+          and so the base case holds.
+          Suppose \( y_{k+1} > y_k \) for some \( k \in \mathbb{N} \).
+          Then
+          \[
+              y_{k+2} = \sqrt{2y_{k+1}} > \sqrt{2y_k} = y_{k+1}.
+          \]
+          Thus \( y_n \) is increasing by induction.
+
+          Since \( y_n \) is increasing and bounded above by \( 2 \), the monotone convergence theorem says
+          \( y_n \to L \).
+          Taking limits,
+          \[
+              L = \sqrt{2L} \implies L(L-2) = 0.
+          \]
+          Since \( L > \sqrt{2} \), the limit is
+          \[
+              y_n \to 2.
+          \]
+\end{enumerate}
+
+\textbf{Exercise 2.4.8}
+\begin{enumerate}[label=(\alph*)]
+    \item
+\end{enumerate}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\end{document}

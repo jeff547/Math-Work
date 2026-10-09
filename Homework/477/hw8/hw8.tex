@@ -1,0 +1,82 @@
+\documentclass[12pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath, amssymb, amsthm}
+\usepackage{geometry}
+
+\geometry{a4paper, margin=1in}
+
+\title{Math 477 Homework 8}
+\author{Spring 2026 \\ Rutgers University}
+\parskip=1ex
+\begin{document}
+
+\maketitle
+
+\noindent{}\textbf{Question 1:}
+
+Let $X$ and $Y$ have a joint density function:
+\begin{align*}
+    f_{X,Y}(x,y) = \begin{cases}
+                       \frac{1}{x^2y^2} \hspace{5ex} x \geq 1, y \geq 1 \\
+                       0 \hspace{8ex} \text{otherwise}
+                   \end{cases}
+\end{align*}
+\begin{itemize}
+    \item [(a)]
+          Let $U = XY$ and $V = X/y$. Then, $X = \sqrt{UV}$ and $Y = \sqrt{\frac{U}{V}}$.
+          So
+          \begin{align*}
+              J = -\frac{1}{2v}.
+          \end{align*}
+          Thus,
+          \begin{align*}
+              f_{X,Y}(x,y) = J \cdot \frac{1}{x^2y^2} = \frac{1}{2vu^2}.
+          \end{align*}
+    \item  [(b)]
+          \begin{align*}
+              f_U(u) & = \int_{1/u}^{u} \frac{1}{2u^2v} ~dv \\
+                     & = \frac{\ln{u}}{u^2}
+          \end{align*}
+          and
+          \begin{align*}
+              f_V(u) & = \int_{v}^{\infty} \frac{1}{2u^2v} ~dv \\
+                     & = \frac{1}{2v^2}
+          \end{align*}
+\end{itemize}
+
+\noindent{}\textbf{Question 2:}
+
+We have
+\begin{align*}
+    f_Y(y) & = \frac{e^{-y}}{y}\int_{0}^{\infty} e^{-x/y} \\
+           & = e^{-y}.
+\end{align*}
+Then,
+\begin{align*}
+    f_{X | Y}(x | y) & = \frac{e^{-x/y}e^{-y}}{ye^{-y}} \\
+                     & = \frac{e^{-x/y}}{y}.
+\end{align*}
+Therefore,
+\begin{align*}
+    E[X^2 | Y = y] & = \int_{0}^{\infty} x^2 \cdot \frac{e^{-x/y}}{y} \\
+                   & = y^2 \int_{0}^{\infty}  u^2 \cdot e^{-u}        \\
+                   & = y^2 \cdot \Gamma(3)                            \\
+                   & = 2y^2
+\end{align*}
+
+\noindent{}\textbf{Question 3:}
+
+For each person $i \in \{1, 2, \ldots , 1000\}$, let
+\begin{align*}
+    I_i = \begin{cases}
+              1 \hspace{4ex} \text{if person $i$ recieves card number $i$} \\
+              0 \hspace{4ex} otherwise
+          \end{cases}.
+\end{align*}
+So $E[I_i] = P(I_i = 1) = \frac{1}{1000}$. Then,
+\begin{align*}
+    E\left[ \sum_{i=1}^{1000}I_i \right] & = \sum_{i=1}^{1000}E[I_i] \\
+                                         & = 1.
+\end{align*}
+\end{document}
+

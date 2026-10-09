@@ -1,0 +1,203 @@
+\documentclass[12pt]{article}
+\usepackage{amsmath, amssymb, amsthm}
+\usepackage{parskip}
+\usepackage{geometry}
+\usepackage{enumitem}
+\usepackage{fancyhdr}
+
+\geometry{letterpaper, margin=1in}
+\setlength{\headheight}{15pt}
+
+% Header setup
+\pagestyle{fancy}
+\fancyhf{}
+\lhead{Math 311 Fall 2026}
+\rhead{Jeffrey Lu}
+\cfoot{\thepage}
+
+\title{Homework Assignment 4 \\ \large Math 311, Fall 2026 \\ Rutgers University}
+\author{}
+\date{}
+
+\begin{document}
+
+\maketitle
+
+\textbf{Exercise 2.5.1}
+\begin{enumerate}[label=(\alph*)]
+    \item By Bolzano Wierstrass, every bounded sequence has a convergent subsequence.
+          So if a sequence has a bounded subsequence, then that subsequence must also contain a convergent subsequence,
+          which would be a subsequence of the main sequence as well.
+
+    \item Define
+          \[
+              x_{2n-1} = \frac{1}{n+1}, \qquad x_{2n} = 1 - \frac{1}{n+1}.
+          \]
+          Then \( x_n \neq 0,1 \) but
+          \[
+              x_{2n-1} \to 0, \qquad x_{2n} \to 1.
+          \]
+
+    \item If we combine the sequences
+          \[
+              (1), (1, \frac{1}{2}), (1,\frac{1}{2},\frac{1}{3}), \dots
+          \]
+          together to form
+          \[
+              1, 1, \frac{1}{2}, 1, \frac{1}{2}, \frac{1}{3}, \dots
+          \]
+          For each $n \in \mathbb{N}$, we can get a constant subsequence of \( \frac{1}{n} \) by
+          choosing the nth element of each "block".
+
+    \item This is impossible, since the sequence formed by the infinite set ordered, eventually converges to 0, but 0 is not in the set.
+
+
+\end{enumerate}
+
+\textbf{Exercise 2.5.2}
+\begin{enumerate}[label=(\alph*)]
+    \item True, consider the proper subsequence \( (x_2, x_3, \dots) \), all the elements except the first.
+          Then this subsequence converges by assumption. Adding \( x_1 \) to the front does not affect the tail, so \( (x_n) \)
+          converges as well.
+    \item True, if \( (x_n) \) converges, then every subsequence also converges. Thus the contrapositive means that if we a divergent subsequence, then the \( (x_n) \) diverges.
+    \item True, by Bolzano Weierstrass, if \( (x_n) \) is bounded,
+          then it must have a convergent subsequence, say \( (x_{nk} \to L) \).
+          Then since \( (x_n) \) is divergent, there exists \( \epsilon > 0 \)
+          such that infinitely many terms satisfy \( \vert x_n - L \vert \geq \epsilon > 0 \).
+          Using these terms, we can construct another bounded subsequence that never converges to L.
+          Since this subsequence is bounded, we can reapply Bolzano Weierstrass
+          and find a convergent sequence that converges to
+          another limit that cannot be \( L \) since \( \epsilon > 0 \).
+
+    \item Suppose \( (x_n) \) is increasing WLOG and contains a convergent subsequence \( x_{nk} \to L \).
+          Since the subsequence is convergent, it is also bounded by some upper limit say \( B \).
+          Then for every \( n \in \mathbb{N} \), choose \( nk \geq n \) so
+          \[
+              x_n \leq x_{nk} < B.
+          \]
+          Thus the \( (x_n) \) is also bounded above by \( B \). Thus, by the monotone convergence theorem, \( (x_n) \to L\).
+\end{enumerate}
+
+\textbf{Exercise 2.5.5}
+Assume \( (a_n) \) is bounded sequence where every convergent subsequence converge ot the same limit \( a \in \mathbb{R} \).
+Since \( a_n \) is bounded, exercise 2.5.2c says that if \( a_n \) diverges, then it's subsequences converge to different limit.
+This contradicts our assumption that all convergent subsequences converge to \( a \). Thus \( a_n \) is convergent.
+Then all its subsequences must all be convergent, and they all converge to \( a \). Therefore \( a_n \to a \).
+
+\textbf{Exercise 2.5.9}
+Let \( (a_n) \) be a bounded sequence, and define
+\[
+    S = \{x \in \mathbb{R} : x < a_n \text{ for infinitely many terms } a_n\}.
+\]
+Since \( (a_n) \) is bounded,  there exists some \( B \in \mathbb{R} \) such that
+\[
+    -B \leq a_n \leq B \text{ for every } n \in \mathbb{N}.
+\]
+Then \( -B-1 \in S\), so \( S \neq \varnothing  \) and every element \( x \in S \) must be less than \( B \) since
+\[
+    x < a_n \leq B.
+\]
+That is, \( S \) is bounded above, so by the axiom of completeness, S must have a least upper bound \( s =\sup S \).
+We construct a subsequence \( (a_{nk}) \) out of \( S \) by recursively choosing increasing elements.
+Then \( a_{nk} \) is bounded as well, so by the monotone convergence theorem, \( a_{nk} \) converges to some limit \( L \).
+
+For each \( k \in \mathbb{N} \), since \( s - \frac{1}{k} < s \), it follows that
+\( s - \frac{1}{k} \) is not an upper bound for \( S \).
+So there exists \( t \in S \) such that
+\[
+    s - \frac{1}{k}  < t.
+\]
+
+Then by definition of \( S \), there are infinitely many terms that satisfy \( a_n > t \).
+So infinitely many terms also satisfy
+\[
+    a_n > s - \frac{1}{k}.
+\]
+While, only finitely many terms satisfy
+\[
+    a_n > s + \frac{1}{k}.
+\]
+We can then recursively choose indices \( n_1 < n_2 < \dots  \) so that
+\[
+    s - \frac{1}{k} < a_{nk} \le s + \frac{1}{k}.
+\]
+That is,
+\[
+    \vert a_{nk} - s \vert \leq  \frac{1}{k}.
+\]
+Given \( \epsilon > 0 \), choose \( K \in \mathbb{N} \) such that \( \frac{1}{K} < \epsilon \).
+Then, for every \( k \geq K \) we have
+\[
+    \vert a_{nk} - s \vert \leq \frac{1}{k} \leq \frac{1}{K} < \epsilon
+\]
+Therefore,
+\( a_{nk} \to s = \sup S.
+\)
+
+\textbf{Exercise 2.6.2}
+\begin{enumerate}[label=(\alph*)]
+    \item Let
+          \[
+              x_n = \frac{(-1)^n}{n}.
+          \]
+          Then \( x_n \to 0 \), so it is cauchy.
+          However, it is not monotone since it alternates between positive and negative values.
+    \item Impossible.
+          Every cauchy sequence is convergent, every convergent sequence is bounded,
+          and every subsequence of a bounded sequence is bounded.
+    \item Impossibe. Since the subsequence is cauchy, it must also be convergent, and so it must also be bounded.
+          Since the sequence is monotone, if it has a bounded subsequence, it must be bounded as well.
+          Then the sequence is bounded and monotone, so by the monotoen convergent theorem, it must be convergent.
+
+    \item Consider the sequence \( (x_n) \) defined by
+          \[
+              x_{2n} = 0, \qquad  x_{2n-1} = n.
+          \]
+          Then the sequence is unbounded since \( x_{2n-1} \to \infty \),
+          but its even subsequence \( x_{2n} \to 0 \), and so \( x_n \) contains a cauchy.
+
+\end{enumerate}
+
+
+\textbf{Exercise 2.6.4}
+\begin{enumerate}[label=(\alph*)]
+    \item Yes. Let \( \epsilon > 0 \).
+          Since \( a_n \) and \( b_n \) are cauchy, choose \( N \) such that for all \( m,n \geq N \),
+          \[
+              \vert a_n - a_m \vert < \frac{\epsilon}{2}, \qquad \vert b_n - b_m \vert < \frac{\epsilon}{2}.
+          \]
+          Then for every \( m,n \geq N \) we have
+          \[
+              \begin{split}
+                  \vert c_n - c_m \vert & = \vert \vert a_n - b_n \vert - \vert a_m - b_m \vert  \vert \\
+                                        & \leq \vert (a_n - b_n) - (a_m - b_m) \vert                   \\
+                                        & = \vert (a_n - a_m) + (b_m - b_n) \vert                      \\
+                                        & \leq \vert a_n - a_m \vert + \vert b_n - b_m \vert           \\
+                                        & < \frac{\epsilon}{2} + \frac{\epsilon}{2}                    \\
+                                        & = \epsilon.
+              \end{split}
+          \]
+          Thus \( c_n \) is cauchy.
+    \item Not cauchy. Consider \( (a_n) = 1 \).
+          Then \( a_n \to 1 \) and so is cachy.
+          But \( c_n = (-1)^n \) which diverges and thus is not cauchy.
+
+    \item Not cauchy. Consider \( a_n = \frac{(-1)^n}{n} \).
+          Since \( a_n \to 0 \), \( a_n \) is cauchy. But
+          \[
+              c_n = \begin{cases}
+                  0,  & n \text{ even} \\
+                  -1, & n \text{ odd}  \\
+              \end{cases}
+          \]
+          Thus, the sequence is alternating and never converges. Therefore \( c_n \) is not cauchy.
+
+
+\end{enumerate}
+
+
+
+
+
+
+\end{document}

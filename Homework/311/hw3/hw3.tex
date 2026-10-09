@@ -1,0 +1,544 @@
+\documentclass[12pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath, amssymb, amsthm}
+\usepackage{geometry}
+\usepackage{fancyhdr}
+
+\geometry{letterpaper, margin=1in}
+\setlength{\headheight}{15pt}
+
+% Header setup
+\pagestyle{fancy}
+\fancyhf{}
+\lhead{Math 311 Fall 2026}
+\rhead{Jeffrey Lu}
+\cfoot{\thepage}
+
+\title{Homework Assignment 3 \\ \large Math 311, Fall 2026 \\ Rutgers University}
+\author{}
+\date{}
+
+\begin{document}
+
+\maketitle
+
+\noindent{} \textbf{Exercise 2.2.7}
+\begin{enumerate}
+    \item [(a)] $(-1)^n$ is frequently in the set $\{1\}$ since any even $n$ gives $(-1)^n = 1$. But \(((-1)^n)\) is not eventually in \(\{1\}\), since every odd-indexed term equals \(-1\).
+    \item [(b)] Eventually is stronger since eventually $ \implies $ frequently but not the converse.
+    \item [(c)] We can say \((a_n)\) converges to \(a\) if,
+          for every \(\varepsilon>0\), the sequence is eventually in \(V_\varepsilon(a)\).
+    \item [(d)] Yes, $(x_n)$ is frequently in $(1.9,2.1)$ because infinitely many terms are equal to 2 in the interval.
+          However, it might not be eventually. For example, consider
+          \[
+              x_n =
+              \begin{cases}
+                  2, & n \text{ even}, \\
+                  0, & n \text{ odd}.
+              \end{cases}
+          \]
+\end{enumerate}
+
+\noindent{} \textbf{Exercise 2.3.2}
+\begin{enumerate}
+    \item [(a)]
+          Let \(\varepsilon>0\). Choose \(N\) such that, for \(n\ge N\),
+          \[
+              |x_n-2|<\frac{3\varepsilon}{2}.
+          \]Then, for \(n\ge N\),
+          \[
+              \left|\frac{2x_n-1}{3}-1\right|
+              =\left|\frac{2x_n-4}{3}\right|
+              =\frac{2}{3}|x_n-2|
+              <\frac{2}{3}\cdot\frac{3\varepsilon}{2}
+              =\varepsilon.
+          \]Therefore,
+          \[
+              \frac{2x_n-1}{3}\to 1.
+          \]
+    \item [(b)]
+          Let \(\varepsilon>0\). Because \(x_n\to2\), choose \(N\) such that for \(n\ge N\),
+          \[
+              |x_n-2|<\min\{1,2\varepsilon\}.
+          \]The condition \(|x_n-2|<1\) implies \(x_n>1\), so \(|x_n|>1\). Thus, for \(n\ge N\),
+          \[
+              \left|\frac1{x_n}-\frac12\right|
+              =
+              \left|\frac{2-x_n}{2x_n}\right|
+              =
+              \frac{|x_n-2|}{2|x_n|}
+              <
+              \frac{|x_n-2|}{2}.
+          \]Since \(|x_n-2|<2\varepsilon\),
+          \[
+              \left|\frac1{x_n}-\frac12\right|
+              <
+              \frac{2\varepsilon}{2}
+              =
+              \varepsilon.
+          \]Hence,
+          \[
+              \frac1{x_n}\to\frac12.
+          \]
+\end{enumerate}
+
+\noindent{} \textbf{Exercise 2.3.5}
+Let
+\[
+    (z_n)=(x_1,y_1,x_2,y_2,x_3,y_3,\ldots).
+\]
+Suppose $(z_n) \to L$. Let $\varepsilon > 0$. There exists $N$ such that if $m \geq N$, then
+\[
+    |z_m - L| < \varepsilon.
+\]
+For $n \geq N$, we have $2n-1 \geq N$, so
+\[
+    |x_n - L| = |z_{2n-1} - L| < \varepsilon.
+\]
+Thus, $x_n \to L.$ Similarly, if \(n\ge N\), then \(2n\ge N\), and hence
+\[
+    |y_n-L|=|z_{2n}-L|<\varepsilon.
+\]
+So \(y_n\to L\).
+Therefore, both \((x_n)\) and \((y_n)\) converge and have the same limit.
+
+Conversely, suppose
+\[
+    x_n\to L
+    \qquad\text{and}\qquad
+    y_n\to L.
+\]
+Let $\varepsilon > 0$. Choose $N_1$ such that if $n \geq N_1$, then $|x_n - L| < \varepsilon$,
+and choose $N_2$ such that if $n \geq N_2$, then $|y_n - L| < \varepsilon$.
+Let $N = 2 \cdot \max\{N_1, N_2\}$. Then for any $m \geq N$, we have even/odd cases.
+
+If $m = 2k$, then $k \geq \max\{N_1, N_2\}$, so
+\[
+    |z_m-L|=|z_{2k}-L|=|y_k-L|<\varepsilon.
+\]
+
+If $m = 2k-1$, then $k \geq \max\{N_1, N_2\}$, so
+\[
+    |z_m-L|=|z_{2k-1}-L|=|x_k-L|<\varepsilon.
+\]
+Hence \(z_m\to L\).
+
+
+\noindent{} \textbf{Exercise 2.3.6}
+Notice
+\[
+    b_n=n-\sqrt{n^2+2n}
+    =\frac{n^2-(n^2+2n)}{n+\sqrt{n^2+2n}}
+    =\frac{-2n}{n+\sqrt{n^2+2n}}.
+\]
+Because \(n>0\), factor \(n\) out of the square root:
+\[
+    \sqrt{n^2+2n}
+    =
+    \sqrt{n^2\left(1+\frac{2}{n}\right)}
+    =
+    n\sqrt{1+\frac{2}{n}}.
+\]Therefore,
+\[
+    b_n
+    =
+    \frac{-2n}{n+n\sqrt{1+\frac{2}{n}}}
+    =
+    \frac{-2}{1+\sqrt{1+\frac{2}{n}}}.
+\]Now,
+\[
+    \frac1n\to0,
+\]so by the Algebraic Limit Theorem,
+\[
+    1+\frac2n\to1.
+\]
+and
+\[
+    \sqrt{1+\frac2n}\to\sqrt1=1.
+\]
+Thus the denominator converges:
+\[
+    1+\sqrt{1+\frac2n}\to 1+1=2.
+\]Using the quotient rule from the Algebraic Limit Theorem,
+\[
+    \lim_{n\to\infty} b_n
+    =
+    \frac{-2}{2}
+    =
+    -1.
+\]
+Hence \(\lim b_n\) exists and equals -1.
+
+\noindent{}\textbf{Exercise 2.3.8}
+\begin{enumerate}
+    \item [(a)]
+          Since \(x_n\to x\), the Algebraic Limit Theorem gives
+          \[
+              x_n^k \to x^k
+              \qquad (k=1,2,\ldots,d).
+          \]
+          Hence
+          \[
+              a_kx_n^k\to a_kx^k
+          \]
+          for every \(k\).
+          Therefore,
+          \[
+              p(x_n)
+              =
+              a_0+a_1x_n+\cdots+a_dx_n^d
+              \to
+              a_0+a_1x+\cdots+a_dx^d
+              =
+              p(x).
+          \]
+    \item [(b)]
+          Let
+          \[
+              f(t)=
+              \begin{cases}
+                  0, & t=0,    \\
+                  1, & t\ne 0,
+              \end{cases}
+          \]and choose
+          \[
+              x_n=\frac1n.
+          \]Then \(x_n\to0\), but \(x_n\ne0\) for every \(n\). Hence
+          \[
+              f(x_n)=1
+          \]for all \(n\), so \((f(x_n))\to1\). However,
+          \[
+              f(0)=0.
+          \]Thus \(f(x_n)\) converges, but not to \(f(x)\).
+\end{enumerate}
+
+\noindent{} \textbf{Exercise 2.3.11}
+\begin{enumerate}
+    \item [(a)]Suppose \(x_n\to x\), and let
+          \[
+              y_n=\frac{x_1+x_2+\cdots+x_n}{n}.
+          \]Then
+          \[
+              y_n-x
+              =
+              \frac{(x_1-x)+(x_2-x)+\cdots+(x_n-x)}{n}.
+          \]
+          Let $\varepsilon > 0$.
+          Since $x_n \to x$, there exists $N$ such that if $n \geq N$ then
+          \[
+              |x_n - x| < \frac{\varepsilon}{2}.
+          \]
+          Define
+          \[
+              C=\sum_{k=1}^{N-1}|x_k-x|.
+          \]
+
+          For $n \geq N$, we have
+          \[
+              \begin{aligned}
+                  |y_n - x| & \leq \frac{1}{n}\sum_{k=1}^{n}|x_k - x|             \\
+                            & = \frac{C}{n} + \frac{1}{n}\sum_{k=N}^{n}|x_k - x|.
+              \end{aligned}
+          \]
+          Every term in the second sum is less than \(\varepsilon/2\), so
+          \[
+              \frac{1}{n}\sum_{k=N}^n |x_k-x|
+              \leq \frac{n-N+1}{n}\cdot\frac{\varepsilon}{2}
+              \leq \frac{\varepsilon}{2}.
+          \]
+          Choose \(n\) large enough that \(C/n<\varepsilon/2\). Then
+          \[
+              |y_n-x|<\frac{\varepsilon}{2}+\frac{\varepsilon}{2}
+              =\varepsilon.
+          \]
+          Therefore \(y_n\to x\).
+    \item [(b)]
+          Let
+          \[
+              x_n=(-1)^n.
+          \]This sequence does not converge. But its averages do:
+          \[
+              y_n=\frac{(-1)^1+(-1)^2+\cdots+(-1)^n}{n}.
+          \]If \(n\) is even, the numerator is \(0\), so \(y_n=0\). If \(n\) is odd, the numerator is \(-1\), so
+          \[
+              y_n=-\frac1n.
+          \]Thus \(y_n\to0\), even though \((x_n)\) does not converge.
+\end{enumerate}
+
+\noindent{}\textbf{Exercise 2.4.1}
+
+Let
+\[
+    \alpha=2-\sqrt3.
+\]Notice that \(\alpha\) satisfies
+\[
+    \alpha=\frac1{4-\alpha},
+\]because \(\alpha^2-4\alpha+1=0\).
+\begin{enumerate}
+    \item [(a)]
+          First,
+          \[
+              x_2=\frac1{4-x_1}=\frac1{4-3}=1.
+          \]
+          Also, \(\alpha<1=x_2\). Suppose \(x_n>\alpha\) and \(x_n\le 1\). Then
+          \[
+              x_{n+1}-\alpha
+              =
+              \frac1{4-x_n}-\frac1{4-\alpha}
+              =
+              \frac{x_n-\alpha}{(4-x_n)(4-\alpha)}>0.
+          \]
+          So \(x_{n+1}>\alpha\). Also, if \(x_n\le1\), then
+          \[
+              x_{n+1}=\frac{1}{4-x_n}\le\frac13<1.
+          \]
+          Hence, by induction, \(\alpha<x_n\le1\) for every \(n\ge2\).
+          Now, for \(n\ge2\),
+          \[
+              x_{n+1}-x_n
+              =
+              \frac1{4-x_n}-x_n
+              =
+              \frac{x_n^2-4x_n+1}{4-x_n}.
+          \]Factor the numerator:
+          \[
+              x_n^2-4x_n+1
+              =
+              (x_n-(2-\sqrt3))(x_n-(2+\sqrt3)).
+          \]Because
+          \[
+              2-\sqrt3<x_n\le1<2+\sqrt3,
+          \]the numerator is negative, while \(4-x_n>0\). Hence
+          \[
+              x_{n+1}-x_n<0.
+          \]Therefore \((x_n)\) is decreasing and bounded below by \(2-\sqrt3\). By the Monotone Convergence Theorem, \((x_n)\) converges.
+    \item [(b)] If \(x_n\to L\), then removing the first term does not change the limit.
+    \item [(c)] Taking limits in
+          \[
+              x_{n+1}=\frac1{4-x_n},
+          \]
+          gives
+          \[
+              L=\frac1{4-L}.
+          \]
+          Thus
+          \[
+              L(4-L)=1,
+          \]
+          so
+          \[
+              L^2-4L+1=0.
+          \]
+          The possible solutions are
+          \[
+              L=2\pm\sqrt3.
+          \]
+          But \(x_n\le1\) for all \(n\ge2\), so its limit must satisfy \(L\le1\). Therefore,
+          \[
+              \lim_{n\to\infty}x_n=2-\sqrt3.
+          \]
+\end{enumerate}
+
+\noindent{} \textbf{Exercise 2.4.2}
+\begin{enumerate}
+    \item [(a)] The problem is that the argument assumes the limit exists.
+          In fact,
+          \[
+              y_1=1,\qquad y_2=3-1=2,\qquad y_3=3-2=1,
+          \]so the sequence is
+          \[
+              1,2,1,2,1,2,\ldots
+          \]and does not converge.
+    \item [(b)] Only if we prove convergence is true first.
+          Let
+          \[
+              \beta=\frac{3+\sqrt5}{2}.
+          \]
+          Notice that
+          \[
+              y_1=1<\beta.
+          \]
+
+          Assume \(1\le y_n<\beta\). Then
+          \[
+              y_{n+1}=3-\frac1{y_n}\ge 2>1.
+          \]
+          Also, because \(0<y_n<\beta\),
+          \[
+              \frac1{y_n}>\frac1\beta,
+          \]
+          and hence
+          \[
+              y_{n+1}
+              =3-\frac1{y_n}
+              <3-\frac1\beta
+              =\beta.
+          \]
+          Thus \(1\le y_n<\beta\) for every \(n\).
+
+          Also,
+          \[
+              y_{n+1}-y_n
+              =
+              3-\frac1{y_n}-y_n
+              =
+              \frac{-(y_n^2-3y_n+1)}{y_n}.
+          \]
+          Since
+          \[
+              y_n^2-3y_n+1
+              =
+              \left(y_n-\frac{3-\sqrt5}{2}\right)
+              \left(y_n-\frac{3+\sqrt5}{2}\right),
+          \]
+          and \(1\le y_n<\beta\), we have \(y_{n+1}-y_n>0\).
+          Thus \((y_n)\) is increasing and bounded above, so it converges.
+
+          Let
+          \[
+              L=\lim_{n\to\infty}y_n.
+          \]
+          Then
+          \[
+              L=3-\frac1L,
+          \]
+          so
+          \[
+              L^2-3L+1=0.
+          \]
+          Therefore,
+          \[
+              L=\frac{3\pm\sqrt5}{2}.
+          \]
+          Because \(y_n\ge1\), we have
+          \[
+              \lim_{n\to\infty}y_n=\frac{3+\sqrt5}{2}.
+          \]
+\end{enumerate}
+
+\noindent{} \textbf{Exercise 2.4.3}
+\begin{enumerate}
+    \item [(a)] Define
+          \[
+              x_1=\sqrt2,
+              \qquad
+              x_{n+1}=\sqrt{2+x_n}.
+          \]
+          Notice
+          \[
+              x_1=\sqrt2<2.
+          \]If \(0<x_n<2\), then
+          \[
+              x_{n+1}=\sqrt{2+x_n}<\sqrt4=2.
+          \]Thus \(x_n<2\) for every \(n\). Also, when \(0<x_n<2\),
+          \[
+              2+x_n>x_n^2,
+          \]because
+          \[
+              2+x_n-x_n^2=(2-x_n)(x_n+1)>0.
+          \]Taking square roots gives
+          \[
+              x_{n+1}=\sqrt{2+x_n}>x_n.
+          \]Hence \((x_n)\) is increasing and bounded above by \(2\), so it converges.
+          Let \(L=\lim x_n\). Then
+          \[
+              L=\sqrt{2+L}.
+          \]Thus
+          \[
+              L^2-L-2=0,
+          \]so
+          \[
+              L=2 \quad\text{or}\quad L=-1.
+          \]Since \(x_n\ge\sqrt2\) for every \(n\), we have \(L\ge\sqrt2>0\).
+    \item [(b)]
+          Define
+          \[
+              y_1=\sqrt2,
+              \qquad
+              y_{n+1}=\sqrt{2y_n}.
+          \]Again, \(y_1<2\). If \(0<y_n<2\), then
+          \[
+              y_{n+1}=\sqrt{2y_n}<\sqrt4=2.
+          \]So \(y_n<2\) for every \(n\). Furthermore, if \(0<y_n<2\), then
+          \[
+              2y_n>y_n^2.
+          \]Taking square roots gives
+          \[
+              y_{n+1}=\sqrt{2y_n}>y_n.
+          \]Therefore \((y_n)\) is increasing and bounded above by \(2\), and hence it converges.
+          Let \(L=\lim y_n\). Taking limits in
+          \[
+              y_{n+1}=\sqrt{2y_n}
+          \]gives
+          \[
+              L=\sqrt{2L}.
+          \]Thus
+          \[
+              L^2=2L,
+          \]so \(L=0\) or \(L=2\). Since \(y_n\ge\sqrt2>0\),
+          \[
+              \lim y_n=2.
+          \]
+\end{enumerate}
+
+\noindent{} \textbf{Exercise 2.4.8}
+\begin{enumerate}
+    \item [(a)] Let
+          \[
+              s_N=\sum_{n=1}^N\frac1{2^n}
+              =\frac12+\frac14+\cdots+\frac1{2^N}.
+          \]This is a geometric sum, so
+          \[
+              s_N=\frac{\frac12(1-(1/2)^N)}{1-\frac12}
+              =1-\frac1{2^N}.
+          \]Therefore,
+          \[
+              \lim_{N\to\infty}s_N=1.
+          \]So the series converges, and
+          \[
+              \sum_{n=1}^{\infty}\frac1{2^n}=1.
+          \]
+    \item [(b)] Let
+          \[
+              \begin{aligned}
+                  s_N
+                   & = \sum_{n=1}^N\left(\frac{1}{n(n+1)}\right)             \\
+                   & = \sum_{n=1}^N\left(\frac1n-\frac1{n+1}\right)          \\
+                   & = \left(1-\frac12\right) + \left(\frac12-\frac13\right)
+                  + \cdots + \left(\frac1N-\frac1{N+1}\right).
+              \end{aligned}
+          \]
+          Everything cancels except the first and last terms:
+          \[
+              s_N=1-\frac1{N+1}=\frac{N}{N+1}.
+          \]Hence,
+          \[
+              \lim_{N\to\infty}s_N=1.
+          \]So
+          \[
+              \sum_{n=1}^{\infty}\frac1{n(n+1)}=1.
+          \]
+    \item [(c)]
+          Let \[
+              s_N
+              =
+              \sum_{n=1}^N \log\left(\frac{n+1}{n}\right)
+              =
+              \sum_{n=1}^N\left(\log(n+1)-\log n\right).
+          \]
+          Then
+          \[
+              s_N
+              =
+              (\log2-\log1)+(\log3-\log2)+\cdots+(\log(N+1)-\log N).
+          \]
+          Thus,
+          \[
+              s_N=\log(N+1)-\log1=\log(N+1).
+          \]
+          Since
+          \[
+              \log(N+1)\to\infty,
+          \]the partial sums do not converge to a real number. Therefore the series diverges.
+\end{enumerate}
+\end{document}

@@ -1,0 +1,617 @@
+\documentclass[12pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath, amssymb, amsthm}
+\usepackage{geometry}
+
+% Set margins to match a standard homework document
+\geometry{a4paper, margin=1in}
+
+\title{Recitation 2}
+\parskip=1ex
+\author{Math 311 Fall 2026 \\ Rutgers University}
+\date{}
+
+\begin{document}
+
+\maketitle
+
+\noindent{} \textbf{Question 1:}
+\begin{enumerate}
+      \item [(a)] True. Consider $ B = {1} \subseteq R$.
+            Then  \[
+                  \inf(B) = 1 = \sup(B).
+            \]
+            Therefore,
+            \[
+                  \inf B \geq \sup B.
+            \]
+      \item [(b)] False, every non-empty finite set will contain both its supremum and infimum.
+            Thus a finite set cannot contain its infimum but fail to contain its supremum.
+      \item [(c)] Define
+            \[
+                  B = (0, 1] \cap \mathbb{Q}.
+            \]
+            Then $B$ is a bounded nonempty subset of $\mathbb{Q}$, where
+            \[
+                  \sup B = 1 \in B,
+            \]
+            and
+            \[
+                  \inf B = 0 \notin B.
+            \]
+\end{enumerate}
+
+\noindent{} \textbf{Question 2:}
+\begin{enumerate}
+      \item [(a)] The axiom of completeness says that every nonempty set in $\mathbb{R}$ that is bounded above has a supremum.
+
+            Similarly, for an ordered field $F$ to be complete, every non-empty subset $S$ of $F$ that is bounded above must have a supremum.
+      \item [(b)]
+            Let
+            \[
+                  S = \mathbb{Q} \cap (0, \pi).
+            \]
+            Suppose, for sake of contradiction, that $S$ has a supremum in the ambient ordered field of $\mathbb{Q}$, say
+            \[ s = \sup S. \]
+            Notice that $\pi > x$ for every $x \in S$, so
+            \[
+                  s \leq \pi
+            \]
+            Since $s \in \mathbb{Q}$ and $\pi \notin \mathbb{Q}$,
+            \[
+                  s < \pi
+            \]
+            Furthermore, $\mathbb{Q}$ is dense in $\mathbb{R}$, so there must exist some $q \in \mathbb{Q}$ such that
+            \[
+                  s < q < \pi.
+            \]
+            Since $s \in S$, it follows that $0 < s < \pi$. So
+            \[
+                  0 < q < \pi,
+            \]
+            and $q \in S$.
+            But $q > s$, which contradicts our assumption that $s$ is an upper bound on $S$.
+            Therefore, $S$ has no supremum in $\mathbb{Q}$.
+
+            If we instead choose the ambient ordered field to be $\mathbb{R}$,
+            then $\pi$ is still an upper bound on $S$ since every $x \in S$ satisfies
+            \[
+                  \pi \geq x.
+            \]
+            For sake of contradiction, suppose there exists a $u < \pi$ such that
+            \[
+                  u \geq x
+            \]
+            for every $x \in S$.
+            Then, by density of $\mathbb{Q}$, there exists a $q \in \mathbb{Q}$ such that
+            \[
+                  u < q < \pi
+            \]
+            But, then $q \in S$, so $u$ cannot be an upper bound on $S$.
+            Therefore $\pi$ must be the least upper bound.
+
+            This proves that $\mathbb{Q}$ is not complete,
+            because even though $S \subseteq \mathbb{Q}$ is nonempty and bounded above,
+            it has no supremum in $\mathbb{Q}$
+      \item [(c)]
+            Let
+            \[ Q_1 = \mathbb{Q} \cap (0, \pi),~ Q_2 = \mathbb{Q} \cap (\pi, 100)\]
+            For every $a \in Q_1$
+            \[
+                  a < \pi
+            \]
+            and for every $b \in Q_2$
+            \[
+                  b > \pi.
+            \]
+            Thus,
+            \[
+                  a < \pi < b,
+            \]
+            so
+            \[
+                  a < b.
+            \]
+
+            Suppose, for contradiction, that there exists some $c \in \mathbb{Q}$ such that
+            \[
+                  a \leq c \leq b
+            \]
+            for every $a \in Q_1$ and every $b \in Q_2$.
+            Since $c \in \mathbb{Q}$ and $\pi \notin \mathbb{Q}$, either $c < \pi$ or $c > \pi$.
+
+            (Case 1) If $c < \pi$, then density of $\mathbb{Q}$ says there exists some $q \in \mathbb{Q}$ such that
+            \[
+                  c < q < \pi.
+            \]
+            So $q \in Q_1$.
+            But $q > c$, contradicting $c \geq a$ for every $a \in Q_1$.
+
+            (Case 2) If $c > \pi$, then density of $\mathbb{Q}$ says there exists some $q \in \mathbb{Q}$ such that
+            \[
+                  \pi < q < c.
+            \]
+            So $q \in Q_2$.
+            But $q < c$, contradicting $c \leq b$ for every $b \in Q_2$.
+
+            Since both cases are impossible, this $c$ cannot exist in $\mathbb{Q}$.
+            Therefore,  there is no single $c \in \mathbb{Q}$ such that
+            \[
+                  a \leq c \leq b
+            \]
+            for every $a \in Q_1$ and every $b \in Q_2$.
+
+\end{enumerate}
+
+\noindent{} \textbf{Question 3:}
+\begin{enumerate}
+      \item [(a)] Let $X, Y \subseteq \mathbb{R}$ be nonempty. Assume that $X$ is bounded above, $Y$ is bounded below,
+            \[
+                  x \leq y, \text{ for every } x \in X \text{ and for every } y \in Y.
+            \]
+            That is, every $y$ is an upper bound on $X$.
+            Since $\sup X$ is the least upper bound, it follows that
+            \[
+                  \sup X \leq y, \text{ for every } y \in Y.
+            \]
+            That is, $\sup X$ is a lower bound on $Y$.
+            Since $\inf Y$ is the greatest lower bound, it follows that
+            \[
+                  \sup X \leq \inf Y.
+            \]
+      \item [(b)]
+            Continuing from part (a), assume
+            \[
+                  X \cup Y = \mathbb{R}.
+            \]
+            From part (a), we have
+            \[
+                  \sup X \leq \inf Y.
+            \]
+            For sake of contradiction, suppose that the strict inequality holds. So
+            \[
+                  \sup X < \inf Y.
+            \]
+            Then, the midpoint would be
+            \[
+                  m = \frac{\sup X + \inf Y}{2}.
+            \]
+            So
+            \[
+                  \sup X < m < \inf Y
+            \]
+            Since $X \cup Y = \mathbb{R}$, either $m \in X$ or $m \in Y$.
+
+            (Case 1) If $m \in X$, then by definition of supremum,
+            \[
+                  \sup X \geq m.
+            \]
+            However, this contradicts that $\sup X < m$.
+
+            (Case 2) If $m \in Y$, then by definition of infimum,
+            \[
+                  \inf Y \leq m
+            \]
+            However, this contradicts that $\inf Y > m$.
+
+            Both cases lead to contradictions.
+            Since $m \in \mathbb{R}$ and $X \cup Y = \mathbb{R}$, this is impossible.
+            The strict inequality does not hold, so from $\sup X \leq \inf Y$ we get
+            \[
+                  \sup X = \inf Y.
+            \]
+\end{enumerate}
+
+\noindent{} \textbf{Question 4}
+
+Let $A \subseteq \mathbb{R}$ satisfy the relative Nested Interval Property, and
+$E \subseteq A$ be nonempty and bounded above by some element of $A$.
+Define
+\[
+      U = \{u \in A : u \text{ is an upper bound for } E\}
+\]
+and
+\[
+      L = A \setminus U.
+\]
+\begin{enumerate}
+      \item [(a)]
+            Assume, for the sake of contradiction, that $U$ has no least element.
+            By definition, $E$ is bounded above by some element of $A$.
+            So there exists some $u \in A$ that is an upper bound on $E$.
+            Then $u \in U$, and so
+            \[ U \neq \emptyset. \]
+
+            Take some $e \in E$.
+            For sake of contradiction, suppose $e \in U$.
+            Then by definition of $U$,
+            \[
+                  e \leq u \text{ for every } u \in U.
+            \]
+            That is, $e$ is the least element of $U$.
+            However, this contradicts our assumption that $U$ has no least element.
+            So $e \notin U$, which means $e \in L$. Thus,
+            \[
+                  L \neq \emptyset.
+            \]
+
+            Take some $\ell \in L$ and $u \in U$.
+            Since $\ell \notin U$, $\ell$ is not an upper bound on $E$,
+            there exists some $e \in E$ such that
+            \[
+                  e > \ell.
+            \]
+            Since $u$ is an upper bound on $E$,
+            \[
+                  u \geq e.
+            \]
+            Together,
+            \[
+                  \ell < e \leq u.
+            \]
+            Thus,
+            \[
+                  \ell < u \text{ for every } \ell \in L \text{ and } u \in U.
+            \]
+
+            Suppose, for sake of contradiction, that there exists some maximum $\ell_0$ in $L$.
+
+            Since $\ell_0 \in L$, it is not an upper bound for $E$.
+            So there exists some $e \in E$ such that
+            \[
+                  e > \ell_0.
+            \]
+            Since $\ell_0$ is the largest element of $L$ and $e$ is greater, $e \notin L$.
+            Furthermore, because $e \in E \subseteq A$, it follows that $e \in U$.
+            With $e \in U$ and $e \in E$, it follows that
+            \[
+                  e \leq u \text{ for every } u \in U.
+            \]
+            That is, $e$ is the least element of $U$.
+            However, this contradicts our assumption that $U$ has no least element.
+            Therefore, it must be that $L$ has no largest element.
+      \item [(b)]
+            Since $L$ is nonempty and bounded above, and $U$ is nonempty and bounded below,
+            completeness of $\mathbb{R}$ gives
+            \[
+                  \alpha = \sup L
+                  \qquad \text{and} \qquad
+                  \beta = \inf U.
+            \]
+            Because $\alpha = \sup L$ and $L$ has no largest element, we may
+            recursively choose $(a_n) \subseteq L$ so that
+            \[
+                  a_1 \leq a_2 \leq \cdots
+            \]
+            and
+            \[
+                  \alpha-\frac{1}{n}<a_n\leq\alpha.
+            \]
+            Similarly, because $\beta=\inf U$ and $U$ has no least element, we may
+            choose $(b_n)\subseteq U$ so that
+            \[
+                  b_1\geq b_2\geq\cdots
+            \]
+            and
+            \[
+                  \beta\leq b_n<\beta+\frac{1}{n}.
+            \]
+      \item [(c)]
+            Define
+            \[
+                  I_n = [a_n, b_n] \cap A.
+            \]
+            Recall from part (a) that
+            \[
+                  \ell < u \text{ for every } \ell \in L \text{ and every } u \in U.
+            \]
+            Since $(a_n) \subseteq L$ and $(b_n) \subseteq U$, it follows that
+            \[
+                  a_n < b_n \text{ for every } n \in \mathbb{N}.
+            \]
+            Furthermore, because $(a_n)$ is increasing while $(b_n)$ is decreasing, each interval will contain the next.
+            That is,
+            \[
+                  I_1 \supseteq I_2 \supseteq I_3 \supseteq \cdots.
+            \]
+
+            Thus, by the relative Nested Interval Property,
+            \[
+                  \bigcap_{n=1}^{\infty} I_n \neq \emptyset.
+            \]
+            Choose some
+            \[
+                  x \in \bigcap_{n=1}^{\infty} I_n.
+            \]
+            Then for every $n \in \mathbb{N}$,
+            \[
+                  a_n \leq x \leq b_n.
+            \]
+            Suppose, for sake of contradiction, that $x < \alpha$. Then
+            \[
+                  \alpha - x > 0.
+            \]
+            By the Archimedean Property, there exists $n \in \mathbb{N}$ such that
+            \[
+                  \frac{1}{n} < \alpha - x.
+            \]
+            Thus,
+            \[
+                  x < \alpha - \frac{1}{n} < a_n.
+            \]
+            But, this contradicts $a_n \leq x$.
+            Therefore,
+            \[
+                  x \geq \alpha.
+            \]
+
+            Similarly, suppose, for sake of contradiction, $x > \beta$
+            Then
+            \[
+                  x - \beta > 0.
+            \]
+            By the Archimedean Property, there exists $n \in \mathbb{N}$ such that
+            \[
+                  \frac{1}{n} < x - \beta.
+            \]
+            Thus,
+            \[
+                  b_n < \frac{1}{n} + \beta < x.
+            \]
+            But, this contradicts $x \leq b_n$.
+            Therefore,
+            \[
+                  x \leq \beta
+            \]
+            Together
+            \[
+                  \alpha \leq x \leq \beta.
+            \]
+            Hence,
+            \[
+                  x \in A \cap [\alpha,\beta].
+            \]
+
+            Since $A = L \cup U$, either $x \in L$ or $x \in U$.
+
+            (Case 1) Say $x \in L$. Then since $\alpha$ is the supremum of $L$,
+            \[
+                  x \leq \alpha.
+            \]
+            But since $x \in [\alpha, \beta]$,
+            \[
+                  x \geq \alpha.
+            \]
+            So $x = \alpha$. Since $x\in L$, this means $\alpha\in L$.
+            But this contradicts the fact that $L$ has no largest element.
+
+            (Case 2) Say $x \in U$. Then since $\beta = \inf U$,
+            \[
+                  x \geq \beta.
+            \]
+            Since $x \in [\alpha, \beta]$,
+            \[
+                  x \leq \beta.
+            \]
+            So $x = \beta$. Since $x\in U$, this means $\beta\in U$, contradicting the fact that $U$ has no least element.
+
+            Thus, neither case is possible.
+            But $x\in A$, so one of them
+            must hold. This is a contradiction.
+            Hence, our original assumption that $U$ has no least element must be false.
+            Therefore, $U$ has a least element, say, $s$.
+            Since $U$ is the set of upper bounds of $E$,
+            $s$ must be the least upper bound of $E$ in $A$.
+            That is,
+            \[
+                  s = \sup_A E.
+            \]
+
+            Since $E \subseteq A$ was arbitrary, every nonempty subset of $A$
+            that is bounded above by an element of $A$ has a least upper bound belonging to $A$.
+
+            Therefore, by definition of completeness, we conclude that $A$ is complete.
+\end{enumerate}
+
+\noindent{} \textbf{Question 5}
+\begin{enumerate}
+      \item [(a)]
+            Define $f: \mathbb{N} \cup \{0\} \rightarrow \mathbb{N}$ as $f(x) = x + 1$
+
+            Injective: Suppose $f(y) = f(x)$.
+            Then
+            \[
+                  x + 1 = y + 1.
+            \]
+            So
+            \[
+                  x = y.
+            \]
+            Thus, $f(x)$ is injective.
+
+            Surjective:
+            Let $y \in \mathbb{N}$.
+            Choose $x = y - 1$. Then
+            \[
+                  f(x) = y - 1 + 1 = y.
+            \]
+            Thus, $f(x)$ is also surjective.
+
+            Therefore $f(x)$ is bijective.
+
+      \item [(b)]
+            Define
+            \[
+                  f:\{0\}\cup D\to D
+            \]
+            as
+            \[
+                  f(x) =
+                  \begin{cases}
+                        \frac{1}{2}, \text{ if } x = 0 \\
+                        \frac{1}{2^{n+1}}, \text{ if }x = \frac{1}{2^n}
+                  \end{cases}
+            \]
+
+            Injectivity:
+
+            (Case 1) Suppose $f(x)=f(y)$.
+
+            If $f(x)=\frac12$, then the only possible input is $x=0$,
+            and similarly $y=0$.
+
+            (Case 2) If $x = \frac{1}{2^n}$.
+            Suppose $f(x) = f(y)$.
+            Then by definition of $f$,
+            \[
+                  x = y = \frac{1}{2^n}.
+            \]
+
+            Thus, $f$ is injective in all cases.
+
+            Surjectivity:
+
+            Let $y \in D$. Then $y = \frac{1}{2^n}$ for some $n \in \mathbb{N}$.
+            If $n = 1$, then $y = \frac{1}{2}$. So we can just choose $x = 0$.
+            Then
+            \[
+                  f(0) = \frac{1}{2} = y.
+            \]
+
+            If $n \geq 2$, then $y = \frac{1}{2^n}$. So we choose
+            \[
+                  x = \frac{1}{2^{n-1}}.
+            \]
+            Then
+            \[
+                  f(x) = \frac{1}{2^n} = y.
+            \]
+
+            Thus, $f$ is surjective.
+            Therefore, $f$ is a bijective function.
+      \item [(c)]
+            Define
+            \[
+                  f:[0,1)\to(0,1)
+            \]
+            as
+            \[
+                  f(x)=
+                  \begin{cases}
+                        \frac12,         & x=0,                                         \\
+                        \frac1{2^{n+1}}, & x=\frac1{2^n}\text{ for some }n\in\mathbb N, \\
+                        x,               & \text{otherwise}.
+                  \end{cases}
+            \]
+            Injectivity:
+
+            (Case 1) Suppose $f(x)=f(y)$.
+
+            If $f(x)=\frac12$, then the only possible input is $x=0$,
+            and similarly $y=0$.
+
+            (Case 2) If $x = \frac{1}{2^n}$.
+            Suppose $f(x) = f(y)$.
+            Then by definition of $f$,
+            \[
+                  x = y = \frac{1}{2^n}.
+            \]
+            (Case 3) For all the other $x$ values, suppose $f(x) = f(y)$.
+            Then $x = y$.
+
+            Thus, $f$ is injective in all cases.
+
+            Surjectivity:
+
+            Let $y \in (0,1)$.
+
+            (Case 1) If $y = \frac{1}{2}$. Choose $x = 0$. Then
+            \[
+                  f(0) = y
+            \]
+            (Case 2) If $y = \frac{1}{2^n}$. Choose $x = \frac{1}{2^{n-1}}$.
+            Then
+            \[
+                  f(x) = \frac{1}{2^{n -1 + 1}} = y.
+            \]
+            (Case 3) If $y$ is any other value in $(0,1)$, just choose $x = y$.
+            Then
+            \[
+                  f(x) = y.
+            \]
+            Thus, $f$ is surjective.
+            Therefore, $f$ is a bijective function.
+
+      \item [(d)]
+            Define
+            \[
+                  g:[0,1] \to [0,1)
+            \]
+            as
+            \[
+                  g(x)=
+                  \begin{cases}
+                        \frac{1}{2},           & x = 1,                                                 \\
+                        1 - \frac{1}{2^{n+1}}, & x = 1 - \frac{1}{2^n} \text{ for some } n\in\mathbb N, \\
+                        x,                     & \text{otherwise}.
+                  \end{cases}
+            \]
+            Injectivity:
+            (Case 1) Suppose $f(x)=f(y)$.
+
+            If $f(x)=\frac12$, then the only possible input is $x=1$,
+            and similarly $y=1$.
+
+            (Case 2) If $y = 1 - \frac{1}{2^n}$. Suppose $g(x) = g(y)$.
+            Then, by definition of $g$,
+            \[
+                  x = y = 1 - \frac{1}{2^n}
+            \]
+            (Case 3) For all the other $x$ values, suppose $g(x) = g(y)$.
+            Then $x = y$.
+
+            Thus, $g$ is injective in all cases.
+
+            Surjectivity:
+
+            Let $y \in [0,1)$.
+
+            (Case 1) If $y = \frac{1}{2}$. Choose $x = 1$.
+            Then
+            \[
+                  g(1) = \frac{1}{2} = y
+            \]
+            (Case 2) If $y = 1 - \frac{1}{2^n}$. Choose $x = 1 - \frac{1}{2^{n-1}}$.
+            Then
+            \[
+                  g(x) = 1 - \frac{1}{2^{n -1 + 1}} = y.
+            \]
+            (Case 3) If $y$ is any other value in $[0,1)$, just choose $x = y$.
+            Then
+            \[
+                  g(x) = y.
+            \]
+            Thus, $g$ is surjective.
+
+            That is, $g$ is bijective.
+
+            Recall from part (c), we concluded that the function
+            \[
+                  f: [0, 1) \to (0,1)
+            \]
+            is bijective as well.
+
+            Hence, the composition of the two functions
+            \[
+                  f \circ g: [0, 1] \to (0, 1)
+            \]
+            must also be a bijection.
+            Therefore,
+            \[
+                  [0, 1] \sim (0, 1)
+            \]
+\end{enumerate}
+
+
+\end{document}
+

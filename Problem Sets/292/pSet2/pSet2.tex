@@ -1,0 +1,301 @@
+\documentclass[12pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath, amssymb, amsthm}
+\usepackage{geometry}
+
+% Set margins to match a standard homework document
+\geometry{a4paper, margin=1in}
+
+\title{Challenge Problem Set 2}
+\author{Math 292 Spring 2026 \\ Rutgers University}
+\date{}
+
+\begin{document}
+
+\maketitle
+
+\noindent \textbf{Exercise 4.} Let us fix the initial data to be
+\[
+    x_{0}=1, \quad u_{0}=0, \quad y_{0}=1, \quad \text{and} \quad v_{0}=\sqrt{3}.
+\]
+Let $\mathbf{x}(t)$ be the unique solution of $x''(t)=-x(t)$ with $x(0)=(x_{0},y_{0})$ and $x'(0)=(u_{0},v_{0})$ for these values of the initial data.
+
+\begin{enumerate}
+
+    \item[(a)] Find $R_{2}=\max_{t\in\mathbb{R}}\|\mathbf{x}(t)\|$, and find all $t$ for which $\|\mathbf{x}(t)\|=R_{2}$.
+
+          \textbf{Solution:}
+
+          1. From the previous parts, we found that that the $||\vec{x}(t)||$ is maximized when
+          \[
+              \vec{x}(t) = \frac{1}{\sqrt{\lambda{}_2}}\vec{u}_2
+          \]
+
+          2. Thus, we must solve for the eigenvalues and eigenvectors of the matrix M with the initial data given above.
+          \begin{align*}
+              M & = (A^{-1})^T(A^{-1})                                         \\
+                & = \frac{1}{3}
+              \begin{bmatrix} \sqrt{3} & -1 \\ 0 & 1 \end{bmatrix}
+              \begin{bmatrix} \sqrt{3} & 0 \\ -1 & 1 \end{bmatrix}             \\
+                & = \frac{1}{3} \begin{bmatrix} 4 & -1 \\ -1 & 1 \end{bmatrix}
+          \end{align*}
+
+          3. To do this, we first solve the characteristic polynomial, letting $\gamma{} = 3\lambda{}$
+          \begin{align*}
+              det(A - \lambda{}I) & = \frac{1}{3}(4-\gamma{})(1-\gamma{}) - (-1)(-1) \\
+                                  & = \gamma{}^2 - 5\gamma{} + 3                     \\
+                                  & = 0
+          \end{align*}
+
+          4. We can now solve for the eigenvalues using the quadratic formula
+          \begin{align*}
+              \gamma{} & = \frac{5 \pm{} \sqrt{(-5)^2 - 4(1)(3)}}{2(1)}      \\
+              \gamma{} & = \frac{5 \pm{} \sqrt{13}}{2}                       \\
+                       & \implies{} \lambda{}  = \frac{5 \pm{} \sqrt{13}}{6}
+          \end{align*}
+
+          5. Remember that $\lambda{}_1 > \lambda{}_2$
+          \begin{align*}
+              \lambda{}_1 & = \frac{5 + \sqrt{13}}{6} \\
+              \lambda{}_2 & = \frac{5 - \sqrt{13}}{6}
+          \end{align*}
+
+          6. With this, we can solve for $R_2$, take the norm of both sides of the equation from step one
+          \begin{align*}
+              ||\vec{x}(t)|| & = \frac{1}{\sqrt{\lambda{}_2}}||\vec{u}_2||   \\
+              R_2            & = \sqrt{\frac{6}{5-\sqrt{13}}}~\approx{2.074}
+          \end{align*}
+
+          7. To solve for the time, we need the eigenvectors of M
+          \begin{align*}
+              (M-\lambda_{2}I)\vec{u} & = \begin{bmatrix} \frac{4}{3}-\frac{5 - \sqrt{13}}{6} & -\frac{1}{3} \\ -\frac{1}{3} & \frac{1}{3} - \frac{5 - \sqrt{13}}{6} \end{bmatrix} \vec{u} = 0
+          \end{align*}
+
+          8. Since we know this matrix above must be singular, we can solve for the eigenvector using the first row of the matrix. Let x, y be the coordinates of vector $\vec{u}_1$
+          \begin{align*}
+              (\frac{4}{3} - \frac{5-\sqrt{13}}{6})x -\frac{1}{3}y & = 0            \\
+              (\frac{3+\sqrt{13}}{6})x                             & = \frac{2}{6}y \\
+              (3+\sqrt{13})x                                       & = 2y
+          \end{align*}
+
+          9. Thus if we let $x = y = 1$, we get the eigenvector
+          \[
+              \vec{u}_2 = \begin{bmatrix}
+                  2 \\ 3 + \sqrt{13}
+              \end{bmatrix}
+          \]
+
+          10. From an earlier part, recall that $A <cos(t), sin(t)> = \pm{\frac{1}{\sqrt{\lambda{}_2}}}\vec{u_2}$, expanding we get
+          \begin{align*}
+              \begin{bmatrix} cos(t) \\ cos(t) + \sqrt{3}sin(t) \end{bmatrix} = \frac{1}{\sqrt{\lambda_{2}}}\begin{bmatrix} 2 \\ 3 + \sqrt{13} \end{bmatrix}
+          \end{align*}
+
+          11. We can cancel out the scalar by dividing across row 2 by row 1
+          \begin{align*}
+              \frac{3+\sqrt{13}}{2}         & = \frac{cos(t) + \sqrt{3}sin(t)}{cos(t)}               \\
+              \frac{3+\sqrt{13}}{2}         & = 1 + \sqrt{3}tan(t)                                   \\
+              \frac{1+\sqrt{13}}{2\sqrt{3}} & = tan(t)                                               \\
+              t                             & = arctan(\frac{1+\sqrt{13}}{2\sqrt{3}}) \approx{0.926}
+          \end{align*}
+
+    \item[(b)] Find $R_{1}=\min_{t\in\mathbb{R}}\|\mathbf{x}(t)\|$, and find all $t$ for which $\|\mathbf{x}(t)\|=R_{1}$.
+
+          \textbf{Solution:}
+
+          1. Using the minimizer formula we found from previous exercise, we have
+          \begin{align*}
+              \vec{x}(t) = \frac{1}{\sqrt{\lambda{}_1}}\vec{u}_1
+          \end{align*}
+
+          2. Take the norm of both sides to get the minimum value
+          \begin{align*}
+              ||\vec{x}(t)|| & = \frac{1}{\sqrt{\lambda{}_1}}||\vec{u}_1||     \\
+              R_1            & = \sqrt{\frac{6}{3+\sqrt{13}}} ~ \approx{0.835}
+          \end{align*}
+
+          3. Eigenvectors are solved in the same way as we did in part a
+          \begin{align*}
+              ( M-\lambda_{1}I)\vec{u}_1 = \begin{bmatrix} \frac{8}{6} - \frac{5+\sqrt{13}}{6} & \frac{-1}{3} \\ \frac{-1}{3} & \frac{2}{6}-\frac{5+\sqrt{13}}{6} \end{bmatrix} \vec{u}_1 = 0
+          \end{align*}
+
+          4. Find the ratio between the coordinates again
+          \begin{align}
+              (\frac{8-5-\sqrt{13}}{6})x & = \frac{2}{6}y \\
+              (3-\sqrt{13})x = 2y
+          \end{align}
+
+          5. Setting $x=y=1$, we have
+          \[
+              \vec{u}_1 = \begin{bmatrix} 2 \\ 3-\sqrt{13} \end{bmatrix}
+          \]
+
+          6. Expanding $A <cos(t), sin(t)> = \pm{\frac{1}{\sqrt{\lambda{}_2}}}\vec{u_2}$ we have
+          \begin{align*}
+              \begin{bmatrix} cos(t) \\ cos(t) + \sqrt{3}sin(t) \end{bmatrix} = \frac{1}{\sqrt{\lambda_{1}}}\begin{bmatrix} 2 \\ 3 - \sqrt{13} \end{bmatrix}
+          \end{align*}
+
+          7. Dividing row 2 by row 1, we get
+          \begin{align*}
+              \frac{3-\sqrt{13}}{2}         & = \frac{cos(t) + \sqrt{3}sin(t)}{cos(t)}                \\
+              \frac{1-\sqrt{13}}{2\sqrt{3}} & = tan(t)                                                \\
+              t                             & = arctan(\frac{1-\sqrt{13}}{2\sqrt{3}}) \approx{-0.645}
+          \end{align*}
+
+    \item[(c)] Sketch a plot of the ellipse traced out by $\mathbf{x}(t)$ as $t$ ranges over $\mathbb{R}$.
+
+          \textbf{Solution:} Attached on last page.
+\end{enumerate}
+
+
+In solving the concrete problem in Exercise 4, we have encountered some important constructions in Linear Algebra. Introducing the numbers $\sigma_{1}$ and $\sigma_{2}$ through
+\[
+    \sigma_{1}=\frac{1}{\sqrt{\lambda_{1}}} \quad \text{and} \quad \sigma_{2}=\frac{1}{\sqrt{\lambda_{2}}}
+\]
+we can rewrite (0.9) as
+\begin{equation}
+    Av_{1}=\sigma_{1}u_{1} \quad \text{and} \quad Av_{2}=\sigma_{2}u_{2} \tag{0.10}
+\end{equation}
+where $\{u_{1},u_{2}\}$ and $\{v_{1},v_{2}\}$ are both orthonormal bases of $\mathbb{R}^{2}$. Since any vector $x\in\mathbb{R}^{2}$ can be written as
+\[
+    x=(x\cdot v_{1})v_{1}+(x\cdot v_{2})v_{2},
+\]
+applying $A$ to both sides, and using (0.10), we obtain
+\begin{equation}
+    Ax=\sigma_{1}(x\cdot v_{1})u_{1}+\sigma_{2}(x\cdot v_{2})u_{2}. \tag{0.11}
+\end{equation}
+It turns out that this gives a factorization of the general invertible $2\times2$ matrix into a product of simple matrices. This is the singular value decomposition.
+
+\bigskip
+\noindent \textbf{Exercise 5.} Introduce the matrices $V=[v_{1},v_{2}]$,
+\[
+    S=\begin{bmatrix}\sigma_{1}&0\\ 0&\sigma_{2}\end{bmatrix}
+\]
+and $U=[u_{1},u_{2}]$. (That is, the columns of $V$ are $v_{1}$ and $v_{2}$, and the columns of $U$ are $u_{1}$ and $u_{2}$.) Show that (0.11) is equivalent to
+\[
+    Ax=USV^{T}x
+\]
+for all $x$, and thus that the matrix $A$ can be factored as the product of the three matrices $U$, $S$ and $V$:
+\[
+    A=USV^{T}
+\]
+
+\textbf{Solution:}
+
+1. It will be easier to start with matrix form and expand out one by one to get (0.11) to show equivalence:
+\begin{align*}
+    A\vec{x} & = USV^T\vec{x}                                                                                                                                                \\
+             & = \begin{bmatrix} \vec{u}_1 & \vec{u}_2 \end{bmatrix} \begin{bmatrix}       \sigma_{1} & 0 \\ 0 & \sigma_{2}       \end{bmatrix}V^T\vec{x}                    \\
+             & = \begin{bmatrix} \sigma_{1}\vec{u}_1 & \sigma_{2}\vec{u}_2\end{bmatrix} \begin{bmatrix} \vec{v}_1 \\ \vec{v}_2 \end{bmatrix}\vec{x}                          \\
+             & = \begin{bmatrix} \sigma_{1}\vec{u}_1 & \sigma_{2}\vec{u}_2\end{bmatrix} \begin{bmatrix} \vec{x} \cdot{} \vec{v}_1 \\ \vec{x} \cdot{} \vec{v}_2 \end{bmatrix} \\
+             & = \sigma_{1}(x\cdot v_{1})u_{1}+\sigma_{2}(x\cdot v_{2})u_{2} \tag{0.11}
+\end{align*}
+
+\hrulefill{}
+
+Recall that a square matrix with orthonormal columns is an orthogonal matrix, and that the inverse of an orthogonal matrix is its transpose. Hence $U$ and $V$ are orthogonal matrices, and their inverses are their transposes. The only $2\times2$ orthogonal matrices are rotations and reflections, so $U$ and $V$ both represent simple geometric transformations. The matrix $S$ is even simpler: It represents a scaling transformation: It simply rescales the $x$ and $y$ coordinates by the factors $\sigma_{1}$ and $\sigma_{2}$ respectively.
+
+Thus, every invertible linear transformation of $\mathbb{R}^{2}$ into itself is the product of an orthogonal transformation, followed by a scaling transformation, followed by another orthogonal transformation.
+
+Here is one consequence of this important fact. Orthogonal transformations (rotations and reflections) do not affect area. Hence the effect on area of the linear transformation given by $A$ comes entirely from the scale transformation in the middle. Thus, if $R$ is a region in the plane, and $A(R)$ is its image under $A$, the area of $A(R)$ is $\sigma_{1}\sigma_{2}$ times the area of $R$, and it is easy to see that $\sigma_{1}\sigma_{2}=|\det(A)|$.
+
+All of this generalizes to matrices of arbitrary size, but in this workshop we will stay with 2 dimensions, and thoroughly deal with this case.
+
+The final problem is to compute a singular value decomposition. Now that we know that such a decomposition exists, we can efficiently find it as follows. Starting from $A=USV^{T}$, we write
+\[
+    A^{T}A=(USV^{T})^{T}USV^{T}=VSU^{T}USV^{T}=VS^{2}V^{T}
+\]
+where we have used the fact that for any matrix product $XY$, $(XY)^{T}=Y^{T}X^{T}$ and the fact that since $U^{T}$ is the inverse of $U$, since $U$ is orthogonal. Then since $V^{T}$ is the inverse of $V$, again, since $V$ is orthogonal,
+\[
+    V^{T}(A^{T}A)V=V^{-1}(A^{T}A)V=S^{2}.
+\]
+Thus, $V$ diagonalizes the matrix $A^{T}A$. This means the columns of $V$ are an orthonormal basis of eigenvectors of $A^{T}A$, and the corresponding eigenvalues are the squares of the diagonal entries of $S$. So to find $\{v_{1},v_{2}\}$ and $\{\sigma_{1},\sigma_{2}\}$, diagonalize $A^{T}A$. Finally, to find $\{u_{1},u_{2}\}$, use (0.10).
+
+\bigskip
+\noindent \textbf{Exercise 6.} Let $A=\begin{bmatrix}11&-5\\ 2&-10\end{bmatrix}.$
+Compute a singular value decomposition of $A$. That is, find orthogonal matrices $U$ and $V$, and a diagonal matrix $S$ with positive entries (these are the singular values) so that
+\[
+    A=USV^{T}.
+\]
+All of the terms in the singular value decomposition have a direct meaning for the solution of the differential equation $x''=-x$ when the matrix $A$ is given by the initial data, as explained above. This is one way to think about where the singular value decomposition "comes from".
+
+\textbf{Solution:}
+
+1. To find the SVD of A, we begin by calculate $A^TA$
+\begin{align*}
+    A^TA & = \begin{bmatrix} 11 & 2 \\ -5 & -10 \end{bmatrix}  \begin{bmatrix} 11 & -5 \\ 2 & -10 \end{bmatrix} \\
+         & = \begin{bmatrix} 125 & -75 \\ -75 & 125 \end{bmatrix}
+\end{align*}
+
+2. Then we solve the characteristic polynomial from $det(A^TA-\lambda{}I) = 0$ for it's eigenvalues
+\begin{align*}
+    (125-\lambda{})(125-\lambda{})-(-75*-75) & = \lambda{}^2 - 250\lambda{} + 10000 = 0  \\
+                                             & = (\lambda{} - 50)(\lambda{} - 200) = 0   \\ \\
+    \lambda_{1} = 200                        & ~,~                     \lambda_{2}  = 50
+\end{align*}
+
+3. Thus, we have the our two singular values and matrix S
+\begin{align*}
+    \sigma_{1} & = \sqrt{200} = 10\sqrt{2}        \\
+    \sigma_{2} & = \sqrt{50} = 5\sqrt{2}          \\
+    S          & = \begin{bmatrix}
+                       10\sqrt{2} & 0 \\ 0 & 5\sqrt{2}
+                   \end{bmatrix}
+\end{align*}
+
+4. Now we solve for the eigenvectors of $A^TA$ which is equal to V
+\begin{itemize}f
+    \item For $\lambda_{1} = 200$:
+          \begin{align*}
+              \begin{bmatrix} -75 & -75 \\ -75 & -75 \end{bmatrix}\begin{bmatrix} x \\ y \end{bmatrix} = 0 \\
+              -75x - 75y = 0 \implies{x = -y}
+          \end{align*}
+
+          Normalizing, we have our first eigenvector
+          \[
+              \vec{v}_1 = \begin{bmatrix}\frac{1}{\sqrt{2}} \\ -\frac{1}{\sqrt{2}} \end{bmatrix}
+          \]
+    \item For $\lambda_{2} = 50$:
+          \begin{align*}
+              \begin{bmatrix} 75 & -75 \\ -75 & 75 \end{bmatrix}\begin{bmatrix} x \\ y \end{bmatrix} = 0 \\
+              75x - 75y = 0 \implies{x = y}
+          \end{align*}
+
+          Normalizing again, we now have our second eigenvector
+          \[
+              \vec{v}_2 = \begin{bmatrix}\frac{1}{\sqrt{2}} \\ \frac{1}{\sqrt{2}} \end{bmatrix}
+          \]
+\end{itemize}
+
+5. Thus our matrix V is
+\begin{equation*}
+    V = \begin{bmatrix}\frac{1}{\sqrt{2}} & \frac{1}{\sqrt{2}} \\ -\frac{1}{\sqrt{2}} & \frac{1}{\sqrt{2}} \end{bmatrix}
+\end{equation*}
+
+6. To get the matrix U, we rewrite the equation (0.10)
+\begin{itemize}
+    \item For $\vec{u}_1$:
+          \begin{align*}
+              \vec{u}_1 & = \frac{1}{\sigma_{1}} A \vec{v}_1                                                                                                                                            \\
+                        & = \frac{1}{10\sqrt{2}} \begin{bmatrix} 11 & -5 \\ 2 & -10 \end{bmatrix} \begin{bmatrix} \frac{1}{\sqrt{2}} \\ -\frac{1}{\sqrt{2}} \end{bmatrix} \\
+                        & = \frac{1}{20} \begin{bmatrix} 16 \\ 12 \end{bmatrix}                                                                                                                         \\
+                        & = \begin{bmatrix} \frac{4}{5} \\ \frac{3}{5} \end{bmatrix}
+          \end{align*}
+    \item For $\vec{u}_2$:
+          \begin{align*}
+              \vec{u}_2 & = \frac{1}{\sigma_{2}} A \vec{v}_2                                                                                                                                          \\
+                        & = \frac{1}{5\sqrt{2}} \begin{bmatrix} 11 & -5 \\ 2 & -10 \end{bmatrix} \begin{bmatrix} \frac{1}{\sqrt{2}} \\ \frac{1}{\sqrt{2}} \end{bmatrix} \\
+                        & = \frac{1}{10} \begin{bmatrix} 6 \\ 8 \end{bmatrix}                                                                                                                         \\
+                        & = \begin{bmatrix} \frac{3}{5} \\ -\frac{4}{5} \end{bmatrix}
+          \end{align*}
+\end{itemize}
+
+7. Finally, we can assemble the SVD
+\begin{align}
+    A & = USV^T                                                                                 \\
+      & = \begin{bmatrix} \frac{4}{5} & \frac{3}{5} \\ \frac{3}{5} & -\frac{4}{5} \end{bmatrix}
+    \begin{bmatrix} 10\sqrt{2} & 0 \\ 0 & 5\sqrt{2} \end{bmatrix}
+    \begin{bmatrix} \frac{1}{\sqrt{2}} & -\frac{1}{\sqrt{2}} \\ \frac{1}{\sqrt{2}} & \frac{1}{\sqrt{2}} \end{bmatrix}
+\end{align}
+
+
+\end{document}

@@ -1,0 +1,517 @@
+\documentclass[12pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath, amssymb, amsthm}
+\usepackage{geometry}
+\usepackage{fancyhdr}
+
+\geometry{letterpaper, margin=1in}
+\setlength{\headheight}{15pt}
+
+% Header setup
+\pagestyle{fancy}
+\fancyhf{}
+\lhead{Math 311 Fall 2026}
+\rhead{Jeffrey Lu}
+\cfoot{\thepage}
+
+\title{Homework Assignment 2 \\ \large Math 311, Fall 2026 \\ Rutgers University}
+\author{}
+\date{}
+
+\begin{document}
+
+\maketitle
+
+\noindent{} \textbf{Exercise 1.4.4}
+Let $a < b$ be real numbers, and consider the set $T = \mathbf{Q} \cap [a, b]$.
+Suppose $x \in T$. Then, $x \leq b$. So $b$ is an upper bound for $T$.
+Suppose, for contradiction, that there exists some upper bound $c \in T$ such that
+\[
+    a < c < b.
+\]
+By density of $\mathbb{Q}$ in $\mathbb{R}$, there exists some $q \in \mathbb{Q}$ such that
+\[
+    a < c < r < b.
+\]
+Then
+\[
+    r \in \mathbb{Q} \cap [a, b] = T.
+\]
+This contradicts the assumption that $c$ is an upper bound on $c$.
+Thus $c$ cannot be an upper bound on $T$.
+Therefore, $b$ must be the least upper bound, or
+\[
+    b = \sup T.
+\]
+
+\noindent{} \textbf{Exercise 1.4.5}
+Let $a,b \in \mathbb{R}$ such that
+\[
+    a < b
+\]
+So
+\[
+    a - \sqrt{2} < b - \sqrt{2}
+\]
+Since $\mathbb{Q}$ is dense in $\mathbb{R}$, there exists $r \in \mathbb{Q}$ such that
+\[
+    a - \sqrt{2} < r <  b - \sqrt{2}
+\]
+Then
+\[
+    a < r + \sqrt{2} < b.
+\]
+Let $t = r + \sqrt{2}$.
+Since $r \in \mathbb{Q}$ and $\sqrt{2} \in \mathbb{I}$, by part (b) of 1.4.1,
+we have that $t \in \mathbb{I}$. Hence we have $t \in I$ where
+\[
+    a < t < b.
+\]
+
+
+\noindent{} \textbf{Exercise 1.4.8}
+\begin{enumerate}
+    \item [(a)] Take
+          \[
+              A = (0,1) \cap \mathbb{Q}, \qquad B = (0,1) \setminus \mathbb{Q}.
+          \]
+          Then $A \cap B = \emptyset$, and
+          \[
+              \sup A = \sup B = 1 \notin A, B.
+          \]
+    \item [(b)] Take
+          \[
+              J_n = \left(-\frac{1}{n}, \frac{1}{n}\right) : n \in \mathbb{N}
+          \]
+          Then,
+          \[
+              J_1 \supseteq J_2 \supseteq J_3 \supseteq \ldots.
+          \]
+          Furthermore
+          \[
+              \bigcap_{n=1}^{\infty} J_n = \{0\}.
+          \]
+          Which non-empty and contains a finite number of elements, one in this case.
+    \item [(c)]
+          Take
+          \[
+              L_n = [n, \infty]
+          \]
+          where $n \in \mathbb{N}$.
+          Then
+          \[
+              L_1 \supseteq L_2 \supseteq L_3 \supseteq \ldots
+          \]
+          Suppose, for contradiction, that
+          \[
+              \bigcap^{\infty}_{n=1} L_n \neq \emptyset.
+          \]
+          Then, there exists a $x \in L_n$ such that
+          \[
+              x \geq n
+          \] for every $n \in \mathbb{N}$.
+          But, by Archimedean Property, there exists a $n > x$ for every single $x$.
+          Thus, this is a contradiction and no such $x$ exists.
+          Therefore,
+          \[
+              \bigcap^{\infty}_{n=1} L_n = \emptyset.
+          \]
+    \item [(d)]
+          We can use the same interval from part (c), that being
+          \[
+              I_n = [n, \infty].
+          \]
+          For any finite $N$,
+          \[
+              \bigcap_{n=1}^N I_n = [N, \infty] \neq \emptyset.
+          \]
+          But as you take $N \to \infty$,
+          \[
+              \bigcap_{n=1}^{\infty} I_n = \emptyset.
+          \]
+
+\end{enumerate}
+
+\noindent{} \textbf{Exercise 1.5.9}
+\begin{enumerate}
+    \item [(a)] Let $x = \sqrt{2}$. Then
+          \[
+              x^2 - 2 = 0.
+          \]
+          So $\sqrt{2}$ is algebraic
+
+          Now let $x = \sqrt[3]{2}$.
+          Then
+          \[
+              x^3 - 2 = 0.
+          \]
+          So $\sqrt[3]{2}$ is algebraic as well.
+
+          Finally let $x = \sqrt{3} + \sqrt{2}$.
+          Then
+          \[
+              x^4 - 10x^2 + 1 = 0.
+          \]
+          So $\sqrt3 + \sqrt2$ is algebraic.
+
+    \item [(b)] Fix $n \in \mathbb{N}$, and let $A_n$ be the algebraic
+          numbers obtained as roots of polynomials with integer coefficients
+          that have degree $n$. Recall that every polynomial has a finite number of roots.
+
+          We can represent every degree-$n$ polynomial by a finite sequence of integers like
+          \[
+              (a_0, a_1, ... , a_n) \in \mathbb{Z}^{n+1}
+          \]
+          Since $\mathbb{Z}$ is countable, the finite cartesian product
+          $\mathbb{Z}^{n+1}$ is countable as well. Hence there are only
+          countably many degree-\(n\) polynomials with integer coefficients.
+
+          Each such polynomial has finitely many roots, so $A_n$ is a countable
+          union of finite sets. Therefore $A_n$ is countable.
+    \item [(c)]
+          Let $A$ be the set of all algebraic numbers. Since every algebraic number
+          is a root of some polynomial of finite degree, it follows that
+          \[
+              A = \bigcup_{n=1}^{\infty} A_n.
+          \]
+          From part (b) we have that $A_n$ is countable, and so $A$ is the countable
+          union of countable sets. Therefore $A$ is countable.
+
+          Furthermore, since
+          \[
+              \mathbb{R} = A \cup T
+          \]
+          and $\mathbb{R}$ is uncountable, it follows that $T$ is uncountable as well.
+          Otherwise, $\mathbb{R}$ would be the union of two countable sets and countable, which is a contradiction.
+
+
+\end{enumerate}
+
+\noindent{} \textbf{Exercise 1.5.11}
+\begin{enumerate}
+    \item [(a)] Suppose you partition
+          \[
+              X=A\cup A',\qquad Y=B\cup B'
+          \]
+          with
+          \[
+              A\cap A'=\varnothing,\qquad B\cap B'=\varnothing,
+          \]
+          such that \(f\) maps \(A\) onto \(B\) and \(g\) maps \(B'\) onto \(A'\).
+          Then define $h: X \to Y$ by
+          \[
+              h(x)=
+              \begin{cases}
+                  f(x),      & x\in A, \\
+                  g^{-1}(x), & x\in A'
+              \end{cases}
+          \]
+          Then you can show that $h$ maps $A \to B$ bijectively and $A' \to B'$ bijectively.
+          Hence
+          \[ X \sim Y.\]
+    \item [(b)] Set
+          \[
+              A_1 = X \setminus g(Y) = \{x \in X : x \notin g(Y)\},
+          \]
+          and define
+          \[
+              A_{n+1} = g(f(A_n)).
+          \]
+          Then
+          \[
+              A_{n+1} \subseteq g(Y)
+          \]
+          for every $n \geq 1$, and
+          \[
+              A_1 \cap g(Y) = \emptyset.
+          \]
+          So
+          \[
+              A_n \cap A_n = \emptyset
+          \]
+          for all $n \geq 2$.
+
+          Suppose, for contradiction, that
+          \[
+              A_m \cap A_n \neq \emptyset
+          \]
+          for some $m < n$.
+
+          Since
+          \[
+              A_m=g(f(A_{m-1})), \qquad  A_n=g(f(A_{n-1})),
+          \]
+          and both $f$ and $g$ are injective, it follows that
+          \[
+              A_{m-1}\cap A_{n-1} \neq \emptyset.
+          \]
+          Repeating this inductively gives us
+          \[
+              A_1 \cap A_{n-1} \neq \emptyset.
+          \]
+          But this contradicts that $A_1 \cap A_n = \emptyset$.
+          Thus each $A_n$ is pairwise disjoint from each other.
+          Since $f$ is injective, their images are also pairwise disjoint.
+    \item [(c)] Let
+          \[
+              A=\bigcup_{n=1}^\infty A_n,
+              \qquad
+              B=\bigcup_{n=1}^\infty f(A_n).
+          \]
+          Then
+          \[
+              f(A)=
+              f\left(\bigcup_{n=1}^\infty A_n\right)
+              =
+              \bigcup_{n=1}^\infty f(A_n)
+              =
+              B.
+          \]
+          Since $f$ is injective on $X$ and $A \subseteq X$, $f$ is also injective on $A$.
+          Hence $f: A \to B$ is a bijection.
+    \item [(d)]
+          Let
+          \[
+              A'=X\setminus A,\qquad B'=Y\setminus B.
+          \]
+          Take $y \in B'$. Suppose, for contradiction, $g(y) \in A$. Then
+          $g(y) \in A_n$ for some $n \geq 2$. So
+          \[
+              g(y)= g(f(A_{n-1})).
+          \]
+          Thus \(g(y)=g(f(x))\) for some \(x\in A_{n-1}\). Since \(g\) is injective,
+          \[
+              y=f(x)\in f(A_{n-1})\subseteq B,
+          \]
+          contradicting \(y\in B'\). Therefore \(g(y)\in A'\), so \(g(B')\subseteq A'\).
+          Now take \(x\in A'\). Since \(x\notin A_1\), we have \(x\in g(Y)\).
+          Thus there exists \(y\in Y\) such that
+          \[
+              g(y)=x.
+          \]
+          Suppose, for contradiction, \(y\in B\).
+          Then \(y\in f(A_n)\) for some \(n\), so \(y=f(z)\) for some \(z\in A_n\).
+          Hence
+          \[
+              x=g(y)=g(f(z))\in A_{n+1}\subseteq A,
+          \]contradicting \(x\in A'\). Therefore \(y\notin B\), so \(y\in B'\).
+          Hence every \(x\in A'\) is hit by some \(y\in B'\), so \(g\) maps \(B'\) onto \(A'\).
+
+\end{enumerate}
+
+\noindent{} \textbf{Exercise 1.6.1}
+If $(0,1)$ is uncountable, then $\mathbb{R}$ is uncountable as well because
+\[
+    (0,1) \subseteq \mathbb{R}.
+\]
+
+Suppose $\mathbb{R}$ is uncountable.
+Define $f: (0,1) \to (-1,1)$ by
+\[
+    f(x) = 2x - 1.
+\]
+Suppose
+\[f(x_1) = f(x_1).\]
+Then
+\[
+    2_x{_1} - 1 = 2_{x_2} - 1, \]
+so
+\[
+    x_1 = x_2 \]
+Let $y \in (-1, 1)$ Choose
+\[
+    x=\frac{y+1}{2}.
+\]
+Since \(-1<y<1\),
+\[
+    0<\frac{y+1}{2}<1,
+\]
+so \(x\in(0,1)\).
+Also,
+\[
+    f(x)=2\left(\frac{y+1}{2}\right)-1=y.
+\]
+Thus \(f\) is bijective.
+From example 1.5.4. we have the bijection $g: (-1,1) \to \mathbb{R}$ defined by
+\[
+    g(x) = \frac{x}{x^2-1}.
+\]
+Thus \[
+    g\circ f:(0,1)\to\mathbb R
+\]
+is a bijection.
+Therefore,
+\[
+    (0,1) \sim \mathbb{R}.
+\]
+
+
+\noindent{} \textbf{Exercise 1.6.9}
+Define $f:\mathcal P(\mathbb N)\to\mathbb R$ by
+\[
+    f(S)=\sum_{n\in S}10^{-n}.
+\]
+Suppose $f(S_1)=f(S_2)$. The decimal expansion of $f(S_i)$
+has a $1$ in the $n$th decimal place if and only if $n\in S_i$,
+and a $0$ otherwise.
+
+Since $f(S_1)=f(S_2)$, their decimal expansions must agree in every
+decimal place by defition of $f$.
+That is,
+\[
+    n\in S_1 \iff n\in S_2
+\]
+for every $n\in\mathbb N$. Hence $S_1=S_2$.
+Therefore, $f$ is injective.
+
+For each $x \in \mathbb{R}$ define
+\[
+    S_x = \{q \in \mathbb{Q} : q < x\}.
+\]
+Then
+\[
+    S_x \subseteq \mathbb{Q}.
+\]
+
+If $x \neq y$, say $x < y$ WLOG, then by density of $\mathbb{Q}$,
+there exists $q \in \mathbb{Q}$ such that
+\[
+    x < q < y.
+\]
+So
+\[
+    q \notin S_x \qquad \text{but} \qquad q \in S_Y
+\]
+Thus $S_x \neq S_y$.
+Hence $x \to S_x$ is injection for $\mathbb{R} \to \mathcal{P}(\mathbb{Q})$.
+Recall that $\mathbb{Q} \sim \mathbb{N}$, so $\mathcal{P}(\mathbb{Q}) \sim \mathcal{P}(\mathbb{N})$
+
+Thus, by Schroder-Bernstein theorem, we conclude that there exists
+a bijection between $\mathbb{P}(\mathbb{N})$ and $\mathbb{R}$.
+Therefore,
+\[
+    \mathbb{P}(\mathbb{N}) \sim \mathbb{R}.
+\]
+
+
+\noindent{} \textbf{Exercise 1.6.10}
+\begin{enumerate}
+    \item [(a)]
+          Let $\mathcal{F}$ be the set of all functions from $\{0,1\} \to \mathbb{N}$.
+          Define $\Phi: \mathcal{F} \to \mathbb{N} \times \mathbb{N}$ by
+          \[
+              \Phi(f) = (f(0), f(1)).
+          \]
+          Suppose $\Phi(f) = \Phi(g)$.
+          Then
+          \[
+              (f(0),f(1))=(g(0),g(1)),
+          \]
+          so
+          \[
+              f(0)=g(0),\qquad f(1)=g(1).
+          \]
+          Since the domain only contains \(0\) and \(1\),
+          this means \(f\) and \(g\) agree at every point in their domain.
+          Therefore
+          \[
+              f=g.
+          \]
+          So \(\Phi\) is injective.
+
+          Take \[
+              (m,n)\in\mathbb N\times\mathbb N.
+          \]
+          Define a function
+          \[
+              f:\{0,1\}\to\mathbb N
+          \]
+          by
+          \[
+              f(0)=m,\qquad f(1)=n.
+          \]
+          Then
+          \[
+              \Phi(f)=(m,n).
+          \]
+          Thus \(\Phi\) is surjective, and so \(\Phi\) is bijective as well.
+          So
+          \[
+              \mathcal{F} \sim \mathbb{N} \times \mathbb{N}
+          \]
+
+          Since $\mathbb{N} \times \mathbb{N}$ is countable, it follows that
+          $\mathcal{F}$ is countable.
+    \item [(b)] Let $\mathcal{G}$ be the set of all functions from $\mathbb{N} \to \{0, 1\}$.
+          For each of these functions $g$, define
+          \[
+              S_f = \{n \in \mathbb{N} : f(n) = 1\}.
+          \]
+          Then \(S_f\subseteq\mathbb N\), so \(S_f\in\mathcal P(\mathbb N)\).
+          Conversely, given any \(S\subseteq\mathbb N\), define
+          \[
+              f_S(n)=
+              \begin{cases}
+                  1, & n\in S,    \\
+                  0, & n\notin S.
+              \end{cases}
+          \]
+          Thus every function corresponds to exactly one subset of \(\mathbb N\), and every subset corresponds to exactly one such function. Hence
+          \[
+              \mathcal G\sim\mathcal P(\mathbb N).
+          \]
+          Since \(\mathcal P(\mathbb N)\) is uncountable,
+          it follows that $\mathcal{G}$ is uncountable.
+    \item [(c)]
+          For each subset \(S\subseteq\mathbb N\), define
+          \[
+              A_S = \{2n:n\in S\}  \cup  \{2n+1:n\notin S\}.
+          \]
+          Let
+          \[
+              \mathcal A=\{A_S:S\subseteq\mathbb N\}.
+          \]
+          Suppose \(S\neq T\).
+          Then there exists some \(n\) belonging to $S$ or $T$ but not the other.
+          Say
+          \[
+              n\in S,\qquad n\notin T.
+          \]
+          Then
+          \[
+              2n\in A_S
+              \qquad\text{but}\qquad
+              2n\notin A_T,
+          \]
+          so
+          \[
+              A_S\not\subseteq A_T.
+          \]
+          Furthermore,
+          \[
+              2n+1\in A_T
+              \qquad\text{but}\qquad
+              2n+1\notin A_S,
+          \]
+          so
+          \[
+              A_T\not\subseteq A_S.
+          \]
+          Therefore no two distinct elements of \(\mathcal A\) contain one another,
+          so \(\mathcal A\) is an antichain.
+          Also, if $S \neq T$, then $A_S \neq A_T$, so the map
+          \[
+              S \mapsto A_S
+          \]
+          is injective.
+          By definition of $\mathcal A$, it is also surjective onto $\mathcal A$.
+          Therefore,
+          \[
+              \mathcal A \sim \mathcal P(\mathbb N).
+          \]
+          Since \(\mathcal P(\mathbb N)\) is uncountable,
+          it follows that $\mathcal P(\mathbb N)$ contains an uncountable antichain.
+\end{enumerate}
+
+
+\end{document}

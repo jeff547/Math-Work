@@ -1,0 +1,66 @@
+\documentclass[12pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath, amssymb, amsthm}
+\usepackage{mdframed}
+\usepackage{geometry}
+
+\geometry{a4paper, margin=1in}
+
+\newtheorem{definition}{Definition}
+
+\parskip=1ex
+\title{Proofs with Sets}
+\date{}
+
+\begin{document}
+
+\maketitle
+
+$A = \{0,1,2,3,4,5\}$ and $R = \{ (1,2), (3,3), (2,5), (4,2), (4,3), (5,0) \}$
+
+\begin{definition}
+    A relation $R$ on $\mathbf{X}$ is \textbf{reflexive} if for all $a \in \mathbf{X}, aRa$
+\end{definition}
+\begin{definition}
+    A relation $R$ on $\mathbf{X}$ is \textbf{symmetric} if for all $a,b \in \mathbf{X}$, if $aRb$ then $bRa$.
+\end{definition}
+\begin{definition}
+    A relation $R$ on $\mathbf{X}$ is \textbf{transitive} if for all $a,b,c \in \mathbf{X}$, if $aRb$ and $bRc$, then $aRc$.
+\end{definition}
+
+
+Is $R$ reflexive? Explain.
+\begin{proof}
+    Say we choose $m=2$.
+
+    Since $gcd(2, 2) = 2 \neq 1$, it follows that $mRm$ is false.
+
+    Thus $R$ is not reflexive
+\end{proof}
+
+Is $R$ symmetric? Explain.
+\begin{proof}
+    Choose arbitrary natural numbers $a$ and $b$.
+
+    Suppose $aRb$.
+
+    Then, we have that $gcd(a, b) = 1$.
+
+    Thus, $gcd(b, a ) = 1$.
+
+    So $bRa$.
+
+    Therefore, we conclude that $R$ is symmetric.
+\end{proof}
+
+Is $R$ transitive? Explain.
+\begin{proof}
+    Consider $2,3,4 \in \mathbb{N}$.
+
+    Since $gcd(2,3) = 1$, it follows that $2R3$.
+    Since $gcd(3,4) = 1$, it follows that $3R$.
+
+    But, $gcd(2,4) = 2 \neq 1$. So $2\not\mathrel{R}$.
+\end{proof}
+
+\end{document}

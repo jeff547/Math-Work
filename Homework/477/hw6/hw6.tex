@@ -1,0 +1,181 @@
+\documentclass[12pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath, amssymb, amsthm}
+\usepackage{geometry}
+
+\geometry{a4paper, margin=1in}
+
+\title{Math 477 Homework 6}
+\author{Spring 2026 \\ Rutgers University}
+\parskip=1ex
+\begin{document}
+
+\maketitle
+
+\noindent{}\textbf{Exercise 1:}
+
+Let $X$ denote number of minutes past 10 o'clock that the bus takes to arrive.
+Then, $X \sim U(0,30)$, with PDF:
+\begin{align*}
+    f(x) = \begin{cases}
+               \frac{1}{30}, ~ 0 < x < 30 \\
+               0, ~ \text{otherwise.}
+           \end{cases}
+\end{align*}
+
+Since you got here 10 o'clock, if the bus gets here after 10:10, you have waited more than 10 minutes.
+That is,
+\begin{align*}
+    P(\text{wait} > 10 \text{ minutes}) & = P(10 < X < 30)                 \\
+                                        & = \int_{10}^{30} \frac{1}{30} dx \\
+                                        & = \frac{20}{30}                  \\
+                                        & = \frac{2}{3}.
+\end{align*}
+
+\noindent{}\textbf{Exercise 2:}
+
+Let $X\sim N(100, 15)$.
+We standardize using the transformation:
+\begin{align*}
+    Z & = \frac{X-\mu}{\sigma} \\
+      & = \frac{X - 100}{15}
+\end{align*}
+
+\begin{itemize}
+    \item [(a)]
+          \begin{align*}
+              P(X > 125) & = P(Z > \frac{125-100}{15}) \\
+                         & = P(Z > \frac{25}{15})      \\
+                         & \approx P(Z > 1.67)         \\
+                         & \approx 1 - 0.9525          \\
+                         & = 0.0475.
+          \end{align*}
+    \item [(b)]
+          \begin{align*}
+              P(90 < X < 110) & = P(\frac{-10}{15} < Z < \frac{10}{15}) \\
+                              & \approx P(-.67 < Z < .67)               \\
+                              & = \Phi(.67) - \Phi(-.67)                \\
+                              & \approx 0.7486 - 0.2514                 \\
+                              & = 0.4972.
+          \end{align*}
+
+\end{itemize}
+
+\noindent{}\textbf{Exercise 3:}
+
+Integrating the entire PDF must be 1. That is,
+\begin{align*}
+    1 & = \int_{-\infty}^{\infty} f(x) dx \\
+      & =\int_0^1 a+bx^2 dx               \\
+      & = [ax + \frac{1}{3}bx^3]^1_0      \\
+      & = a + \frac{b}{3}.
+\end{align*}
+
+Then, using expected value formula, we have
+\begin{align*}
+    \frac{3}{5} & = \int_{-\infty}^{\infty} x \cdot f(x) dx \\
+                & =\int_0^1 ax+bx^3 dx                      \\
+                & = [\frac{1}{2}ax^2 + \frac{1}{4}bx^4]^1_0 \\
+                & = \frac{a}{2} + \frac{b}{4}.
+\end{align*}
+
+Scaling the two equations, we have the following system:
+\begin{align*}
+    3            & = 3a + b  \\
+    \frac{12}{5} & = 2a + b.
+\end{align*}
+
+Subtracting the first from the second, we have
+\begin{align*}
+    a & = 3 - \frac{12}{5} \\
+      & = \frac{3}{5}.
+\end{align*}
+
+Substituting $a$ into the first equation, we have
+\begin{align*}
+    \frac{3(3)}{5} + b & = 3               \\
+    b                  & = 3 - \frac{9}{5} \\
+                       & = \frac{6}{5}.
+\end{align*}
+
+Therefore, we have $a = \frac{3}{5}$ and $b = \frac{6}{5}$.
+
+\noindent{}\textbf{Exercise 4:}
+
+Since $P(X > 9) = 0.2$, we have that $P(X < 9) = 0.8$.
+Thus, the Z-score is approximately 0.84. That is,
+\begin{align*}
+    Z      & = \frac{X - \mu}{\sigma} \\
+    0.84   & = \frac{4}{\sigma}       \\
+    \sigma & = \frac{4}{0.84}         \\
+           & \approx 4.76.
+\end{align*}
+
+Since $Var(X) = \sigma^2$, we have
+\begin{align*}
+    Var(X) & \approx 4.76^2 \\
+           & \approx 22.66
+\end{align*}
+
+\noindent{}\textbf{Exercise 5:}
+
+Suppose $X \sim N(40,7)$.
+Then, the Z-score for 95th percentile is approximately 1.645.
+Plugging into our formula, we have
+\begin{align*}
+    Z     & = \frac{X - \mu}{\sigma} \\
+    1.645 & = \frac{X-40}{7}         \\
+    X     & = 51.515.
+\end{align*}
+
+Thus, we need to leave 51.515 minutes before 1:00 pm or around 12:08 pm.
+
+\noindent{}\textbf{Exercise 6:}
+
+Suppose $X \sim N(40,4)$.
+
+\begin{align*}
+    P(X > 50) & = P(Z > 2.5)   \\
+              & \approx 0.0062
+\end{align*}
+
+Then,
+$$P(\text{First 10 years} \le 50) = (0.9938)^{10}$$
+$$P \approx 0.9396$$
+
+\noindent{}\textbf{Exercise 7:}
+
+Suppose the minimum bid (in thousands of dollars) of the other participating companies can be modeled as
+$X \sim U(70, 140)$, with PDF:
+\begin{align*}
+    f(x) = \begin{cases}
+               \frac{1}{70}, ~ 70 < x < 140 \\
+               0, ~ \text{otherwise.}
+           \end{cases}
+\end{align*}
+
+Let $y$ represent our chosen bid. Then, our profit is modeled by
+\begin{align*}
+    g(X,y) = \begin{cases}
+                 y - 100, ~ X \geq y \\
+                 0, ~ y < X
+             \end{cases}
+\end{align*}
+
+So the expected value of our profit is
+\begin{align*}
+    E[g(X, y)] & = \int_{-\infty}^{\infty} g(X,y) f(x) dx \\
+               & = \int_{y}^{140} \frac{y-100}{70}dx      \\
+               & = \frac{y-100}{70} \int_{y}^{140} dx     \\
+               & = \frac{y-100(140-y)}{70}                \\
+               & = \frac{1}{70} (-y^2+240y-14000).
+\end{align*}
+
+Setting to zero to find max, we have
+\begin{align*}
+    0 & = y^2-240y+14000 \\
+      & =
+\end{align*}
+
+\end{document}
+

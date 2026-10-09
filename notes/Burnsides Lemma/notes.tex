@@ -1,0 +1,325 @@
+\documentclass[12pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath, amssymb, amsthm}
+\usepackage{mdframed}
+\usepackage{geometry}
+
+\geometry{a4paper, margin=1in}
+
+\parskip=1ex
+\title{\textbf{Presentation Notes: An Introduction to Group Theory}}
+\date{}
+
+\begin{document}
+
+\maketitle
+
+\section*{1. The Formal Definition of a Group}
+
+\begin{mdframed}
+    Let $G$ be a set of elements and $*$ be a binary operation (a rule for combining any two elements). The pair $(G, *)$ is a \textbf{group} if and only if it perfectly satisfies these four axioms:
+\end{mdframed}
+
+\begin{enumerate}
+    \item \textbf{Closure:} Combining any two elements in the group keeps you in the group. \\
+          (Formal: $\forall a, b \in G, \quad a * b \in G$)
+    \item \textbf{Associativity:} The grouping of operations doesn't matter. \\
+          (Formal: $\forall a, b, c \in G, \quad (a * b) * c = a * (b * c)$)
+    \item \textbf{Identity Element:} There exists a ``do nothing'' element, usually denoted as $e$. \\
+          (Formal: $\exists e \in G$ such that $\forall a \in G, \quad e * a = a * e = a$)
+    \item \textbf{Inverse Element:} Every single action has an "opposite" action that undoes it. \\
+          (Formal: $\forall a \in G, \exists a^{-1} \in G$ such that $a * a^{-1} = a^{-1} * a = e$)
+\end{enumerate}
+
+We let $|G|$ denote the \textbf{order} of G which just means the number of elements (cardinality) in the underlying set of G.
+
+\section*{2. Group Properties \& Proofs}
+
+\begin{itemize}
+    \item \textbf{Uniqueness of Identity:} There is only \textit{one} ``do nothing'' action.
+          \begin{proof}
+              Suppose a group has two identity elements, $e$ and $e'$. \\
+              Since $e'$ is an identity, $e * e' = e$. \\
+              Since $e$ is an identity, $e * e' = e'$. \\
+              Therefore, $e = e'$. The identity is strictly unique.
+          \end{proof}
+
+    \item \textbf{Uniqueness of Inverses:} Each element has exactly \textit{one} unique inverse.
+          \begin{proof}
+              Suppose an element $a$ has two inverses, $b$ and $c$. \\
+              Consider the expression $b * a * c$. \\
+              By associativity, $(b * a) * c = b * (a * c)$. \\
+              Since $b$ is an inverse of $a$, $(b * a) = e$, so $e * c = c$. \\
+              Since $c$ is an inverse of $a$, $(a * c) = e$, so $b * e = b$. \\
+              Therefore, $b = c$.
+          \end{proof}
+
+    \item \textbf{Cancellation Laws:} We can confidently cancel elements in algebraic equations.
+          \begin{proof}
+              Assume $a * b = a * c$. \\
+              Multiply both sides on the left by $a^{-1}$: $a^{-1} * (a * b) = a^{-1} * (a * c)$. \\
+              By associativity: $(a^{-1} * a) * b = (a^{-1} * a) * c$. \\
+              By definition of inverse: $e * b = e * c$. \\
+              By definition of identity: $b = c$.
+          \end{proof}
+\end{itemize}
+
+\section*{2-1. Examples of Groups}
+
+To truly understand what a group is, it helps to see everyday math that perfectly fits the rules, and everyday math that completely fails them.
+
+\subsection*{Two Basic Examples of Groups}
+\begin{enumerate}
+    \item \textbf{The Integers under Addition ($\mathbb{Z}, +$):}
+          The set of all integers $\{\dots, -2, -1, 0, 1, 2, \dots\}$ with standard addition.
+          \begin{itemize}
+              \item \textit{Closure:} Adding two integers always gives another integer.
+              \item \textit{Identity:} The number $0$ (since $a + 0 = a$).
+              \item \textit{Inverse:} Every number $a$ has a negative $-a$ (since $a + (-a) = 0$).
+          \end{itemize}
+
+    \item \textbf{Non-Zero Rational Numbers under Multiplication ($\mathbb{Q} \setminus \{0\}, \times$):}
+          The set of all fractions (except zero) with standard multiplication.
+          \begin{itemize}
+              \item \textit{Closure:} Multiplying two non-zero fractions gives a non-zero fraction.
+              \item \textit{Identity:} The number $1$ (since $x \times 1 = x$).
+              \item \textit{Inverse:} Every fraction $a/b$ has a reciprocal $b/a$ (since $\frac{a}{b} \times \frac{b}{a} = 1$).
+          \end{itemize}
+\end{enumerate}
+
+\subsection*{Two Counterexamples}
+\begin{enumerate}
+    \item \textbf{The Integers under Multiplication ($\mathbb{Z}, \times$):}
+          \textit{Fails the Inverse Axiom.} \\
+          While it has closure, associativity, and an identity ($1$), it completely fails the inverse rule. For example, the integer $2$ would need an inverse of $1/2$ to equal the identity ($2 \times 1/2 = 1$). However, the fraction $1/2$ is not an integer, so it does not exist in our set!
+
+    \item \textbf{The Natural Numbers under Addition ($\mathbb{N}, +$):}
+          \textit{Fails the Identity and Inverse Axioms.} \\
+          If we look at strictly positive whole numbers $\{1, 2, 3, \dots\}$, there is no zero, meaning the group lacks an identity element. Even if we allow zero into our set, it fails the inverse axiom: there are no negative numbers, so the number $5$ has nothing in the set it can be added to in order to get back to $0$.
+\end{enumerate}
+
+\section*{3. Subgroups}
+
+\begin{itemize}
+    \item \textbf{Definition:} A subset $H$ of a group $G$ is a subgroup (written $H \leq G$) if $H$ itself forms a valid group using the exact same operation as $G$.
+\end{itemize}
+
+\textbf{The Two-Step Subgroup Test:} Let $G$ be a group and let $H$ be a subset of $G$. $H$ is a subgroup of $G$ ($H \leq G$) if and only if:
+\begin{enumerate}
+    \item[1.] \textbf{Closure under the operation:} For all $a, b \in H$, the combination $a * b$ is also in $H$.
+    \item[2.] \textbf{Closure under inverses:} For every $a \in H$, its inverse $a^{-1}$ is also in $H$.
+\end{enumerate}
+
+
+\textbf{Why does this test work?}
+Because the subset $H$ lives inside the parent group $G$, it automatically inherits associativity.
+But how do we know the identity element is actually in $H$?
+\begin{proof}
+    For arbitrary $x \in{H}$,
+    By Step 2 (Closure under inverses), the inverse $x^{-1}$ must also be in $H$. \\
+    By Step 1 (Closure under the operation), combining these two elements must result in an element inside $H$. \\
+    Therefore, $x * x^{-1} \in H$. By definition, $x * x^{-1} = e$. \\
+    Thus, $e \in H$. All four group axioms are satisfied!
+\end{proof}
+
+\textbf{Examples of Subgroups:}
+\begin{enumerate}
+    \item \textbf{Even Integers ($2\mathbb{Z} \leq \mathbb{Z}$):}
+          Inside the group of all integers under addition, the even integers form a subgroup.
+          \textit{Check:} 0 is even (Identity). Even + Even = Even (Closure). The negative of an even number is even (Inverses).
+
+    \item \textbf{Positive Rationals ($\mathbb{Q}^+ \leq \mathbb{Q}^*$):}
+          Inside the group of non-zero fractions under multiplication, the strictly positive fractions form a subgroup.
+          \textit{Check:} 1 is positive. Positive $\times$ Positive = Positive. The reciprocal of a positive fraction is still positive.
+\end{enumerate}
+
+\subsection*{Applying the Test: An Example}
+
+Let's rigorously prove that the multiples of 3 form a subgroup of the integers under addition. Let $G = (\mathbb{Z}, +)$ and let $H = 3\mathbb{Z} = \{3k \mid k \in \mathbb{Z}\}$.
+
+\begin{itemize}
+    \item \textbf{Step 0: Is it non-empty?} \\
+          Yes. Let $k = 0$. Since $3(0) = 0$, the identity element $0$ is in $H$.
+
+    \item \textbf{Step 1: Is it closed under addition?} \\
+          Let $x$ and $y$ be arbitrary elements in $H$. \\
+          By the definition of our set, $x = 3m$ and $y = 3n$ for some integers $m, n$. \\
+          Add them together: $x + y = 3m + 3n = 3(m + n)$. \\
+          Since $(m+n)$ is just another integer, the result is a multiple of 3. Therefore, $x+y \in H$.
+
+    \item \textbf{Step 2: Is it closed under inverses?} \\
+          Let $x \in H$. So, $x = 3m$ for some integer $m$. \\
+          In the group of integers, the inverse of $x$ is $-x$. \\
+          $-x = -(3m) = 3(-m)$. \\
+          Since $-m$ is an integer, $-x$ is a multiple of 3. Therefore, $-x \in H$.
+\end{itemize}
+
+Since $3\mathbb{Z}$ passes the Two-Step Test, we can confidently state that $3\mathbb{Z} \leq \mathbb{Z}$.
+
+
+\section*{4. Cosets}
+
+
+\textbf{Definition:} Let $H$ be a subgroup of the group $G$.
+For any arbitrary element $g \in G$, \textbf{Left Coset} of $H$ in $G$ containing $g$, is the set obtained by multiplying every element of $H$ by $g$ on the left:
+$$ gH = \{g * h \mid h \in H\} $$
+the \textbf{Right Coset} is the set obtained by multiplying every element of $H$ by $g$ on the right:
+$$ Hg = \{h * g \mid h \in H\} $$
+The element $g$ here is called the \textbf{Coset Representative}.
+
+
+\section*{5. Properties of Cosets}
+
+Let $H$ be a subgroup, and let $a$ and $b$ be elements of the group $G$.
+\begin{itemize}
+    \item \textbf{Property 1 (Absorption):} $\mathbf{aH = H \iff a \in H}$ \\
+          \textit{Meaning:} A coset equals the subgroup itself if and only if its representative is already inside the subgroup.
+          \begin{proof}
+              ($\Rightarrow$): Assume $aH = H$. Since the identity $e \in H$, the element $a*e$ must be in $aH$. Therefore, $a \in aH$. Because $aH = H$, it follows that $a \in H$. \\
+              ($\Leftarrow$): Assume $a \in H$.
+              By closure, for every $h \in H$, $ah \in H$, meaning $aH \subseteq H$. For the converse, let $x \in H$. We can write $x$ as $a(a^{-1}x)$. Since $a \in H$, its inverse $a^{-1} \in H$, and by closure, $a^{-1}x \in H$. Thus, $x$ is the product of $a$ and an element in $H$, proving $H \subseteq aH$. Therefore, $aH = H$.
+          \end{proof}
+
+    \item \textbf{Property 2 (The Equality Condition):} $\mathbf{aH = bH \iff a^{-1}b \in H}$ \\
+          \textit{Meaning:} Two elements generate the exact same coset if and only if they differ by an element in $H$.
+          \begin{proof}
+              We can prove this elegantly by reducing it to Property 1.
+              Multiply both sides of the equation $aH = bH$ on the left by $a^{-1}$:
+              $$ aH = bH \iff a^{-1}(aH) = a^{-1}(bH) \iff H = (a^{-1}b)H $$
+              By Property 1, the coset $(a^{-1}b)H$ is equal to $H$ if and only if the representative $(a^{-1}b)$ is an element of $H$. Thus, $aH = bH \iff a^{-1}b \in H$.
+          \end{proof}
+
+    \item \textbf{Property 3 (Strict Partition): Any two cosets of the same subgroup are either perfectly identical or completely disjoint.}
+          \begin{proof}
+              Suppose $aH$ and $bH$ are not disjoint.
+              Then, there exists some element $x$ that is in both.
+              That is,
+              \begin{align*}
+                  x = ah_1 \text{ and } x = bh_2.
+              \end{align*}
+              Setting them equal, we get
+              \begin{align*}
+                  ah_1        & = bh_2       \\
+                  h_1         & = a^{-1}bh_2 \\
+                  h_1h_2^{-1} & = a^{-1}b
+              \end{align*}
+              By closure, $h_1h_2^{-1} \in H$.
+              Thus, $a^{-1}b \in H$.
+
+              By Property 2, this implies $aH = bH$.
+
+              Therefore, any two cosets are either perfectly disjoint or exactly identical.
+          \end{proof}
+
+    \item \textbf{Property 4 (Uniform Size):} $\mathbf{|aH| = |H|}$ \\
+          \textit{Meaning:} Every coset has the exact same number of elements as the original subgroup.
+          \begin{proof}
+              Define a function $f: H \to aH$ by $f(h) = ah$. \\
+
+              \textit{Surjective:} Every element in $aH$ is of the form $ah$, which is mapped to by $f(h)$. \\
+
+              \textit{Injective:} If $f(h_1) = f(h_2)$, then $ah_1 = ah_2$. By left cancellation, $h_1 = h_2$. \\
+
+              The perfect bijection proves $|H| = |aH|$.
+          \end{proof}
+\end{itemize}
+
+\section*{6. Lagrange's Theorem}
+
+\begin{mdframed}
+    \textbf{Lagrange's Theorem:} If $G$ is a finite group, and $H$ is a subgroup of $G$, then $|H|$ divides $|G|$.
+\end{mdframed}
+
+\begin{proof}
+    By Property 3, the left cosets of $H$ perfectly partition the group $G$.
+    This means $G$ is divided into mutually disjoint subsets, leaving no elements behind.
+
+    Let $n = |G:H|$ denote the exact number of these distinct cosets (known as the index of $H$ in $G$).
+    We can write $G$ as the union of these $n$ distinct cosets:
+    \begin{align*}
+        G & = a_1H \cup ... \cup a_nH
+    \end{align*}
+    Because the cosets perfectly partition $G$, the order of $G$ is simply the sum of the orders every cosets:
+    \begin{align*}
+        |G| & = |a_1H| + ... + |a_nH|
+    \end{align*}
+    Then, by Property 4, we know every coset's order is equal to the subgroup itself ($|aH| = |H|$). Therefore, the  order of $G$ is just the number of distinct cosets multiplied by the size of the subgroup:
+    $$ |G| = n \times |H| $$
+    Since $n$ is strictly an integer, this equation demonstrates that $|H|$ perfectly divides $|G|$.
+\end{proof}
+Notice that we also have the number of distinct left (or right) cosets is just $\frac{|G|}{|H|}$.
+
+\section*{7. The Orbit-Stabilizer Theorem}
+
+For any given object $x$:
+\begin{itemize}
+    \item \textbf{The Orbit ($O_x$):} The set of all places $x$ can be moved to. ($O_x \subseteq X$)
+    \item \textbf{The Stabilizer ($Stab(x)$):} The set of group elements that leave $x$ totally unmoved. ($Stab(x) \leq G$)
+\end{itemize}
+
+\begin{mdframed}
+    \textbf{Orbit-Stabilizer Theorem:} $|G| = |O_x| \times |Stab(x)|$
+\end{mdframed}
+
+\begin{proof}
+    By Lagrange's Theorem, $|G| = [G:Stab(x)] \times |Stab(x)|$, where $[G:Stab(x)]$ is the number of distinct cosets of the stabilizer. \\
+    We just need to prove that the number of cosets is exactly equal to the size of the orbit $|O_x|$. \\
+    Let's map a coset $gStab(x)$ to a destination in the orbit $g \cdot x$. \\
+    Is this a 1-to-1 relationship? \\
+    $g \cdot x = h \cdot x \iff h^{-1}g \cdot x = x \iff h^{-1}g \in Stab(x) \iff gStab(x) = hStab(x)$. \\
+    Yes! Two actions send the object to the exact same destination \textit{if and only if} they belong to the exact same coset of the stabilizer. Thus, the number of distinct destinations ($|O_x|$) equals the number of distinct cosets. Substituting this into Lagrange gives the theorem.
+\end{proof}
+
+\section*{8. Burnside's Lemma}
+
+\begin{mdframed}
+    \textbf{Burnside's Lemma:} The number of distinct orbits $|X/G|$ is equal to the average number of objects fixed by the elements of the group.
+    $$ |X/G| = \frac{1}{|G|} \sum_{g \in G} |X^g| $$
+\end{mdframed}
+
+\begin{proof}
+    We prove this using a classic trick: \textbf{Double Counting}. Imagine a list of all pairs $(g, x)$ where action $g$ leaves object $x$ fixed. \\
+    \textbf{Method 1 (Count by actions):} Iterate through every group element $g$, and count how many objects it fixes (the set $X^g$). Total = $\sum_{g \in G} |X^g|$. \\
+    \textbf{Method 2 (Count by objects):} Iterate through every object $x$, and count how many actions fix it (the Stabilizer). Total = $\sum_{x \in X} |Stab(x)|$. \\
+    Since we counted the same list, we set them equal:
+    $$ \sum_{g \in G} |X^g| = \sum_{x \in X} |Stab(x)| $$
+    By Orbit-Stabilizer, $|Stab(x)| = \frac{|G|}{|O_x|}$. Substitute this in:
+    $$ \sum_{g \in G} |X^g| = \sum_{x \in X} \frac{|G|}{|O_x|} $$
+    Factor out $|G|$ and divide:
+    $$ \frac{1}{|G|} \sum_{g \in G} |X^g| = \sum_{x \in X} \frac{1}{|O_x|} $$
+    Look at the right side. For any single orbit, summing $\frac{1}{|O_x|}$ for every element in that orbit yields exactly $1$. Therefore, summing over all objects simply counts the total number of distinct orbits, $|X/G|$.
+\end{proof}
+
+\section*{9. Example: The $8 \times 8$ Chessboard}
+
+Suppose we color the 64 squares of a chessboard black and white. How many genuinely unique boards exist if we consider boards identical when rotated \textit{or} flipped (reflected)?
+
+\begin{itemize}
+    \item \textbf{The Set ($X$):} $2^{64}$ total raw colorings.
+    \item \textbf{The Group ($G$):} The symmetries of a square (the Dihedral group $D_4$). This includes 4 rotations and 4 reflections. So, $|G| = 8$.
+\end{itemize}
+
+\textbf{Applying the Lemma (Finding $|X^g|$ for each action):}
+To find the number of boards fixed by an action, we determine how that action groups the 64 squares into independent ``orbits'' or cycles. If a board is unchanged by an action, all squares within a cycle must be the same color.
+
+\begin{enumerate}
+    \item \textbf{$0^\circ$ Rotation (Identity):} Does nothing. All 64 squares are independent. ($2^{64}$ fixed boards)
+
+    \item \textbf{$90^\circ$ and $270^\circ$ Rotations (2 elements):} Squares rotate in cycles of 4. There are $64 / 4 = 16$ independent cycles. ($2^{16}$ fixed boards each)
+
+    \item \textbf{$180^\circ$ Rotation:} Squares rotate in cycles of 2 (swapping with their opposites). There are $64 / 2 = 32$ independent cycles. ($2^{32}$ fixed boards)
+
+    \item \textbf{Horizontal and Vertical Reflections (2 elements):} Flips the board over the center axes. Because 8 is an even number, no squares lie perfectly on the axis. Every square pairs with one on the opposite side. There are $64 / 2 = 32$ pairs. ($2^{32}$ fixed boards each)
+
+    \item \textbf{Diagonal Reflections (2 elements):} Flips the board across the main diagonals. The 8 squares lying exactly on the diagonal remain fixed (8 independent squares). The remaining 56 squares are mirrored in pairs ($56 / 2 = 28$ pairs). Total independent cycles = $8 + 28 = 36$. ($2^{36}$ fixed boards each)
+\end{enumerate}
+
+\textbf{The Calculation:}
+Using Burnside's Lemma, we sum these up and divide by $|G|$:
+\begin{align*}
+    \text{Unique Boards} & = \frac{1}{8} \left( 2^{64} + 2 \cdot 2^{16} + 2^{32} + 2 \cdot 2^{32} + 2 \cdot 2^{36} \right) \\
+                         & = 2,305,843,028,004,192,256 \approx{2.3 \text{ quintillion}}
+\end{align*}
+
+
+\end{document}

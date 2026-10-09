@@ -1,0 +1,80 @@
+\documentclass[12pt]{article}
+\usepackage{amsmath, amssymb, amsthm}
+\usepackage{parskip}
+\usepackage{geometry}
+\usepackage{enumitem}
+\usepackage{fancyhdr}
+
+% Set margins to match a standard homework document
+\geometry{a4paper, margin=1in}
+
+\title{Homework Assignment 4 \\ \large Math 311, Fall 2026 \\ Rutgers University}
+\date{}
+\author{Jeffrey Lu}
+
+\begin{document}
+
+\maketitle
+
+\textbf{Midterm 1}
+
+Chapter 1:
+\begin{itemize}
+    \item \( \mathbb{N} \iff \) Well Ordering Principle \( \iff \) Mathematical Induction
+    \item  \( A \) is countable \( \iff A \sim \mathbb{N} \).
+    \item Axiom of Completeness \( \iff \) Any non-empty \( A \subset \mathbb{R} \) bounded above has \( \sup A \).
+    \item Nested Interval Property:
+          \[
+              [a_1, b_1] \subseteq [a_2, b_2] \subseteq \dots \subseteq [a_n, b_n] \implies \bigcap_{n=1}^{\infty} [a_n, b_n] \neq \varnothing .
+          \]
+    \item \( \mathbb{R} \text{ and } \mathbb{R} \setminus \mathbb{Q} \) is not countable.
+
+\end{itemize}
+Chapter 2:
+\begin{itemize}
+    \item Convergent Sequences:
+          \[
+              a_n \to a \iff \forall \epsilon > 0, \exists N \in \mathbb{N} \text{ such that } n \geq N \implies |a_n - a| < \epsilon.
+          \]
+
+    \item Monotone Convergence Theorem: \( a_n \) is bounded and monotonic \( \implies a_n \) converges.
+    \item Bolzano Weierstrass: Every bounded sequence contains a convergent subsequence.
+    \item Cauchy Sequences:
+          \[
+              a_n \text{ is cauchy} \iff \forall \epsilon > 0, \exists N \in \mathbb{N} \text{ such that } n,m \geq N \implies |a_n - a_m| < \epsilon
+          \]
+    \item Cauchy Criterion: Convergent \( \iff \) Cauchy.
+
+\end{itemize}
+
+\textbf{Practice Midterm 1}
+5.
+We say that \( a_n \) diverges to \( \infty \) if for every \( M > 0 \)
+there exists \( N \in \mathbb{N} \) such that \( n \geq N \implies a_n > M \).
+Suppose \( a_n \to \infty  \) and \( b_n \to b > 0 \).
+We want to show that
+\[
+    a_n b_n \to \infty .
+\]
+Let \( M > 0 \). Since \( b_n \) converges, choose \( N_1 \in \mathbb{N} \) such that
+\[
+    n \geq N_1 \implies \vert b_n - b \vert  < \frac{b}{2}.
+\]
+So \( b_n > \frac{b}{2} \) for every \( n \geq N_1 \).
+Since \( a_n \) diverges, choose \( N_2 \in \mathbb{N} \) such that
+\[
+    n \geq N_2 \implies a_n > \frac{2M}{b}.
+\]
+Set \( N = \max \{N_1, N_2\} \). For every \( n \geq N \) we have
+\[
+    a_{n} b_n > \frac{2M}{b} \cdot \frac{b}{2} = M.
+\]
+Therefore \( a_n b_n \to \infty  \).
+
+
+
+
+
+
+\end{document}
+

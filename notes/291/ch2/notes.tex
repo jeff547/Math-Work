@@ -1,0 +1,148 @@
+\documentclass{article}
+
+\usepackage{amsmath, amsthm, amssymb, amsfonts}
+\usepackage{thmtools}
+\usepackage{setspace}
+\usepackage{geometry}
+\usepackage[utf8]{inputenc}
+\usepackage[english]{babel}
+\usepackage{framed}
+\usepackage[dvipsnames]{xcolor}
+\usepackage{tcolorbox}
+
+\colorlet{LightGray}{White!90!Periwinkle}
+\colorlet{LightOrange}{Orange!15}
+\colorlet{LightGreen}{Green!15}
+\definecolor{LightBlue}{RGB}{137, 207, 240}
+
+\newcommand{\HRule}[1]{\rule{\linewidth}{#1}}
+\newcommand{\norm}[1]{\left \lVert #1 \right \rVert}
+
+\declaretheoremstyle[name=Theorem,]{thmsty}
+\declaretheorem[style=thmsty]{theorem}
+\tcolorboxenvironment{theorem}{colback=LightGray}
+
+\declaretheoremstyle[name=Proposition,]{prosty}
+\declaretheorem[style=prosty,numberlike=theorem]{proposition}
+\tcolorboxenvironment{proposition}{colback=LightOrange}
+
+\declaretheoremstyle[name=Principle,]{prcpsty}
+\declaretheorem[style=prcpsty,numberlike=theorem]{principle}
+\tcolorboxenvironment{principle}{colback=LightGreen}
+
+\declaretheoremstyle[name=Definition,]{defsty}
+\declaretheorem[style=defsty]{definition}
+\tcolorboxenvironment{definition}{colback=LightBlue!50}
+
+\setstretch{1.2}
+\geometry{
+    textheight=9in,
+    textwidth=5.5in,
+    top=1in,
+    headheight=12pt,
+    headsep=25pt,
+    footskip=30pt
+}
+
+% ------------------------------------------------------------------------------
+
+\begin{document}
+
+% ------------------------------------------------------------------------------
+% Cover Page and ToC
+% ------------------------------------------------------------------------------
+
+\title{ \normalsize \textsc{}
+\\ [2.0cm]
+\HRule{1.5pt} \\
+\LARGE \textbf{\uppercase{Math 291}
+\HRule{2.0pt} \\ [0.6cm] \LARGE{Honors Multivariable Calculus} \vspace*{10\baselineskip}}
+}
+\date{}
+\author{\textbf{Jeffrey Lu}}
+
+
+% ------------------------------------------------------------------------------
+
+\section*{Chapter 2 — Description of Motion}
+
+\subsection*{2.1 Functions from $\mathbb{R}$ to $\mathbb{R}^n$}
+
+\begin{align*}
+    \mathbf{x}(t)      & = (x_1(t), x_2(t), \ldots, x_n(t))                             \\
+    \mathbf{x}'(t)     & = \frac{d\mathbf{x}}{dt} = (x_1'(t), x_2'(t), \ldots, x_n'(t)) \\
+    \|\mathbf{x}'(t)\| & = \sqrt{(x_1'(t))^2 + (x_2'(t))^2 + \cdots + (x_n'(t))^2}      \\
+    s(t)               & = \int_{t_0}^{t} \|\mathbf{x}'(u)\| \, du
+\end{align*}
+
+\subsection*{2.1.5 Arc Length Parameterization}
+
+\begin{align*}
+    \frac{d\mathbf{x}}{ds} & = \mathbf{T}(s)          \\
+    \frac{d\mathbf{T}}{ds} & = \kappa(s)\mathbf{N}(s)
+\end{align*}
+
+\subsection*{2.1.6 Frenet–Serret Formulas}
+
+\begin{align*}
+    \mathbf{T}'(s) & = \kappa(s)\mathbf{N}(s)                         \\
+    \mathbf{N}'(s) & = -\kappa(s)\mathbf{T}(s) + \tau(s)\mathbf{B}(s) \\
+    \mathbf{B}'(s) & = -\tau(s)\mathbf{N}(s)
+\end{align*}
+
+
+
+\subsection*{2.1.7 Curvature and Torsion}
+
+\begin{align*}
+    \kappa & = \frac{\|\mathbf{v} \times \mathbf{a}\|}{\|\mathbf{v}\|^3}                          \\
+    \tau   & = \frac{\mathbf{a}' \cdot (\mathbf{v} \times \mathbf{a})}{\|\mathbf{v}\|^6 \kappa^2}
+    = -\frac{\mathbf{x}''' \cdot (\mathbf{x}'' \times \mathbf{x}')}{\|\mathbf{x}'\|^6 \kappa^2}
+\end{align*}
+
+
+The Darboux vector $\boldsymbol{\omega}$ describes the instantaneous angular velocity
+of the moving Frenet frame $\{\mathbf{T}, \mathbf{N}, \mathbf{B}\}$ along a space curve.
+
+\[
+    \frac{d\mathbf{T}}{ds} = \boldsymbol{\omega} \times \mathbf{T}, \quad
+    \frac{d\mathbf{N}}{ds} = \boldsymbol{\omega} \times \mathbf{N}, \quad
+    \frac{d\mathbf{B}}{ds} = \boldsymbol{\omega} \times \mathbf{B}
+\]
+
+where $\boldsymbol{\omega}$ is defined by
+\[
+    \boldsymbol{\omega} = \tau \mathbf{T} + \kappa \mathbf{B}
+\]
+
+Hence, substituting into the Frenet–Serret formulas:
+
+\begin{align}
+    \frac{d\mathbf{T}}{ds} & = \kappa \mathbf{N},                    \\
+    \frac{d\mathbf{N}}{ds} & = -\kappa \mathbf{T} + \tau \mathbf{B}, \\
+    \frac{d\mathbf{B}}{ds} & = -\tau \mathbf{N}.
+\end{align}
+
+\subsection*{2.1.8 Helix Parameterization}
+
+If curvature $\kappa$ and torsion $\tau$ are constants, then
+\begin{align*}
+    \mathbf{x}(t) & = \mathbf{x}(0)
+    + \frac{\kappa}{\kappa^2 + \tau^2}
+    \begin{bmatrix}
+        (1 - \cos(\sqrt{\kappa^2 + \tau^2}\,t))\,\mathbf{u}_1
+        - \sin(\sqrt{\kappa^2 + \tau^2}\,t)\,\mathbf{u}_2
+    \end{bmatrix}
+    + t\,\frac{\tau}{\sqrt{\kappa^2 + \tau^2}}\,\mathbf{u}_3
+\end{align*}
+
+Constants for radius and pitch:
+\begin{align*}
+    r = \frac{\kappa}{\kappa^2 + \tau^2}, \quad
+    c = \sqrt{\kappa^2 + \tau^2}, \quad
+    b = \frac{\kappa}{\kappa^2 + \tau^2}
+\end{align*}
+
+$$\left| \frac{1-n}{n} + 1 \right| = \left| \frac{1-n}{n} + \frac{n}{n} \right| = \left| \frac{1 - n + n}{n} \right| = \left| \frac{1}{n} \right| $$Since $n$ is a positive integer, $|1/n|$ is just $1/n$. **This is the key\!** We found that the distance from our sequence to the limit is just **$1/n$**. Let's check this: * At $n=10$, the term is $\frac{1-10}{10} = -0.9$. The distance to -1 is $|-0.9 - (-1)| = 0.1$. And $1/n$ is $1/10 = 0.1$. It works\! * At $n=100$, the term is $\frac{1-100}{100} = -0.99$. The distance to -1 is $|-0.99 - (-1)| = 0.01$. And $1/n$ is $1/100 = 0.01$. It works again\!  2\. Win the Game (Finding $N$) Now we can respond to the skeptic's challenge. * **Skeptic's Challenge:** "Make your distance less than my tolerance $\epsilon$\!" * **Our Task:** We need to find $n$ large enough so that:$$
+$$
+\end{document}

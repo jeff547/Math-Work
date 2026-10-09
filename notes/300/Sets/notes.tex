@@ -1,0 +1,92 @@
+\documentclass[12pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath, amssymb, amsthm}
+\usepackage{mdframed}
+\usepackage{geometry}
+
+\geometry{a4paper, margin=1in}
+
+\parskip=1ex
+\title{Proofs with Sets}
+\date{}
+
+\begin{document}
+
+\maketitle
+
+If A, B, and C are sets, then $A \setminus (B \cup C) = (A \setminus B) \ () $
+
+$(L \subset R)$
+We have $L = A \setminus (B \cup C)$ adn $R = (A \setminus B) \cap (A \setminus C)$.
+
+\begin{proof}
+    By DeMorgan's Law, $x \notin B$ and $x \notin C$.
+
+    Then, $x \in A \setminus B$ and $x \in A \setminus C$.
+
+    Assume x$ \in R$. Then, $ x \in A \setminus B$ and $x \in A \setminus C$
+
+    So $x \notin B \cup C$.
+
+    It follows that $x \in A$ but $x \notin B \cup C$.
+\end{proof}
+
+Suppose A, B, and C are sets. Prove that if $B \subseteq C$, then $A \times B \subset A \times C$.
+
+\begin{proof}
+    Assume that $z \in A \times B$.
+
+    Then, $x \in A$ and $y \in B$ such that $z = (x,y)$.
+
+    Since $B \subseteq C$ and $y \in B$, it follows that $y \in C$.
+
+    So $x \in A$ and $y \in C$.
+
+    Then, $(x,y) \in A \times C$.
+
+    So $z \in A \times C$.
+\end{proof}
+
+For any sets $A$ and $B$, $\mathbb{P}(A) \cap \mathbb{P}(B) = \mathbb{P}(A \cap B)$
+
+\begin{proof}
+    Assume $X \in P(A) \cap P(B)$.
+
+    Then, $X \in P(A)$ and $X \in P(B)$
+
+    So, $X \subseteq A$ and $X \subseteq B$.
+
+    Then, $X \subseteq A \cap B$.
+
+    Then $X \in P(A \cap B)$.
+
+    For the converse, we assume $X \in P(A \cap B)$.
+
+    Then, $X \subseteq A \cap B$. It follows that $X \subseteq A$ and $X \subseteq B$.
+
+    So, $X \in P(A)$ and $X \in P(B)$.
+
+    It follows that $X \in P(A) \cap P(B)$.
+\end{proof}
+
+$\forall A,B$, prove that $A \subseteq B \iff A \setminus B = \emptyset$.
+
+\begin{proof}
+    Assume $A \setminus B = \emptyset$.
+
+
+    That is, $A \subset B$.
+
+
+    For the converse, assume $A \setminus B \neq \emptyset$.
+\end{proof}
+
+\newpage{}
+
+\begin{proof}
+    Let $A = \{0, 1 ,2\}$, $B = \{2, 4\}$, and $C = \{ 3,5\}$.
+    Then, $(B \cup C) = \{2, 3, 4, 5\}$. So $A \setminus (B \cup C) = {0, 1}$.
+    Then, $(A \setminus B) = {0, 1}$ and $A \setminus C = \{ 0,1,2\}$
+\end{proof}
+
+\end{document}

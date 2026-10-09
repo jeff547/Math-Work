@@ -1,0 +1,252 @@
+\documentclass[10pt]{article}
+\usepackage[margin=0.25in,top=0.3in,bottom=0.25in]{geometry}
+\usepackage{amsmath,amssymb}
+\usepackage{enumitem}
+\usepackage[utf8]{inputenc}
+
+\renewcommand{\normalsize}{\fontsize{10pt}{11pt}\selectfont}
+\renewcommand{\large}{\fontsize{11pt}{14pt}\selectfont}
+
+\pagestyle{empty}
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{6pt}
+\setlength{\abovedisplayshortskip}{1pt}
+\setlength{\belowdisplayshortskip}{1pt}
+
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\norm}[1]{\|#1\|}
+\newcommand{\inner}[2]{\langle #1,\,#2 \rangle}
+\newcommand{\mat}[1]{\begin{pmatrix}#1\end{pmatrix}}
+\newcommand{\heading}[1]{\bigskip\hrule\vspace{5pt}\textbf{#1}\vspace{8pt}\par}
+\newcommand{\sub}[1]{\bigskip\textit{#1.}\;}
+
+\newlength{\colw}
+\setlength{\colw}{0.475\textwidth}
+
+\begin{document}
+
+\begin{center}
+  {\large\textbf{Math 292 Final Formula Sheet --- Page 1}}
+\end{center}
+
+\noindent
+\begin{minipage}[t]{\colw}
+
+  \heading{First-Order ODEs (Ch 1)}
+
+  \vspace{-12pt}
+
+  \sub{1. Linear} $x' + P(t)\,x = Q(t)$
+
+  \[
+    \mu = e^{\int P\,dt}, \quad x = \frac{1}{\mu}\!\left[\int \mu\, Q\,dt + C\right]
+  \]
+
+
+  \sub{2. Separable}
+  \[
+    \frac{dx}{dt} = f(t)\,g(x) \;\Rightarrow\; \int\frac{dx}{g(x)}=\int f(t)\,dt
+  \]
+
+  \sub{3. Bernoulli} $x' + P(t)\,x = Q(t)\,x^n$, \; $n\ne 0,1$
+
+  Sub $y=x^{1-n}$, \; $y'=(1-n)x^{-n}x'$. Divide through by $x^n$, get linear in $y$.
+
+  \sub{4. Riccati} $x' = p(t) + q(t)\,x + r(t)\,x^2$
+
+  Need one particular solution $x_p$. Sub $x=x_p+u$, get Bernoulli in $u$.
+
+  Particular solution: guess $at^c$ where $a,c\in\R$.
+
+  \sub{5. Exact} $M(x,y)\,dx + N(x,y)\,dy = 0$
+
+  Test: $\frac{\partial M}{\partial y} = \frac{\partial N}{\partial x}$. Find $F$: $\frac{\partial F}{\partial x}=M$, $\frac{\partial F}{\partial y}=N$, solution is $F=C$.
+
+  \sub{6. Homogeneous} $y' = F(y/x)$
+
+  Sub $v=y/x$, so $y=vx$, $y'=v+xv'$. Becomes separable in $v$.
+
+  \heading{Lipschitz Continuity (Ch 2)}
+
+  $|f(x)-f(y)|\le L\,|x-y|$ for all $x,y\in D$
+
+  If $f$ differentiable and $|f'|\le L$ everywhere, then $f$ is Lipschitz with constant $L$ (by MVT).
+
+  Lipschitz $\Rightarrow$ unif.\ cont.\ $\Rightarrow$ continuous
+
+  \heading{Matrix Exponential (Ch 3)}
+
+  $e^{tA} = I + tA + \frac{t^2}{2!}A^2 + \cdots$
+
+  $A=PDP^{-1}\Rightarrow e^{tA}=Pe^{tD}P^{-1}$
+
+  Nilpotent: $A^2=0 \Rightarrow e^{tA}=I+tA$
+
+  Decomposition: $A=\lambda I+N$, $\;e^{tA}=e^{t\lambda}e^{tN}$
+
+  If $(A-\lambda I)^2=0$: $\;e^{tA}=e^{t\lambda}[I+t(A-\lambda I)]$
+
+  \sub{$2\times2$ distinct eigenvalues}
+  $e^{tA} = \frac{e^{t\lambda_1}(A-\lambda_2 I) - e^{t\lambda_2}(A-\lambda_1 I)}{\lambda_1-\lambda_2}$
+
+  \heading{Linear Systems (Ch 3--4)}
+
+  $\mathbf{x}(t)=e^{tA}\,\mathbf{x}(0)$
+
+  Eigenvalues: $\lambda=\frac{\text{tr}\pm\sqrt{\text{tr}^2-4\det}}{2}$
+
+  Duhamel: $\mathbf{x}(t) = e^{tA}\mathbf{x}(0)+\int_0^t e^{(t-s)A}\mathbf{b}(s)\,ds$
+
+  \heading{Picard Iteration}
+
+  $x_{n+1}(t) = x_0 + \int_{t_0}^t f(s,\,x_n(s))\,ds$
+
+  Start $x_0(t)=x_0$. Iterate, recognize pattern.
+
+\end{minipage}\hfill\vrule\hfill
+\begin{minipage}[t]{\colw}
+
+  \heading{Second-Order ODEs}
+
+  $ar^2+br+c=0$
+
+  Distinct: $C_1e^{r_1t}+C_2e^{r_2t}$ \quad Repeated: $(C_1+C_2t)e^{rt}$
+
+  Complex $\alpha\pm\beta i$: $e^{\alpha t}(C_1\cos\beta t+C_2\sin\beta t)$
+
+  \sub{Undetermined coefficients} For $ax''+bx'+cx=g(t)$, guess $x_p$ based on $g(t)$:
+
+  $g(t)=ke^{\alpha t}$ \quad$\to$\quad try $Ae^{\alpha t}$
+
+  $g(t)=k\sin(\beta t)$ or $k\cos(\beta t)$ \quad$\to$\quad try $A\cos\beta t+B\sin\beta t$
+
+  $g(t)=kt^n$ (poly deg $n$) \quad$\to$\quad try $A_nt^n+A_{n-1}t^{n-1}+\cdots+A_0$
+
+  $g(t)=ke^{\alpha t}\sin(\beta t)$ \quad$\to$\quad try $e^{\alpha t}(A\cos\beta t+B\sin\beta t)$
+
+  $g(t)=kt^n e^{\alpha t}$ \quad$\to$\quad try $(A_nt^n+\cdots+A_0)\,e^{\alpha t}$
+
+  $g(t)=$ sum \quad$\to$\quad guess is sum of individual guesses
+
+  \sub{Modification rule} If any term in your guess already solves the homogeneous equation, multiply the entire guess by $t$. If it still overlaps, multiply by $t^2$.
+
+  \sub{Cauchy--Euler} $t^2x''+atx'+bx=g(t)$. Sub $x=t^r$, solve $r(r-1)+ar+b=0$. Distinct $r_1\ne r_2$: $C_1t^{r_1}+C_2t^{r_2}$. Repeated: $(C_1+C_2\ln|t|)\,t^r$.
+
+  \sub{Variation of parameters} $x_p=u_1x_1+u_2x_2$, \;\; $u_1'=\frac{-x_2\,g/a}{W}$, \;\; $u_2'=\frac{x_1\,g/a}{W}$, \;\; $W=x_1x_2'-x_2x_1'$
+
+\end{minipage}
+
+
+\newpage
+
+
+\begin{center}
+  {\large\textbf{Math 292 Final Formula Sheet --- Page 2}}
+\end{center}
+
+\noindent
+\begin{minipage}[t]{\colw}
+
+  \heading{Metric Spaces \& Supremum Distance}
+
+  A metric on a set $X$ is a function $d:X\times X\to\R$ satisfying:
+
+  $d(f,g)\ge 0$ and $d(f,g)=0\Leftrightarrow f=g$
+
+  $d(f,g)=d(g,f)$
+
+  $d(f,h)\le d(f,g)+d(g,h)$
+
+  \sub{Supremum distance} For continuous $f,g:[a,b]\to\R$:
+
+  $d_\infty(f,g)=\sup_{x\in[a,b]}|f(x)-g(x)|=\norm{f-g}_\infty$
+
+  \sub{Computing $d_\infty$} Let $h(x)=f(x)-g(x)$, find critical points via $h'(x)=0$, evaluate $|h|$ at critical points and endpoints $a,b$, take the largest value.
+
+  \sub{Completeness} $(C[a,b],\,d_\infty)$ is a complete metric space: every Cauchy sequence converges to a limit in $C[a,b]$.
+
+  \heading{$L^2$ Inner Product Space}
+
+  $f\in L^2[a,b]$ if $\displaystyle\int_a^b|f(x)|^2\,dx<\infty$
+
+  Inner product: $\inner{f}{g}=\displaystyle\int_a^b f(x)\,g(x)\,dx$
+
+  Norm: $\norm{f}=\sqrt{\inner{f}{f}} = \sqrt{\displaystyle\int_a^b|f|^2\,dx}$
+
+  Orthogonality: $\inner{f}{g}=0$
+
+  Cauchy--Schwarz: $|\inner{f}{g}|\le\norm{f}\,\norm{g}$
+
+  \sub{Showing $f\in L^2$} Compute $\int_a^b|f|^2\,dx$ and show it's finite.
+
+  Bounded shortcut: $|f|\le M$ on $[a,b]$ $\Rightarrow$ $\int|f|^2\le M^2(b-a)<\infty$
+
+\end{minipage}\hfill\vrule\hfill
+\begin{minipage}[t]{\colw}
+
+  \heading{Trig Orthogonality on $[-\pi,\pi]$}
+
+  $\displaystyle\int_{-\pi}^{\pi}\cos(mx)\cos(nx)\,dx=\pi\delta_{mn}$ \quad ($m,n\ge1$)
+
+  $\displaystyle\int_{-\pi}^{\pi}\sin(mx)\sin(nx)\,dx=\pi\delta_{mn}$ \quad ($m,n\ge1$)
+
+  $\displaystyle\int_{-\pi}^{\pi}\sin(mx)\cos(nx)\,dx=0$ \quad for all $m,n$
+
+  $\displaystyle\int_{-\pi}^{\pi}1\cdot\cos(nx)\,dx=0$ \qquad $\displaystyle\int_{-\pi}^{\pi}1\cdot\sin(nx)\,dx=0$
+
+  $\displaystyle\int_{-\pi}^{\pi}1\,dx=2\pi$
+
+  Same structure on $[0,2\pi]$ with identical values.
+
+  \heading{Best $L^2$ Approximation}
+
+  Given orthogonal set $\{\phi_0,\ldots,\phi_n\}$, the best approximation of $f$:
+  $$\hat{f}=\sum_{k=0}^n c_k\,\phi_k, \qquad c_k=\frac{\inner{f}{\phi_k}}{\inner{\phi_k}{\phi_k}}$$
+
+  ``Best'' means minimizes $\norm{f-\hat{f}}_{L^2}$.
+
+  \sub{For $\{1,\cos x,\sin x\}$ on $[-\pi,\pi]$}
+
+  $c_0=\dfrac{1}{2\pi}\displaystyle\int_{-\pi}^{\pi}f(x)\,dx$
+
+  $c_1=\dfrac{1}{\pi}\displaystyle\int_{-\pi}^{\pi}f(x)\cos x\,dx$
+
+  $c_2=\dfrac{1}{\pi}\displaystyle\int_{-\pi}^{\pi}f(x)\sin x\,dx$
+
+  \sub{Even/odd shortcuts} $f$ even $\Rightarrow$ $f\cdot\sin$ is odd $\Rightarrow$ $c_2=0$
+
+  $f$ odd $\Rightarrow$ $c_0=0$, $c_1=0$
+
+  \heading{Integral Reference}
+
+  $\int e^{at}dt=\frac{e^{at}}{a}$ \qquad $\int te^{at}dt=\frac{e^{at}(at-1)}{a^2}$
+
+  $\int t^2e^{at}dt=e^{at}\!\left(\frac{t^2}{a}-\frac{2t}{a^2}+\frac{2}{a^3}\right)$
+
+  $\int te^{t^2}dt=\frac{1}{2}e^{t^2}$ \qquad $\int t^ndt=\frac{t^{n+1}}{n+1}$
+
+  $\int x^2\cos x\,dx=(x^2-2)\sin x+2x\cos x$
+
+  $\int x^2\sin x\,dx=(2-x^2)\cos x+2x\sin x$
+
+  $\int u\,dv=uv-\int v\,du$
+
+  \heading{Other}
+
+
+  $\mat{a&b\\c&d}^{-1}=\frac{1}{ad-bc}\mat{d&-b\\-c&a}$
+
+  {\setlength{\parskip}{8pt}
+    $e^{a+bi}=e^a(\cos b+i\sin b)$
+
+    $\cos^2x=\frac{1+\cos2x}{2}$ \qquad $\sin^2x=\frac{1-\cos2x}{2}$
+
+    $|\sin x|\le1$ \qquad $|\cos x|\le1$
+
+    MVT: $\exists\,c$: $f'(c)=\frac{f(b)-f(a)}{b-a}$
+  }
+
+\end{minipage}
+
+
+\end{document}

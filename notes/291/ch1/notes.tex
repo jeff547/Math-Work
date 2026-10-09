@@ -1,0 +1,179 @@
+\documentclass{article}
+
+\usepackage{amsmath, amsthm, amssymb, amsfonts}
+\usepackage{thmtools}
+\usepackage{setspace}
+\usepackage{geometry}
+\usepackage[utf8]{inputenc}
+\usepackage[english]{babel}
+\usepackage{framed}
+\usepackage[dvipsnames]{xcolor}
+\usepackage{tcolorbox}
+
+\colorlet{LightGray}{White!90!Periwinkle}
+\colorlet{LightOrange}{Orange!15}
+\colorlet{LightGreen}{Green!15}
+\definecolor{LightBlue}{RGB}{137, 207, 240}
+
+\newcommand{\HRule}[1]{\rule{\linewidth}{#1}}
+\newcommand{\norm}[1]{\left \lVert #1 \right \rVert}
+
+\declaretheoremstyle[name=Theorem,]{thmsty}
+\declaretheorem[style=thmsty]{theorem}
+\tcolorboxenvironment{theorem}{colback=LightGray}
+
+\declaretheoremstyle[name=Proposition,]{prosty}
+\declaretheorem[style=prosty,numberlike=theorem]{proposition}
+\tcolorboxenvironment{proposition}{colback=LightOrange}
+
+\declaretheoremstyle[name=Principle,]{prcpsty}
+\declaretheorem[style=prcpsty,numberlike=theorem]{principle}
+\tcolorboxenvironment{principle}{colback=LightGreen}
+
+\declaretheoremstyle[name=Definition,]{defsty}
+\declaretheorem[style=defsty]{definition}
+\tcolorboxenvironment{definition}{colback=LightBlue!50}
+
+\setstretch{1.2}
+\geometry{
+    textheight=9in,
+    textwidth=5.5in,
+    top=1in,
+    headheight=12pt,
+    headsep=25pt,
+    footskip=30pt
+}
+
+% ------------------------------------------------------------------------------
+
+\begin{document}
+
+% ------------------------------------------------------------------------------
+% Cover Page and ToC
+% ------------------------------------------------------------------------------
+
+\title{ \normalsize \textsc{}
+\\ [2.0cm]
+\HRule{1.5pt} \\
+\LARGE \textbf{\uppercase{Math 291}
+\HRule{2.0pt} \\ [0.6cm] \LARGE{Honors Multivariable Calculus} \vspace*{10\baselineskip}}
+}
+\date{}
+\author{\textbf{Jeffrey Lu}}
+
+\maketitle
+\newpage
+
+\tableofcontents
+\newpage
+
+% ------------------------------------------------------------------------------
+
+\section{Lines and Planes}
+
+% Theorem 1
+\begin{theorem}
+    Let $V \subset \mathbb{R}^n,$ and let $W = Span(V)$. Then $Span(W) = W$
+\end{theorem}
+
+% Theorem 2
+\begin{theorem}
+    (Fundamental property of the standard basis).
+    Let ${\mathbf{e_1},...,\mathbf{e_n}}$ be the standard basis in $\mathbb{R}^n$.
+    $Span({\mathbf{e_1},...,\mathbf{e_n}}) = \mathbb{R}^n$,
+    and for each $\mathbf{x} \in \mathbb{R}^n$,
+    there is exactly one vector of coefficients $(t_1,...,t_n)$ such that
+    $$\mathbf{x} = \sum_{j=1}^nt_j\mathbf{e}_j$$
+    namely $(t_1,...,t_n) = x_1,...,x_n)$ .
+\end{theorem}
+
+% Theorem 3
+\begin{theorem}
+    (Cauchy–Schwartz inequality).
+    For any two vectors $\mathbf{a, b} \in \mathbb{R}^n$,
+    $$|\mathbf{a}\cdot\mathbf{b}|\le \mathbf{\norm{a}\norm{b}}$$
+    There is a inequality iff $\norm{\mathbf{b}}\mathbf{a}=\pm\mathbf{\norm{a}b}$
+\end{theorem}
+
+% Theorem 4
+\begin{theorem}
+    (Triangle inequality).
+    For any three vectors $\mathbf{x, y, z} \in \mathbb{R}^n$,
+    $$\norm{\mathbf{x-z}} \le \norm{\mathbf{x-z}} + \norm{\mathbf{y-z}}$$
+\end{theorem}
+
+% Theorem 5
+\begin{theorem}
+    The Euclidean distance function
+    $$\varrho_E(x,y):=\mathbf{\sqrt{(x-y)\cdot(x-y}=\norm{x-y}}$$
+    is a metric in $\mathbb{R}^n$
+\end{theorem}
+% Theorem 6
+\begin{theorem}
+    (Fundamental Theorem on Orthonormal Sets in $\mathbb{R}^n$).
+    Let $\{\mathbf{u_1},...,\mathbf{u_n}\}$ be any orthonormal set in $\mathbb{R}^n$ consisting of exactly $n$ vectors. Then every vector $\mathbf{x}\in\mathbb{R}^n$ can be written as a linear combination of the vectors $\{\mathbf{u_1},...,\mathbf{u_n}\}$ in exactly one way, namely
+    $$\mathbf{x}=\sum_{j=1}^n(\mathbf{x}\cdot\mathbf{u_j})\mathbf{u_j}$$
+    The squared length of $\mathbf{x}$ is the sum of the squares of the coefficients in the expansion:
+    $$\mathbf{\norm{x}}=\sum_{j=1}^n(\mathbf{x}\cdot\mathbf{u_j})^2$$
+    The standard basis of $\mathbb{R}^n, \{\mathbf{e_1}, . . . , \mathbf{e_n}\}$ is a set of $n$ orthonormal vectors in $\mathbb{R}^n$, and so the theorem says that
+    $$\mathbf{x}=\sum_{j=1}^nx_j\mathbf{e_j}=\sum_{j-1}^n(\mathbf{x}\cdot\mathbf{e_j})\mathbf{e_j}$$
+    is the unique way to express any $\mathbf{x}$ in $\mathbb{R}^n$ as a linear combination of the standard basis vectors.
+
+\end{theorem}
+
+% Definition 1
+\begin{definition}
+    (Linear Combinations and Span). Let $V \subset \mathbb{R}$. The span of $V$ is the set of all possible linear combinations $\sum_{j=1}^mt_j\mathbf{v_j}$.
+\end{definition}
+
+% Theorem 7
+\begin{theorem}
+    (Algebraic properties of the cross product).
+    Let $\mathbf{a, b,}$ and $\mathbf{c}$ be any three vectors in $\mathbb{R}^3$, and let $t$ be any number. Then
+    \begin{gather*}
+        \mathbf{a\times{b}=-b\times{a}} \\
+        \mathbf{a\times(a+b)=a\times{b}+a\times{c}} \\
+        (t\mathbf{a})\times{\mathbf{b}} = t(\mathbf{a\times{b})}= \mathbf{a}\times{(t\mathbf{b})}
+    \end{gather*}
+
+\end{theorem}
+
+% Theorem 8
+\begin{theorem}
+    (Triple product identity).
+    Let $\mathbf{a, b, c} \in \mathbb{R}^n$. Then
+    $$(\mathbf{a\times{b})\cdot{c}=(b\times{c})\cdot{a}}$$
+    In other words, the triple product $\mathbf{(a\times{b})\cdot{c}}$ is unchanged when the vectors in it are cyclicly permuted.
+\end{theorem}
+
+% Theorem 9
+\begin{theorem}
+    (Cross product equals normal vector)
+    Let $\mathbf{a, b}\in\mathbb{R}^3.$ Then $\mathbf{a\times{b}}$ is orthogonal to both $\mathbf{a}$ and $\mathbf{b}$.
+\end{theorem}
+
+% Theorem 10
+\begin{theorem}
+    Let $\{\mathbf{u_1, u_2, u_3}\}$ be any orthonormal basis of $\mathbb{R}^3$. Then
+    $$\mathbf{u_1\times{u_2}=u_3}\Longleftrightarrow\mathbf{u_2\times{u_3}=u_3}\Longleftrightarrow\mathbf{u_3\times{u_1}=u_2}$$
+    In particular, $\{\mathbf{u_1, u_2, u_3}\}$ is right handed if and only if any one of the identities in equation above is valid,
+    and in that case, all of them are valid.
+\end{theorem}
+
+% Theorem 11
+\begin{theorem}
+    (Invariance under change of basis).
+    Let $\{\mathbf{u_1, u_2, u_3}\}$ be any right handed orthonormal
+    basis in $\mathbb{R}^3$. For any vectors $\mathbf{x} = (x_1, x_2, x_3)$ and $\mathbf{y} = (y_1, y_2, y_3)$, define $\mathbf{a} = x_1\mathbf{u_1} + x_2\mathbf{u_2} + x_3\mathbf{u_3}$and $\mathbf{b} = y_1\mathbf{u_1} + y_2\mathbf{u_2} + y_3\mathbf{u_3}$, so that $\mathbf{x}$ and $\mathbf{y}$ are the coordinate vectors of $\mathbf{a}$ and $\mathbf{b}$ with respect to the coordinate system based on the orthonormal basis $\{\mathbf{u_1, u_2, u_3}\}$. Then
+    $$\mathbf{a\times{b}}=(x_2y_3-x_3y_2)\mathbf{u_1}+(x_3y_1-x_1y_3)\mathbf{u_2}+(x_1y_2-x_2y_1)\mathbf{u_3}$$
+    In other words, one can compute the cross product of $\mathbf{a}$ and $\mathbf{b}$ by computing the cross product of their
+    coordinate vectors for any right handed orthonormal basis.
+\end{theorem}
+
+% Theorem 12
+\begin{theorem}
+    (Lagrange's Identity.) Let $\mathbf{a, b, c} \in \mathbb{R}$. Then $$\mathbf{a} \times (\mathbf{b} \times \mathbf{c})=(\mathbf{a} \cdot \mathbf{c})\mathbf{b} - (\mathbf{a} \cdot \mathbf{b})\mathbf{c}$$
+\end{theorem}
+how fast
+
+\end{document}

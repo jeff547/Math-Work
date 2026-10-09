@@ -1,0 +1,284 @@
+\documentclass[12pt]{article}
+\author{Jeffrey Lu}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath, amssymb, amsthm}
+\usepackage{geometry}
+\geometry{letterpaper, margin=1in}
+
+\title{Challenge Problem Set 1: Exercises}
+\date{}
+
+\begin{document}
+
+\maketitle
+
+\noindent \textbf{Exercise 1:} Suppose that the matrix $A$ in the equation $x(t) = Au(t)$ is invertible. Show that with $x(t)$ given by this equation,
+\begin{equation}
+    ||A^{-1}x(t)||^{2}=1 \tag{0.6}
+\end{equation}
+for all $t$. Define the matrix $M$ by $M=(A^{-1})^{T}(A^{-1})$ where $(A^{-1})^{T}$ denotes the transpose of $A^{-1}$. Show also that the equation (0.6) can be written as
+\begin{equation}
+    x(t)\cdot Mx(t)=1 \tag{0.7}
+\end{equation}
+for all $t$, where $M$ is a symmetric matrix, and show that if
+\[
+    M=\begin{bmatrix}a&c\\ c&b\end{bmatrix}
+\]
+then the equation (0.7) can be written as
+\begin{equation}
+    ax^{2}(t)+by^{2}(t)+2cx(t)y(t)=1 \tag{0.8}
+\end{equation}
+for all $t$.
+
+\vspace{0.5cm}
+
+\noindent{}\textbf{Solution:}
+
+\noindent{}To show that (0.5) is equal to (0.6) given that A is invertible:
+
+1. Starting from (0.5) we have
+\[
+    \vec{x}(t) = A\vec{u}(t)~|~\vec{u}(t) = ~<cos(t), sin(t)> \tag{0.5}
+\]
+
+2. Multiply both sides by $A^{-1}$
+\begin{align*}
+    A^{-1}\vec{x}(t) & = A^{-1}A\vec{u}(t) \\
+    A^{-1}\vec{x}(t) & = \vec{u}(t)
+\end{align*}
+
+3. Take the norm of both sides
+\begin{align*}
+    ||A^{-1}\vec{x}(t)||^2 & = ||\vec{u}(t)||^2              \\
+                           & = cos^2(t) + sin^2(t)           \\
+                           & =  1                  \tag{0.6}
+\end{align*}
+
+4. Using trig identity you will see that (0.5) is equal to (0.6)
+
+\vspace{0.5cm}
+
+\noindent{}To show that (0.6) can also be written as (0.7):
+
+1. Starting with (0.6) we have:
+\[
+    ||A^{-1}\vec{x}(t)||^{2}=1 \tag{0.6}
+\]
+
+2. The norm of left side squared can also be written as a dot product,
+\[
+    (A^{-1}\vec{x}(t)) \cdot{} (A^{-1}\vec{x}(t)) = 1
+\]
+
+3. This dot product can then be written as the transpose multiplied by its regular form
+\[
+    (A^{-1}\vec{x}(t))^T(A^{-1}\vec{x}(t)) = 1
+\]
+
+4. Distribute the transpose over the first term
+\[
+    \vec{x}(t)^T(A^{-1})^TA^{-1}\vec{x}(t) = 1
+\]
+
+5. Notice that $(A^{-1})^TA^{-1}  = M$
+\[
+    \vec{x}(t)^TM\vec{x}(t) = 1
+\]
+
+6. Rewrite the transpose back to a dot product and you will have (0.7)
+\[
+    \vec{x}(t)\cdot{}M\vec{x}(t) = 1 \tag{0.7}
+\]
+
+\vspace{0.5cm}
+
+\noindent{}Finally, given that M is a symmetric matrix, we can simply use matrix multiplication to show that (0.7) and (0.8) are equivalent.
+
+Let $\vec{x}(t) = <x(t), y(t)> $, then from (0.7) we have:
+\begin{align*}
+    \vec{x}(t)\cdot{}M\vec{x}(t)                                                                                  & = 1 \tag{0.7} \\\\
+    \vec{x}(t) \cdot{} \begin{pmatrix} a & c \\ c & b \end{pmatrix} \begin{pmatrix} x(t) \\ y(t) \end{pmatrix}    & = 1           \\\\
+    \begin{pmatrix} x(t) \\ y(t) \end{pmatrix} \cdot{} \begin{pmatrix} ax(t) + cy(t) \\ cx(t)+by(t) \end{pmatrix} & = 1           \\\\
+    ax^2(t)+by^2(t)+2cx(t)y(t)                                                                                    & =1 \tag{0.8}
+\end{align*}
+
+\vspace{1cm}
+
+
+\noindent \textbf{Exercise 2:} Since $M$ is a symmetric matrix, there exists an orthonormal basis of $\mathbb{R}^{2}$, $\{u_{1},u_{2}\}$ consisting of eigenvectors of $M$ so that for eigenvalues $\lambda_{1}$ and $\lambda_{2}$ we have
+\[
+    Mu_{1}=\lambda_{1}u_{1} \quad \text{and} \quad Mu_{2}=\lambda_{2}u_{2}.
+\]
+Show that both $\lambda_{1}$ and $\lambda_{2}$ are positive. Changing the labels if need be, we may suppose without loss of generality that
+\[
+    \lambda_{1}\ge\lambda_{2}>0.
+\]
+Show that the major axis of the ellipse has
+\[
+    \pm \frac{1}{\sqrt{\lambda_2}}u_2
+\]
+as its endpoints, and that the minor axis of the ellipse has
+\[
+    \pm \frac{1}{\sqrt{\lambda_1}}u_1
+\]
+as its endpoints.
+
+Show that if $x(t)$ is the solution of our system, then $||x(t)||$ is maximal if and only if
+\[
+    x(t)=\pm\frac{1}{\sqrt{\lambda_{2}}}u_{2} ,
+\]
+and prove the corresponding statement about minima.
+
+\vspace{0.5cm}
+
+\noindent{}\textbf{Solution:}
+
+To show that both eigenvalues are positive we use the given:
+\[
+    M\vec{u}_i = \lambda{}_i\vec{u}_i ~|~ i \in{\{1, 2\}}
+\]
+
+1. First, we multiply both sides by $(\vec{u}_i)^T$
+\[
+    (\vec{u}_i)^TM\vec{u}_i = \lambda{}_i(\vec{u}_i)^T\vec{u}_i
+\]
+
+2. Remember that $(A^{-1})^TA^{-1}  = M$
+\[
+    (\vec{u}_i)^T(A^{-1})^TA^{-1}\vec{u}_i = \lambda{}_i(\vec{u}_i)^T\vec{u}_i
+\]
+
+3. Combining the transposes and then rewriting as norm squared, we have
+\begin{align*}
+    (A^{-1}\vec{u}_i)^TA^{-1}\vec{u}_i = \lambda{}_i(\vec{u}_i)^T\vec{u}_i \\
+    ||A^{-1}\vec{u}_i||^2 =  \lambda{}_i ||\vec{u}_i||^2
+\end{align*}
+
+4. Notice that $\vec{u}_i$ are unit vectors thus the squared norm must be 1
+\[
+    ||A^{-1}\vec{u}_i||^2 =  \lambda{}_i
+\]
+
+5. Finally, we can conclude that the squared norm is positive and non-zero because we know that $\vec{u}$ is a unit vector of length one and that A is a invertible matrix, thus it's null space is trivial (only zero vector).
+\begin{align*}
+    ||A^{-1}\vec{u}_i||^2 >{0} \implies{\lambda{}_i >{0}}
+\end{align*}
+
+\vspace{0.5cm}
+
+\noindent{}Now, to find the endpoints of the major and minor axises we use the fact that \{$\vec{u}_1, \vec{u}_2$\} forms an orthonormal basis for any $\vec{x}$ on the ellipse. Thus,
+\[
+    \vec{x} = c_1\vec{u}_1 + c_2\vec{u}_2 ~|~ c_1, c_2 \in{\mathbb{R}}
+\]
+
+1. Returning to (0.8), we can plug in this new equation:
+\begin{align*}
+    \vec{x}^TM\vec{x} & = 1                                                                    \\
+                      & =(c_1\vec{u}_1 + c_2\vec{u}_2) \cdot{M}  (c_1\vec{u}_1 + c_2\vec{u}_2) \\
+                      & = \lambda{}_1c_1^2 + \lambda{}c_2^2
+\end{align*}
+
+2. Aligning $\vec{x}$ with $\vec{u}_2$, we can set $c_1$ to zero and solve for $c_2$
+\begin{align*}
+    \lambda{}_2c_2^2 & = 1                                  \\
+    c_2^2            & = \tfrac{1}{\lambda{}_2}             \\
+    c_2              & = \pm{}\tfrac{1}{\sqrt{\lambda{}_2}}
+\end{align*}
+
+3.  Aligning $\vec{x}$ with $\vec{u}_1$, set $c_2$ to zero to find $c_1$
+\begin{align*}
+    \lambda{}_1c_1^2 & = 1                                  \\
+    c_1^2            & = \tfrac{1}{\lambda{}_1}             \\
+    c_1              & = \pm{}\tfrac{1}{\sqrt{\lambda{}_1}}
+\end{align*}
+
+4. Since the constants c's are inversely related to the eigenvalues we can therefore conclude
+\[
+    \lambda{}_1 \geq{} \lambda{}_2 \implies{c_2\geq{c_1}}
+\]
+
+5. So, $\vec{u}_2$ must be the major axis direction and the endpoints must be $\pm{}\tfrac{1}{\sqrt{\lambda{}_2}}\vec{u_2}$, found by plugging it back into the first equation:
+\[
+    \vec{x} = c_1\vec{u}_1 + c_2\vec{u}_2 ~|~ c_1, c_2 \in{\mathbb{R}}
+\]
+
+6. Likewise, $\vec{u}_1$ must be the minor axis and the endpoints being $\pm{}\tfrac{1}{\sqrt{\lambda{}_1}}\vec{u}_1$
+
+\vspace{0.5cm}
+
+\noindent{} Knowing the basic geometry of a ellipse we can conclude that the end points of the major axis has to be where solution set is maximized and the endpoints of the minor axis where the solution is minimized.
+
+\vspace{1cm}
+
+\noindent \textbf{Exercise 3:} With $\{u_{1},u_{2}\}$ and $\{\lambda_{1},\lambda_{2}\}$ defined as in the previous exercise, define
+\begin{equation}
+    v_{1}=\frac{1}{\sqrt{\lambda_{1}}}A^{-1}u_{1} \quad \text{and} \quad v_{2}=\frac{1}{\sqrt{\lambda_{2}}}A^{-1}u_{2} \tag{0.9}
+\end{equation}
+Show that $\{v_{1},v_{2}\}$ is an orthonormal basis for $\mathbb{R}^{2}$.
+
+\noindent{}Then show that for our solution $x(t)$, $||x(t)||$ is maximal if and only if $t$ satisfies
+\[
+    (\cos t,\sin t)=\pm v_{2},
+\]
+and prove the corresponding statement for minima.
+
+\vspace{1cm}
+
+\noindent{}\textbf{Solution:}
+
+\noindent{}To show that $\{\vec{v}_1, \vec{v}_2\}$ form an orthonormal basis for $\mathbb{R}^2$, we need to show orthogonality and unit norm.
+
+\begin{align*}
+    \vec{v}_i \cdot{\vec{v}_j} & = \tfrac{1}{\sqrt{\lambda_{i}}}A^{-1}\vec{u}_{i} \cdot{} \tfrac{1}{\sqrt{\lambda_{j}}}A^{-1}\vec{u}_{j} \\
+                               & = \tfrac{1}{\sqrt{\lambda_{i}\lambda_{j}}} (A^{-1}\vec{u}_{i})^T(A^{-1}\vec{u}_{j})                     \\
+                               & = \tfrac{1}{\sqrt{\lambda_{i}\lambda_{j}}} \vec{u}_{i}^T(A^{-1})^TA^{-1}\vec{u}_{j}                     \\
+                               & = \tfrac{1}{\sqrt{\lambda_{i}\lambda_{j}}} \vec{u}_{i}^TM\vec{u}_{j}                                    \\
+                               & = \tfrac{1}{\sqrt{\lambda_{i}\lambda_{j}}} \vec{u}_{i}^T\lambda_{j}\vec{u}_{j}                          \\
+                               & = \tfrac{\lambda_{j}}{\sqrt{\lambda_{i}\lambda_{j}}} \vec{u}_{i}^T\vec{u}_{j}                           \\
+\end{align*}
+
+1. From the final equation, we can see that if $i=j$ the dot product will be equal to one.
+
+\begin{align*}
+    \tfrac{\lambda_{i}}{\sqrt{\lambda_{i}\lambda_{i}}} \vec{u}_{i}^T\vec{u}_{i} & = \tfrac{\lambda_{i}}{\sqrt{\lambda_{i}^2}} (1) \\
+                                                                                & = \tfrac{\lambda_{i}}{\lambda_{i}}              \\
+                                                                                & =1
+\end{align*}
+
+2. In the other case that $i\neq{j}$, by orthogonality of $\vec{u}$ and since the eigenvalues are positive, the dot product must be zero.
+\begin{align*}
+    \tfrac{\lambda_{j}}{\sqrt{\lambda_{i}\lambda_{j}}} \vec{u}_{i}^T\vec{u}_{j} & =  (\tfrac{\lambda_{j}}{\sqrt{\lambda_{i}\lambda_{j}}}) (\vec{u}_{i}\cdot{}\vec{u}_{j}) \\
+                                                                                & = (\tfrac{\lambda_{j}}{\sqrt{\lambda_{i}\lambda_{j}}}) (0)                              \\
+                                                                                & = 0
+\end{align*}
+
+3. Since $\vec{v}$ are both unit and orthogonal to each other, they do form a orthonormal basis.
+
+\vspace{0.5cm}
+
+\noindent{} From exercise 2, we found that the maximum solution is of the form
+\[
+    \vec{x} = \pm{}\tfrac{1}{\sqrt{\lambda{}_2}}\vec{u}_2
+\]
+
+1. Substituting $\vec{x}$ with (0.5), we have
+\[
+    A\vec{u} = \pm{}\tfrac{1}{\sqrt{\lambda{}_2}}\vec{u}_2 ~|~ \vec{u} = \begin{pmatrix} cos(t) \\ sin(t) \end{pmatrix}
+\]
+
+2. Multiply both sides by $A^{-1}$
+\begin{align*}
+    A^{-1}A\vec{u} & = \pm{}\tfrac{1}{\sqrt{\lambda{}_2}}A^{-1}\vec{u}_2 \\
+    \vec{u}        & = \pm{}\vec{v}_2
+\end{align*}
+
+3. This is easily repeatable for the minima
+\begin{align*}
+    \vec{x}        & = \pm{}\tfrac{1}{\sqrt{\lambda{}_1}}\vec{u}_1                                                              \\
+    A\vec{u}       & = \pm{}\tfrac{1}{\sqrt{\lambda{}_1}}\vec{u}_1 ~|~ \vec{u} = \begin{pmatrix} cos(t) \\ sin(t) \end{pmatrix} \\
+    A^{-1}A\vec{u} & = \pm{}\tfrac{1}{\sqrt{\lambda{}_1}}A^{-1}\vec{u}_1                                                        \\
+    \vec{u}        & = \pm{\vec{v}_1}
+\end{align*}
+
+
+\end{document}

@@ -1,0 +1,139 @@
+\documentclass[12pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath, amssymb, amsthm}
+\usepackage{geometry}
+\usepackage{fancyhdr}
+
+\geometry{letterpaper, margin=1in}
+\setlength{\headheight}{15pt}
+
+% Header setup
+\pagestyle{fancy}
+\fancyhf{}
+\lhead{Math 477 Spring 2026}
+\rhead{Jeffrey Lu}
+\cfoot{\thepage}
+
+\title{Homework Assignment 1 \\ \large Math 292, Spring 2026 \\ Rutgers University}
+\author{Jeffrey Lu}
+
+\begin{document}
+
+\maketitle
+
+\noindent \textbf{Question 6.8}
+
+Let $a,b,c \in{\mathbb{Z}}$. For sake of contradiction, we assume $a^2+b^2 = c^2$, and both $a$ and $b$ are odd.
+Then, by definition of odd, we have an integer $x$ such that $a = 2x+1$ and an integer $y$ such that $b = 2y+1$.
+
+Now, we substitute our new definition of $a$ and $b$ into the original equation, giving us
+\begin{align*}
+    a^2 + b^2 & = (2x+1)^2 + (2y+1)^2           \\
+              & = 4x^2 + 4x + 4y^2 + 4y + 2     \\
+              & = 2(2x^2 + 2x + 2y^2 + 2y + 1).
+\end{align*}
+
+We let $w = 2x^2 + 2x + 2y^2 + 2y + 1$, and $w$ must be an integer because it is the linear combination of integers.
+Then, we have that
+\[
+    a^2 + b^2 = c^2 = 2w.
+\]
+So, by definition of even, $c^2$ must be even, and since only the square of even integers can produce another even integer, $c$ must also be even.
+Thus, by definition of even, there is an integer $k$ such that $c = 2k$.
+
+Then, the square must be
+\begin{align*}
+    c^2 = (2k)^2 = 4k^2 .
+\end{align*}
+
+We let $z = k^2$, then z must be an integer because the product of integers is still an integer.
+Now, we have $c^2 = 4z$. Hence $4 ~|~ c^2$. We return to $a^2+b^2$,
+\begin{align*}
+    a^2 + b^2 & = 4x^2 + 4x + 4y^2 + 4y + 2  \\
+              & = 4(x^2 + x + y^2 + y) + 2 .
+\end{align*}
+We let $n = x^2 + x + y^2 + y$, where n must be an integer because it is the linear combination of integers.
+This gives us
+\begin{align*}
+     & a^2 + b^2 = 4n + 2       \\
+     & \implies{c^2-2 = 4n}     \\
+     & \implies{} c^2 = 2mod(4) \\
+     & \implies{} 4 \nmid{c^2}
+\end{align*}
+This is a contradictory to when we concluded that $4 ~|~ c^2$. Therefore, if $a^2+b^2 = c^2$, then $a$ or $b$ have to be even. $\Box$
+
+\vspace{20pt}
+
+\noindent \textbf{Question 6.10}
+
+For sake of contradiction, we assume that there exists integers $a$ and $b$, such that $21a+30b=1$.
+Then factor out a 3
+\begin{align*}
+    3(7a + 10b) & = 1.
+\end{align*}
+Let $k = 7a+10b$, then $k$ must be an integer since it's the linear combination of integers.
+Thus, we have
+\begin{align*}
+    3k & = 1            \\
+    k  & = \frac{1}{3}.
+\end{align*}
+This is an contradiction because we concluded that $k$ was an integer earlier.
+Therefore, we conclude that there exists no integers $a$ and $b$ for which $21a + 30b = 1$.
+
+\vspace{20pt}
+
+\noindent \textbf{Question 6.12}
+
+Let $x$ be a positive rational number.
+Then, we can rewrite $x$ as the fraction of two positive integers $p$ and $q$ since $x$ is positive.
+\begin{align*}
+    x = \frac{p}{q}.
+\end{align*}
+Next, we define $y = \frac{x}{2}$, such that $y = \frac{p}{2q}$.
+Since $x > 0$, dividing $x$ by $2$ yields a strictly smaller positive number, so $0 < \frac{x}{2} < x$.
+Let $w = 2q$, then $w$ is an integer because it's the linear combination of integers.
+Then, we have
+\begin{align*}
+    y = \frac{p}{w}.
+\end{align*}
+Therefore, $y$ is a positive rational number such that $y < x$.
+
+\vspace{20pt}
+
+\noindent \textbf{Question 7.4}
+
+Suppose we have an even integer $a$.
+By definition of even, we have an integer $x$ such that $a = 2x$.
+Then, we have that
+\begin{align*}
+    a^2 + 4a + 5 & = (2x)^2 + 4(2x) + 5   \\
+                 & = 4x^2 + 8x + 5        \\
+                 & = 2(2x^2 +4x + 2) + 1.
+\end{align*}
+Let $w = 2x^2 +4x + 2$, then $w$ must be an integer since it's the linear combination of integers.
+Hence, we have $a^2 + 4a + 5 = 2w + 1$.
+Thus, by definition of odd, we have that $a^2 + 4a + 5$ is odd.
+Then, we conclude that if $a$ is even, then $a^2 + 4a + 5$ is odd.
+
+Now we prove the converse using the contrapositive.
+Suppose $a$ is an odd integer.
+Then, by definition of odd, we have integer $y$ such that $a = 2y+1$.
+Thus, we have that
+\begin{align*}
+    a^2 + 4a + 5 & = (2y+1)^2 + 4(2y+1) + 5 \\
+                 & = 4y^2 + 12y + 10        \\
+                 & = 2(2y^2 + 6y + 5).
+\end{align*}
+We let $z = 2y^2 + 6y + 5$, and $z$ must be an integer since it's the linear combination of integers.
+Hence, we have $a^2 + 4a + 5 = 2z$.
+Thus, by definition of even, we have that $a^2 + 4a + 5$ is even.
+We conclude that if $a^2 + 4a + 5$ is odd, then $a$ is even.
+Therefore, we have that given an integer $a$, then $a^2 + 4a + 5$ is odd if and only if $a$ is even.
+
+
+
+
+
+
+
+\end{document}
