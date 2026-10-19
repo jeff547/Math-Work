@@ -1,0 +1,553 @@
+\documentclass[12pt]{article}
+\usepackage{amsmath, amssymb, amsthm}
+\usepackage{parskip}
+\usepackage{geometry}
+\usepackage{enumitem}
+\usepackage{fancyhdr}
+
+\geometry{letterpaper, margin=1in}
+\setlength{\headheight}{15pt}
+
+% Header setup
+\pagestyle{fancy}
+\fancyhf{}
+\lhead{Math 311 Fall 2026}
+\rhead{Jeffrey Lu}
+\cfoot{\thepage}
+
+\title{Homework Assignment 5 \\ \large Math 311, Fall 2026 \\ Rutgers University}
+\author{}
+\date{}
+
+\begin{document}
+
+\maketitle
+
+\textbf{Exercise 2.7.1}
+Let \( (a_{n}) \) be a non-negative decreasing sequnce such that \( a_n \to 0 \).
+Define the sequence of partial sums as
+\[
+    s_n = a_1 - a_2 + a_3 - \dots \pm a_n.
+\]
+\begin{enumerate}[label=(\alph*)]
+    \item
+          Let \( \epsilon > 0 \).
+          Since \( a_n \to 0 \), there exists \( N \in \mathbb{N} \) such that
+          \[
+              a_n < \epsilon.
+          \]
+          for all \( n \geq N \).
+          Let \( m > n \geq N \). Then
+          \[
+              \vert s_m - s_n \vert = \vert a_{n+1} - a_{n+2} + \dots \pm a_m \vert.
+          \]
+          Group consecutive terms
+          \[
+              (a_{n+1} - a_{n+2}) + (a_{n+3} - a_{n+4}) + \dots
+          \]
+          Since \( a_n \) is decreasing and non-negative, each grouping must also be non-negative, and so the sum is non-negative.
+          Moreover, shifting the grouping to the right by one term
+          \[
+              a_{n+1} - (a_{n+2} - a_{n+3}) - (a_{n+4} - a_{n+5}) + \dots \geq 0.
+          \]
+          Thus
+          \[
+              0 \leq  a_{n+1} - a_{n+2} + \dots \pm a_m \leq  a_{n+1},
+          \]
+          so
+          \[
+              \vert a_{n+1} - a_{n+2} + \dots \pm a_m \vert \leq a_{n+1}.
+          \]
+          Therefore,
+          \[
+              \vert s_m - s_n \vert \leq a_{n+1} < \epsilon.
+          \]
+          Hence \( s_n \) is a Cauchy sequence, so by Cauchy Criterion, \( s_n \) converges.
+
+    \item For every \( n \in \mathbb{N} \),
+          \[
+              s_{2n+2} - s_{2n} = a_{2n+1} - a_{2n+2} \geq 0.
+          \]
+          Hence even partial sums are increasing.
+          Similarly,
+          \[
+              s_{2n+3} - s_{2n+1} = a_{2n+3} - a_{2n+2} \leq 0.
+          \]
+          That is, odd partial sums are decreasing.
+          Finally,
+          \[
+              s_{2n+1} - s_{2n} = a_{2n+1} \geq 0.
+          \]
+
+          Next, we construct our intervals as
+          \[
+              I_n = [s_{2n}, s_{2n+1}]
+          \]
+          Then
+          \[
+              I_{n+1} \subseteq I_n
+          \]
+          By the Nested Interval Property, there exists \( s \in \mathbb{R} \) such that
+          \[
+              s \in \bigcap_{n=1}^{\infty} I_n.
+          \]
+          Thus,
+          \[
+              s_{2n} \leq s \leq s_{2n+1}.
+          \]
+          Observe that
+          \[
+              s_{2n+1}-s_{2n}=a_{2n+1}.
+          \]
+          Because \(a_n\to0\),
+          \[
+              a_{2n+1}\to0.
+          \]
+          Since \(s\in I_n\),
+          \[
+              0\le s-s_{2n}\le a_{2n+1}
+          \]
+          and
+          \[
+              0\le s_{2n+1}-s\le a_{2n+1}.
+          \]
+          By the Squeeze Theorem,
+          \[
+              s_{2n}\to s
+              \quad\text{and}\quad
+              s_{2n+1}\to s.
+          \]
+          Because both the even and odd subsequences of \((s_n)\) converge to the same limit \(s\), the entire sequence \((s_n)\) converges to \(s\).
+          Therefore,
+          \[
+              \sum_{n=1}^{\infty}(-1)^{n+1}a_n
+              \text{ converges.}
+          \]
+
+
+    \item
+          First, observe that
+          \[
+              s_{2n+2}-s_{2n}=a_{2n+1}-a_{2n+2}\ge0.
+          \]
+          Thus, \((s_{2n})\) is increasing.
+          Similarly,
+          \[
+              s_{2n+3}-s_{2n+1}=-a_{2n+2}+a_{2n+3}\le0.
+          \]
+          Thus, \((s_{2n+1})\) is decreasing.
+          Moreover,
+          \[
+              s_{2n+1}-s_{2n}=a_{2n+1}\ge0,
+          \]
+          so \(s_{2n}\le s_{2n+1}\) for every \(n\in\mathbb N\).
+          Since \((s_{2n})\) is increasing and bounded above by \(s_1\), the Monotone Convergence Theorem implies that
+          \[
+              s_{2n}\to L
+          \]
+          for some \(L\in\mathbb R\).
+          Similarly, \((s_{2n+1})\) is decreasing and bounded below by \(s_2\), so
+          \[
+              s_{2n+1}\to M
+          \]
+          for some \(M\in\mathbb R\).
+          Since
+          \[
+              s_{2n+1}-s_{2n}=a_{2n+1}\to0,
+          \]
+          the Algebraic Limit Theorem gives
+          \[
+              M-L=0.
+          \]
+          Hence, \(L=M\).
+          Therefore, both subsequences converge to the same limit. It follows that the entire sequence \((s_n)\) converges to \(L\).
+          Thus,
+          \[
+              \sum_{n=1}^{\infty}(-1)^{n+1}a_n
+              \text{ converges.}
+          \]
+
+\end{enumerate}
+
+\textbf{Exercise 2.7.2}
+\begin{enumerate}[label=(\alph*)]
+    \item For every \( n \in \mathbb{N} \),
+          \[
+              \sum_{n=1}^{\infty} \frac{1}{2^n + n} \leq \sum_{n=1}^{\infty} \frac{1}{2^n}
+          \]
+          Recall that
+          \[
+              \sum_{n=1}^{\infty} \frac{1}{2^n} \to 1
+          \]
+          Thus, by comparison test, \(  \sum_{n=1}^{\infty} \frac{1}{2^n + n} \) converges.
+
+
+    \item Since \( \vert \sin n \vert  \leq 1 \)  for every \( n \in \mathbb{N} \), it follows that
+          \[
+              \sum_{n=1}^{\infty} \frac{\vert \sin n \vert }{n^2} \leq \sum_{n=1}^{\infty} \frac{1}{n^2}.
+          \]
+          Notice that \( \sum_{n=1}^{\infty} \frac{1}{n^2} \) is a convergent p-series.
+          Hence, by comparison test,
+          \[
+              \sum_{n=1}^{\infty} \frac{ | \sin n | }{n^2}
+          \]
+          converges. Moreovr, by Absolute Convergence Test,
+          \[
+              \sum_{n=1}^{\infty} \frac{ \sin n }{n^2} \text{  converges}.
+          \]
+
+    \item We can rewrite the series as
+          \[
+              \sum_{n=1}^{\infty}  (-1)^{n+1} \frac{1 + n}{2n}
+          \]
+          Then
+          \[
+              \vert a_n \vert  = \frac{1+n}{2n} = \frac{1}{2} + \frac{1}{2n}.
+          \]
+          So
+          \[
+              \vert a_n \vert \to \frac{1}{2} \neq 0.
+          \]
+          Hence \( a_n \not \to 0 \).
+          By the contrapositive of theorem 2.7.3 , we conclude that the series
+          \[
+              \sum_{n=1}^{\infty}  \frac{1 + n}{2n} \text{ diverges.}
+          \]
+
+
+    \item We can group into consecutive terms of 3
+          \[
+              (1 + \frac{1}{2} - \frac{1}{3} ) + (\frac{1}{4} + \frac{1}{5} - \frac{1}{6}) + \dots
+          \]
+          Then we can define the sequence as
+          \[
+              a_n = \frac{1}{3n - 2} + \frac{1}{3n - 1} - \frac{1}{3n}
+          \]
+          Notice that
+          \[
+              \frac{1}{3n - 1} > \frac{1}{3n}.
+          \]
+          So
+          \[
+              a_n \geq  \frac{1}{3n-2} \geq \frac{1}{3n}.
+          \]
+          But
+          \[
+              \sum_{n=1}^{\infty} \frac{1}{3n} = \frac{1}{3} \sum_{n=1}^{\infty}  \frac{1}{n}
+          \]
+          diverges.
+          So by the comparison test,
+          \[
+              \sum_{n=1}^{\infty} a_n \quad \text{diverges.}
+          \]
+
+
+    \item We can group consecutive terms into pairs
+          \[
+              (1 - \frac{1}{2^2}) + (\frac{1}{3} - \frac{1}{4^2}) + \dots
+          \]
+          Then we can define the sequence as
+          \[
+              a_n = \frac{1}{2n-1}  - \frac{1}{4n^2}
+          \]
+          Notice that
+          \[
+              a_n \geq \frac{1}{2n} - \frac{1}{4n^2} \geq \frac{1}{2n} - \frac{1}{4n} = \frac{1}{4n}.
+          \]
+          But
+          \[
+              \sum_{n=1}^{\infty} \frac{1}{4n} = \frac{1}{4} \sum_{n=1}^{\infty} \frac{1}{n}
+          \]
+          diverges.
+          So by the comparison test,
+          \[
+              \sum_{n=1}^{\infty}  a_n \qquad \text{diverges.}
+          \]
+
+\end{enumerate}
+
+\textbf{Exercise 2.7.4}
+\begin{enumerate}[label=(\alph*)]
+    \item This is possible, consider
+          \[
+              x_n = y_n = n^{-\frac{3}{4}}.
+          \]
+          Then both series are p-series with p-value less than 1, so both series diverge.
+          However
+          \[
+              x_n y_n = n^{-\frac{3}{2}}.
+          \]
+          Thus, we have a p-series with a p-value greater than one, so the series
+          \[
+              \sum x_n y_n \quad \text{converges.}
+          \]
+    \item This is possible, consider
+          \[
+              x_n = \frac{(-1)^{n}}{n} \qquad \text{and} \qquad y_n = (-1)^{n}.
+          \]
+          Then \( \sum x_n \) converges by the alternating series test, and \( |y_n| \leq 1 \) so it is bounded.
+          But
+          \[
+              \sum x_n y_n = \sum \frac{1}{n}.
+          \]
+          This is the harmonic series, which we know diverges.
+
+    \item This is impossible, suppose
+          \[
+              \sum x_n \text{ and } \sum (x_n + y_n)
+          \]
+          both converge. Since
+          \[
+              y_n = (x_n + y_n) - x_n,
+          \]
+          by the algebraic limit theorem, the difference of two convergent series must also converge.
+          That is \( y_n \) must converge, so the statement is false.
+
+    \item This is possible, consider
+          \[
+              x_n = \begin{cases}
+                  0,           & \text{if } 2n-1 \\
+                  \frac{1}{n}, & \text{if } 2n
+              \end{cases}
+          \]
+          Then \( 0 \leq x_n \leq \frac{1}{n} \) holds.
+          For \( \sum (-1)^n x_n \), since \( x_n = 0 \) for odd \( n \), we have
+          \[
+              \sum (-1)^n x_n = \sum \frac{1}{2n} = \frac{1}{2} \sum  \frac{1}{n}.
+          \]
+          Since \( \sum \frac{1}{n} \) is the harmonic series,
+          \[
+              \sum (-1)^n x_n  \quad \text{diverges.}
+          \]
+\end{enumerate}
+
+\textbf{Exercise 2.7.7}
+\begin{enumerate}[label=(\alph*)]
+    \item Suppose \( a_n > 0 \) for every \( n \in \mathbb{N} \) and \( n a_n \to l \) with \( l \neq 0 \).
+          Since \( a_n > 0 \) and \( l \neq 0 \), it follows from the ordered limit theorem that
+          \( l > 0 \). Let \( \epsilon > 0 \), since \( n a_n \to l \) choose \( N \in \mathbb{N} \) such that
+          \[
+              n \geq N \implies \vert n a_n - l \vert < \frac{l}{2}.
+          \]
+          That is
+          \[
+              -\frac{l}{2} < n a_n - l < \frac{l}{2}.
+          \]
+          So
+          \[
+              n a_n > \frac{l}{2},
+          \]
+          and
+          \[
+              a_n > \frac{l}{2n}.
+          \]
+          Then
+          \[
+              \sum \frac{l}{2n} = \frac{l}{2} \sum \frac{1}{n},
+          \]
+          which diverges since it is a constant multiple of the divergent harmonic series.
+          Therefore, by the comparison test
+          \[
+              \sum a_n \quad \text{diverges.}
+          \]
+
+    \item Assume \( a_n > 0 \) for all \( n \in \mathbb{N} \) and \( n^2 a_n \to L\) for some \( L \in \mathbb{R} \).
+          Since \( n^2 a_n \) converges, it is also bounded.
+          So there exists \( M > 0 \) such that
+          \[
+              \vert n^2 a_n \vert \leq M
+          \]
+          for all \( n \in \mathbb{N} \).
+          Since \( a_n > 0 \), we also have
+          \[
+              0 < n^2 a_n \leq M.
+          \]
+          Dividing through,
+          \[
+              0 < a_n \leq \frac{M}{n^2}.
+          \]
+          Then since \( \frac{1}{n^2} \) is a convergent p-series, it follows that
+          \[
+              \sum \frac{M}{n^2} = M \sum \frac{1}{n^2}
+          \]
+          is also convergent.
+          Therefore, by the comparison test,
+          \[
+              \sum a_n \quad \text{converges.}
+          \]
+
+\end{enumerate}
+
+\textbf{Exercise 2.7.10}
+\begin{enumerate}[label=(\alph*)]
+    \item Notice that the infinite product can be rewritten as
+          \[
+              \prod_{n=1}^{\infty } (1 + \frac{1}{2^{n-1}}).
+          \]
+          So we let
+          \[
+              a_n = \frac{1}{2^{n-1}}.
+          \]
+          Then
+          \[
+              \sum a_n = \sum \frac{1}{2^{n-1}}
+          \]
+          is a convergent geometric series since \( \vert r \vert < 1 \).
+
+    \item Notice that the infinite product can be rewritten as
+          \[
+              a_n = \prod_{k=1}^{n} \frac{2k-1}{2k}.
+          \]
+          Since \( 2k > 2k - 1 \) and both \( 2k \) and \( 2k - 1 \) are positive, it follows that
+          \[
+              0 < \frac{2k-1}{2k} < 1
+          \]
+          for all \( k \in \mathbb{N} \). So the products are bounded. Then
+          \[
+              0 < \frac{2k+1}{2k+2} < 1,
+          \]
+          and
+          \[
+              a_{k+1} = a_k \cdot \frac{2k+1}{2k+2}.
+          \]
+          So
+          \[
+              a_{k+1} < a_k,
+          \]
+          and the products are decreasing.
+          Since the products are bounded below and decreasing, the Monotonic Convergence Theorem says that
+          the products converges to some \( L \geq 0 \).
+
+          Notice
+          \[
+              \frac{2k-1}{2k} < \frac{2k}{2k+1}
+          \]
+          for every \( k \in \mathbb{N} \).
+          So
+          \[
+              a_n \leq \prod_{k=1}^{n} \frac{2k}{2k+1}.
+          \]
+          Moreover
+          \[
+              \begin{aligned}
+                  a_n^2
+                   & \le \left(\prod_{k=1}^{n}\frac{2k-1}{2k}\right)
+                  \left(\prod_{k=1}^{n}\frac{2k}{2k+1}\right)                \\
+                   & =\prod_{k=1}^{n}\frac{2k-1}{2k+1}                       \\
+                   & =\frac13\cdot\frac35\cdot\frac57\cdots\frac{2n-1}{2n+1} \\
+                   & =\frac1{2n+1}.
+              \end{aligned}
+          \]
+          Thus,
+          \[
+              0<a_n\le\frac1{\sqrt{2n+1}}.
+          \]
+          Since
+          \[
+              \frac1{\sqrt{2n+1}} \to 0,
+          \]
+          the Squeeze Theorem implies
+          \[
+              a_n \to 0.
+          \]
+
+    \item Exercise 2.7.10 (c)
+          Proof. Define the partial products
+          \[
+              a_n=\prod_{k=1}^{n}\frac{4k^2}{4k^2-1}.
+          \]
+          Since
+          \[
+              \frac{4k^2}{4k^2-1}>1,
+          \]
+          we have
+          \[
+              a_{n+1}=a_n\frac{4(n+1)^2}{4(n+1)^2-1}>a_n.
+          \]
+          Thus, \((a_n)\) is increasing.
+          Now observe that
+          \[
+              \frac{4k^2}{4k^2-1}
+              =1+\frac{1}{4k^2-1}.
+          \]
+          For every \(k\ge1\),
+          \[
+              0<\frac{1}{4k^2-1}\le\frac{1}{3k^2},
+          \]
+          because \(4k^2-1\ge3k^2\).
+          Since
+          \[
+              \sum_{k=1}^{\infty}\frac{1}{3k^2}
+          \]
+          converges, the Comparison Test implies that
+          \[
+              \sum_{k=1}^{\infty}\frac{1}{4k^2-1}
+          \]
+          converges.
+          Therefore, by Exercise 2.4.10(b), the sequence of partial products
+          \[
+              a_n=\prod_{k=1}^{n}\left(1+\frac{1}{4k^2-1}\right)
+          \]
+          converges.
+          Hence,
+          \[
+              \prod_{k=1}^{\infty}\frac{4k^2}{4k^2-1}
+              \text{ converges.}
+          \]
+
+\end{enumerate}
+
+\textbf{Exercise 2.7.11}
+Let \(N_k=2^{2^k}\) for \(k\ge0\). For \(N_k\le n<N_{k+1}\), define
+\[
+    a_n=
+    \begin{cases}
+        \dfrac{1}{N_{k+1}}+2^{-n}, & k\text{ even}, \\[6pt]
+        \dfrac{1}{N_{k+2}}+2^{-n}, & k\text{ odd},
+    \end{cases}
+\]
+and
+\[
+    b_n=
+    \begin{cases}
+        \dfrac{1}{N_{k+2}}+2^{-n}, & k\text{ even}, \\[6pt]
+        \dfrac{1}{N_{k+1}}+2^{-n}, & k\text{ odd}.
+    \end{cases}
+\]
+Set \(a_1=b_1=1\). Both sequences are strictly positive and strictly decreasing because their block values are nonincreasing and \(2^{-n}\) is strictly decreasing.
+For every even \(k\),
+\[
+    \begin{aligned}
+        \sum_{n=N_k}^{N_{k+1}-1}a_n
+         & \ge\frac{N_{k+1}-N_k}{N_{k+1}} \\
+         & =1-\frac{N_k}{N_{k+1}}         \\
+         & \ge\frac12.
+    \end{aligned}
+\]
+Since there are infinitely many even \(k\), \(\sum a_n\) diverges. Similarly, considering odd \(k\), \(\sum b_n\) diverges.
+However, for \(N_k\le n<N_{k+1}\),
+\[
+    \min\{a_n,b_n\}=\frac1{N_{k+2}}+2^{-n}.
+\]
+Thus,
+\[
+    \begin{aligned}
+        \sum_{n=N_k}^{N_{k+1}-1}\min\{a_n,b_n\}
+         & =\frac{N_{k+1}-N_k}{N_{k+2}}
+        +\sum_{n=N_k}^{N_{k+1}-1}2^{-n} \\
+         & \le\frac1{N_{k+1}}
+        +\sum_{n=N_k}^{N_{k+1}-1}2^{-n}.
+    \end{aligned}
+\]
+Since
+\[
+    \sum_{k=0}^{\infty}\frac1{N_{k+1}}
+    \le\sum_{k=0}^{\infty}\frac1{2^{k+1}}
+\]
+and \(\sum_{n=2}^{\infty}2^{-n}\) both converge, the Comparison Test implies
+\[
+    \sum_{n=1}^{\infty}\min\{a_n,b_n\}\text{ converges.}
+\]
+
+
+\end{document}
