@@ -1,0 +1,219 @@
+\documentclass[12pt]{article}
+\usepackage{amsmath, amssymb, amsthm}
+\usepackage{parskip}
+\usepackage{geometry}
+\usepackage{enumitem}
+\usepackage{fancyhdr}
+
+% Set margins to match a standard homework document
+\geometry{a4paper, margin=1in}
+
+\title{Recitation 6}
+\parskip=1ex
+\author{Math 311 Fall 2026 \\ Rutgers University}
+\date{}
+
+\begin{document}
+
+\maketitle
+
+\textbf{Exercise 1}
+Let \( S \) be the set of positive integers whose
+decimal representations contain no digit 0. Define
+\[
+    s_n = \sum_{1 \leq j \leq n} \frac{1}{j}
+\]
+for \( j \in \mathbb{S} \).
+\begin{enumerate}[label=(\alph*)]
+    \item For \( k \in \mathbb{N} \), let
+          \[
+              S_k = \{j \in \mathbb{S}: 10^{k-1} \leq  j \leq 10^k\}.
+          \]
+          Then every digit of \( j \) has 9 choices.
+          Since there are \( k \) digits for \( S_{k} \), it follows that
+          \[
+              \vert S_k \vert = 9^k.
+          \]
+          By definition of \( S_k \),
+          \[
+              j \geq 10^{k-1},
+          \]
+          so
+          \[
+              \frac{1}{j} \leq \frac{1}{10^{k-1}}.
+          \]
+          Hence
+          \[
+              \begin{split}
+                  \sum_{j \in S_k} \frac{1}{j} & \leq \frac{\vert S_k \vert }{10^{k-1}} \\
+                                               & = 9 \left(\frac{9}{10}\right)^{k-1}.
+              \end{split}
+          \]
+
+    \item Let \( \epsilon > 0 \). Since
+          \[
+              90 (\frac{9}{10})^{k-1} \to 0,
+          \]
+          we can choose \( K \in \mathbb{N} \) such that
+          \[
+              90 (\frac{9}{10})^{K-1} < \epsilon.
+          \]
+          Set \( N = 10^{K-1} \), and let \( m > n \geq N \).
+          Then
+          \[
+              \begin{split}
+                  \vert s_m - s_n \vert & = \sum_{n < j \leq m} \frac{1}{j}                          \\
+                                        & \leq \sum_{k=K}^{\infty} \sum_{j \in S_k}                  \\
+                                        & \leq \sum_{k=K}^{\infty} 9 \left(\frac{9}{10}\right)^{k-1} \\
+                                        & = 90 \left(\frac{9}{10}\right)^{K-1}                       \\
+                                        & < \epsilon.
+              \end{split}
+          \]
+          So \( s_n \) is cauchy.
+          Thus, the Cauchy Criterion says that \( s_n \to L \) for some \( L \in \mathbb{R} \).
+          Since \( s_1 = 1 \) and \( S \) only contains positive terms, it follows that \( s_n \geq 1\) for all \( n \in \mathbb{N} \).
+          Thus by the Order Limit Theorem, \( L \geq 1 > 0 \).
+          Next, from part (a) we have
+          \[
+              \begin{aligned}
+                  s_n
+                   & \le \sum_{k=1}^{\infty}\sum_{j\in S_k}\frac1j         \\
+                   & \le \sum_{k=1}^{\infty}9\left(\frac9{10}\right)^{k-1} \\
+                   & =\frac9{1-\frac9{10}}                                 \\
+                   & =90.
+              \end{aligned}
+          \]
+          Therefore, by the Order Limit Theorem
+          \[
+              0 < L < 90.
+          \]
+
+\end{enumerate}
+
+\textbf{Exercise 2}
+\begin{enumerate}[label=(\alph*)]
+    \item Let \( \{x_n\}_{n \in \mathbb{N}} \) be a real sequence, and define
+          \[
+              u_n = x_n + x_{n+1}, \qquad v_n = x_n + x_{n+2}.
+          \]
+          Suppose \( u_n \) and \( v_n \) are Cauchy. Notice that
+          \[
+              \begin{split}
+                  u_n + u_{n-1} - v_{n-1} & = (x_n + x_{n+1}) + (x_{n-1} + x_n) - (x_{n-1} + x_{n+1}) \\
+                                          & = 2x_n.
+              \end{split}
+          \]
+          Let \( \epsilon > 0 \). Since \( u_n \) is cauchy,
+          \[
+              m,n \geq N_1 \implies \vert u_m - u_n \vert < \frac{2\epsilon}{3}.
+          \]
+          Similarly, since \( v_n \) is cauchy,
+          \[
+              m,n \geq N_2 \implies \vert v_m - v_n \vert < \frac{2\epsilon}{3}.
+          \]
+          Choose \( N = \max{\{N_1, N_2\}} + 1 \). Then
+          \[
+              \begin{split}
+                  \vert x_m - x_{n} \vert & = \frac{1}{2} \vert (u_m + u_{m-1} - v_{m-1}) - (u_n + u_{n-1} - v_{n-1}) \vert                                      \\
+                                          & \leq \frac{1}{2} \left(\vert u_m - u_n \vert + \vert u_{m-1} - u_{n-1} \vert + \vert v_{m-1} - v_{n-1} \vert \right) \\
+                                          & \leq \frac{1}{2} \left(\frac{2\epsilon}{3} + \frac{2\epsilon}{3} + \frac{2\epsilon}{3}\right)                        \\
+                                          & = \epsilon.
+              \end{split}
+          \]
+          Therefore \( x_n \) is cauchy.
+
+    \item Suppose \( \sum_{n=1}^{\infty} a_n^2 \) and \( \sum_{n=1}^{\infty} b_n^2 \) both converge.
+          Notice that
+          \[
+              \begin{split}
+                  (\vert a_n \vert - \vert b_n \vert )^2            & \geq  0                                \\
+                  a_n^2 - 2 \vert a_n \vert \vert b_n \vert + b_n^2 & \geq 0                                 \\
+                  \frac{a_n^2 + b_n^2}{2}                           & \geq \vert a_n \vert \vert b_n \vert .
+              \end{split}
+          \]
+          Next, by the Algebraic Limit Theorem, we have that
+          \[
+              \sum_{n=1}^{\infty} \frac{a_n^2 + b_n^2}{2} \quad \text{converges.}
+          \]
+          Moreover, by the comparison test
+          \[
+              \sum_{n=1}^{\infty} \vert a_n \vert \vert b_n \vert \quad \text{converges.}
+          \]
+          Hence \( \sum_{n=1}^{\infty}  a_n b_n \) converges absolutely.
+          Then, by theorem 2.7.10, we can conclude that ever rearrangement of this series also converges.
+\end{enumerate}
+
+\textbf{Exercise 3}
+For \( m,n \in \mathbb{N} \), define
+\[
+    a_{m,n} = \frac{mn^2}{m^2 + n^4}.
+\]
+\begin{enumerate}[label=(\alph*)]
+    \item For \( \lim_{m\to\infty}\lim_{n\to\infty}a_{m,n}\), we first divide through by \( n^4 \) and then take \( n \to \infty \),
+          \[
+              \lim_{n \to \infty} a_{m,n} = \lim_{n \to \infty} \frac{\frac{m}{n^2}}{\frac{m^2}{n^4} + 1} = 0.
+          \]
+          Taking \( m \to \infty \) does not do anything, so \( \lim_{m\to\infty}\lim_{n\to\infty}a_{m,n} = 0 \).
+
+          For \( \lim_{n\to\infty}\lim_{m\to\infty}a_{m,n}\), we first divide through by \( m^2 \) and then take \( m \to \infty \),
+          \[
+              \lim_{m \to \infty} a_{m,n} = \lim_{n \to \infty} \frac{\frac{n^2}{m}}{1 + \frac{n^4}{m^2}} = 0.
+          \]
+          Taking \( n \to \infty \) does not do anything, so \( \lim_{n\to\infty}\lim_{m\to\infty}a_{m,n} = 0 \).
+
+    \item No, consider \( m = n^2 \).
+          Then
+          \[
+              \begin{aligned}
+                  a_{n^2,n}
+                   & =\frac{n^2\cdot n^2}{(n^2)^2+n^4} \\
+                   & =\frac{n^4}{2n^4}                 \\
+                   & =\frac12.
+              \end{aligned}
+          \]
+
+          Hence,
+          \[
+              \lim_{n\to\infty}a_{n^2,n}=\frac12\neq0.
+          \]
+
+    \item Suppose that \(a_{m,n}\to L\) as \(m,n\to\infty\).
+          Because \(a_{n,n}\to0\), the uniqueness of limits implies that \(L=0\). Moreover, convergence of the double sequence to \(L\) forces its diagonal sequence to converge to \(L\).
+          Now choose
+          \[
+              \boxed{\varepsilon_0=\frac14}.
+          \]
+
+          Let \(N\in\mathbb N\) be arbitrary. Choose \(n\ge N\) and set \(m=n^2\). Since \(n\ge1\),
+          \[
+              m=n^2\ge n\ge N.
+          \]
+
+          But
+          \[
+              \begin{aligned}
+                  |a_{m,n}-L|
+                   & =|a_{n^2,n}-0|            \\
+                   & =\left|\frac12\right|     \\
+                   & =\frac12                  \\
+                   & \ge\frac14=\varepsilon_0.
+              \end{aligned}
+          \]
+
+          Thus, for every \(N\in\mathbb N\), there exist \(m,n\ge N\) satisfying
+          \[
+              |a_{m,n}-L|\ge\varepsilon_0.
+          \]
+
+          This contradicts the definition of double-sequence convergence.
+          Therefore,
+          \[
+              \{a_{m,n}\}_{m,n\in\mathbb N}\text{ does not converge as }m,n\to\infty.
+          \]
+\end{enumerate}
+
+
+
+
+\end{document}
+
