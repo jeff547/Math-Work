@@ -1,0 +1,517 @@
+\documentclass[12pt]{article}
+\usepackage{amsmath, amssymb, amsthm}
+\usepackage{parskip}
+\usepackage{geometry}
+\usepackage{enumitem}
+\usepackage{fancyhdr}
+
+\geometry{letterpaper, margin=1in}
+\setlength{\headheight}{15pt}
+
+% Header setup
+\pagestyle{fancy}
+\fancyhf{}
+\lhead{Math 311 Fall 2026}
+\rhead{Jeffrey Lu}
+\cfoot{\thepage}
+
+\title{Homework Assignment 6 \\ \large Math 311, Fall 2026 \\ Rutgers University}
+\author{}
+\date{}
+
+\begin{document}
+
+\maketitle
+
+\textbf{Exercise 3.2.2}
+Let
+\[
+    A = \{ (-1)^n + \frac{2}{n} : n = 1, 2, 3, \dots \} \quad \text{ and } \quad  B = \{x \in \mathbb{Q} : 0 < x < 1 \}.
+\]
+\begin{enumerate}[label=(\alph*)]
+    \item For set \( A \), we can seperate into even and odd indices.
+          If \( n \) is even
+          \[
+              (-1)^{2n} + \frac{2}{2n} = 1 + \frac{1}{n} \to 1.
+          \]
+          If \( n \) is odd
+          \[
+              (-1)^{2n-1} + \frac{2}{2n-1} = -1 + \frac{2}{2n-1} \to -1.
+          \]
+          Thus, the limit points of \( A \) are \( -1, 1 \).
+
+          For  \( B \), since \( \mathbb{Q} \) is dense in \( \mathbb{R} \)
+          all elements in \( [0,1] \) are limit points of \( B \).
+
+    \item The set \( A \) is not closed since \( -1 \) is a limit point of \( A \) but \( -1 \not \in A \).
+          The set \( A \) is also not open since \( 2 \in A \), but every \( \epsilon \)-neighborhood of \( 2 \) contains elements not in \( A \).
+          Therefore, \( A \) is neither open or closed.
+
+          The set \( B \) is not closed, since \( 0,1 \not \in B \) but both are limit points.
+          The set \( B \) is not open, since for each \( x \in B \), its neighborhood contains irrationals.
+          Therefore, \( B \) is neither open or closed.
+
+    \item Every element of \( A \setminus \{1\} \) is an isolated point.
+
+          The set \( B \) has no isolated points due to the density of \( \mathbb{Q} \).
+
+    \item The closure of \( A \) is
+          \[
+              \overline{A} = A \cup \{-1\}.
+          \]
+          The closure of \( B \) is
+          \[
+              \overline{B} = [0,1].
+          \]
+\end{enumerate}
+
+\textbf{Exercise 3.2.4}
+Let \( A \) be nonempty and bounded above so that \( s = \sup A \) exists.
+\begin{enumerate}[label=(\alph*)]
+    \item We proceed by splitting into two cases.
+          If \( s \in A \), then \( s \in \overline{A}  \) by definition of closure.
+
+          If \( s \not \in A \), let \( \epsilon > 0 \).
+          Since \( s = \sup A \), we have \( a \in A \) such that
+          \[
+              s - \epsilon < a < s.
+          \]
+          So
+          \[
+              0 < \vert a - s \vert < \epsilon.
+          \]
+          Hence
+          \[
+              a \in V_{\epsilon}(s) \cap (A \setminus \{s\})
+          \]
+          and \( s  \) is a limit point of \( A \).
+          Therefore, in both cases \( s \in \overline{A} \).
+
+    \item No, suppose, for contradiction, that \( A \) is an open set and \( s = \sup A \in A \).
+          Since \( A  \) is open, there exists \( \epsilon > 0 \) such that
+          \[
+              V_{\epsilon}(s) = ( s - \epsilon, s + \epsilon) \subseteq A.
+          \]
+          So \( s + \frac{\epsilon}{2} \in A \). \
+          But \( s + \frac{\epsilon}{2} > s \), contradicting the fact that \( s \) is an upper bound.
+          Therefore, \( s \not \in A \).
+
+
+\end{enumerate}
+
+\textbf{Exercise 3.2.6}
+\begin{enumerate}[label=(\alph*)]
+    \item False, consider \( A = \mathbb{R} \setminus \{\sqrt{2}\} \).
+          Since \( \{\sqrt{2}\} \) is a closed set, its complement \( A \) must be open.
+          But \( A \neq \mathbb{R} \) even though it is an open set containing every rational.
+
+    \item False, consider \( F_n = [n, \infty ) \).
+          Then for each \( n \in \mathbb{N} \), \( F_n \) is closed and nonempty, and
+          \[
+              F_1 \supseteq  F_2 \supseteq  F_3 \supseteq  \dots
+          \]
+          But
+          \[
+              \bigcap_{n=1}^{\infty} F_n = \varnothing.
+          \]
+
+    \item True, let \( A \subseteq \mathbb{R} \) be a nonempty open set.
+          Choose some \( x \in A \).
+          Since \(A \) is open, there exists \( \epsilon > 0 \) such that
+          \[
+              V_{\epsilon}(x) = (x-\epsilon, x+\epsilon) \subseteq A.
+          \]
+          By density of \( \mathbb{Q} \), there exists \( q \in \mathbb{Q} \) such that
+          \[
+              x - \epsilon < q < x + \epsilon.
+          \]
+          Hence
+          \[
+              q \in V_{\epsilon}(x) \subseteq A.
+          \]
+          Therefore, \( A \) must contain a rational number.
+
+
+    \item False, consider
+          \[
+              A = \{\sqrt{2} + \frac{1}{n} : n \in \mathbb{N} \} \cup  \{\sqrt{2}\}.
+          \]
+          Then \( A \) is a infinite, bounded between \( [\sqrt{2}, \sqrt{2} + 1] \),
+          closed since it contains its limit point \( \sqrt{2} \), and contains no rationals
+          since the sum of a irrational and a rational is irrational.
+
+
+    \item True, recall that the cantor set starts with \( [0,1] \) and we repeatedly
+          remove the open middle.
+          This leaves us with a finite union of closed intervals, which we know is closed.
+          Then we take the intersection of these closed intervals, which is also closed by theorem 3.2.14
+
+\end{enumerate}
+
+\textbf{Exercise 3.2.9}
+\begin{enumerate}[label=(\alph*)]
+    \item For
+          \[
+              \left( \bigcup_{\lambda \in \Lambda } E_{\lambda } \right)^c = \bigcap_{\lambda \in \Lambda} E_{\lambda }^c
+          \]
+          Let \( x \in \left( \bigcup_{\lambda \in \Lambda } E_{\lambda } \right)^c \). Then
+          \[
+              \begin{split}
+                  x \in \left( \bigcup_{\lambda \in \Lambda } E_{\lambda } \right)^c
+                   & \iff x \not \in \bigcup_{\lambda \in \Lambda } E_{\lambda}              \\
+                   & \iff x \not \in E_{\lambda} \quad \text{for every } \lambda \in \Lambda \\
+                   & \iff x \in E_{\lambda}^c \quad \text{for every } \lambda \in \Lambda    \\
+                   & \iff x \in \bigcap_{\lambda \in \Lambda } E_{\lambda}^c
+              \end{split}
+          \]
+          Therefore,
+          \[
+              \left( \bigcup_{\lambda \in \Lambda } E_{\lambda } \right)^c = \bigcap_{\lambda \in \Lambda} E_{\lambda }^c
+          \]
+
+          For
+          \[
+              \left(\bigcap_{\lambda\in\Lambda}E_\lambda\right)^c
+              = \bigcup_{\lambda\in\Lambda}E_\lambda^c.
+          \]
+          Let \( x \in \left(\bigcap_{\lambda\in\Lambda}E_\lambda\right)^c \).
+          Then
+          \[
+              \begin{split}
+                  x \in \left(\bigcap_{\lambda\in\Lambda}E_\lambda\right)^c
+                   & \iff x \not \in \bigcap_{\lambda\in\Lambda}E_\lambda                   \\
+                   & \iff x \not \in E_{\lambda} \quad \text{for some } \lambda \in \Lambda \\
+                   & \iff x \in E_{\lambda}^c \quad \text{for some } \lambda \in \Lambda    \\
+                   & \iff x \in \bigcup_{\lambda\in\Lambda}E_\lambda^c.
+              \end{split}
+          \]
+          Therefore,
+          \[
+              \left(\bigcap_{\lambda\in\Lambda}E_\lambda\right)^c
+              = \bigcup_{\lambda\in\Lambda}E_\lambda^c.
+          \]
+
+
+    \item Let \( \{E_{\lambda} : \lambda \in \Lambda\} \) be a finite collection of closed sets.
+          By theorem 3.2.13, for each \( \lambda \in \Lambda \), \( E_\lambda^c \) is open.
+          Then by theorem 3.2.3, the finite intersection of these open sets is also open.
+          Since the complement of this intersection is closed, it follows that
+          \[
+              \left(\bigcap_{\lambda\in\Lambda}E_\lambda^c\right)^c = \bigcup_{\lambda\in\Lambda}E_\lambda.
+          \]
+          Hence the union of a finite collection of closed set is closed.
+
+
+          Let \( \{F_{\lambda} : \lambda \in \Lambda\} \) be a arbitrary collection of closed sets.
+          By theorem 3.2.13, for each \( \lambda \in \Lambda \), \( F_\lambda^c\) is open.
+          Then by theorem 3.2.3, the union of these open sets is also open.
+          Since the complement of this union must be closed, it follows that
+          \[
+              \left( \bigcup_{\lambda \in \Lambda } F_{\lambda}^c \right)^c = \bigcap_{\lambda \in \Lambda} F_{\lambda }
+          \]
+          Hence the intersection of an arbitrary collection of closed sets is closed.
+\end{enumerate}
+
+\textbf{Exercise 3.2.15}
+\begin{enumerate}[label=(\alph*)]
+    \item For each \( n \in \mathbb{N} \), define
+          \[
+              G_n = (a - \frac{1}{n}, b + \frac{1}{n}).
+          \]
+          Then each \( G_n \) is an open set.
+
+          First, let \( x \in [a,b] \). Then for every \( n \in \mathbb{N} \)
+          \[
+              a - \frac{1}{n} < x < b + \frac{1}{n}.
+          \]
+          Thus \( x \in G_n \) for every \( n \in \mathbb{N} \), so
+          \[
+              [a,b] \subseteq \bigcap_{n=1}^{\infty} G_n.
+          \]
+
+          Let
+          \[
+              x \in \bigcap_{n=1}^{\infty} G_n.
+          \]
+          Then \( x \in G_n \) for every \( n \in \mathbb{N} \).
+          So
+          \[
+              a - \frac{1}{n} < x < b + \frac{1}{n}.
+          \]
+          Since \( \frac{1}{n} \to 0 \), by the Order Limit Theorem
+          \[
+              a \leq x \leq b.
+          \]
+          Hence \( x \in [a,b] \), and so
+          \[
+              \bigcap_{n=1}^{\infty} G_n \subseteq [a,b].
+          \]
+          Therefore we have
+          \[
+              \bigcap_{n=1}^{\infty} G_n = [a,b].
+          \]
+
+
+    \item For each \( n \in \mathbb{N} \) we define
+          \[
+              G_n = (a, b + \frac{1}{n}).
+          \]
+          Then each \( G_n \) is an open set.
+          Let \( x \in (a, b] \). Then
+          \[
+              a < x \leq b < b + \frac{1}{n}.
+          \]
+          for every \( n \in \mathbb{N} \).
+          So \( x \in G_n \) for every \( n \in \mathbb{N} \), and
+          \[
+              x \in \bigcap_{n=1}^{\infty} G_n.
+          \]
+          Hence
+          \[
+              (a,b] \subseteq \bigcap_{n=1}^{\infty} G_n.
+          \]
+
+          Let
+          \[
+              x \in \bigcap_{n=1}^{\infty} G_n.
+          \]
+          Then \( x \in G_n \) for every \( n \in \mathbb{N} \).
+          So
+          \[
+              a < x < b + \frac{1}{n}.
+          \]
+          Since \( \frac{1}{n} \to 0 \), the Order Limit theorem says
+          \[
+              a < x \leq b.
+          \]
+          So \( x \in (a,b] \), and
+          \[
+              \bigcap_{n=1}^{\infty} G_n \subseteq (a,b].
+          \]
+          Therefore
+          \[
+              (a,b] = \bigcap_{n=1}^{\infty} G_n.
+          \]
+
+          Next, we show \( (a,b] \) is an \( F_{\sigma} \) set.
+          For each \( n \in \mathbb{N} \) we define
+          \[
+              F_n = [a + \frac{1}{n}, b]
+          \]
+          where \( F_n = \varnothing  \) if \( a +\frac{1}{n} > b \).
+          Then each \( F_n \) is a closed set.
+          Let \( x \in (a,b] \).
+          Then
+          \[
+              a \leq x \leq b.
+          \]
+          Since \( x - a > 0 \), by the Archimedean Property, there exists \( n \in \mathbb{N} \)
+          such that
+          \[
+              \frac{1}{n} < x - a.
+          \]
+          Hence
+          \[
+              a + \frac{1}{n} < x \leq b.
+          \]
+          That is, \( x \in F_n \) for some \( n \in \mathbb{N} \). So
+          \[
+              x \in \bigcup_{n=1}^{\infty} F_n.
+          \]
+          Let
+          \[
+              x \in \bigcup_{n=1}^{\infty} F_n.
+          \]
+          Then there exists some \( n \in \mathbb{N} \) such that \( x \in F_n \).
+          For this \( n \), we have
+          \[
+              a + \frac{1}{n} \leq x \leq b.
+          \]
+          Sicne \( \frac{1}{n} > 0 \), we have
+          \[
+              a < x \leq b.
+          \]
+          Thus, \( x \in (a,b] \), so
+          \[
+              \bigcup_{n=1}^{\infty} F_n \subseteq (a,b].
+          \]
+
+          Therefore,
+          \[
+              \bigcup_{n=1}^{\infty} F_n = (a,b].
+          \]
+
+
+    \item To show that \( \mathbb{Q} = F_{\sigma } \), recall that \( \mathbb{Q} \) is countable,
+          so we can list its elements as
+          \[
+              \mathbb{Q} = \{q_1, q_2, q_3, \dots \}.
+          \]
+          Then every element is a closed set, and so
+          \[
+              \mathbb{Q} = \bigcup_{n=1}^{\infty} \{q_n\}.
+          \]
+
+          Next, we show that the irrationals form a \( G_{\delta } \) set.
+          Define
+          \[
+              I = \mathbb{R} \setminus \mathbb{Q}.
+          \]
+          Then
+          \[
+              \begin{split}
+                  I & = \mathbb{Q}^c                                   \\
+                    & = \left(\bigcup_{n=1}^{\infty} \{q_n\} \right)^c \\
+                    & = \bigcap_{n=1}^{\infty} \{q_n\}^c.
+              \end{split}
+          \]
+          Since \( \{q_n\} \) is closed for each \( n \in \mathbb{N} \),
+          each complement must then be open.
+          Therefore, the irrationals are the countable intersection of open sets.
+\end{enumerate}
+
+\textbf{Exercise 3.3.1}
+Suppose that \( K \) is compact and nonempty.
+By Heine-Borel Theorem, \( K \) is also closed and bounded.
+Then by the Axiom of Completeness, both \( \sup K \) and \( \inf K \) exists.
+Exercise 3.2.4 says that
+\( \sup K, \inf K \in \overline{K} \).
+Since \( K \) is closed, \( K = \overline{K} \), and so
+\[
+    \sup K, \inf K \in K.
+\]
+
+\textbf{Exercise 3.3.2}
+\begin{enumerate}[label=(\alph*)]
+    \item Not compact, consider \( x_n = n \).
+          For every upper bound \( M \), by Archimedean Property we can always produce \( n > M \).
+          Thus \( x_n \) is unbounded and so every subsequence does not converge.
+
+    \item Consider the sequence of the decimal approximation of \( \sqrt{2}/2 \)
+          \[
+              x_n=0.7,\ 0.70,\ 0.707,\ 0.7071,\ 0.70710,\ldots
+          \]
+          Then every term is rational belongs \( [0,1] \), but
+          \( x_n \to  \sqrt{2}/2 \). Since every subsequence also converges to same point,
+          no subsequences converge to a point in \( \mathbb{Q} \cap [0,1] \). Hence it is not compact.
+
+
+    \item Recall form exercise 3.2.6, we showed that the Cantor Set is closed. Furthermore, since
+          \[
+              C \subseteq [0,1]
+          \]
+          , \( C \) is also bounded.
+          Thus by Theorem 3.3.4, \( C \) is compact.
+
+    \item Not compact, consider the sequence
+          \[
+              x_n = \sum_{k=1}^{n} \frac{1}{k^2}.
+          \]
+          Each \( x_n \in \{1 + \frac{1}{2^2} + \frac{1}{3^2} + \dots \} \), and
+          \[
+              x_{n+1} - x_{n} = \frac{1}{(n+1)^2} > 0
+          \]
+          so the sequence is increasing.
+          Since for \( k \geq 2 \)
+          \[
+              \frac{1}{k^2} < \frac{1}{k(k-1)},
+          \]
+          it follows that \( x_n \) is bounded above.
+          Thus,
+          \[
+              \begin{split}
+                  x_n & = 1 + \sum_{k=2}^{n} \frac{1}{k^2}                \\
+                      & < 1 + \sum_{k=2}^{n} \frac{1}{k(k-1)}             \\
+                      & = 1 + \sum_{k=2}^{n}(\frac{1}{k-1} - \frac{1}{k}) \\
+                      & = 2 - \frac{1}{n}                                 \\
+                      & < 2.
+              \end{split}
+          \]
+          for \( n \geq 2 \).
+          By the Monotone Convergence Theorem, \( (x_n) \to L \in \mathbb{R} \).
+          Since \( x_n \) is increasing, by the Order Limit Theorem
+          \[
+              L \geq x_{n+1} > x_n.
+          \]
+          Thus, \( L \not \in  \{1 + \frac{1}{2^2} + \frac{1}{3^2} + \dots \}\).
+          Since no subsequence converges to a point inside the set, it is not compact.
+
+    \item Since
+          \[
+              \frac{n}{n+1} = 1 - \frac{1}{n+1} \to 1.
+          \]
+          Since \( 1 \in B \), \( B \) is closed.
+          Also \( B \subseteq [0,1] \), so \( B \) is bounded.
+          Thus \( B \) is compact.
+\end{enumerate}
+
+\textbf{Exercise 3.3.5}
+\begin{enumerate}[label=(\alph*)]
+    \item Let \(\{K_\lambda:\lambda\in\Lambda\}\) be an arbitrary collection of compact sets.
+          Since each \(K_\lambda\) is compact, each is closed and bounded by Theorem 3.3.4.
+          By Theorem 3.2.14, an arbitrary intersection of closed sets is closed. Thus,
+          \[
+              K=\bigcap_{\lambda\in\Lambda}K_\lambda
+          \]
+
+          is closed.
+          Moreover, since
+          \[
+              K\subseteq K_\lambda
+          \]
+
+          for every \(\lambda\in\Lambda\), \(K\) is a subset of a bounded set and is therefore bounded (assuming the collection is nonempty).
+          Hence \(K\) is closed and bounded, so it is compact by Theorem 3.3.4.
+
+    \item False. For each \(n\in\mathbb N\), let
+          \[
+              K_n=[-n,n].
+          \]
+
+          Every \(K_n\) is closed and bounded, so each is compact.
+          However,
+          \[
+              \bigcup_{n=1}^{\infty}K_n=\mathbb R,
+          \]
+
+          which is unbounded and therefore not compact.
+
+
+    \item False.Let
+          \[
+              A=(0,1),\qquad K=[0,1].
+          \]
+
+          Since \(K\) is closed and bounded, it is compact.
+          However,
+          \[
+              A\cap K=(0,1),
+          \]
+
+          which is not closed and therefore not compact.
+
+    \item False. For each \(n\in\mathbb N\), define
+          \[
+              F_n=[n,\infty).
+          \]
+
+          Every \(F_n\) is nonempty and closed. Furthermore,
+          \[
+              F_1\supseteq F_2\supseteq F_3\supseteq\cdots.
+          \]
+
+          However,
+          \[
+              \bigcap_{n=1}^{\infty}F_n=\emptyset.
+          \]
+
+          To see why, suppose there exists \(x\) in the intersection. Then
+          \[
+              x\ge n\qquad\text{for every }n\in\mathbb N.
+          \]
+
+          But by the Archimedean Property, there exists \(n\in\mathbb N\) such that \(n>x\), a contradiction.
+          Therefore, the intersection is empty.
+\end{enumerate}
+
+\end{document}
