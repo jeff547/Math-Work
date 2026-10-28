@@ -1,0 +1,221 @@
+\documentclass[12pt]{article}
+\usepackage{amsmath, amssymb, amsthm}
+\usepackage{parskip}
+\usepackage{geometry}
+\usepackage{enumitem}
+\usepackage{fancyhdr}
+
+% Set margins to match a standard homework document
+\geometry{a4paper, margin=1in}
+
+\title{Recitation 7}
+\parskip=1ex
+\author{Math 311 Fall 2026 \\ Rutgers University}
+\date{}
+
+\begin{document}
+
+\maketitle
+
+\textbf{Exercise 1a}
+\begin{enumerate}[label=(\roman*)]
+    \item Since \( F \) is finite, for each point \( x \in F \), we are able to find
+          a neighborhood \( V_{\epsilon}(x) \) such that only \( x \) is included.
+          In other words, there are no limit points in \( F \).
+          Hence \( F \) is closed. Moreover, every \( V_{\epsilon}(x) \) will also include points
+          outside of \( F \), and so \( F \) is not open. Therefore, \( F \) is only closed.
+          Unless \( F = \varnothing \), then \( F \) is both open and closed.
+
+    \item The set \( L \) is certainly closed since it contains all its limit points by definiton.
+          Whether it is open or not depends on \( A \). If \( A = \mathbb{R}\), then it is open, if \( A = (0,1) \), then it is closed.
+
+
+    \item Let
+          \[
+              h_n = \sum_{k=1}^{n} \frac{1}{k}.
+          \]
+          Recall that the harmonic series diverges to infinity or \( h_{n} \to \infty  \). Then for any upper bound \( M \in \mathbb{R}\), there exists \( N  \in \mathbb{N} \) such that
+          \[
+              h_n > M \qquad \forall n \geq N.
+          \]
+          Hence every bounded interval contains finitely many elements of \( H \).
+          So there are no limit points for \( H \). Hence \( H \) is closed.
+
+          Since every element of \( H \) is isolated, no neighborhood is contained entirely in \( H \), so \( H \) is not open.
+
+
+    \item Let
+          \[
+              p_n = \sum_{k=1}^{n} \frac{1}{k^2}.
+          \]
+          Recall that this series converges. That is, \( p_n \to p \).
+          Then every \( \epsilon \)-neighborhood of \( p \) contains infinitely many elements of \( P \). So \( p \) is a limit point of \( P \).
+          But since every \( \frac{1}{k^2} > 0 \), \( p_n \) is increasing.
+          So \( p_n < p \) for every \( n \in \mathbb{N} \). Hence \( p \not \in P \),
+          and so \( P \) is not closed.
+
+          Moreover, every element of \( P \) is isolated, so \( P \) is not open either.
+
+
+    \item Since the cantor set is constructed by repeatedly removing the open middle thirds of each successive interval, it can be written as
+          \[
+              C = \bigcap_{n=1}^{\infty} C_n,
+          \]
+          where every \( C_n \) is a finite union of closed intervals.
+          Since the arbitrary intersection fo closed sets are closed, \( C \) is closed.
+
+          The cantor set always contains \( 0 \) and any \( \epsilon \)-neighborhood of 0 will contains elemnents outside of \( C \). So \( C \) is not open.
+\end{enumerate}
+
+\textbf{Exercise 1b}
+\begin{enumerate}[label=(\roman*)]
+    \item False. Suppose \( F \) is closed and \( \mathbb{Q} \subseteq F \). Since \( \mathbb{Q} \) is dense in \( \mathbb{R} \), every real number is a limit point of \( F \).  Since \( F \) is closed, it contains all its limit points. Hence \( F = \mathbb{R} \), which contradicts \( F \subsetneq R \).
+    \item True, consider \( O = \mathbb{R} \setminus \{\sqrt{2}\} \). Since \( \{\sqrt{2}\} \) is closed, its complement \( O \) must be open.
+    \item False. Consider the collection of open sets defined by
+          \[
+              A_n = (-\frac{1}{n}, \frac{1}{n}).
+          \]
+          Then
+          \[
+              \bigcap_{n=1}^{\infty} A_n = \{0\},
+          \]
+          which is not open.
+
+    \item False. Consider the collection of closed sets defined by
+          \[
+              A_n = [0, 1 - \frac{1}{n}].
+          \]
+          Then
+          \[
+              \bigcup_{n=1}^{\infty} A_n = [0, 1),
+          \]
+          which is not closed since 1 is a limit point that is not contained within the union.
+
+    \item False. Consider
+          \[
+              A = \{\sqrt{2}\} \cup \{\sqrt{2} + \frac{1}{n} : n \in \mathbb{N}\} \subseteq \mathbb{R}.
+          \]
+          Every elemnt is irrational since the sum of an irrational and a rational is irrational. The set is infinite bounded by \( [\sqrt{2}, \sqrt{2} + 1] \), and closed because the only limit point is \( \sqrt{2} \in A \).
+
+
+    \item True. Let \( O \subseteq \mathbb{R} \) be nonempty and open. Choose any \( x \in O \). Since \( O \) is an open set, there exists \( \epsilon > 0 \) such that
+          \[
+              (x- \epsilon, x + \epsilon ) \subseteq O.
+          \]
+          By density of \( \mathbb{Q} \) in \( \mathbb{R} \), there exists \( q \in \mathbb{Q} \) such that
+          \[
+              x - \epsilon < q < x + \epsilon.
+          \]
+          Hence \( q \in O \).
+
+    \item False. Suppose for contradiction that such a set exists, say \( A \subseteq \mathbb{R} \). Then for every isolated point \( x \in A \), there exists a neighborhood containing \( x \) but no other elements of \( A \). By density of \( \mathbb{Q} \), we choose rationals \( p_x < x < q_x \) such that
+          \[
+              (p_x, q_x) \cap A = \{x\}.
+          \]
+          Then every isolated point must have its own distinct rational interval. But there are only countably many rational pairs, so \( A \) has at most countably many isolated points.
+
+
+    \item False. Take
+          \[
+              A = (0,1), \qquad B = (1,2).
+          \]
+          Then \( A \cap B  = \varnothing \), so
+          \[
+              \overline{A \cap B} = \varnothing .
+          \]
+          But
+          \[
+              \overline{A} \cap \overline{B} = [0,1] \cap [1,2] = \{1\} \neq \varnothing .
+          \]
+
+
+    \item True. If \( A \) is bounded, then it closure \( \overline{A} \) is also bounded. By definiton, \( \overline{A} \) is closed. Therefore, by Heine-Borel theorem, \( \overline{A} \) is compact.
+    \item False. Consider
+          \[
+              A  = \mathbb{N} \cup  \{\frac{1}{n}: n \in \mathbb{N}\}.
+          \]
+          Then the only limit point is 0 since \( \frac{1}{n} \to 0 \).
+          But, \( A \) is unbounded above since \( \mathbb{N} \to \infty  \).
+
+    \item True. Suppose \( K \subseteq \mathbb{R} \) is compact and every point is isolated. Assume, for contradiction, that \( K \) is infinite. Since \( K \) is compact, it is bounded. So by Bolzaono-Weierstrass, \( K \) has a limit point, say \( x \). Then since \( K \) is also closed by compactness, \( x \in K \). But this contradicts the fact that every point is isolated, so \( K  \) must be finite.
+\end{enumerate}
+
+\textbf{Exercise 1c}
+\begin{enumerate}[label=(\roman*)]
+    \item Open since the finite intersection of open sets is open.
+    \item Closed since the finite union of closed sets is closed.
+    \item Open, since \( U \setminus F = U \cap F^c \), \( F^c \) is the complement of a closed set so it is open, and the finite intersection of open sets is open.
+    \item Closed. Notice
+          \[
+              F \setminus U = F \cap U^c.
+          \]
+          Then \( U^c \) is the complement of an open set so it is closed. Hence we have the intersection of 2 closed sets which is closed as well.\
+    \item Neither, consider
+          \[
+              U = (0,2), \qquad F = [1,3].
+          \]
+          Then
+          \[
+              U \cap F = [1,2),
+          \]
+          which is neither closed or open.
+
+    \item Neither, consider
+          \[
+              U = (0,1), \qquad F = \{1\}.
+          \]
+          Then
+          \[
+              U \cup F = (0, 1],
+          \]
+          which is neither closed or open.
+\end{enumerate}
+
+\textbf{Exercise 2}
+\begin{enumerate}[label=(\alph*)]
+    \item Define \( L \) as the limit points of \( M \).
+
+          Let \( x \in C \) and \( \epsilon > 0 \). Then there exists \( I_n \subseteq C_n \) with \( \vert I_n \vert = \frac{1}{3^n} \). Choose \( n \in \mathbb{N} \) such that
+          \[
+              \frac{1}{3^n} < \epsilon.
+          \]
+          Then let \( m \) be the midpoint of \( I_n \) removed at step \( n + 1 \).
+          Hence \( m \in M_{n+1} \subseteq M \). Since \( x, m \in I_n \), it follows that
+          \[
+              \vert x - m \vert < \frac{1}{3^n} < \epsilon.
+          \]
+          Notice \( x \neq m \) since \( x \in C \) while \( m \) is removed at step \( n+1 \). Thus, every \( \epsilon \)-neighborhood of \( x \) contains of \( M \) that isn't \( x \). Therefore \( C \subseteq L \).
+
+          Let \( x \in L \).   Suppose for sake of contradiciton that \( x \not \in C \). Then there exists \( N \in \mathbb{N} \) such that \( x \not \in C_N \). Since \( C_N \) is closed, there exists \( \epsilon > 0 \) such that
+          \[
+              V_{\epsilon}(x) \cap C_N  = \varnothing.
+          \]
+          Since midpoints \( m \in M \) added after step \( N \) lie in \( C_N \), we have
+          \[
+              V_{\epsilon}(x) \cap M \subseteq \bigcup_{n=1}^{N} M_n.
+          \]
+          Since \( \bigcup_{n=1}^{N} M_n \) is finite, we can choose a smaller neighborhoor of \( x \) containing no points of \( M \) other than \( x \).
+          But this contradicts \( x \in L \), so \( x \in C \). Hence
+          \[
+              L \subseteq C.
+          \]
+          Therefore
+          \[
+              L = C,
+          \]
+          and
+          \[
+              \overline{M} = M \cup C.
+          \]
+
+
+    \item \( M \) is not compact. Since \( M \subseteq [0,1] \), it is bounded. But \( C = L \) and \( C \nsubseteq M \). Thus \( M \) does not contain all its limit points and so it cannot be closed. Therefore, by Heine-Borel, it is not compact.
+
+          On the other hand, \( \overline{M} \)  is compact since it is closed by definition of closure and it is bounded by \( [0,1] \) as well.
+\end{enumerate}
+
+
+
+
+\end{document}
+
