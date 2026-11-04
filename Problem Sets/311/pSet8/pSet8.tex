@@ -1,0 +1,213 @@
+\documentclass[12pt]{article}
+\usepackage{amsmath, amssymb, amsthm}
+\usepackage{parskip}
+\usepackage{geometry}
+\usepackage{enumitem}
+\usepackage{fancyhdr}
+
+% Set margins to match a standard homework document
+\geometry{a4paper, margin=1in}
+
+\title{Recitation 8}
+\parskip=1ex
+\author{Math 311 Fall 2026 \\ Rutgers University}
+\date{}
+
+\begin{document}
+
+\maketitle
+
+\textbf{Exercise 1}
+\begin{enumerate}[label=(\alph*)]
+    \item True. Recall that the connect subsets of \( \mathbb{R} \) are the intervals. Since we also have the extra condtion of the sets being compact, it must be closed and bounded as well, which is exactly the definition of closed intervals, and a singleton is just a closed interval where both endpoints are equal to each other.
+    \item False. Take the real set itself, obviously \( \mathbb{R} \subseteq \mathbb{R} \) and \( \mathbb{R} \) is closed with no isolated points so it is perfect. But it is not bounded and so it is not compact.
+    \item True. Every nonempty closed subset of \( \mathbb{R} \) with no isolated points is just a non-empty perfect set. By Theorem 3.4.3, we have that nonempty perfect sets are uncountable
+    \item False. Consider \( \mathbb{Q} \subseteq \mathbb{R} \), it has no isolated points but is countable.
+    \item True. Since \( A \) and \( B \) are connected subsets of \( \mathbb{R} \), they must be intervals. Moreover, since \( A \cap B \neq \varnothing \), these intervals overlap, so \( A \cup B \) must also be an interval containing elements of \( A \cap B \), thus \( A \cup B \) is connected as well.
+    \item True. Define \( A = C \cup \{2\} \), where \( C \) is the cantor set. Then, this set is uncountable since \( C \) is uncountable. It is bounded by \( [0,2] \) and since it is the union of 2 closed sets, it is closed as well. Thus \( A \) is compact. Morover, the only isolated point is \( 2 \) since it is separated with the rest of \( C \). Therefore, \( A \) is a uncountable compact set with exactly one isolated point.
+    \item True. Define these two nonempty disjoint subsets of \( \mathbb{R} \) as \( A \) and \( B \). Since they are closed, \( \overline{A} = A \) and \( \overline{B} = B \). Since they are disjoint
+          \[
+              \overline{A} \cap  B = A \cap B = \varnothing .
+          \]
+          and
+          \[
+              A \cap \overline{B} = A \cap B = \varnothing .
+          \]
+          Therefore, \( A \) and \( B \) are separated.
+
+    \item False, let \( A = (0,1) \) and \( B = (1,2) \). Then
+          \[
+              \overline{A} \cap \overline{B} = [0,1] \cap [1,2] = \{1\} \neq \varnothing .
+          \]
+          But
+          \[
+              \overline{A} \cap B = A \cap \overline{B} = \varnothing .
+          \]
+          Therefore \( A \) and \( B \) are separated.
+
+\end{enumerate}
+
+\textbf{Exercise 2}
+Let \( K, L \subseteq \mathbb{R} \) be nonempty compact sets, and define
+\[
+    K + L = \{x + y : x \in K, y \in L \}.
+\]
+\begin{enumerate}[label=(\alph*)]
+    \item Let \( z_n \) be an arbitrary sequence in \( K +L \). Then for each \( n \in \mathbb{N} \), threre exists \( x_n \in K \) and \( y_n \in L \) such that
+          \[
+              z_n = x_n + y_n.
+          \]
+          Since \( K \) is compact, \( x_n \) has a convergent
+          subsequence \( x_{n_k} \) such that \( x_{n_k} \to  x \in K\).
+          Similarly, since \( L \) is compact, \( y_n \) has a further convergent subsequence \( y_{n_{k_j}} \) such that \( y_{n_{k_j}} \to y \in L \).
+          Since all subsequence of convergent sequence converge to the same limit,
+          \[
+              x_{n_{k_j}} \to x .
+          \]
+          Thus by the Algebraic Limit Theorem
+          \[
+              z_{n_{k_j}} = x_{n_{k_j}} + y_{n_{k_j}} \to x + y
+          \]
+          Since \( x \in K \) and \( y \in L \), it follows that \( x + y \in K + L \). Since \( z_n \) is arbitrary, we have that every sequence of \( K+L \) has a subsequence that converges to some \( z \in K+L \). Therefore, \( K + L \) is compact.
+
+
+    \item Suppose \( K \) is perfect. Since \( K + L \) is compact, it follows that it is also closed. Thus we only need to show that there are no isolated points in \( K + L \). Take \( z \in K + L \). Then there exists \( x \in K \) and \( y \in L \) such that
+          \[
+              z = x + y.
+          \]
+          Since \( K  \) is perfect, \( x \) must be a limit point. So there exists a sequence \( x_n \neq x \in K \) such that \( x_n \to x \). Now define
+          \[
+              z_n = x_n + y.
+          \]
+          Since \( x_n \in K \) and \(  y \in L \), we have \( z_n \in K + L \). Moreover, \( z_n \neq z \) because \( x_n \neq x \) and \( y \) is constant.
+          Hence by the Algebraic Limit Theorem we have
+          \[
+              z_n = x_n + y \to x + y = z.
+          \]
+          Hence \( z \) is a limit point of \( K + L \). Since \( z \) was chosen arbritrarily, it follows that \( K + L \) has no isolated points, and so it is perfect.
+
+          However, the converse is not true. Consider
+          \[
+              K = \{0\}, \qquad L = [0,1].
+          \]
+          Then both sets are closed and bounded, so they are compact and nonempty.
+          Moreover,
+          \[
+              K + L = \{0 + y: y \in [0,1]\} = [0,1].
+          \]
+          The interval \( [0,1] \) is perfect since it is closed and has no isolated points. But \( K = \{0\} \) is not perfect since 0 itself is an isolated point.
+\end{enumerate}
+
+\textbf{Exercise 3}
+Let \( A \subseteq \mathbb{R} \) have exactly one limit point \( p \).
+\begin{enumerate}[label=(\alph*)]
+    \item For each \( m \in \mathbb{N} \), define
+          \[
+              A_m = \{x \in A: \frac{1}{m} \leq \vert x-p \vert \leq m \}.
+          \]
+          Suppose, for contradiciton, that \( A_m \) is infinite.
+          Since
+          \[
+              p - m \leq  x \leq p + m
+          \]
+          for all \( x \in A_m \), \( A_m \) is bounded.
+          Thus, by Bolzaono-Weierstrass Theorem, \( A_m \) has atleast one limit point, say \( q \). Since \( A_m \subseteq A \), \( q \) is also a limit point of \( A \). Hence \( p = q \) since \( A \) has only one limit point. Recall that for every \( x \in A_m \) we have
+          \[
+              \vert x - p \vert  \geq \frac{1}{m}.
+          \]
+          This implies that
+          \[
+              V_{\frac{1}{m}}(p) \cap A_m = \varnothing.
+          \]
+          But then \( p \) cannot be a limit point of \( A_m \), so we have come to a contradicition. Therefore \( A_m \) must be finite.
+
+
+    \item Let \( x \in A \setminus \{p\} \). Since \( x \neq p \), we have \( \vert x -p \vert  > 0 \). By Archimedean Property, there exists \( m \in \mathbb{N} \) such that
+          \[
+              \frac{1}{m} \leq \vert x - p \vert \leq m.
+          \]
+          That is, \( x \in A_m \). Moreover \( x \in \bigcup_{m=1}^{\infty} A_m \). Therefore
+          \[
+              A \setminus \{p\} \subseteq \bigcup_{m=1}^{\infty} A_m
+          \]
+
+          Conversely, suppose \[ x \in \bigcup_{m=1}^{\infty} A_m \]. That is \( x \in A_M \) for some \( m \in \mathbb{N} \). Moreover,
+          \[
+              x \in A \qquad \text{and} \qquad \vert x-p \vert \geq \frac{1}{m} > 0
+          \]
+          Since \( \vert x - p \vert > 0 \), it follows that \( x \neq p \). So \( x \in A \setminus \{p\} \). Hence \( \bigcup_{m=1}^{\infty} A_m \subseteq A \setminus \{p\} \).
+
+          Combining the two inclusions, we have
+          \[
+              A \setminus \{p\} = \bigcup_{m=1}^{\infty} A_m
+          \]
+
+          Recall from part a, we've shown that \( A_m \) is finite for any \( m \in \mathbb{N} \). Combining with what we just did, we have that \( A \) is the countable union of finite sets, and so it must be countable.
+\end{enumerate}
+
+\textbf{Exercise 4}
+\begin{enumerate}[label=(\alph*)]
+    \item Let \( f: (0, \infty ) \to  \mathbb{R} \) be given by \( f(x) = \sqrt{x} \). WLOG, assume \( x \geq y > 0 \). Then
+          \[
+              \begin{split}
+                  (\sqrt{x} - \sqrt{y})^2 & = x + y - 2\sqrt{xy}    \\
+                                          & \leq x - y              \\
+                                          & \leq \vert x - y \vert.
+              \end{split}
+          \]
+          Taking square roots gives
+          \[
+              \vert \sqrt{x} - \sqrt{y} \vert \leq  \sqrt{\vert x - y \vert }.
+          \]
+          Now let \( \epsilon > 0 \) and choose \( \delta = \epsilon^2  \). For \( x,y \in (0, \infty) \) such that \( \vert x - y \vert < \delta  \) we have
+          \[
+              \begin{split}
+                  \vert f(x) - f(y) \vert & = \vert \sqrt{x} - \sqrt{y} \vert \\
+                                          & \leq \sqrt{\vert x - y \vert }    \\
+                                          & < \sqrt{\delta}                   \\
+                                          & = \epsilon.
+              \end{split}
+          \]
+          Therefore, \( f \) is uniformly continuous on \( (0, \infty ) \) by definition.
+
+    \item Let \( g: (0, \infty ) \to \mathbb{R} \) be given by \( g(x) = \frac{1}{\sqrt{x}} \).
+
+          Suppose, for contradiction, that \(g(x)=1/\sqrt{x}\) is uniformly continuous on \((0,\infty)\).
+          Let \(\varepsilon=1\). Then there exists \(\delta>0\) such that for all \(x,y\in(0,\infty)\), if \(|x-y|<\delta\), then \(|g(x)-g(y)|<1\).
+          Choose \( n \in \mathbb{N} \) such that
+          \[
+              \frac{1}{n^2} - \frac{1}{(n+1)^2} < \delta .
+          \]
+          Let
+          \[
+              x = \frac{1}{n^2}, \qquad y = \frac{1}{(n+1)^2},
+          \]
+          Since \( n < n+1 \), it follows that \( x - y > 0 \). Moreover
+          \[
+              \vert x - y \vert = \frac{1}{n^2} - \frac{1}{(n+1)^2} < \delta .
+          \]
+          But
+          \[
+              \begin{split}
+                  \vert g(x) - g(y) \vert
+                   & = \left\vert \frac{1}{\sqrt{x}} - \frac{1}{\sqrt{y}} \right\vert \\
+                   & = \vert n - (n+1) \vert                                          \\
+                   & = 1                                                              \\
+                   & = \epsilon.
+              \end{split}
+          \]
+          This contradicts the defintion of uniform continunity. Hence \( g \) is not uniformly continuous on \( (0, \infty ) \).
+
+
+
+
+
+
+
+
+\end{enumerate}
+
+
+
+\end{document}
+
