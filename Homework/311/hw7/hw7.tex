@@ -1,0 +1,187 @@
+\documentclass[12pt]{article}
+\usepackage{amsmath, amssymb, amsthm}
+\usepackage{parskip}
+\usepackage{geometry}
+\usepackage{enumitem}
+\usepackage{fancyhdr}
+
+\geometry{letterpaper, margin=1in}
+\setlength{\headheight}{15pt}
+
+% Header setup
+\pagestyle{fancy}
+\fancyhf{}
+\lhead{Math 311 Fall 2026}
+\rhead{Jeffrey Lu}
+\cfoot{\thepage}
+
+\title{Homework Assignment 1 \\ \large Math 311, Fall 2026 \\ Rutgers University}
+\author{}
+\date{}
+
+\begin{document}
+
+\maketitle
+
+\textbf{Exercise 3.4.1}
+Suppose that \( P \) is a perfect set and \( K \) is compact.
+By definition, both perfect and compact sets have to be closed.
+So the intersection of two closed sets \( P \cap K \) is also closed.
+Furthermore since \( P \cap K \subseteq K \) and K is bounded, \( P \cap K \) is also bounded. Thus by Heine-Borel Theorem, \( P \cap K \) is compact.
+
+However the intersection \( P \cap K \) does not have to be perfect.
+Consider the counterexampler:
+\[
+    P = [0,2], \qquad K = \{1\}.
+\]
+We have that \( K \) is compact since it is a closed and bounded, and
+that \( P \) is perfect since it is a closed interval.
+But \( P \cap K = \{1\} \), which is not perfect since \( 1 \) is an isolated point.
+
+\textbf{Exercise 3.4.2}
+Suppose, for contradiction, that there exists a nonempty perfect set \( P \subseteq \mathbb{Q} \). Recall that Theorem 3.4.2 states that every nonempty perfect set must be uncountable. Hence \( P \) must be uncountable. But since \( \mathbb{Q} \) is countable and from every subset of a countable set is either finite or countably infinite. Since \( P \subseteq \mathbb{Q} \) it is either countable or finite, contradiciting the fact that \( P \) is uncountable. Thus no nonempty perfect set can contain only rational numbers.
+
+\textbf{Exercise 3.4.7}
+\begin{enumerate}[label=(\alph*)]
+    \item Let \( x,y \in \mathbb{Q} \) be distinct. WLOG, assume \( x < y  \). By density of the irrationals in \( \mathbb{R} \), there exists irrational \( r \) such that
+          \[
+              x < r < y.
+          \]
+          Define
+          \[
+              A = \mathbb{Q} \cap (-\infty  , r), \qquad  B = \mathbb{Q} \cap (r, \infty  ).
+          \]
+          Then
+          \[
+              A \cup B = \mathbb{Q}
+          \]
+          with \( x \in A \) and \( y \in B \). Notice
+          \[
+              \overline{A} \subseteq (-\infty, r], \qquad \overline{B} \subseteq [r, \infty ).
+          \]
+          So
+          \[
+              \overline{A} \cap B = \varnothing
+          \]
+          and
+          \[
+              A \cap \overline{B} = \varnothing .
+          \]
+          So \( A \) and \( B \) are separated.
+          Therefore \( \mathbb{Q} \) is totally disconnected.
+
+
+    \item Yes. Let \( I = \mathbb{R} \setminus \mathbb{Q} \). Let \( x,y \in I \) be distinct. WLOG, assume \( x < y \). By density of \( \mathbb{Q} \) in \( \mathbb{R} \), there exists \( q \in \mathbb{Q} \) such that
+          \[
+              x < q < y.
+          \]
+          Define
+          \[
+              A = I \cap (-\infty,q), \qquad B = I \cap (q, \infty ).
+          \]
+          Then
+          \[
+              A \cup B = I
+          \]
+          with \( x \in A \) and \( y \in B \). Notice
+          \[
+              \overline{A} \subseteq (-\infty, q], \qquad \overline{B} \subseteq [q, \infty ).
+          \]
+          So
+          \[
+              \overline{A} \cup  B = \varnothing
+          \]
+          and
+          \[
+              A \cup \overline{B} = \varnothing .
+          \]
+          So \( A \) and \( B \) are separated.
+          Therefore the irrationals are totally disconnected.
+
+\end{enumerate}
+
+\textbf{Exercise 3.5.5}
+Suppose, for contradiction, that
+\[
+    \mathbb{R} = \bigcup_{n=1}^{\infty} F_n
+\]
+where for each \( n \in  \mathbb{N} \), \( F_n \) is a closed set containing no nonempty open intervals.
+Since \( F_n \) is closed, its complement \( F_n^c \) must be open.
+Let \( (a,b) \) be any nonempty open interval. Since \( F_n \) contains no nonempty open intervals, there exists some \( x \in (a,b) \) such that \( x \not \in F_n \) so \( x \in F_n^c \). That is, \( F_n^c \) is dense in \( \mathbb{R} \). Then by Theorem 3.5.2 since each \( F_n^c \) is open and dense, we have
+\[
+    \bigcap_{n=1}^{\infty} F_n^c \neq \varnothing .
+\]
+But by De Morgan's Law we have
+\[
+    \begin{split}
+        \bigcap_{n=1}^{\infty} F_n^c
+         & = \left(\bigcup_{n=1}^{\infty} F_n\right)^c \\
+         & = \mathbb{R}^c                              \\
+         & = \varnothing.
+    \end{split}
+\]
+This contradicts that the intersection is nonempty, therefore
+\[
+    \mathbb{R} \neq\ \bigcup_{n=1}^{\infty} F_n
+\]
+
+\textbf{Exercise 3.5.6}
+
+Suppose, for contradiciton, that \( \mathbf{I} \) is \( F_{\sigma} \) set. So there exists a countable collection of closed sets \( F_n \) such that
+\[
+    I = \bigcup_{n=1}^{\infty} F_n.
+\]
+Since each \( F_n \subseteq I \) and every nonempty open interval contains a rational, it follows that each \( F_n \) must contain no nonempty open intervals. Morevoer, we can enumerate each element of \( \mathbb{Q} \) as a closed singleton with no nonempty open intervals,
+\[
+    \mathbb{Q} = \{q_1, q_2, q_3, \dots \}
+\]
+So we have
+\[
+    \begin{split}
+        \mathbb{R} & = I \cup \mathbb{Q}                                                                           \\
+                   & = \left(\bigcup_{n=1}^{\infty} F_{n}\right) \cup \left(\bigcup_{n=1}^{\infty} \{q_n\}\right).
+    \end{split}
+\]
+Thus we have expressed \( \mathbb{R} \) as a countable union of closed sets containing no nonempty open intervals, which contradicts Exercise 3.5.5. Therefore, \( \mathbf{I} \) is not a \( F_\sigma  \) set.
+
+Next, we suppose, for contradiction, that \( \mathbb{Q} \) is a \( G_\delta  \). So there exists a countable collection of open sets \( \{G_n\} \) such that
+\[
+    \mathbb{Q} = \bigcap_{n=1}^{\infty} G_n.
+\]
+By De Morgan's Law we have
+\[
+    \begin{split}
+        I & = \mathbb{Q}^c                              \\
+          & = \left(\bigcap_{n=1}^{\infty} G_n\right)^c \\
+          & = \bigcup_{n=1}^{\infty} G_n^c
+    \end{split}
+\]
+Since each \( G_n \) is open, each \( G_n^c \) is closed. So \( I \) is a countable union of closed sets. That is \( I \) is a \( F_\sigma  \) set, which we proved cannot be above. Therefore \( \mathbb{Q} \) is not a \( G_\delta  \) set.
+
+\textbf{Exercise 3.5.8}
+Suppose that the set \( E \) is nowhere-dense in \( \mathbb{R} \). By definiton, \( \overline{E} \) contains no nonempty open intervals. Let \( (a,b) \) be any nonempty open interval. Since \( \overline{E} \) contains no nonempty open intervals, there exists some \( x \in (a,b) \) such that
+\( x \not \in \overline{E} \), so \( x \in \overline{E}^c \). That is \( \overline{E}^c \) is dense in \( \mathbb{R} \).
+
+Now suppose \( \overline{E}^c \) is dense in \( \mathbb{R} \). Then, for every nonempty open interval \( (a,b) \),
+\[
+    (a,b) \cap  \overline{E}^c \neq \varnothing .
+\]
+That is, there exists some \( x \in (a,b) \) such that \( x \not \in \overline{E} \). Hence
+\[
+    (a,b) \not \subseteq \overline{E}.
+\]
+Thus, \( \overline{E} \) contains no nonempty open intervals. Therefore \( E \) is nowhere dense in \( \mathbb{R} \).
+
+
+
+
+
+
+
+
+
+
+
+
+
+\end{document}
