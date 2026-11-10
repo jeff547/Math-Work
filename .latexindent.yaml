@@ -1,0 +1,22 @@
+defaultIndent: "    "
+
+# Limit indentation depth
+maximumIndentation: 1
+
+# Prevent extra nesting for display equations
+noAdditionalIndent:
+    displayMath: 1
+    displayMathTeX: 1
+    equation: 1
+    equation*: 1
+    align: 1
+    align*: 1
+
+# Do not add extra indentation inside commands
+noAdditionalIndentGlobal:
+    commands: 1
+
+# Preserve existing line breaks
+modifyLineBreaks:
+    preserveBlankLines: 1
+    condenseMultipleBlankLinesInto: 0
