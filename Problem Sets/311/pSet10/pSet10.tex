@@ -1,0 +1,261 @@
+\documentclass[12pt]{article}
+\usepackage{amsmath, amssymb, amsthm}
+\usepackage{parskip}
+\usepackage{geometry}
+\usepackage{enumitem}
+\usepackage{fancyhdr}
+
+% Set margins to match a standard homework document
+\geometry{a4paper, margin=1in}
+
+\title{Recitation 10}
+\parskip=1ex
+\author{Math 311 Fall 2026 \\ Rutgers University}
+\date{}
+
+\begin{document}
+
+\maketitle
+
+\textbf{Exercise 1}
+\begin{enumerate}[label=(\alph*)]
+    \item A set \( O \) is open iff for every \( x \in O \), there exists \( V_{\epsilon}(x) \subseteq O \).
+
+          A point \( x \) is a limit point of \( A \) iff for every \( \epsilon > 0 \) we have
+          \[
+              (V_{\epsilon}(x) \setminus {x}) \cap A \neq \varnothing .
+          \]
+
+          A point \( x \) is an isolated point iff there exists \(\epsilon > 0\) such that
+          \[
+              V_{\epsilon}(x) \cap A = {x}.
+          \]
+
+          A set \( A\) is closed if it contains all of its limit points.
+
+          The closure subset of a set \( A \) is defined as \( \overline{A} = A \cup L \) where \( L \) is the set of all of \(A\) limit points.
+
+          No, the limit points of a set does not need to belong to a set.
+
+    \item A set \( A \subseteq \mathbb{R} \) is a compact set iff every sequence \( a_n \in A \) has a subsequence \(x_{n_k}\) that converges in \(A\).
+
+          An open cover is a collection of open sets \( O_\lambda : \lambda \in \Lambda \) such that
+          \[
+              A \subseteq \cup_{\lambda \in \Lambda} O_\lambda.
+          \]
+
+          The finite sub cover is any finite subset of the collection of open sets that make up the open cover such that the sub cover still contains \( A \).
+
+    \item A set \( A \) is perfect iff it is closed and has no isolated points
+
+          Sets \(A, B \) are separated iff \( \overline{A} \cap B = \varnothing \) and \(A \cap \overline{B} = \varnothing \).
+
+          A set \( E \) is disconnected iff \(E = A \cup B\) and \(A,B\) are separated and nonempty.
+
+          A set \( E \) is connected iff it is not disconnected
+
+    \item A set \( A \) is dense iff \( \overline{A} = \mathbb{R} \).
+
+          A set \( A \) is nowhere dense iff \(\overline{A}\) has no nonempty open intervals.
+
+          A set \( A \) is \( F_\sigma \) iff it can be written as the infinite union of closed sets.
+
+          A set \( A \) is \( G_\delta \) iff it can be written as the infinite intersection of open sets.
+
+    \item A set \( O\) is open iff its complement \( O^c \) is closed and a set \( A \) is closed iff its complement \( A^c\) is open.
+
+          Proof:
+          For the forward direction, assume \( O \) is an open set. Let \( x \) be a limit point of \( O^c \). Then every neighborhood of \(x\) must intersect with \(O^c\).
+          Suppose for contradiction, that \(x \in O\). Since \( O\) is an open set, there exists \(V_\epsilon(x) \subseteq O\). This contradicts the fact that every neighborhood of \(x\) must intersect with \(O^c\). Hence \(x \in O^c\). Since \(x\) is an arbitrary limit point, it follows that \( O^c \) is closed.
+
+          Conversely, assume \( O^c \) is a closed set. Let \(x \in O\). Then \(x\) cannot be a limit point of \(O^c\). So there is exists a neighborhood of \(x\) that does not intersects with \(O^c\). Hence \( V_\epsilon(x) \subseteq O \). Since \( x \in O\) was arbitrary, it follows that \( O \) is open.
+
+          Then for the second statement we can just take the complement of \( O \) for both directions.
+
+          A set \(A\) is closed iff every convergent sequence \( a_n \in A \) converges to a point in \( A \).
+
+    \item We know that \( \overline{A} \) is closed and contains all the limit points of \(A\) and that \( A \subseteq \overline{A} \). We know that \( \overline{A} \) is the smallest closed set containing \(A\).
+
+    \item Heine-Borel Theorem states that the following three statements are equivalent.
+
+          1. The set \( A \) is compact
+
+          2. The set \( A \) is closed and bounded
+
+          3. Every open cover of \( A \) has a finite subcover.
+
+    \item The intersection
+          \[
+              \bigcap_{n=1}^{\infty} K_n \neq \varnothing.
+          \]
+
+    \item The set \( P \) is uncountable.
+
+    \item A set \( E \) is connected iff for every \(a, b \in E\) such that \( a < b\), every \( c \in \mathbb{R} \) where  \( a < c < b\), we have \(c \in E\).
+
+          Suppose \( E = A \cup B\) where \(A, B\) are nonempty and disjoint sets. Then \( E \) is connected if there exists a sequence in either \( A \) or \( B\) that converges to a point in the other set.
+
+    \item The intersection of countably many dense open subsets of \( \mathbb{R} \) is nonempty.
+
+          Baire's Theorem states that the reals \( \mathbb{R} \) cannot be written as a countable union of nowhere-dense sets.
+
+    \item Given \(f: A \to \mathbb{R} \) and limit point \(c\) of \(A\).
+          A functional limit \( \lim_{x \to c} f(x) = L \) exists iff for all sequences \( x_n \in A \) where \(x_n \neq c\) and \(x_n \to c \) we have \( f(x_n) \to L\).
+
+          Proof: Suppose \( \lim_{x \to c} f(x) = L \). Let \( x_n \in A \) with \(x_n \neq c\) and \(x_n \to c \), and let \( \epsilon > 0 \). Since \( \lim_{x \to c} f(x) = L \), it follows that for all \(x\) satisfying \( 0 < | x - c | < \delta \), we have \( | f(x) - L | < \epsilon \). Choose \(N \in \mathbb{N} \) big enough such that for all \( n > N \), we have
+          \[
+              0 < | x_n - c| < \delta.
+          \]
+          Then we also have
+          \[
+              | f(x_n) - L | < \epsilon.
+          \]
+          That is, \( f(x_n) \to L\).
+
+          Conversely, suppose  \( f(x_n) \to L\). Then suppose, for contradiction, that \( lim_{x \to c} f(x) \neq L \). So there exists \( \epsilon_0 > 0\) such that for every \( \delta > 0 \), there exists \(x \in A\) such that \( 0 < | x - c| < \delta \) but \( |f(x) - L | \geq \epsilon_0 \). For each \( n \in \mathbb{N} \), let
+          \(\delta_n = 1/n\). Then there exists \(x_n \in A\) such that \( 0 < | x_n - c| < \delta_n \) and \( |f(x_n) - L | \geq \epsilon_0 \). Hence \(f(x_n) \not \to L\), contradicting our original assumption. Therefore, \( lim_{x \to c} f(x) = L \).
+
+          A functional limit \( \lim_{x \to c} f(x) = L \) does not exist if there exists two sequence \( x_n, y_n \in A\) such that \(x_n,y_n \to c\) but
+          \[
+              \lim_{n \to \infty} f(x_n) \neq \lim_{n \to \infty} f(y_n).
+          \]
+
+    \item Given \(f: D \to \mathbb{R} \) and \( c\in D\). The function \(f\) is continuous at point \(c\) iff for every \(\epsilon > 0\), there exists \(\delta >0\) such that if \( | x - c | < \delta \), then \( |f(x) - f(c) | < \epsilon \). Moreover, the function \(f\) is continuous on its domain, if it is continuous on every point in its domain \(D\).
+
+          The sequential definition states that \(f\) is continuous as point \(c\) iff for every sequence \( x_n \in A\) with \( x_n \to c \), we have \( f(x _n) \to f(c) \).
+
+          If \(c\) is an isolated point, then it is always continuous since \( x_n = c \) will satisfy the sequential definition.
+
+    \item Suppose \( f,g : d \to \mathbb{R} \) is continuous at \( c \in D\).
+          The scalar-multiple rule says that \(k f(x) \) is continuous at \(c\) for all \( k \in \mathbb{R} \). The sum rule says that \( f(x) + g(x) \) is continuous at \(c\). The product rule says that \(f(x)g(x)\) is continuous at \(c\). The quotient rule says that
+          \(\frac{f(x)}{g(x)}\) is continuous at \(c\) as long as \(g(c) \neq 0\).
+
+          Let \(f: D \to \mathbb{R} \) and \(h: E \to \mathbb{R} \) satisfy \(f(D) \subseteq E\).
+          If \(f\) is continuous at \(c\) and \(h\) is continuous at \(f(c\) , then the composition \(h \circ f\) is continuous at \(c\).
+
+    \item Let \(f: D \to \mathbb{R} \). Then \(f\) is uniformly continuously iff for every \(\epsilon > 0\), there exists \(\delta > 0\) such that for every \(x,y \in D\)
+          \[
+              | x - y | < \delta \implies |f(x) -f(y) | < \epsilon.
+          \]
+
+    \item Suppose \(f: D \to \mathbb{R} \) is continuous and \(K \subseteq D\) is compact. Then \(f(K)\) is also compact.
+
+          The complete theorem states that if \(f: D \to \mathbb{R} \) is a continuous function and \(K \subseteq D\) is compact, then \(f(K)\) is also a compact set.
+
+    \item Suppose \(K\subseteq\mathbb R\) is nonempty and compact, and \(f:K\to\mathbb R\) is continuous. By Heine-Borel, \(f(K)\) is closed and bounded. It's supremum and infinum are both attained. By definition of image, there exists \(x_{max}, x_{min} \in K\) where \(f(x_{max}) = sup(f(K) \) and \(f(x_{min}) = inf(f(K))\).
+
+    \item Suppose \(K\subseteq\mathbb R\) is compact and \(f:K\to\mathbb R\) is continuous. Then \(f\) is uniformly continuous on \(K\).
+
+    \item Suppose \(D\subseteq\mathbb R\) is bounded and \(f:D\to\mathbb R\) is uniformly continuous. Then \(f(D)\) is also bounded.
+
+    \item Suppose \(K\subseteq\mathbb R\) is compact and
+          \[
+              f:K\to\mathbb R
+          \]
+          is continuous and one-to-one. Then the inverse \(f^{-1}: f(K) \to K\) exists and is continuous.
+\end{enumerate}
+
+\textbf{Exercise 2}
+\begin{enumerate}[label=(\alph*)]
+    \item False. Consider \(f(x) = x^2\) and \(U = (-1,1)\). Then \(f(U) = [0, 1)\) which is not open.
+
+    \item False. Consider
+          \[
+              f(x) = \frac{1}{1+x^2}
+          \]
+          and \(F = [0, \infty)\). Then \(f(F) = (0,1] \) which is not closed.
+
+    \item True. Let \(y \in f(\overline{A})\). Then there exists \(x \in \overline{A} \) such that \(f(x) = y\). Moreover, there exists a sequence \(x_n \in A \) where \(x_n \to x\). Since \(f\) is continuous, it follows that \(f(x_n) \to f(x) = y\). Since \(x_n \in A\), we also have \(f(x_n) \in f(A)\) for every \(n \in \mathbb{N}\). Thus \(y \in \overline{f(A)}\). Therefore
+          \[
+              f(\overline{A}) \subseteq \overline{f(A)}.
+          \]
+
+    \item False. Consider
+          \[
+              f(x)=
+              \begin{cases}
+                  1 & x=0,    \\
+                  0 & x\neq0.
+              \end{cases}
+          \]
+          Then for any compact set \(K \subseteq \mathbb{R}\),
+          \[
+              f(K) \subseteq \{0,1\}
+          \]
+          Since \(f(K)\) is finite, it must be compact. Now consider the sequence \(x_n = 1/n\).
+          Notice \(x_n \to 0\). But \(f(x_n) = 0 \not \to 1 = f(0)\). Thus \(f\) is not continous at 0.
+
+    \item True. Suppose \(f,g:\mathbb R\to\mathbb R\) are continuous and
+          \[
+              f(r)=g(r)\qquad\forall r\in\mathbb Q.
+          \]
+          Let \(x \in \mathbb{R}\). Since \(\mathbb{Q} \) is dense in \(\mathbb{R}\), there exists a sequence \(r_n \subseteq \mathbb{Q}\) such that \(r_n \to x\). By continuity of \(f\) and \(g\),
+          \[
+              f(r_n) \to f(x), \qquad g(r_n) \to g(x).
+          \]
+          From the original assumption we have
+          \[
+              f(r_n) = g(r_n)
+          \]
+          for all \(n \in \mathbb{N}\).
+          Therefore \(f(x) = g(x)\) for all \(x \in \mathbb{R}\).
+
+    \item False. Let
+          \[
+              f(x) = g(x) = x
+          \]
+          and \(D = (0,1) \). Then \(T = (0,1) \) which is not closed.
+
+    \item False. Notice that \(A\) is the union of two connected intervals, \((0,1)\) and \((1,2)\). Since \(f\) is continuous, the images \(f((0,1))\) and \(f((1,2))\) are each connected and hence intervals.
+          Thus,
+          \[
+              f(A)=f((0,1))\cup f((1,2))
+          \]
+          is the union of at most two intervals. However,
+          \[
+              (-1,1)\cup(2,3)\cup(4,5)
+          \]
+          has three connected components and cannot be written as the union of two intervals. Therefore, no such continuous function exists.
+\end{enumerate}
+
+\textbf{Exercise 3}
+\begin{enumerate}[label=(\alph*)]
+    \item Suppose \(f:\mathbb R\to\mathbb R\) is continuous and \(U\subseteq\mathbb R\) is open. Let \(x \in f^{-1}(U)\). By definition of preimage, \(f(x) \in U\). Since \(U\) is open, there exists \(\epsilon > 0\) such that
+          \[
+              V_{\epsilon}(f(X)) \subseteq U.
+          \]
+          Since \(f\) is continuous, there exists \(\delta > 0\) such that
+          \[
+              | y -x | < \delta \implies | f(y) - f(x) | < \epsilon.
+          \]
+          Suppose \(y \in V_{\delta}(x)\). Then \(| f(y) - f(x) | < \epsilon\). Hence \(f(y) \in V_{\epsilon}(f(x))\). By definition of preimage, \(y \in f^{-1}(U)\). Thus
+          \[
+              V_{\delta}(x) \subseteq f^{-1}(U).
+          \]
+          Since \(x\) was arbitrary, we conclude that \(f^{-1}(U)\) is open.
+
+    \item  Suppose \(f:\mathbb R\to\mathbb R\) is continuous and \(F\subseteq\mathbb R\) is closed. Since \(F\) is closed, its complement \( F^c\) is open. From part a, we have that \(f^{-1}(F^c)\) is open. Since \((f^{-1}(F))^c = f^{-1}(F^c)\), it follows that \( (f^{-1}(F))^c\) is open as well. Therefore \(f^{-1}(F)\) is closed.
+
+    \item  Conversely, assume that \(f^{-1}(U)\) is open for every open set \(U \subseteq \mathbb{R}\). Let \(\epsilon > 0\) and \(c \in \mathbb{R}\). Consider the open set \(V_{\epsilon}(f(c))\). Since the preimage of every open set is open, it follows that \(f^{-1}(V_{\epsilon}(f(c)))\) is open. Moreover, since \(f(c) \in V_{\epsilon}(f(c))\) we have
+          \[
+              c \in f^{-1}(V_{\epsilon}(f(c))).
+          \]
+          Thus there exists \(\delta > 0\) such that
+          \[
+              V_{\delta}(c) \subseteq  f^{-1}(V_{\epsilon}(f(c)))
+          \]
+
+          Now suppose we have \(x \in \mathbb{R}\) such that \(x \in V_{\delta}(c)\).
+          Then
+          \[
+              x \in f^{-1}(V_{\epsilon}(f(c))),
+          \]
+          so by definition of preimage,
+          \[
+              f(x) \in V_{\epsilon}(f(c)).
+          \]
+          That is, \(f\) is continuous as point \(c\).
+          Since \( c \in \mathbb{R} \) was arbitrary, \(f\) is continuous on \(\mathbb{R}\).
+\end{enumerate}
+
+\end{document}
