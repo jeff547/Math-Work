@@ -1,0 +1,276 @@
+\documentclass[12pt]{article}
+\usepackage{amsmath, amssymb, amsthm}
+\usepackage{parskip}
+\usepackage{geometry}
+\usepackage{enumitem}
+\usepackage{fancyhdr}
+
+% Set margins to match a standard homework document
+\geometry{a4paper, margin=1in}
+
+\title{Recitation 9}
+\parskip=1ex
+\author{Math 311 Fall 2026 \\ Rutgers University}
+\date{}
+
+\begin{document}
+
+\maketitle
+
+\textbf{Exercise 1}
+\begin{enumerate}[label=(\alph*)]
+    \item True. Since \( A \) and \( B \) are connected subset of \( \mathbb{R} \), they are intervals. Since the intersection of intervals is still a intersection, it is also connected.
+    \item False. Let
+          \[
+              A = (0,1), \qquad B = (1,2).
+          \]
+          Notice that both are intervals and thus connected.
+          Then
+          \[
+              \overline{A} \cap \overline{B} = \{1\} \neq \varnothing .
+          \]
+          But
+          \[
+              A \cup B = (0,2) \setminus \{1\}.
+          \]
+          This is not an interval and so is not connected.
+
+    \item False. Let \( A = {\frac{1}{n} : n \in \mathbb{N}} \). Then
+          \[
+              \overline{A} = A \cup \{0\}.
+          \]
+          Notice that \( \overline{A} \) is countable. Since every nonempty open interval is uncountable, it follows that \( \overline{A} \) cannot contain any nonempty open intervals. That is \( A \) is nowhere dense in \( \mathbb{R} \). Moreover since \( 0 \in \overline{A} \), but \( 0 \not \in A \), \( A \) is not closed. Therefore \( A \) is a nowhere dense of \( \mathbb{R} \) that is not closed.
+
+
+    \item False. Enumerate the ratonals as
+          \[
+              \mathbb{Q} = \{q_1, q_2, q_3, \dots \}.
+          \]
+          Then each singleton is closed and does not contain any nonempty open sets. Thus each singleton \( q_n \) is nowhere dense. But
+          \[
+              \bigcup_{n=1}^{\infty} \{q_n\} = \mathbb{Q}.
+          \]
+          Since \( \overline{\mathbb{Q}} = \mathbb{R} \) isn't nowhere dense, the countable union is not nowhere dense either.
+
+
+    \item True. Let
+          \[
+              A = \bigcap_{n=1}^{\infty} U_n, \qquad B = \bigcap_{n=1}^{\infty} V_n
+          \]
+          where each \( U_n, V_n \) is open.
+          Then
+          \[
+              A \cup B = \bigcap_{(n,m) \in \mathbb{N}^2} (U_n \cup V_m).
+          \]
+          Since the union of two open sets is open and \( \vert \mathbb{N}^2 \vert = \vert \mathbb{N} \vert \), it follows that \( A \cup B \) is still a countable intersection of open sets. Therefore \( A \cup B \) is a \( G_\delta  \) set.
+
+    \item False. For each \( n \in \mathbb{N} \), let
+          \[
+              G_n = \mathbb{R} \setminus \left\{\frac{1}{n}\right\}
+          \]
+          Then each \( G_n \) is open and dense. But,
+          \[
+              \bigcap_{n=1}^{\infty} G_n = \mathbb{R} \setminus \left\{\frac{1}{n} : n \in \mathbb{N} \right\}.
+          \]
+          Which is not open since every neighborhood of 0 contains some \( \frac{1}{n} \) and \( 0 \) is in the intersection.
+
+
+    \item True. Let \( A \subseteq \mathbb{R} \) be nonempty, connected and nowhere dense. Since it is a connected subset of \( \mathbb{R} \), it must be an interval. Suppose, for contradiction, that there exists atleast two distinct points \( a < b \) WLOG. Then since \( A \) is connected, we have
+          \[
+              (a,b) \subseteq A \subseteq \overline{A}.
+          \]
+
+          But this contradicts the assumption that \( A \) is nowhere dense. Thus \( A \) must contain at most one point. Since \( A  \) is also nonempty this changes to exactly one point.
+
+\end{enumerate}
+
+\textbf{Exercise 2}
+For each \( n \in \mathbb{N} \), define
+\[
+    F_n = \left\{\frac{k}{2^n} : k \in \mathbb{Z}\right\}, \qquad D = \bigcup_{n=1}^{\infty} F_n, \qquad H = \mathbb{R} \setminus D.
+\]
+
+\begin{enumerate}[label=(\alph*)]
+    \item
+          Notice that for each \( n \in \mathbb{N} \), any two distinct points of \( F_n \) are atleast \( \frac{1}{2^n} \) apart. Thus, every \( x \not \in F_n \) has a small enough open neighborhood that doesn't intersect with \( F_n \). That is, each \( \mathbb{R} \setminus F_n \) is open, and so each \( F_n \) is closed. Then since \( F_n \) is closed, \( \overline{F_n } = F_n \). Suppose, for contradiction, that \( F_n \) contains a nonempty open interval \( (a,b) \). Choose two distinct points \( x,y \in (a,b) \) such that
+          \[
+              0 < \vert x - y \vert < 2^{-n}
+          \]
+          But since \( (a,b) \subseteq F_n\), it follows that \( x,y \in F_n. \) This contradicts the fact that each point of \( F_n \) is atleast \( 2^{-n} \) apart. Thus \( F_{n} \) contains no nonempty open intervals. Hence \( F_n \) is nowhere dense.
+
+          Now let \( (a,b) \) be an arbitrary nonempty open interval.    Since \( 2^{-n} \to 0 \), choose \( n \in \mathbb{N} \) such that
+          \[
+              \frac{1}{2^n} < b - a.
+          \]
+          Then by the Archimedean Property, there exists \( k \in \mathbb{Z} \) such that
+          \[
+              a < \frac{k}{2^n} \leq a + \frac{1}{2^n} < b.
+          \]
+          Hence
+          \[
+              \frac{k}{2^n} \in (a,b) \cap F_n.
+          \]
+          Since \( F_n \subseteq D \), it follows that
+          \[
+              (a,b) \cap D \neq \varnothing .
+          \]
+          Therefore, \( D \) is dense in \( \mathbb{R} \).
+
+          Finally, since \( D \) is dense in \( \mathbb{R} \) we have
+          \[
+              \overline{D} = \mathbb{R}.
+          \]
+          Since \( \mathbb{R} \) contains nonempty open intervals, \( D \) is not nowhere dense.
+
+
+    \item
+          Recall from part a, we've shown that each \( F_n \) is closed. Hence \( D \) is a countable union of closed sets and thus is a \( F_{\sigma } \) set.
+
+          Then by De Morgan's Law
+          \[
+              \begin{split}
+                  H & = \mathbb{R} \setminus D                             \\
+                    & = \mathbb{R} \setminus \bigcup_{n=1}^{\infty} F_n    \\
+                    & = \bigcap_{n=1}^{\infty} (\mathbb{R} \setminus  F_n)
+              \end{split}
+          \]
+          Since each \( F_n  \) is closed, its complement \( \mathbb{R} \setminus F_n \) must be open. Hence \( H \) is a \( G_\delta  \) set.
+
+          Notice that every \( F_n \) is a rational, hence
+          \[
+              D \subseteq \mathbb{Q}.
+          \]
+          Then
+          \[
+              \mathbb{R} \setminus \mathbb{Q} \subseteq  H.
+          \]
+          Since the irrationals are dense in \( \mathbb{R} \), it follows that \( H \) is dense in \( \mathbb{R} \).
+
+          For a rational number in \( H \), choose \( \frac{1}{3} \).
+          Obviously \( 2^n \neq 3 \) for any \( n \) and so \( \frac{1}{3} \not in D \). An example of an irrationl is \( \sqrt{2} \in H \). Since \( D \) only contains rational as shown earlier, all irrationals must be in the complement \( H \).
+
+          Since \( D \) is dense, \( \overline{D} = \mathbb{R}\), but \( D \neq \mathbb{R} \). So \( D \) is not closed. Since every nonempty open interval must contain a irrational and \( D \) has none, it follows that \( D \) has no nonempty open intervals and thus is not open.
+
+          Since \( H  \) is dense, \( \overline{H} = \mathbb{R} \), but \( H \neq  \mathbb{R} \), so \( H \) is not closed. Since \( D  \) is dense, every nonempty open interval contains a point of \( D \). So \( H \) being the complement cannot contain an nonempty open interval and thus is not open.
+
+\end{enumerate}
+
+\textbf{Exercise 3}
+Let \( G_1,G_2, \dots  \) be a collection of open dense set of \( \mathbb{R} \), and
+\[
+    G = \bigcap_{n=1}^{\infty} G_n.
+\]
+Then by Theorem 3.5.2, we have that \( G \) is nonempty.
+\begin{enumerate}[label=(\alph*)]
+    \item
+          Let \( (a,b) \) be an arbitrary nonempty open interval with \( a < b \). Since \( G_1 \) is dense in \( \mathbb{R} \),
+          \[
+              (a,b) \cap G_1 \neq \varnothing.
+          \]
+          Since this is the intersection of two open sets, their intersection is also a nonempty open set. So we can choose a closed interval \( I_1 = [a_1, b_1] \) with
+          \[
+              I_1 \subseteq (a,b) \cap G_1.
+          \]
+          Simarlily, \( G_2 \) is also dense so
+          \[
+              (a_1,b_1) \cap G_2 \neq \varnothing.
+          \]
+          Again we choose another closed interval \( I_2 = [a_2, b_2] \) with
+          \[
+              I_2 \subseteq (a_1,b_1) \cap G_2
+          \]
+          and \( I_2 \subseteq I_1 \). Suppose we have constructed closed intervals up to\( I_n = [a_n, b_n] \). Since \( G_{n+1} \) is dense
+          \[
+              (a_n, b_n) \cap G_{n+1} \neq \varnothing.
+          \]
+          Since the intersection is nonempty and open, we choose a closed interval \( I_{n+1} = [a_{n+1}, b_{n+1}]\) such that
+          \[
+              I_{n+1} \subseteq (a_{n}, b_n) \cap  G_{n+1}
+          \]
+          and \( I_{n+1} \subseteq I_n \). Thus we have creeated a nested sequence of nonempty closed intervals. By the Nested Interval Property there exists some \( x \in \mathbb{R} \) such that
+          \[
+              x \in \bigcap_{n=1}^{\infty} I_n.
+          \]
+          Since each \( I_n \subseteq G_n \), it follows that
+          \[
+              x \in \bigcap_{n=1}^{\infty} G_n = G.
+          \]
+          Moreover, each \( I_n \subseteq I_1 \) and \( I_1 \subseteq (a,b) \) so
+          \[
+              x \in (a,b).
+          \]
+          Therefore
+          \[
+              x \in G \cap (a,b)
+          \]
+          meaning
+          \[
+              G \cap (a,b) \neq \varnothing.
+          \]
+          That is \( G \) is dense in \( \mathbb{R} \).
+
+
+    \item Let \( D \subseteq \mathbb{R} \) be at most countable. If \( D = \varnothing \), then \( G \setminus D = G\) which is dense by part a. Else since \( D \) is at most countable, we list elements as
+          \[
+              D = \{d_1, d_2, \dots \}
+          \]
+          reapeating points if \( D \) is finite.
+          For each \( n \in \mathbb{N} \), define
+          \[
+              H_n = G_n \setminus \{d_n\}.
+          \]
+          Since \( \{d_n\} \) is closed, its complement is open.
+          Thus
+          \[
+              H_n = G_{n} \cap (\mathbb{R} \setminus \{d_n\})
+          \]
+          is open since its the intersection of two open sets.
+
+          Since each \( G_n \) is dense,
+          \[
+              G_n \cap (a,b) \neq \varnothing.
+          \]
+          Moreover, \( G_n \cap (a,b) \) is open and nonempty, so it is infinite. Thus removing a singleton \( \{d_n\} \) will not make it empty. Hence
+          \[
+              (G_n \setminus \{d_n\}) \cap (a,b) \neq \varnothing.
+          \]
+          That is, every \( H_n \) is dense.
+
+          Since every \( H_n \) is open and dense, by part a, the \( \bigcap_{n=1}^{\infty} H_n \) is dense in \( \mathbb{R} \). That is \( G \setminus D \) is dense in \( \mathbb{R} \).
+
+          Now suppose, for contradiciton, that there exists \( a < b \) such that \( G \cap (a,b) \) is at most countable. Define
+          \[
+              D = G \cap (a,b).
+          \]
+          Since \( D  \) is at most countable, we have shown above that \( G \setminus D \) must be dense in \( \mathbb{R} \). Then
+          \[
+              (G \setminus D) \cap (a,b) \neq \varnothing.
+          \]
+          But
+          \[
+              \begin{split}
+                  (G \setminus D) \cap  (a,b)
+                   & =  (G \setminus (G \cap (a,b))) \cap (a,b) \\
+                   & = (G \setminus (a,b)) \cap (a,b)           \\
+                   & = \varnothing.
+              \end{split}
+          \]
+          This is a contradiciton. Therefore, \( G \cap (a,b) \) is uncountable for every \( a < b \).
+
+
+
+
+
+
+
+\end{enumerate}
+
+
+
+
+\end{document}
+
+
+
+
+
