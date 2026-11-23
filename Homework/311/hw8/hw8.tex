@@ -1,0 +1,509 @@
+\documentclass[12pt]{article}
+\usepackage{amsmath, amssymb, amsthm}
+\usepackage{parskip}
+\usepackage{geometry}
+\usepackage{enumitem}
+\usepackage{fancyhdr}
+
+\geometry{letterpaper, margin=1in}
+\setlength{\headheight}{15pt}
+
+% Header setup
+\pagestyle{fancy}
+\fancyhf{}
+\lhead{Math 311 Fall 2026}
+\rhead{Jeffrey Lu}
+\cfoot{\thepage}
+
+\title{Homework Assignment 8 \\ \large Math 311, Fall 2026 \\ Rutgers University}
+\author{}
+\date{}
+
+\begin{document}
+
+\maketitle
+
+\textbf{Exercise 4.2.2}
+\begin{enumerate}[label=(\alph*)]
+    \item Let \( \epsilon = 1 \). Choose \( \delta = \frac{1}{5} \). Then
+          \[
+              \begin{split}
+                  \vert (5x - 6) - 9 \vert & = 5 \vert x-3 \vert \\
+                                           & < 5 \delta          \\
+                                           & = \epsilon.
+              \end{split}
+          \]
+    \item      Let \( \epsilon = 1 \). Choose \( \delta = 3 \). Then
+          \[
+              \begin{split}
+                  \vert x - 4 \vert < \delta = 3 \\
+                  -3 < x - 4 < 3                 \\
+                  1 < x < 7                      \\
+                  1 < \sqrt{x} < \sqrt{7} < 3    \\
+                  -1 < \sqrt{x} - 2 < 1          \\
+                  \vert \sqrt{x} - 2 \vert < 1 = \epsilon.
+              \end{split}
+          \]
+    \item  Let \( \epsilon = 1 \). Choose \( \delta = \pi - 3 \). Suppose \( \vert x - \pi  \vert < \delta  \). Then
+          \[
+              \begin{split}
+                  -\delta < x - \pi < \delta  \\
+                  3 - \pi < x - \pi < \pi - 3 \\
+                  3 < x < 2 \pi - 3 < 4.
+              \end{split}
+          \]
+          Then \( \lfloor x \rfloor = 3 \), and so
+          \[
+              \vert \lfloor x \rfloor  -3  \vert = 0 < \epsilon.
+          \]
+
+    \item Let \( \epsilon = .01 \) and choose \( \delta = \pi - 3 \). Suppose \( \vert x - \pi \vert < \delta  \). Then
+          \[
+              \begin{split}
+                  -\delta < x - \pi < \delta  \\
+                  3 - \pi < x - \pi < \pi - 3 \\
+                  3 < x < 2 \pi - 3 < 4.
+              \end{split}
+          \]
+          Then \( \lfloor x \rfloor = 3 \), and so
+          \[
+              \vert \lfloor x \rfloor  -3  \vert = 0 < \epsilon.
+          \]
+\end{enumerate}
+
+\textbf{Exercise 4.2.4}
+\begin{enumerate}[label=(\alph*)]
+    \item Let \( \epsilon = \frac{1}{2} \). For \( \lfloor x \rfloor  > 0 \),  we have
+          \[
+              \begin{split}
+                  \vert \frac{1}{\lfloor x \rfloor } - \frac{1}{10} \vert < \frac{1}{2}    \\
+                  -\frac{1}{2} < \frac{1}{\lfloor x \rfloor } - \frac{1}{10} < \frac{1}{2} \\
+                  -\frac{2}{5} < \frac{1}{\lfloor x \rfloor } < \frac{3}{5}.
+              \end{split}
+          \]
+          Thus \( \lfloor x \rfloor \geq 2 \), and so \( x \geq 2 \). Since \( 10 - 2 = 8 \), we choose \( \delta  = 8 \).
+
+          Suppose \( \vert x - 10 \vert < 8\). Then
+          \[
+              \begin{split}
+                  -8 < x - 10 < 8 \\
+                  2 < x < 18.
+              \end{split}
+          \]
+          Thus, \( \lfloor x \rfloor  \geq  2\), so
+          \[
+              0 < \frac{1}{\lfloor x \rfloor } \leq \frac{1}{2}.
+          \]
+          Moreover
+          \[
+              -\frac{1}{10} < \frac{1}{\lfloor x \rfloor } - \frac{1}{10} < \frac{2}{5}.
+          \]
+          Therefore,
+          \[
+              \vert \frac{1}{\lfloor x \rfloor } - \frac{1}{10} \vert < \frac{1}{2} =\epsilon.
+          \]
+    \item Let \( \epsilon = \frac{1}{50} \). For \( \lfloor x \rfloor > 0 \) we have
+          \[
+              \begin{split}
+                  \left\vert \frac{1}{\lfloor x \rfloor} - \frac{1}{10} \right\vert < \frac{1}{50} \\
+                  -\frac{1}{50} < \frac{1}{\lfloor x \rfloor} - \frac{1}{10} < \frac{1}{50}        \\
+                  \frac{1}{15} < \frac{1}{\lfloor x \rfloor} < \frac{3}{25}.
+              \end{split}
+          \]
+          Thus we need \( 9 \leq \lfloor x \rfloor \leq 14 \). Hence
+          \[
+              \begin{split}
+                  9 \leq x < 15 \\
+                  -1 \leq x - 10 < 5
+              \end{split}
+          \]
+          Choose \( \delta = 1 \). Suppose \( \vert x -10 \vert < 1 \). Then
+          \[
+              \begin{split}
+                  -1 \leq x - 10 < 1 \\
+                  9 \leq x < 11.
+              \end{split}
+          \]
+          Hence \( 9 \leq \lfloor x \rfloor \leq 10 \). Thus
+          \[
+              \begin{split}
+                  \frac{1}{10} \leq \frac{1}{\lfloor x \rfloor} \leq \frac{1}{9}                    \\
+                  0 \leq \frac{1}{\lfloor x \rfloor} - \frac{1}{10} \leq \frac{1}{9} - \frac{1}{10} \\
+                  \left\vert \frac{1}{\lfloor x \rfloor} - \frac{1}{10} \right\vert \leq \frac{1}{90} < \frac{1}{50} = \epsilon.
+              \end{split}
+          \]
+    \item Choose \( \epsilon = \frac{1}{90} \). Suppose, for contradiction, that there exists \(\delta>0\) such that
+          \[
+              0<|x-10|<\delta
+              \implies
+              \left|\frac{1}{\lfloor x\rfloor}-\frac{1}{10}\right|<\epsilon.
+          \]
+
+          Choose \(x\) such that
+          \[
+              \max\{9,10-\delta\}<x<10.
+          \]
+
+          Then \(0<|x-10|<\delta\). Since \(9<x<10\), we have \(\lfloor x\rfloor=9\). Thus,
+          \[
+              \begin{aligned}
+                  \left|\frac{1}{\lfloor x\rfloor}-\frac{1}{10}\right|
+                   & =\left|\frac19-\frac1{10}\right| \\
+                   & =\frac1{90}=\epsilon,
+              \end{aligned}
+          \]
+
+          which is a contradiction. Hence, no such \(\delta>0\) exists.
+\end{enumerate}
+
+\textbf{Exercise 4.2.5}
+\begin{enumerate}[label=(\alph*)]
+    \item Let \( \epsilon > 0 \). Choose \( \delta = \frac{\epsilon}{3} \). Suppose \( 0 < \vert x - 2 \vert < \delta \). Then
+          \[
+              \begin{split}
+                  \vert (3x+4) - 10 \vert & = | 3x - 6 |         \\
+                                          & = 3\vert x - 2 \vert \\
+                                          & < 3 \delta           \\
+                                          & = \epsilon.
+              \end{split}
+          \]
+    \item Let \( \epsilon > 0 \). Chose \( \delta = \epsilon^{\frac{1}{3}} \). Suppose \( 0 < \vert x \vert < \delta  \). Then
+          \[
+              \begin{split}
+                  \vert x^3 - 0 \vert & = \vert x \vert^3 \\
+                                      & < \delta ^3       \\
+                                      & = \epsilon.
+              \end{split}
+          \]
+
+    \item Let \( \epsilon > 0 \). Choose \( \delta = \min \{1, \frac{\epsilon}{6}\} \). Suppose \( 0 < \vert x - 2 \vert < \delta  \). Sicne \( \delta \leq 1 \), we have \( 1 < x < 3 \), and so \( \vert x + 3 \vert < 6 \). Then
+          \[
+              \begin{split}
+                  \vert (x^2 + x - 1) -5 \vert & = \vert x -2 \vert \vert x + 3 \vert \\
+                                               & < 6 \vert x -2 \vert                 \\
+                                               & < 6 \delta                           \\
+                                               & = \epsilon.
+              \end{split}
+          \]
+    \item Let \( \epsilon > 0 \). Choose \( \delta = \min \{1, 6\epsilon\} \). Suppsoe \( 0 < \vert x - 3 \vert < \delta  \). Since \( \delta \leq 1 \), we have \( 2 < x < 4 \), so \( \vert x \vert >2 \). Then
+          \[
+              \begin{split}
+                  \vert \frac{1}{x} - \frac{1}{3} \vert & = \frac{\vert x -3 \vert }{3\vert x \vert } \\
+                                                        & < \frac{\vert x -3 \vert }{6}               \\
+                                                        & < \frac{\delta}{6}                          \\
+                                                        & = \epsilon.
+              \end{split}
+          \]
+
+\end{enumerate}
+
+\textbf{Exercise 4.2.7}
+Let \( g: A \to R \) and assume \( f \) is a bounded function on \( A \) in the sense that there exists \( M > 0 \) satisfying \( \vert f(x) \vert \leq M \) for all \( x \in A \). Suppose
+\[
+    \lim_{x \to c} g(x) = 0.
+\]
+Let \( \epsilon > 0 \). Since \( \lim_{x \to c} g(x) = 0 \), there exists \( \delta > 0 \) such that
+\[
+    0 < \vert x - c \vert < \delta \implies \vert g(x) \vert < \frac{\epsilon}{M}.
+\]
+Suppose \( 0 < \vert x - c \vert < \delta \). Then
+\[
+    \begin{split}
+        \vert g(x)f(x) - 0 \vert & = \vert g(x)f(x) \vert   \\
+                                 & \leq  M \vert g(x) \vert \\
+                                 & < M \frac{\epsilon}{M}   \\
+                                 & = \epsilon.
+    \end{split}
+\]
+Therefore
+\[
+    \lim_{x \to c} g(x) f(x) = 0.
+\]
+
+\textbf{Exercise 4.2.8}
+\begin{enumerate}[label=(\alph*)]
+    \item The limit does not exist. Consider the sequences
+          \[
+              x_n = 2 - \frac{1}{n}, \qquad y_n = 2 + \frac{1}{n}.
+          \]
+          Both sequences converges to 2, but
+          \[
+              \frac{\vert x_n - 2 \vert }{x_n - 2} = -1
+          \]
+          while
+          \[
+              \frac{\vert y_n - 2 \vert }{y_n - 2} = 1.
+          \]
+
+    \item Choose \( \delta = \frac{1}{4} \). Suppose \( 0 < \vert x - \frac{7}{4} \vert < \delta \). Then \( \frac{3}{2} < x < 2 \). Hence
+          \[
+              \frac{\vert x - 2 \vert }{x - 2} = -1.
+          \]
+          Therefore
+          \[
+              \lim_{x\to7/4}\frac{|x-2|}{x-2}=-1.
+          \]
+
+    \item The limit does not exist. Consider the sequences
+          \[
+              x_n=\frac1{2n},\qquad y_n=\frac1{2n+1}.
+          \]
+          Both converge to \(0\). However,
+          \[
+              \begin{aligned}
+                  (-1)^{\lfloor1/x_n\rfloor}
+                   & =(-1)^{2n} \\
+                   & =1,
+              \end{aligned}
+          \]
+          while
+          \[
+              \begin{aligned}
+                  (-1)^{\lfloor1/y_n\rfloor}
+                   & =(-1)^{2n+1} \\
+                   & =-1.
+              \end{aligned}
+          \]
+
+    \item Notice that \( (-1)^{\lfloor \frac{1}{x} \rfloor} \) is bounded by 1. Moreover
+          \[
+              \lim_{x \to 0} \sqrt[3]{x} = 0.
+          \]
+          Recall from exercise that the produt of a bounded function and a function converging to 0 also converges to 0. Therefore,
+          \[
+              \lim_{x \to 0} \sqrt[3]{x} (-1)^{\lfloor \frac{1}{x} \rfloor} = 0.
+          \]
+
+\end{enumerate}
+
+
+\textbf{Exercise 4.2.9}
+\begin{enumerate}[label=(\alph*)]
+    \item Let \( M > 0 \). Choose \( \delta = \frac{1}{\sqrt{M}} \). Suppose \( 0 < \vert x \vert < \delta \). Then
+          \[
+              \begin{split}
+                  0 < \vert x \vert < \frac{1}{\sqrt{M}} \\
+                  0 < x^2 < \frac{1}{M}                  \\
+                  \frac{1}{x^2} > M.
+              \end{split}
+          \]
+          Thus,
+          \[
+              \lim_{x \to 0} \frac{1}{x^2} = \infty .
+          \]
+    \item Definiton: \( \lim_{x \to \infty} f(x) = L \) if for every \( \epsilon > 0 \), there exists \( M > 0 \) such that when \( x > M \), it follows that
+          \[
+              \vert f(x) - L  \vert < \epsilon.
+          \]
+
+          Proof: Let \( \epsilon > 0 \). Choose \( M = \frac{1}{\epsilon} \). Suppose \( x > M \). Then
+          \[
+              \begin{split}
+                  x > \frac{1}{\epsilon}      \\
+                  0 < \frac{1}{x} < \epsilon. \\
+                  \vert \frac{1}{x} - 0 \vert < \epsilon.
+              \end{split}
+          \]
+          Thus
+          \[
+              \lim_{x \to \infty} \frac{1}{x} = 0.
+          \]
+    \item Definiton: \( \lim_{x \to \infty} f(x) = \infty  \) if for every \( M > 0 \), there exists \( N > 0 \) such that when \( x > N \), it follows that \( f(x) > M \).
+
+          Proof: Consider \( f(x) = x^2 \). Let \( M > 0 \). Choose \( N = \sqrt{M} \). Suppose \( x > N \). Then
+          \[
+              \begin{split}
+                  x > \sqrt{M} \\
+                  x^2 > M.
+              \end{split}
+          \]
+          Thus
+          \[
+              \lim_{x \to \infty} x^2 = \infty .
+          \]
+
+\end{enumerate}
+
+
+
+\textbf{Exercise 4.2.10}
+\begin{enumerate}[label=(\alph*)]
+    \item Right-hand limit: \( \lim_{x \to a^+} f(x) = L \) if for every \( \epsilon > 0 \), there exists \( \delta > 0 \) such that when
+          \[
+              0 < x - a < \delta
+          \]
+          it follows that
+          \[
+              \vert f(x) - L \vert < \epsilon.
+          \]
+          Left-hand Limit: \( \lim_{x \to a^-} f(x) = L \) if for every \( \epsilon > 0 \), there exists \( \delta > 0 \) such that when
+          \[
+              0 < a - x < \delta
+          \]
+          it follows that
+          \[
+              \vert f(x) - L \vert < \epsilon.
+          \]
+    \item Suppose \( \lim_{x \to n} f(x) = L \). Let \( \epsilon > 0 \). Then there exists \( \delta > 0 \) such that
+          \[
+              0 < \vert x - a \vert < \delta \implies \vert f(x) - L \vert < \epsilon.
+          \]
+          If \(0<x-a<\delta\), then \(0<|x-a|<\delta\), so \(|f(x)-L|<\epsilon\). Thus,
+          \[
+              \lim_{x\to a^+}f(x)=L.
+          \]
+
+          Similarly, if \(0<a-x<\delta\), then \(0<|x-a|<\delta\), so \(|f(x)-L|<\epsilon\). Hence,
+          \[
+              \lim_{x\to a^-}f(x)=L.
+          \]
+
+          Conversely, suppose
+          \[
+              \lim_{x\to a^+}f(x)=L
+              \quad\text{and}\quad
+              \lim_{x\to a^-}f(x)=L.
+          \]
+          Let \( \epsilon > 0 \). By the definition of the right-hand limit, there exists \(\delta_1>0\) such that
+          \[
+              0<x-a<\delta_1
+              \implies |f(x)-L|<\epsilon.
+          \]
+          Similarly, by the definition of the left-hand limit, there exists \(\delta_2>0\) such that
+          \[
+              0<a-x<\delta_2
+              \implies |f(x)-L|<\epsilon.
+          \]
+          Choose
+          \[
+              \delta=\min\{\delta_1,\delta_2\}.
+          \]
+          Suppose \( 0 < \vert x - a \vert < \delta \). Then we have two cases. If \( x > a \), then then \(0<x-a<\delta\le\delta_1\), so \(|f(x)-L|<\epsilon\). If \(x<a\), then \(0<a-x<\delta\le\delta_2\), so \(|f(x)-L|<\epsilon\). Therefore
+          \[
+              \lim_{x \to a} f(x) = L.
+          \]
+\end{enumerate}
+
+
+
+\textbf{Exercise 4.3.1}
+\begin{enumerate}[label=(\alph*)]
+    \item Let \( \epsilon > 0 \). Choose \( \delta = \epsilon^3 \). Suppose \( \vert x \vert < \delta \). Then
+          \[
+              \begin{split}
+                  \vert g(x) - g(0) \vert & = \vert \sqrt[3]{x} - 0 \vert \\
+                                          & = \sqrt[3]{\vert x \vert }    \\
+                                          & < \sqrt[3]{\delta}            \\
+                                          & = \epsilon.
+              \end{split}
+          \]
+          Thus \( g \) is continuous at \( c = 0 \).
+
+    \item Notice that
+          \[
+              a^2+ab+b^2
+              =\left(a+\frac b2\right)^2+\frac{3b^2}{4}
+              \ge\frac{3b^2}{4}.
+          \]
+          Let \( \epsilon > 0 \). Choose
+          \[
+              \delta = \frac{3}{4} \vert c \vert^{\frac{2}{3}} \epsilon.
+          \]
+          Suppose \( \vert x - c \vert < \delta \). Then
+          \[
+              \begin{split}
+                  \vert g(x) - g(c) \vert & = \vert \sqrt[3]{x} - \sqrt[3]{c} \vert                                     \\
+                                          & = \frac{\vert x-c \vert }{x^{\frac{2}{3}} + \sqrt[3]{xc} + c^{\frac{2}{3}}} \\
+                                          & \leq \frac{4\vert x-c \vert }{3\vert c \vert^\frac{2}{3}}                   \\
+                                          & < \frac{4\delta}{3\vert c \vert^{\frac{2}{3}}}                              \\
+                                          & = \epsilon.
+              \end{split}
+          \]
+          Thus \( g \) is continuous at every \( c \neq 0 \).
+
+\end{enumerate}
+
+
+\textbf{Exercise 4.3.4}
+\begin{enumerate}[label=(\alph*)]
+    \item Consider \( f(x) = 0 \) and
+          \[
+              g(x)=
+              \begin{cases}
+                  1 & x=0,    \\
+                  0 & x\neq0.
+              \end{cases}
+          \]
+          Let \( p = q = r = 0 \). Since \( f(x) = 0 \) for all \( x \in \mathbb{R} \) we have
+          \[
+              \lim_{x \to 0} f(x) = 0.
+          \]
+          Since \( g(x) = 0 \) for all \( x \neq 0 \), we have
+          \[
+              \lim_{x \to 0} g(x) = 0.
+          \]
+          But
+          \[
+              g(f(x)) = g(0) = 1.
+          \]
+          for every \(  x \in \mathbb{R} \). Therefore
+          \[
+              \lim_{x \to 0} g(f(x)) = 1 \neq 0 = r.
+          \]
+    \item Suppose \( f,g \) are continuous functions. Since \(f\) is continuous at \(p\),
+          \[
+              q=\lim_{x\to p}f(x)=f(p).
+          \]
+
+          Similarly, since \(g\) is continuous at \(q\),
+          \[
+              r=\lim_{x\to q}g(x)=g(q).
+          \] Recall that the composition of continuous function is alos continuous. Hence
+          \[
+              \begin{aligned}
+                  \lim_{x\to p}g(f(x))
+                   & =g(f(p)) \\
+                   & =g(q)    \\
+                   & =r.
+              \end{aligned}
+          \]
+    \item If only \( f \) is continuous, then the statement is not always true. Notice that the example in part a is already continuous.
+
+          If only \( g \) is continuous, then the statement holds. Let \( \epsilon > 0 \). Since \( g  \) is continuous at \( q \), there exists \( \delta_1 > 0 \) such that
+          \[
+              \vert y - q \vert < \delta_1 \implies \vert g(y) - g(q) \vert < \epsilon.
+          \]
+          Since \(\lim_{x\to p}f(x)=q\), there exists \(\delta_2>0\) such that
+          \[
+              0<|x-p|<\delta_2
+              \implies |f(x)-q|< \delta_1.
+          \]
+          Thus, if \( 0 < \vert x - p \vert < \delta_2 \), we have
+          \[
+              \vert g(f(x)) - g(q) \vert  < \epsilon.
+          \]
+          Since \( g \) is continous at \( q \) and \( g(q) = r \), we have
+          \[
+              \vert g(f(x)) - r \vert  < \epsilon.
+          \]
+          Therefore,
+          \[
+              \lim_{x \to p} g(f(x)) = r.
+          \]
+
+\end{enumerate}
+
+
+\textbf{Exercise 4.3.9}
+Assume \( h: \mathbb{R} \to \mathbb{R} \) is continuous and let \( K = \{x: h(x) = 0\} \). Let \( (x_n) \subseteq K \) be convergent with \( x_n \to x \). Since \( x_n \in K \) for all \( n \in \mathbb{N} \), it follows that \( h(x_n) = 0 \) for all \(  n \in \mathbb{N} \). Since \( h \) is continuous we have
+\[
+    \lim_{n \to \infty} h(x_n) = h(x).
+\]
+But then \( h(x) = 0 \) must hold. Thus, \( x \in K \). Since \( (x_n) \) was arbitrary, it follows that every convergent sequence in \( K \) converges to a point in \( K \). Therefore \( K \) is closed.
+
+
+
+
+
+
+\end{document}
